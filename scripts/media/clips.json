@@ -1,0 +1,269 @@
+{
+  "_about": "The guide's clips and stills, cut from Curio's recordings by clips.mjs and stills.mjs (run with the media-src folder, which holds one folder per recording session, a take). A clip's source is `tour` (with `scene`, and `from`/`to`/`poster` in seconds after that scene's start mark) or `walkthrough:<slug>` (seconds from the start of that video). A still is a PNG from ctx.tour.still (`name`) or a frame of a video (`source`, `scene`, `at`). Output goes to site/public/media/<page>/<id>.*. `crop` drops the bottom strip, where the app shows its version. Windows were picked from clip-frames.mjs contact sheets.",
+  "crop": "crop=1280:768:0:0",
+  "clips": [
+    {
+      "id": "signup",
+      "page": "quick-start",
+      "take": "tour1",
+      "source": "tour",
+      "scene": "signup",
+      "from": 3.0,
+      "to": 14.0,
+      "poster": 12.5
+    },
+    {
+      "id": "canvas",
+      "page": "dataflows",
+      "take": "tour1",
+      "source": "tour",
+      "scene": "canvas",
+      "from": 0.5,
+      "to": 26.0,
+      "poster": 9.0
+    },
+    {
+      "id": "build",
+      "page": "dataflows",
+      "take": "tour1",
+      "source": "tour",
+      "scene": "build",
+      "from": 2.0,
+      "to": 34.0,
+      "poster": 31.5
+    },
+    {
+      "id": "quickstart-chart",
+      "page": "quick-start",
+      "take": "quickstart1",
+      "source": "tour",
+      "scene": "quickstart",
+      "from": 19.5,
+      "to": 29.9,
+      "poster": 29.4
+    },
+    {
+      "id": "projects",
+      "page": "projects-and-files",
+      "take": "tour1",
+      "source": "tour",
+      "scene": "projects",
+      "from": 0.5,
+      "to": 8.5,
+      "poster": 7.5
+    },
+    {
+      "id": "jupyter",
+      "page": "projects-and-files",
+      "take": "tour1",
+      "source": "tour",
+      "scene": "jupyter",
+      "from": 0.5,
+      "to": 16.0,
+      "poster": 10.5
+    },
+    {
+      "id": "saveload",
+      "page": "projects-and-files",
+      "take": "tour1",
+      "source": "tour",
+      "scene": "saveload",
+      "from": 2.0,
+      "to": 17.0,
+      "poster": 16.5
+    },
+    {
+      "id": "linked-charts",
+      "page": "visualization",
+      "take": "tour1",
+      "source": "tour",
+      "scene": "linkedviews",
+      "from": 9.5,
+      "to": 22.9,
+      "poster": 22.4
+    },
+    {
+      "id": "autark",
+      "page": "visualization",
+      "take": "tour1",
+      "source": "tour",
+      "scene": "autark",
+      "from": 29.5,
+      "to": 42.3,
+      "poster": 41.8
+    },
+    {
+      "id": "provenance-graph",
+      "page": "provenance",
+      "take": "walk1",
+      "source": "walkthrough:provenance-graph-navigation",
+      "from": 4.5,
+      "to": 14.3,
+      "poster": 12.0
+    },
+    {
+      "id": "provenance-revert",
+      "page": "provenance",
+      "take": "walk1",
+      "source": "walkthrough:provenance-reverting-to-a-previous-version",
+      "from": 8.0,
+      "to": 22.0,
+      "poster": 21.0
+    },
+    {
+      "id": "datacatalog",
+      "page": "data-catalog",
+      "take": "tour1",
+      "source": "tour",
+      "scene": "datacatalog",
+      "from": 1.0,
+      "to": 12.4,
+      "poster": 12.0
+    },
+    {
+      "id": "lineage",
+      "page": "data-catalog",
+      "take": "tour1",
+      "source": "tour",
+      "scene": "lineage",
+      "from": 1.0,
+      "to": 11.0,
+      "poster": 8.0,
+      "redact": [
+        {
+          "x": 576,
+          "y": 266,
+          "w": 256,
+          "h": 100,
+          "from": 2.4
+        }
+      ]
+    },
+    {
+      "id": "nodecatalog",
+      "page": "node-catalog",
+      "take": "tour1",
+      "source": "tour",
+      "scene": "nodecatalog",
+      "from": 1.0,
+      "to": 18.0,
+      "poster": 15.0
+    },
+    {
+      "id": "agentcatalog",
+      "page": "ai-agents",
+      "take": "tour1",
+      "source": "tour",
+      "scene": "agentcatalog",
+      "from": 9.0,
+      "to": 34.0,
+      "poster": 31.5
+    },
+    {
+      "id": "agentattach",
+      "page": "ai-agents",
+      "take": "tour1",
+      "source": "tour",
+      "scene": "agentattach",
+      "from": 0.5,
+      "to": 22.0,
+      "poster": 21.0
+    },
+    {
+      "id": "dashboard",
+      "page": "dashboards",
+      "take": "tour2",
+      "source": "tour",
+      "scene": "dashboard",
+      "from": 0.5,
+      "to": 14.5,
+      "poster": 12.0
+    }
+  ],
+  "stills": [
+    {
+      "id": "data-loading",
+      "page": "quick-start",
+      "take": "quickstart1",
+      "name": "quickstart-data-loading"
+    },
+    {
+      "id": "examples",
+      "page": "projects-and-files",
+      "take": "walk1",
+      "source": "walkthrough:examples-are-seeded-for-a-new-account",
+      "at": 9.0
+    },
+    {
+      "id": "simple-view",
+      "page": "visualization",
+      "take": "walk1",
+      "source": "walkthrough:simple-view-shows-a-frames-images",
+      "at": 10.5
+    },
+    {
+      "id": "interaction-edge",
+      "page": "interactions",
+      "take": "tour3",
+      "source": "tour",
+      "scene": "interaction",
+      "at": 10.5
+    },
+    {
+      "id": "data-lakes",
+      "page": "data-lakes",
+      "take": "tour1",
+      "name": "datalakes-catalog"
+    },
+    {
+      "id": "libraries",
+      "page": "node-catalog",
+      "take": "tour1",
+      "source": "tour",
+      "scene": "libraries",
+      "at": 5.5
+    },
+    {
+      "id": "ai-settings",
+      "page": "install",
+      "take": "tour1",
+      "source": "tour",
+      "scene": "aisettings",
+      "at": 3.0
+    },
+    {
+      "id": "share-menu",
+      "page": "dashboards",
+      "take": "tour2",
+      "source": "tour",
+      "scene": "dashboard",
+      "at": 6.5
+    },
+    {
+      "id": "monitor",
+      "page": "self-hosting",
+      "take": "hosted",
+      "name": "monitor-dev"
+    },
+    {
+      "id": "node-settings",
+      "page": "authoring-nodes",
+      "take": "walk1",
+      "source": "walkthrough:node-settings-reads-plainly",
+      "at": 8.5
+    },
+    {
+      "id": "column-filter",
+      "page": "authoring-nodes",
+      "take": "walk1",
+      "source": "walkthrough:column-filter-reads-a-dataframe",
+      "at": 13.5,
+      "crop": {
+        "left": 180,
+        "top": 170,
+        "width": 1100,
+        "height": 440
+      }
+    }
+  ]
+}

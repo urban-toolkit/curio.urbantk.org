@@ -1,0 +1,23 @@
+/* Curio orange. #e8590c itself is only 3.6:1 on white, so text and buttons use darker and lighter variants
+   derived with theme/node/color.ts (6:1 on white, 7:1 on the dark background, as on urbantk.org). The raw
+   color is kept for decoration. */
+:root {
+  --curio-orange: #e8590c;
+  --vp-c-brand-1: #ad3e00;
+  --vp-c-brand-2: color-mix(in srgb, #ad3e00 82%, #000);
+  --vp-c-brand-3: #ad3e00;
+  --vp-c-brand-soft: color-mix(in srgb, #e8590c 13%, transparent);
+
+  --curio-radius: 12px;
+  --curio-radius-sm: 8px;
+  --curio-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.08);
+  --curio-max: 1152px;
+}
+
+.dark {
+  --vp-c-brand-1: #ff8554;
+  --vp-c-brand-2: color-mix(in srgb, #ff8554 82%, #fff);
+  --vp-c-brand-3: #ad3e00;
+  --vp-c-brand-soft: color-mix(in srgb, #e8590c 18%, transparent);
+  --curio-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+}

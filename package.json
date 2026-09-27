@@ -1,0 +1,17 @@
+{
+  "name": "curio.urbantk.org",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev site",
+    "build": "vitepress build site",
+    "preview": "vitepress preview site",
+    "check": "node scripts/check/dist.mjs && node scripts/check/media.mjs && node scripts/check/github.mjs"
+  },
+  "devDependencies": {
+    "culori": "^4.0.2",
+    "gray-matter": "^4.0.3",
+    "vitepress": "^1.6.4",
+    "zod": "^4.6.5"
+  }
+}
