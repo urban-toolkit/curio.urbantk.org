@@ -55,6 +55,14 @@
   }
 }
 
+/* The home hero's five section buttons and its badges fit on one row each; its heading and tagline keep
+   VitePress's own narrower measure. */
+@media (min-width: 1152px) {
+  .VPHome .VPHero.has-image .main {
+    max-width: 740px;
+  }
+}
+
 /* Shared building blocks. */
 .curio-container {
   max-width: var(--curio-max);

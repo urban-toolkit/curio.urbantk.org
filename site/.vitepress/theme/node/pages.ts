@@ -3,8 +3,9 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import matter from 'gray-matter'
 import type { DefaultTheme } from 'vitepress'
+import { z } from 'zod'
 import { SITE } from '../../site'
-import { pageSchema, type PageFrontmatter } from './schema'
+import { pageSchema, useCaseSchema, type PageFrontmatter, type UseCase } from './schema'
 
 export const SITE_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..')
 
@@ -38,6 +39,17 @@ export function loadPages(): GuidePage[] {
     if (twin) throw new Error(`site/${page.slug}.md and site/${twin.slug}.md have the same order in ${page.group}`)
   }
   return pages
+}
+
+// The home page's use cases, validated.
+export function loadUseCases(): UseCase[] {
+  const data = matter(fs.readFileSync(path.join(SITE_DIR, 'index.md'), 'utf8')).data.useCases ?? []
+  const parsed = z.array(useCaseSchema).safeParse(data)
+  if (!parsed.success) {
+    const issues = parsed.error.issues.map((i) => `useCases.${i.path.join('.')}: ${i.message}`).join('; ')
+    throw new Error(`site/index.md: ${issues}`)
+  }
+  return parsed.data
 }
 
 export function buildSidebar(pages: GuidePage[]): DefaultTheme.SidebarItem[] {

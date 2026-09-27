@@ -18,7 +18,7 @@ Node 22 (`.nvmrc`). Run `npm run build && npm run check` before pushing: `deploy
 | Where | What |
 |---|---|
 | `site/<slug>.md` | one guide page, served at `/<slug>/` |
-| `site/index.md` | the home page (hero and topic grid) |
+| `site/index.md` | the home page: hero, use cases and topic grid |
 | `site/404.md` | the not-found page, which also forwards old app links |
 | `site/public/media/<slug>/` | the page's screenshots and clips |
 | `site/.vitepress/site.ts` | site settings: app addresses, sidebar groups, funding |
@@ -61,6 +61,20 @@ Writing rules:
 - No en or em dashes.
 - Link to other guide pages as `/slug/`, and to the hosted app only through `TryIt` or `app:`. The app's address lives in `site.ts` alone.
 - A page may not use a slug that the app used to answer at curio.urbantk.org (`appRoutes` in `site.ts`); the build refuses it.
+
+## The home page
+
+`site/index.md` holds the hero and the use cases. Each hero button jumps to a section of the page: `#use-cases`, or a sidebar group's id from `site.ts`. The badges under the buttons come from `theme/node/badges.ts`. The use cases are validated like page frontmatter; each one spans the page, with its image on alternating sides:
+
+```yaml
+useCases:
+  - title: City comparison
+    text: One paragraph on what the dataflow does.
+    image: { src: /media/home/city.webp, alt: "..." }   # or, until there is one, a placeholder:
+    icon: city              # cctv | satellite | city | weather (theme/components/Icon.vue)
+    inDevelopment: true     # labels a case Curio does not ship yet
+    doc: { path: docs/examples/09-heterogeneous-data-linked-views.md, label: "The Milan heat example" }   # optional
+```
 
 ## Media
 

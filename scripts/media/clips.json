@@ -192,6 +192,18 @@
   ],
   "stills": [
     {
+      "id": "weather",
+      "page": "home",
+      "take": "heat1",
+      "name": "heat-views",
+      "crop": {
+        "left": 196,
+        "top": 115,
+        "width": 1680,
+        "height": 1050
+      }
+    },
+    {
       "id": "data-loading",
       "page": "quick-start",
       "take": "quickstart1",

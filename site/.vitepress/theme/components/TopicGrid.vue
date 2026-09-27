@@ -21,7 +21,7 @@ const groups = computed(() => {
 
 <template>
   <div class="curio-topics vp-raw">
-    <section v-for="group in groups" :key="group.id" class="curio-topics-group">
+    <section v-for="group in groups" :id="group.id" :key="group.id" class="curio-topics-group">
       <h2 class="curio-topics-title">{{ group.title }}</h2>
       <ul class="curio-topics-grid">
         <li v-for="page in group.pages" :key="page.url">
@@ -45,6 +45,11 @@ const groups = computed(() => {
   flex-direction: column;
   gap: 40px;
   padding: 16px 0 24px;
+}
+
+/* The hero's buttons jump to these sections. */
+.curio-topics-group {
+  scroll-margin-top: var(--vp-nav-height);
 }
 
 .curio-topics-title {

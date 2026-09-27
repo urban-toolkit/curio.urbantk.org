@@ -13,6 +13,8 @@ export const SITE = {
   docs: 'https://github.com/urban-toolkit/curio/blob/main/',
   siteRepo: 'https://github.com/urban-toolkit/curio.urbantk.org',
   urbantk: 'https://urbantk.org',
+  paper: 'https://arxiv.org/abs/2408.06139',
+  discord: 'https://discord.gg/ajT6wF8TmN',
   // Open Graph image for pages that have none of their own.
   image: '/media/brand/curio-social.png',
   // Paths the app answered at curio.urbantk.org before it moved to its own host. The 404 page forwards

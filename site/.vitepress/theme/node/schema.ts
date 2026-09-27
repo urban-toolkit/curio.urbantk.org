@@ -33,3 +33,26 @@ export const pageSchema = z
   .strict()
 
 export type PageFrontmatter = z.infer<typeof pageSchema>
+
+// Icons a use case without its own image can show in its placeholder (theme/components/Icon.vue).
+const PLACEHOLDER_ICONS = ['cctv', 'satellite', 'city', 'weather'] as const
+
+// The home page's use cases (site/index.md, frontmatter `useCases`), shown in this order. A case with no
+// `image` shows a placeholder with its `icon`; `inDevelopment` labels one that Curio does not ship yet.
+export const useCaseSchema = z
+  .object({
+    title: z.string().min(1),
+    text: z.string().min(1),
+    image: z.object({ src: mediaPath, alt: z.string().min(1) }).strict().optional(),
+    icon: z.enum(PLACEHOLDER_ICONS).optional(),
+    inDevelopment: z.boolean().default(false),
+    // A link into the curio repo, checked like a page's `deeper` links.
+    doc: z
+      .object({ path: z.string().regex(/^[\w./@-]+\.md$/, 'a markdown path in the curio repo'), label: z.string().min(1) })
+      .strict()
+      .optional(),
+  })
+  .strict()
+  .refine((c) => c.image || c.icon, 'a use case needs an image or a placeholder icon')
+
+export type UseCase = z.infer<typeof useCaseSchema>

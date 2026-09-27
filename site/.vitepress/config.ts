@@ -1,10 +1,12 @@
 import { defineConfig } from 'vitepress'
 import { SITE } from './site'
 import { FORWARD_ATTR, forwarderScript, writeAppStubs } from './theme/node/forward'
+import { homeBadges } from './theme/node/badges'
 import { socialHead } from './theme/node/head'
-import { buildSidebar, loadPages } from './theme/node/pages'
+import { buildSidebar, loadPages, loadUseCases } from './theme/node/pages'
 
 const pages = loadPages()
+const useCases = loadUseCases()
 
 // GitHub Pages serves the site under /curio.urbantk.org/ until it has its own domain; deploy.yml passes the
 // prefix from the Pages settings. A build under a prefix is a review copy, so it asks not to be indexed.
@@ -54,6 +56,8 @@ export default defineConfig({
       urbantk: SITE.urbantk,
       groups: SITE.groups,
       pages,
+      useCases,
+      badges: homeBadges(SITE),
       funding: SITE.funding,
       institutions: SITE.institutions,
     },
