@@ -29,7 +29,7 @@ Saving needs an account: on a server with sign-in, a guest can open dataflows bu
 
 Every account on the hosted Curio starts with its own copy of the example gallery, dataflows such as "Vega-Lite chained transforms" and "Autark PBF loading" that are ready to open and run. You can edit, rename and save them like any other project, but they cannot be deleted.
 
-On your own computer, the examples come from starting Curio with `--with-examples`, which the Docker image does (see [Install](/install/)). In the default single-user mode, that flag also resets the examples to their original state and deletes every other project each time Curio starts, so keep a copy of work you care about with **File > Save dataflow as**.
+On your own computer, the examples come from starting Curio with `--with-examples`, which the Docker image does (see [Install](/install/)).
 
 <GuideFigure src="/media/projects-and-files/examples.webp" alt="The Projects page with example dataflows" caption="A brand-new account&#x27;s projects page, already holding its own copies of the example dataflows." :w="1280" :h="768" />
 
