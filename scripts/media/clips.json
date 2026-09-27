@@ -178,6 +178,16 @@
       "from": 0.5,
       "to": 14.5,
       "poster": 12.0
+    },
+    {
+      "id": "collaboration",
+      "page": "collaboration",
+      "take": "collab2",
+      "source": "tour",
+      "scene": "collaboration",
+      "from": 15.5,
+      "to": 30.6,
+      "poster": 28.0
     }
   ],
   "stills": [
@@ -264,6 +274,12 @@
         "width": 1100,
         "height": 440
       }
+    },
+    {
+      "id": "proposal",
+      "page": "collaboration",
+      "take": "collab2",
+      "name": "collaboration-proposal"
     }
   ]
 }

@@ -3,6 +3,7 @@ title: "Collaboration"
 description: "Edit one dataflow together in real time, on a Curio server you start with collaboration turned on."
 group: using
 order: 110
+card: { poster: /media/collaboration/collaboration.webp, alt: "Two people in one dataflow" }
 deeper:
   - { doc: docs/COLLABORATION.md, label: "Real-time collaboration" }
   - { doc: docs/COLLABORATION.md, anchor: known-limitations, label: "Known limitations" }
@@ -28,7 +29,7 @@ Then everyone signs in and opens the same dataflow. **Share > Copy dataflow link
 
 On a server with collaboration on, a people icon appears in the canvas top bar, with the number of people in the dataflow once there is more than one. Click it to open the side panel: **Users** lists everyone in the dataflow, **Proposals** holds code changes waiting for approval, and **Activity** shows recent events, such as people joining and changes being applied.
 
-<MediaTodo kind="clip" source="new:collaboration" caption="Two people edit the same dataflow in two browsers: a node added in one appears in the other, and the side panel lists both users." />
+<LoopVideo src="/media/collaboration/collaboration.mp4" poster="/media/collaboration/collaboration.webp" caption="Seen from the owner&#x27;s screen: a second person joins and the panel lists them both, the node they add appears on this canvas, and their code change arrives as a proposal." :w="1280" :h="768" />
 
 ## Edit together
 
@@ -38,7 +39,7 @@ While someone edits a node's code, the node shows a badge with their initials, a
 
 When you change a node's code or grammar and click away from the editor, the change goes to the others as a proposal. They see a banner on the node with **Approve** and **Reject**, and the **Proposals** list offers the same buttons. Once everyone else approves, the change applies in every editor at the same time; a single **Reject** withdraws it.
 
-<MediaTodo kind="still" source="new:collaboration" caption="A code change proposed by one person appears on the other person's node as a banner with Approve and Reject." />
+<GuideFigure src="/media/collaboration/proposal.webp" alt="A proposed code change on a node, with Approve and Reject" caption="A code change proposed by one person appears on the other person&#x27;s node as a banner with Approve and Reject." :w="1280" :h="768" />
 
 ## Good to know
 
