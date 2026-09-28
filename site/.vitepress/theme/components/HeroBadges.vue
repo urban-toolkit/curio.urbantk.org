@@ -22,7 +22,7 @@ const badges = computed(() =>
   <ul v-if="badges.length" class="curio-badges" aria-label="Curio links">
     <li v-for="badge in badges" :key="badge.src">
       <a :href="badge.href" :target="badge.external ? '_blank' : undefined" :rel="badge.external ? 'noopener' : undefined">
-        <img :src="badge.src" :alt="badge.alt" height="28" loading="lazy" decoding="async" />
+        <img :src="badge.src" :alt="badge.alt" height="28" decoding="async" />
       </a>
     </li>
   </ul>

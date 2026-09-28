@@ -194,7 +194,7 @@
     {
       "id": "weather",
       "page": "home",
-      "take": "heat2",
+      "take": "heat4",
       "name": "heat-views",
       "crop": {
         "left": 196,

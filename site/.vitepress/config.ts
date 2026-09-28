@@ -71,8 +71,6 @@ export default defineConfig({
       return
     }
     fm.head.push(...socialHead(pageData, SITE))
-    // Hero buttons can say "@app" for the hosted app, whose address lives in site.ts.
-    for (const action of fm.hero?.actions ?? []) if (action.link === '@app') action.link = SITE.app
   },
 
   buildEnd(siteConfig) {

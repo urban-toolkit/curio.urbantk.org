@@ -39,7 +39,7 @@ export function homeBadges(site: BadgeSite): Badge[] {
   return [
     { alt: 'Try it online', href: site.app, src: `${SHIELDS}/badge/dynamic/json?${STYLE}&${live}` },
     { alt: 'Install with pip or Docker', href: '/install/', src: fixed('Install', 'pip or Docker', '0073b7', 'python') },
-    { alt: 'Paper: IEEE TVCG 2025', href: site.paper, src: fixed('Paper', 'IEEE TVCG 2025', '8957e5') },
+    { alt: 'Paper: IEEE VIS 2024', href: site.paper, src: fixed('Paper', 'IEEE VIS 2024', '8957e5') },
     { alt: 'Join us on Discord', href: site.discord, src: fixed('Discord', 'Join us', '5865f2', 'discord') },
     { alt: 'Open source, MIT license', href: site.repo, src: fixed('Open source', 'MIT', '24292e', 'github') },
   ]

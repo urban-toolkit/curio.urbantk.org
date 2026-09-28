@@ -29,8 +29,8 @@ const docs = computed(() => theme.value.guide.docs as string)
       <div class="curio-cases-container curio-case-inner">
         <div class="curio-case-media">
           <img v-if="c.image" :src="withBase(c.image.src)" :alt="c.image.alt" loading="lazy" decoding="async" />
-          <div v-else class="curio-case-placeholder" role="img" :aria-label="`${c.title}: image coming soon`">
-            <span class="curio-case-icon"><Icon :name="c.icon ?? 'image'" /></span>
+          <div v-else-if="c.icon" class="curio-case-placeholder" role="img" :aria-label="`${c.title}: image coming soon`">
+            <span class="curio-case-icon"><Icon :name="c.icon" /></span>
             <span class="curio-case-soon">Image coming soon</span>
           </div>
         </div>
