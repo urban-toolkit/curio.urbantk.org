@@ -27,6 +27,31 @@
   }
 }
 
+/* The topics fit in the bar from 1200px. Narrower screens get the menu button instead, as phones do, and the
+   whole menu opens from it. */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .VPNavBar .VPNavBarMenu,
+  .VPNavBar .VPNavBarAppearance,
+  .VPNavBar .VPNavBarSocialLinks {
+    display: none !important;
+  }
+
+  .VPNavBar .VPNavBarHamburger {
+    display: flex !important;
+  }
+
+  /* The open menu starts below the bar's divider, so the line under the bar stays as it is when closed.
+     Pages with a sidebar draw that line with the divider alone. */
+  .VPNavScreen {
+    display: block !important;
+    top: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 1px) !important;
+  }
+
+  .VPNavBar.has-sidebar.screen-open {
+    border-bottom-color: transparent !important;
+  }
+}
+
 /* "Open Curio" is the one action in the bar, so it reads as a button. It is the menu's last link (config.ts),
    matched by position rather than by address, since the app's address changes. */
 .VPNavBarMenu > .VPNavBarMenuLink:last-child {
