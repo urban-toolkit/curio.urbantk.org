@@ -3,11 +3,8 @@ export const SITE = {
   title: 'Curio',
   description: 'A guide to Curio, a dataflow framework for collaborative urban visual analytics',
   hostname: 'https://curio.urbantk.org',
-  // The hosted instances. The guide links to the stable one; /app-dev forwards to the other. They move to
-  // https://app.curio.urbantk.org and https://app-dev.curio.urbantk.org before this site takes over
-  // curio.urbantk.org; until then these are their current addresses.
-  app: 'https://curio.urbantk.org',
-  appDev: 'https://curio-dev.urbantk.org',
+  // The hosted app.
+  app: 'https://flow.urbantk.org',
   repo: 'https://github.com/urban-toolkit/curio',
   // In-depth documentation lives in the curio repo; guide pages link into it from their frontmatter.
   docs: 'https://github.com/urban-toolkit/curio/blob/main/',
@@ -17,9 +14,6 @@ export const SITE = {
   discord: 'https://discord.gg/ajT6wF8TmN',
   // Open Graph image for pages that have none of their own.
   image: '/media/brand/curio-social.png',
-  // Paths the app answered at curio.urbantk.org before it moved to its own host. The 404 page forwards
-  // them there, so no guide page may start with one of them.
-  appRoutes: ['/auth', '/projects', '/dataflow', '/dashboard', '/catalog', '/data-hub', '/monitor', '/workflow', '/api'],
   // Sidebar groups, in order.
   groups: [
     { id: 'getting-started', title: 'Getting started' },

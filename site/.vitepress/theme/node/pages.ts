@@ -28,8 +28,6 @@ export function loadPages(): GuidePage[] {
       throw new Error(`site/${file}: ${issues}`)
     }
     const url = `/${slug}/`
-    const clash = [...SITE.appRoutes, '/app', '/app-dev'].find((route) => url === `${route}/` || url.startsWith(`${route}/`))
-    if (clash) throw new Error(`site/${file}: ${url} would hide the old app route ${clash}, which forwards to the app`)
     return { ...parsed.data, slug, url }
   })
   const groupIndex = (id: string) => SITE.groups.findIndex((g) => g.id === id)

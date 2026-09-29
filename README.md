@@ -10,7 +10,7 @@ Built with [VitePress](https://vitepress.dev) and deployed to GitHub Pages on ev
 npm ci
 npm run dev      # http://localhost:5173
 npm run build    # site/.vitepress/dist
-npm run check    # links, forwards, media budgets, links into the curio repo
+npm run check    # links, media budgets, links into the curio repo
 ```
 
 Node 22 (`.nvmrc`). Run `npm run build && npm run check` before pushing: `deploy.yml` runs the same steps and does not deploy a failing build.
@@ -19,9 +19,9 @@ Node 22 (`.nvmrc`). Run `npm run build && npm run check` before pushing: `deploy
 |---|---|
 | `site/<slug>.md` | one guide page, served at `/<slug>/` |
 | `site/index.md` | the home page: hero, use cases and topic grid |
-| `site/404.md` | the not-found page, which also forwards old app links |
+| `site/404.md` | the not-found page |
 | `site/public/media/<slug>/` | the page's screenshots and clips |
-| `site/.vitepress/site.ts` | site settings: app addresses, sidebar groups, funding |
+| `site/.vitepress/site.ts` | site settings: the app's address, sidebar groups, funding |
 | `site/.vitepress/theme/` | the theme (see [Theme](#theme)) |
 | `scripts/check/` | the checks behind `npm run check` |
 | `scripts/media/` | tooling for brand assets, clips and stills |
@@ -60,7 +60,6 @@ Writing rules:
 - Pages say what things do. They give no internal rationale, and no counts or versions that go stale (such as the number of built-in agents).
 - No en or em dashes.
 - Link to other guide pages as `/slug/`, and to the hosted app only through `TryIt` or `app:`. The app's address lives in `site.ts` alone.
-- A page may not use a slug that the app used to answer at curio.urbantk.org (`appRoutes` in `site.ts`); the build refuses it.
 
 ## The home page
 
@@ -94,7 +93,7 @@ Budgets, enforced by `scripts/check/media.mjs`: images at most 500 KB, clips at 
 ## Checks
 
 `npm run check` runs three scripts:
-- `check/dist.mjs`: every internal link, image and video in the built site resolves; the `/app/` and `/app-dev/` forward pages and the 404 forwarder are present; the sitemap lists only pages. With `--release` it also fails while any `MediaTodo` is left, and with `--live <url>` it checks a deployed copy instead.
+- `check/dist.mjs`: every internal link, image and video in the built site resolves, and the sitemap lists only pages. With `--release` it also fails while any `MediaTodo` is left, and with `--live <url>` it checks a deployed copy instead.
 - `check/media.mjs`: the budgets above.
 - `check/github.mjs`: every link into the curio repo names a file that exists on `main`, and every `#anchor` matches one of its headings. `links.yml` runs it weekly, because those docs change without this repo knowing.
 
@@ -105,14 +104,6 @@ Every push to `main` builds, checks and deploys through GitHub Actions. The site
 - with the custom domain it is served at the root of https://curio.urbantk.org.
 
 The domain is set in the repository's Pages settings; Actions deploys ignore `CNAME` files.
-
-## Forwarding old app links
-
-The Curio app used to answer at curio.urbantk.org itself. It now has its own host (`app` in `site.ts`), and this site forwards what visitors may still have:
-- `/app/` and `/app-dev/` are small pages that open the two hosted instances;
-- every other old app path (`/dashboard/<id>`, `/dataflow/<id>`, `/projects`, ..., listed in `appRoutes`) lands on the 404 page, whose inline script sends it to the same path on the app host.
-
-GitHub Pages has no server-side redirects, so this works in browsers only.
 
 ## Theme
 

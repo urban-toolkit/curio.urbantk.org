@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitepress'
 import { SITE } from './site'
-import { FORWARD_ATTR, forwarderScript, writeAppStubs } from './theme/node/forward'
 import { homeBadges } from './theme/node/badges'
 import { socialHead } from './theme/node/head'
 import { buildSidebar, loadPages, loadUseCases } from './theme/node/pages'
@@ -64,16 +63,10 @@ export default defineConfig({
   },
 
   transformPageData(pageData) {
+    // The not-found page gets no canonical URL or link preview.
+    if (pageData.relativePath === '404.md') return
     const fm = pageData.frontmatter
     fm.head ??= []
-    if (pageData.relativePath === '404.md') {
-      fm.head.push(['script', { [FORWARD_ATTR]: '' }, forwarderScript(SITE, BASE)])
-      return
-    }
     fm.head.push(...socialHead(pageData, SITE))
-  },
-
-  buildEnd(siteConfig) {
-    writeAppStubs(siteConfig.outDir, SITE)
   },
 })
