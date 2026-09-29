@@ -31,10 +31,10 @@ curio.example.org {
 
 ## Sign-in and isolation
 
-Always start with both compose files. `docker-compose.yml` alone runs Curio as a local tool with no login, so anyone who can reach the address gets in. The `docker-compose.deploy.yml` overlay adds `--deploy`, which turns on accounts and projects. It also seeds the example projects, turns off publishing to the shared Node Catalog, and restarts the container after a reboot.
+Always start with the `docker-compose.deploy.yml` overlay. `docker-compose.yml` alone runs Curio as a local tool with no login, so anyone who can reach the address gets in. The overlay adds `--deploy`, which turns on accounts and projects. It also seeds the example projects, turns off publishing to the shared Node Catalog, and restarts the container after a reboot. Your own `docker-compose.site.yml` adds this site's flags (see [Configuration](#configuration)).
 
 ```bash
-export COMPOSE_FILE=docker-compose.yml:docker-compose.deploy.yml
+export COMPOSE_FILE=docker-compose.yml:docker-compose.deploy.yml:docker-compose.site.yml
 docker compose build
 docker compose up -d
 docker compose logs curio | grep CURIO_NO_AUTH   # must print CURIO_NO_AUTH=0
@@ -44,7 +44,15 @@ Visitors sign up with a username and password, or continue as a guest unless the
 
 ## Configuration
 
-A `.env` file next to the compose files sets the container name, the published ports (`CURIO_PORT_5002`, `CURIO_PORT_8080`), `PUBLIC_PATH` and `BACKEND_URL`. The last two are compiled into the web app at build time, so changing either means a rebuild. Other settings are `curio.py start` flags in the compose command, such as `--exec-memory-mb`, `--exec-timeout` and `--exec-parallelism` for node limits, or `--llm-provider`, `--llm-base-url` and `--llm-model` for a default AI provider (see [AI agents](/ai-agents/)). The backend reads `SECRET_KEY`, which every deployment should set, and the default AI key `CURIO_DEFAULT_LLM_API_KEY` from its environment or from `utk_curio/backend/.env`.
+A `.env` file next to the compose files sets the container name and the published ports (`CURIO_PORT_5002`, `CURIO_PORT_8080`). Every other setting is a `curio.py start` flag, listed as the `command` in `docker-compose.site.yml`:
+
+```yaml
+services:
+  curio:
+    command: ["--backend-url", "https://curio.example.org/curio/api", "--base-path", "/curio"]
+```
+
+`--backend-url` is the address browsers reach the backend at, and `--base-path` the path the app is served under; both match the proxy above. Other flags go in the same list, such as `--exec-memory-mb`, `--exec-timeout` and `--exec-parallelism` for node limits, or `--llm-provider`, `--llm-base-url` and `--llm-model` for a default AI provider (see [AI agents](/ai-agents/)). The backend reads `SECRET_KEY`, which every deployment should set, and the default AI key `CURIO_DEFAULT_LLM_API_KEY` from its environment or from `utk_curio/backend/.env`.
 
 ## Updating and backups
 
