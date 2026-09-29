@@ -50,6 +50,16 @@ export function loadUseCases(): UseCase[] {
   return parsed.data
 }
 
+// The top menu's topics, one per group: each opens the group's first page and is lit on all of its pages.
+export function buildTopics(pages: GuidePage[]): DefaultTheme.NavItemWithLink[] {
+  return SITE.groups.flatMap((group) => {
+    const members = pages.filter((p) => p.group === group.id)
+    if (members.length === 0) return []
+    const activeMatch = `^/(${members.map((p) => p.slug).join('|')})(/|$)`
+    return [{ text: group.title, link: members[0].url, activeMatch }]
+  })
+}
+
 export function buildSidebar(pages: GuidePage[]): DefaultTheme.SidebarItem[] {
   return SITE.groups
     .map((group) => ({

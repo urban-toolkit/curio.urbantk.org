@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 import { SITE } from './site'
 import { homeBadges } from './theme/node/badges'
 import { socialHead } from './theme/node/head'
-import { buildSidebar, loadPages, loadUseCases } from './theme/node/pages'
+import { buildSidebar, buildTopics, loadPages, loadUseCases } from './theme/node/pages'
 
 const pages = loadPages()
 const useCases = loadUseCases()
@@ -37,13 +37,12 @@ export default defineConfig({
     logo: { light: '/media/brand/curio-logo.webp', dark: '/media/brand/curio-logo-dark.webp', alt: '' },
     siteTitle: 'Curio guide',
     nav: [
-      { text: 'Guide', link: '/introduction/', activeMatch: '^/(?!$)' },
+      ...buildTopics(pages),
       { text: 'urbantk.org', link: SITE.urbantk },
       { text: 'Open Curio', link: SITE.app },
     ],
     sidebar: buildSidebar(pages),
     socialLinks: [{ icon: 'github', link: SITE.repo, ariaLabel: 'Curio on GitHub' }],
-    search: { provider: 'local' },
     outline: false,
     editLink: { pattern: `${SITE.siteRepo}/edit/main/site/:path`, text: 'Edit this page on GitHub' },
     docFooter: { prev: 'Previous', next: 'Next' },
