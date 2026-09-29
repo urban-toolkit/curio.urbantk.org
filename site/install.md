@@ -7,7 +7,7 @@ card: { poster: /media/install/ai-settings.webp, alt: "The AI Settings window" }
 deeper:
   - { doc: docs/USAGE.md, anchor: installation-from-pip, label: "Installing from pip" }
   - { doc: docs/USAGE.md, anchor: installation-from-git, label: "Installing from git, with Docker or by hand" }
-  - { doc: docs/USAGE.md, anchor: llm-configuration, label: "AI provider settings" }
+  - { doc: docs/USAGE.md, anchor: llm-configurations, label: "AI provider settings" }
   - { doc: docs/AGENT-CATALOG.md, anchor: operator-notes, label: "AI provider flags and variables" }
 ---
 

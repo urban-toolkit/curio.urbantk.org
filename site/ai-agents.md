@@ -7,7 +7,7 @@ card: { poster: /media/ai-agents/agentattach.webp, alt: "Agents attached to a da
 app: /catalog/agents
 deeper:
   - { doc: docs/AGENT-CATALOG.md, label: "Agent Catalog reference" }
-  - { doc: docs/USAGE.md, anchor: llm-configuration, label: "Configuring the AI provider" }
+  - { doc: docs/USAGE.md, anchor: llm-configurations, label: "Configuring the AI provider" }
 ---
 
 # AI agents
