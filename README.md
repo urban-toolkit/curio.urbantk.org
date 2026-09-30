@@ -34,7 +34,7 @@ A page is one markdown file. Its frontmatter is validated when the site builds, 
 ---
 title: Data Catalog
 description: One line for the home page card, the search index and link previews
-group: using            # getting-started | using | self-hosting | extending
+group: using            # getting-started | using | extending
 order: 60               # position in its sidebar group
 card: { poster: /media/data-catalog/card.webp, alt: "The Data Catalog page" }   # optional
 deeper:                 # links into the curio repo, shown after the page
@@ -63,7 +63,7 @@ Writing rules:
 
 ## The home page
 
-`site/index.md` holds the hero and the use cases. Each hero button jumps to a section of the page: `#use-cases`, or a sidebar group's id from `site.ts`. The badges under the buttons come from `theme/node/badges.ts`. The use cases are validated like page frontmatter; each one spans the page, with its image on alternating sides:
+`site/index.md` holds the hero and the use cases. Each hero button jumps to a section of the page: `#overview` (the catalogs), `#use-cases`, or a sidebar group's id from `site.ts`. The badges under the buttons come from `theme/node/badges.ts`. The use cases are validated like page frontmatter; each one spans the page, with its image on alternating sides:
 
 ```yaml
 useCases:

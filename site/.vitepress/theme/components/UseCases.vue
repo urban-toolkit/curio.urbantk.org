@@ -22,7 +22,7 @@ const docs = computed(() => theme.value.guide.docs as string)
 <template>
   <section v-if="cases.length" id="use-cases" class="curio-cases" aria-labelledby="use-cases-title">
     <div class="curio-cases-container curio-cases-head">
-      <h2 id="use-cases-title">Use cases</h2>
+      <h2 id="use-cases-title">Example use cases</h2>
       <p>Dataflows that bring a city's data, models and views together in one place.</p>
     </div>
     <article v-for="(c, i) in cases" :key="c.title" class="curio-case" :class="{ 'is-flipped': i % 2 === 1 }">

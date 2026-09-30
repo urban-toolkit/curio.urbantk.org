@@ -169,9 +169,9 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section id="how-it-works" class="curio-flow-section" aria-labelledby="how-it-works-title">
+  <section id="overview" class="curio-flow-section" aria-labelledby="overview-title">
     <div class="curio-flow-container">
-      <h2 id="how-it-works-title">Four catalogs, one dataflow</h2>
+      <h2 id="overview-title">Four catalogs, many dataflows</h2>
       <p class="curio-flow-lead">
         Find a dataset, load it and compute with it, with AI agents at every stage. Curio composes the pieces into an
         analysis.

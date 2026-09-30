@@ -18,7 +18,6 @@ export const SITE = {
   groups: [
     { id: 'getting-started', title: 'Getting started' },
     { id: 'using', title: 'Using Curio' },
-    { id: 'self-hosting', title: 'Self-hosting' },
     { id: 'extending', title: 'Extending Curio' },
   ],
   funding: {

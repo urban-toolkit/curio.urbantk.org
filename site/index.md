@@ -8,10 +8,13 @@ hero:
     light: /media/brand/curio-hero.webp
     dark: /media/brand/curio-hero-dark.webp
     alt: The Curio logo, a bird drawn as a dataflow
-  # Each button jumps to a section of this page: the use cases, then the topic grid's groups (site.ts).
+  # Each button jumps to a section of this page: the catalogs, the use cases, then the topic grid's groups (site.ts).
   actions:
     - theme: brand
-      text: Use cases
+      text: Overview
+      link: "#overview"
+    - theme: alt
+      text: Example use cases
       link: "#use-cases"
     - theme: alt
       text: Getting started
@@ -19,9 +22,6 @@ hero:
     - theme: alt
       text: Using Curio
       link: "#using"
-    - theme: alt
-      text: Self-hosting
-      link: "#self-hosting"
     - theme: alt
       text: Extending Curio
       link: "#extending"

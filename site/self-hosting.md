@@ -1,8 +1,8 @@
 ---
 title: "Run your own server"
 description: "Host a multi-user Curio with Docker behind HTTPS: sign-in, isolated node code, configuration, updates, backups and monitoring."
-group: self-hosting
-order: 10
+group: using
+order: 120
 card: { poster: /media/self-hosting/monitor.webp, alt: "The monitor page" }
 deeper:
   - { doc: docs/DEPLOYMENT.md, label: "Deployment guide" }
