@@ -3,46 +3,97 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useData, withBase } from 'vitepress'
 import Icon from './Icon.vue'
 
-// The home page's picture of how Curio's parts fit, below the use cases: the Data Lake, Data and Node catalogs
-// take a dataset from a portal to computed results, the Agent Catalog's agents help at each of those stages, and
-// Curio composes them into an analysis. The cards are HTML so their text wraps; the wires between them are drawn
-// over the measured cards, side by side on wide screens and stacked on narrow ones.
+// The home page's picture of how Curio's parts fit, above the use cases. The Agent Catalog is a band around
+// everything, since its agents work at every stage; inside it the Data Lake, Data and Node catalogs take a
+// dataset from a portal to computed results, and Curio composes them into an analysis, shown by a real
+// screenshot. The cards are HTML so their text wraps; the wires between them are drawn over the measured cards,
+// with the stages beside Curio on wide screens and above it on narrow ones.
 const { theme } = useData()
 const app = computed(() => theme.value.guide.app as string)
 
-const STAGES = [
+interface Agent {
+  name: string
+  text: string
+}
+
+const STAGES: { id: string; step: string; title: string; icon: string; text: string; url: string; agents: Agent[] }[] = [
   {
     id: 'lake',
     step: 'Discover',
     title: 'Data Lake Catalog',
     icon: 'website',
-    text: 'Search the open data portals your server can reach, such as city data sites, all from one box. A download lands in your Data Catalog.',
-    link: { url: '/data-lakes/', label: 'Data lakes' },
+    text: 'Search open data portals from one box, and download a dataset into your Data Catalog.',
+    url: '/data-lakes/',
+    agents: [
+      { name: 'Dataset Finder', text: 'Finds datasets across the connected portals and proposes the download.' },
+      { name: 'Node Researcher', text: 'Checks outside facts, such as dataset ids, API endpoints and schemas, on the web.' },
+    ],
   },
   {
     id: 'data',
     step: 'Load',
     title: 'Data Catalog',
     icon: 'data',
-    text: 'The datasets your dataflows read: examples, files you import, portal downloads and the outputs your nodes save. Drag one onto the canvas and Curio writes the code that loads it.',
-    link: { url: '/data-catalog/', label: 'Data Catalog' },
+    text: 'The datasets your dataflows read. Drag one onto the canvas and Curio writes the code that loads it.',
+    url: '/data-catalog/',
+    agents: [{ name: 'Dataset Finder', text: 'Picks a dataset from your Data Catalog for a loading node.' }],
   },
   {
     id: 'nodes',
     step: 'Compute',
     title: 'Node Catalog',
     icon: 'package',
-    text: 'Packages of nodes that transform, analyze and visualize data, with the Python and JavaScript libraries they need. Add one to a project and drag its nodes onto the canvas.',
-    link: { url: '/node-catalog/', label: 'Nodes and packages' },
+    text: 'Node packages that transform, analyze and visualize, with the libraries they need.',
+    url: '/node-catalog/',
+    agents: [
+      { name: 'Node Builder', text: 'Creates a node, or changes one, as a proposal you review.' },
+      { name: 'Node Content Builder', text: 'Writes the content of a node.' },
+      { name: 'Package Recommendation', text: 'Recommends the node packages a task needs, and proposes installing them.' },
+      { name: 'Package Builder', text: 'Writes a new node package, or extends one of yours.' },
+    ],
   },
 ]
 
-// The agents above each stage: the Dataset Finder spans the first two, the builders sit over the third.
-const FINDER = { name: 'Dataset Finder', text: 'searches the portals and your datasets' }
-const BUILDERS = [
-  { name: 'Node Builder', text: "writes a node's code" },
-  { name: 'Package Recommendation', text: 'suggests packages to add' },
+// The agents that work on the dataflow as a whole, shown with Curio.
+const CANVAS_AGENTS: Agent[] = [
+  { name: 'Dataflow Builder', text: 'Plans a whole dataflow from a goal, then fills in its nodes.' },
+  { name: 'Connection Builder', text: 'Suggests and creates connections between nodes.' },
+  { name: 'Researcher', text: 'Answers questions from the web as note nodes on the canvas.' },
+  { name: 'Chat', text: 'Explains a node or the dataflow, diagnoses errors, and helps you decide what to build.' },
 ]
+
+// The screenshot (scripts/media/clips.json, still "catalogs"), and the parts of it that get a highlight, in the
+// image's own pixels: the tour writes where the nodes and badges were next to the still, and these are those
+// boxes after the still's crop and resize. A label sits above a node, and beside an agent's badge on whichever
+// side has empty canvas.
+interface Mark {
+  label: string
+  kind: 'node' | 'agent'
+  side?: 'left' | 'right'
+  x: number
+  y: number
+  w: number
+  h: number
+}
+const SHOT: { src: string; alt: string; w: number; h: number; marks: Mark[] } = {
+  src: '/media/home/catalogs.webp',
+  alt: "A dataflow in Curio: a Data Loading node and a Data Transformation node feed an Autark map and a Vega-Lite bar chart of downtown Chicago's ZIP codes, with agents attached to every node, to a connection and to the canvas.",
+  w: 1600,
+  h: 914,
+  marks: [
+    { label: 'Load', kind: 'node', x: 163, y: 368, w: 413, h: 276 },
+    { label: 'Transform', kind: 'node', x: 667, y: 368, w: 413, h: 276 },
+    { label: 'Map', kind: 'node', x: 1171, y: 164, w: 413, h: 276 },
+    { label: 'Chart', kind: 'node', x: 1171, y: 573, w: 413, h: 276 },
+    { label: 'Dataset Finder', kind: 'agent', side: 'right', x: 160, y: 646, w: 30, h: 30 },
+    { label: 'Node Builder', kind: 'agent', side: 'right', x: 664, y: 646, w: 30, h: 30 },
+    { label: 'Chat', kind: 'agent', side: 'right', x: 1168, y: 441, w: 30, h: 30 },
+    { label: 'Connection Builder', kind: 'agent', side: 'left', x: 1110, y: 593, w: 30, h: 30 },
+    { label: 'Package Recommendation', kind: 'agent', side: 'left', x: 1168, y: 851, w: 30, h: 30 },
+    { label: 'Canvas agents', kind: 'agent', side: 'right', x: 831, y: 6, w: 102, h: 33 },
+  ],
+}
+const pct = (n: number, of: number) => `${Math.round((n / of) * 10000) / 100}%`
 
 interface Box {
   l: number
@@ -53,23 +104,12 @@ interface Box {
   cy: number
 }
 
-interface Wire {
-  d: string
-  kind: 'data' | 'agent'
-  end?: 'arrow' | 'dot'
-}
-
 const root = ref<HTMLElement>()
-const wires = ref<Wire[]>([])
+const wires = ref<string[]>([])
 let resize: ResizeObserver | undefined
 let frame = 0
 
 const px = (n: number) => Math.round(n * 10) / 10
-// A vertical S curve from one point down to another.
-const drop = (x0: number, y0: number, x1: number, y1: number) => {
-  const m = (y0 + y1) / 2
-  return `M${px(x0)} ${px(y0)} C${px(x0)} ${px(m)} ${px(x1)} ${px(m)} ${px(x1)} ${px(y1)}`
-}
 
 // Every element with a data-wire name, in the root's coordinates.
 function measure(el: HTMLElement): Record<string, Box> {
@@ -87,106 +127,30 @@ function measure(el: HTMLElement): Record<string, Box> {
 function route() {
   frame = 0
   if (!root.value) return
-  const { agents, finder, builders, lake, data, nodes, curio } = measure(root.value)
-  const stages = [lake, data, nodes]
-  const wide = Math.abs(lake.t - data.t) < 2
-  const out: Wire[] = []
+  const { lake, data, nodes, curio } = measure(root.value)
+  const out: string[] = []
+  // Down the stages, one into the next.
   for (const [a, b] of [
     [lake, data],
     [data, nodes],
   ]) {
-    const d = wide ? `M${px(a.r)} ${px(a.cy)} H${px(b.l)}` : `M${px(a.cx)} ${px(a.b)} V${px(b.t)}`
-    out.push({ kind: 'data', d, end: 'arrow' })
+    out.push(`M${px(a.cx)} ${px(a.b)} V${px(b.t)}`)
   }
-  if (wide) {
-    // Each stage feeds Curio; the agents drop into the stages under them.
-    for (const s of stages) out.push({ kind: 'data', d: drop(s.cx, s.b, curio.cx + (s.cx - curio.cx) * 0.2, curio.t), end: 'arrow' })
-    out.push({ kind: 'agent', d: drop(finder.cx, finder.b, lake.cx, lake.t), end: 'dot' })
-    out.push({ kind: 'agent', d: drop(finder.cx, finder.b, data.cx, data.t), end: 'dot' })
-    out.push({ kind: 'agent', d: drop(builders.cx, builders.b, nodes.cx, nodes.t), end: 'dot' })
+  if (curio.l > nodes.r) {
+    // Wide: every stage feeds Curio, beside them, through a curve that lands spread along its left edge.
+    for (const s of [lake, data, nodes]) {
+      const y = curio.cy + (s.cy - curio.cy) * 0.4
+      const m = (s.r + curio.l) / 2
+      out.push(`M${px(s.r)} ${px(s.cy)} C${px(m)} ${px(s.cy)} ${px(m)} ${px(y)} ${px(curio.l)} ${px(y)}`)
+    }
   } else {
-    // Stacked: the last stage feeds Curio, and one rail down the left side branches into every stage.
-    out.push({ kind: 'data', d: `M${px(nodes.cx)} ${px(nodes.b)} V${px(curio.t)}`, end: 'arrow' })
-    const x = lake.l - 14
-    out.push({ kind: 'agent', d: `M${px(x)} ${px(agents.b + 8)} V${px(nodes.t + 32)}` })
-    for (const s of stages) out.push({ kind: 'agent', d: `M${px(x)} ${px(s.t + 32)} H${px(s.l)}`, end: 'dot' })
+    out.push(`M${px(nodes.cx)} ${px(nodes.b)} V${px(curio.t)}`)
   }
   wires.value = out
 }
 
 const schedule = () => {
   if (!frame) frame = requestAnimationFrame(route)
-}
-
-// The illustration: a small dataflow whose map is hexagonal cells shaded by a made-up heat value, binned into
-// five classes that the bar chart counts. Pointing at a bar or a cell lights up its class in both views, as
-// linked views do in Curio; left alone, the lit class steps through the five.
-const HEX = 8
-const MAP = { x: 272, y: 38, w: 152, h: 122 }
-const COLS = 10
-const ROWS = 9
-const BINS = 5
-const SHADE = [0.22, 0.4, 0.58, 0.77, 0.96]
-
-function heat(u: number, v: number) {
-  const core = 0.8 * Math.exp(-((u - 0.62) ** 2 + (v - 0.4) ** 2) / 0.12)
-  const second = 0.5 * Math.exp(-((u - 0.27) ** 2 + (v - 0.68) ** 2) / 0.06)
-  const noise = 0.1 * Math.sin(u * 17.3 + v * 9.1) * Math.cos(v * 13.7 - u * 5.3)
-  return Math.min(0.999, Math.max(0, core + second + noise + 0.1))
-}
-
-const CELLS = (() => {
-  const w = Math.sqrt(3) * HEX
-  const x0 = MAP.x + (MAP.w - (COLS * w + w / 2)) / 2 + w / 2
-  const y0 = MAP.y + (MAP.h - ((ROWS - 1) * 1.5 * HEX + 2 * HEX)) / 2 + HEX
-  const cells: { points: string; bin: number }[] = []
-  for (let row = 0; row < ROWS; row++) {
-    for (let col = 0; col < COLS; col++) {
-      const cx = x0 + col * w + (row % 2) * (w / 2)
-      const cy = y0 + row * 1.5 * HEX
-      const u = (cx - MAP.x) / MAP.w
-      const v = (cy - MAP.y) / MAP.h
-      // An irregular outline, like a city's, instead of a rectangle.
-      const du = u - 0.5
-      const dv = v - 0.5
-      if ((du / 0.54) ** 2 + (dv / 0.52) ** 2 > 1 + 0.16 * Math.sin(3 * Math.atan2(dv, du) + 0.5)) continue
-      const points = Array.from({ length: 6 }, (_, k) => {
-        const a = (Math.PI / 3) * k - Math.PI / 2
-        return `${px(cx + (HEX - 0.8) * Math.cos(a))},${px(cy + (HEX - 0.8) * Math.sin(a))}`
-      }).join(' ')
-      cells.push({ points, bin: Math.min(BINS - 1, Math.floor(heat(u, v) * BINS)) })
-    }
-  }
-  return cells
-})()
-
-const BARS = (() => {
-  const counts = Array.from({ length: BINS }, (_, i) => CELLS.filter((c) => c.bin === i).length)
-  const max = Math.max(...counts)
-  return counts.map((n, i) => {
-    const h = px(Math.max(4, (n / max) * 60))
-    return { bin: i, x: 278 + i * 30, y: 280 - h, h }
-  })
-})()
-
-const NODES = [
-  { label: 'Load', x: 10, y: 104, w: 96, h: 84 },
-  { label: 'Transform', x: 134, y: 104, w: 96, h: 84 },
-  { label: 'Map', x: 266, y: 10, w: 164, h: 156 },
-  { label: 'Chart', x: 266, y: 184, w: 164, h: 106 },
-]
-const head = (n: (typeof NODES)[number]) =>
-  `M${n.x} ${n.y + 22} V${n.y + 8} a8 8 0 0 1 8 -8 H${n.x + n.w - 8} a8 8 0 0 1 8 8 V${n.y + 22} Z`
-
-const active = ref(3)
-const pointing = ref(false)
-const canvas = ref<HTMLElement>()
-let visible: IntersectionObserver | undefined
-let timer: ReturnType<typeof setInterval> | undefined
-
-function point(bin: number) {
-  active.value = bin
-  pointing.value = true
 }
 
 onMounted(() => {
@@ -196,23 +160,10 @@ onMounted(() => {
   for (const node of el.querySelectorAll('[data-wire]')) resize.observe(node)
   document.fonts?.ready.then(schedule)
   route()
-
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-  visible = new IntersectionObserver(([entry]) => {
-    clearInterval(timer)
-    timer = entry.isIntersecting
-      ? setInterval(() => {
-          if (!pointing.value) active.value = (active.value + 1) % BINS
-        }, 2200)
-      : undefined
-  })
-  visible.observe(canvas.value!)
 })
 
 onBeforeUnmount(() => {
   resize?.disconnect()
-  visible?.disconnect()
-  clearInterval(timer)
   cancelAnimationFrame(frame)
 })
 </script>
@@ -222,173 +173,95 @@ onBeforeUnmount(() => {
     <div class="curio-flow-container">
       <h2 id="how-it-works-title">Four catalogs, one dataflow</h2>
       <p class="curio-flow-lead">
-        Find a dataset, load it and compute with it, with AI agents helping at every stage. Curio composes the pieces
-        into an analysis.
+        Find a dataset, load it and compute with it, with AI agents at every stage. Curio composes the pieces into an
+        analysis.
       </p>
 
       <div ref="root" class="curio-flow">
-        <div class="curio-flow-band">
-          <div class="curio-flow-band-head">
-            <span class="curio-flow-tile is-agent"><Icon name="bot" /></span>
-            <div>
-              <p class="curio-flow-kicker is-agent">Every stage</p>
-              <h3>Agent Catalog</h3>
-              <p class="curio-flow-text">
-                AI agents you attach to a node, a connection or the whole canvas. They find datasets, write node code
-                and plan whole dataflows, and nothing changes until you apply what they propose.
-              </p>
+        <div class="curio-flow-band-head">
+          <span class="curio-flow-tile is-agent"><Icon name="bot" /></span>
+          <div>
+            <h3>Agent Catalog <span class="curio-flow-count">Every stage</span></h3>
+            <p class="curio-flow-text">
+              Ten AI agents you attach to a node, a connection or the whole canvas. Nothing changes until you apply
+              what one proposes.
               <a class="curio-flow-link is-agent" :href="withBase('/ai-agents/')">AI agents <Icon name="arrow" /></a>
-            </div>
+            </p>
           </div>
+        </div>
 
-          <ul class="curio-flow-agents" data-wire="agents" aria-label="Agents at each stage">
-            <li>
-              <span class="curio-flow-chip" data-wire="finder">
-                <Icon name="bot" />
-                <span><strong>{{ FINDER.name }}</strong> <small>{{ FINDER.text }}</small></span>
-              </span>
-            </li>
-            <li>
-              <span class="curio-flow-chips" data-wire="builders">
-                <span v-for="a in BUILDERS" :key="a.name" class="curio-flow-chip">
-                  <Icon name="bot" />
-                  <span><strong>{{ a.name }}</strong> <small>{{ a.text }}</small></span>
-                </span>
-              </span>
-            </li>
-          </ul>
-
+        <div class="curio-flow-body">
           <ol class="curio-flow-stages">
             <li v-for="(s, i) in STAGES" :key="s.id" class="curio-flow-card" :data-wire="s.id">
-              <div class="curio-flow-card-top">
-                <span class="curio-flow-tile"><Icon :name="s.icon" /></span>
+              <span class="curio-flow-tile"><Icon :name="s.icon" /></span>
+              <div>
                 <p class="curio-flow-kicker"><span class="curio-flow-step">{{ i + 1 }}</span>{{ s.step }}</p>
+                <h3>
+                  <a :href="withBase(s.url)">{{ s.title }} <Icon name="arrow" /></a>
+                </h3>
+                <p class="curio-flow-text">{{ s.text }}</p>
+                <ul class="curio-flow-agents" :aria-label="`Agents for ${s.title}`">
+                  <li v-for="a in s.agents" :key="a.name" class="curio-flow-chip" :title="a.text">
+                    <Icon name="bot" />{{ a.name }}
+                  </li>
+                </ul>
               </div>
-              <h3>{{ s.title }}</h3>
-              <p class="curio-flow-text">{{ s.text }}</p>
-              <a class="curio-flow-link" :href="withBase(s.link.url)">{{ s.link.label }} <Icon name="arrow" /></a>
             </li>
           </ol>
-        </div>
 
-        <div class="curio-flow-card curio-flow-curio" data-wire="curio">
-          <div class="curio-flow-curio-text">
-            <p class="curio-flow-kicker">
-              <img class="curio-flow-logo is-light" :src="withBase('/media/brand/curio-logo.webp')" alt="" />
-              <img class="curio-flow-logo is-dark" :src="withBase('/media/brand/curio-logo-dark.webp')" alt="" />
-              Curio
-            </p>
-            <h3>Composes them into an analysis</h3>
-            <p class="curio-flow-text">
-              On the canvas, the datasets, nodes and agents you chose become one dataflow. Its maps and charts are
-              linked, it runs again on new data, and its provenance records every change. The Dataflow Builder agent
-              can plan one for you.
-            </p>
-            <div class="curio-flow-actions">
-              <a class="curio-flow-button" :href="app" target="_blank" rel="noopener">Open Curio</a>
-              <a class="curio-flow-link" :href="withBase('/dataflows/')">Dataflows <Icon name="arrow" /></a>
+          <div class="curio-flow-curio" data-wire="curio">
+            <div class="curio-flow-curio-head">
+              <div>
+                <p class="curio-flow-kicker">
+                  <img class="curio-flow-logo is-light" :src="withBase('/media/brand/curio-logo.webp')" alt="" />
+                  <img class="curio-flow-logo is-dark" :src="withBase('/media/brand/curio-logo-dark.webp')" alt="" />
+                  Curio
+                </p>
+                <h3>Composes them into an analysis</h3>
+              </div>
+              <div class="curio-flow-actions">
+                <a class="curio-flow-button" :href="app" target="_blank" rel="noopener">Open Curio</a>
+                <a class="curio-flow-link" :href="withBase('/dataflows/')">Dataflows <Icon name="arrow" /></a>
+              </div>
             </div>
+
+            <!-- Clicking the screenshot opens it full size, as GuideFigure does. -->
+            <figure class="curio-flow-shot">
+              <a :href="withBase(SHOT.src)" target="_blank" rel="noopener">
+                <img :src="withBase(SHOT.src)" :alt="SHOT.alt" :width="SHOT.w" :height="SHOT.h" loading="lazy" decoding="async" />
+              </a>
+              <span
+                v-for="m in SHOT.marks"
+                :key="m.label"
+                class="curio-flow-mark"
+                :class="[`is-${m.kind}`, m.side && `is-${m.side}`]"
+                :style="{ left: pct(m.x, SHOT.w), top: pct(m.y, SHOT.h), width: pct(m.w, SHOT.w), height: pct(m.h, SHOT.h) }"
+                aria-hidden="true"
+              >
+                <span>{{ m.label }}</span>
+              </span>
+            </figure>
+
+            <ul class="curio-flow-agents" aria-label="Agents for the whole dataflow">
+              <li v-for="a in CANVAS_AGENTS" :key="a.name" class="curio-flow-chip" :title="a.text">
+                <Icon name="bot" />{{ a.name }}
+              </li>
+            </ul>
           </div>
-
-          <figure ref="canvas" class="curio-flow-canvas" @pointerleave="pointing = false">
-            <svg viewBox="0 0 440 300" role="img" aria-labelledby="curio-flow-canvas-title">
-              <title id="curio-flow-canvas-title">
-                A small dataflow: a Load node feeds a Transform node, which has an agent attached and feeds a map and a
-                bar chart that are linked to each other.
-              </title>
-              <path class="curio-flow-wire is-data" d="M106 146 H134" />
-              <path class="curio-flow-wire is-data" d="M230 146 C248 146 248 88 266 88" />
-              <path class="curio-flow-wire is-data" d="M230 146 C248 146 248 237 266 237" />
-              <path class="curio-flow-wire is-agent" d="M182 188 V202" />
-
-              <g v-for="n in NODES" :key="n.label">
-                <rect class="curio-flow-node" :x="n.x" :y="n.y" :width="n.w" :height="n.h" rx="8" />
-                <path class="curio-flow-node-head" :d="head(n)" />
-                <rect class="curio-flow-node-edge" :x="n.x" :y="n.y" :width="n.w" :height="n.h" rx="8" />
-                <text class="curio-flow-node-label" :x="n.x + 10" :y="n.y + 15">{{ n.label }}</text>
-              </g>
-
-              <g class="curio-flow-table">
-                <template v-for="row in 4" :key="row">
-                  <rect
-                    v-for="col in 3"
-                    :key="col"
-                    :class="{ 'is-head': row === 1 }"
-                    :x="20 + (col - 1) * 27"
-                    :y="121 + row * 13"
-                    width="22"
-                    height="9"
-                    rx="2"
-                  />
-                </template>
-              </g>
-
-              <g class="curio-flow-code">
-                <template v-for="(w, i) in [40, 56, 30, 48]" :key="i">
-                  <rect class="is-key" :x="144 + (i % 3 ? 10 : 0)" :y="134 + i * 12" width="14" height="5" rx="2.5" />
-                  <rect :x="162 + (i % 3 ? 10 : 0)" :y="134 + i * 12" :width="w - 14" height="5" rx="2.5" />
-                </template>
-              </g>
-
-              <g class="curio-flow-badge">
-                <circle cx="182" cy="214" r="12" />
-                <g transform="translate(174 206) scale(0.667)">
-                  <path d="M12 8V4H8" />
-                  <rect width="16" height="12" x="4" y="8" rx="2" />
-                  <path d="M2 14h2M20 14h2M15 13v2M9 13v2" />
-                </g>
-              </g>
-
-              <g class="curio-flow-map">
-                <polygon
-                  v-for="(c, i) in CELLS"
-                  :key="i"
-                  :points="c.points"
-                  :fill-opacity="SHADE[c.bin]"
-                  :class="c.bin === active ? 'is-on' : 'is-dim'"
-                  @pointerenter="point(c.bin)"
-                />
-              </g>
-
-              <g class="curio-flow-bars">
-                <line x1="274" x2="422" y1="280.5" y2="280.5" />
-                <g v-for="b in BARS" :key="b.bin" @pointerenter="point(b.bin)">
-                  <rect
-                    :x="b.x"
-                    :y="b.y"
-                    width="20"
-                    :height="b.h"
-                    rx="2"
-                    :fill-opacity="SHADE[b.bin]"
-                    :class="b.bin === active ? 'is-on' : 'is-dim'"
-                  />
-                  <rect class="curio-flow-bar-hit" :x="b.x - 5" y="210" width="30" height="72" />
-                </g>
-              </g>
-
-              <circle v-for="(p, i) in [[106, 146], [134, 146], [230, 146], [266, 88], [266, 237]]" :key="i" class="curio-flow-port" :cx="p[0]" :cy="p[1]" r="3.5" />
-            </svg>
-            <figcaption>Point at a bar or a cell: the map and the chart are linked.</figcaption>
-          </figure>
         </div>
+
+        <p class="curio-flow-helpers">
+          Behind them, three helpers do part of the work and are never attached: the Dataflow Planner, the Dataflow
+          Reader and the Generated Content Evaluator.
+        </p>
 
         <svg class="curio-flow-wires" aria-hidden="true">
           <defs>
             <marker id="curio-flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
               <path class="curio-flow-arrowhead" d="M1 1.5 L9 5 L1 8.5 Z" />
             </marker>
-            <marker id="curio-flow-dot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse">
-              <circle class="curio-flow-dothead" cx="5" cy="5" r="3.5" />
-            </marker>
           </defs>
-          <path
-            v-for="(w, i) in wires"
-            :key="i"
-            class="curio-flow-wire"
-            :class="`is-${w.kind}`"
-            :d="w.d"
-            :marker-end="w.end ? `url(#curio-flow-${w.end})` : undefined"
-          />
+          <path v-for="(d, i) in wires" :key="i" class="curio-flow-wire" :d="d" marker-end="url(#curio-flow-arrow)" />
         </svg>
       </div>
     </div>
@@ -416,7 +289,7 @@ onBeforeUnmount(() => {
 }
 
 .curio-flow-section {
-  margin: 8px 0 64px;
+  margin: 32px 0 8px;
   scroll-margin-top: var(--vp-nav-height);
 }
 
@@ -430,21 +303,18 @@ onBeforeUnmount(() => {
 }
 
 .curio-flow-lead {
-  max-width: 62ch;
+  max-width: 70ch;
   margin: 8px 0 0;
   font-size: 1.05rem;
   line-height: 1.6;
   color: var(--vp-c-text-2);
 }
 
+/* The Agent Catalog is the band around everything, since its agents work at every stage. */
 .curio-flow {
   position: relative;
-  margin-top: 32px;
-}
-
-/* The Agent Catalog is a band that holds the three stages, since its agents work in all of them. */
-.curio-flow-band {
-  padding: 20px 16px 24px;
+  margin-top: 24px;
+  padding: 16px;
   border: 1px solid color-mix(in srgb, var(--vp-c-purple-1) 28%, transparent);
   border-radius: 18px;
   background: var(--vp-c-purple-soft);
@@ -452,86 +322,63 @@ onBeforeUnmount(() => {
 
 .curio-flow-band-head {
   display: flex;
-  gap: 16px;
+  gap: 14px;
   align-items: flex-start;
 }
 
-.curio-flow-band-head .curio-flow-text {
-  max-width: 70ch;
-}
-
-.curio-flow-agents {
+.curio-flow-band-head h3 {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin: 18px 0 0;
-  padding: 0;
-  list-style: none;
+  align-items: center;
+  gap: 4px 10px;
+  margin: 0;
 }
 
-.curio-flow-chips {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.curio-flow-chip {
-  position: relative;
-  z-index: 1;
-  display: inline-flex;
-  align-items: flex-start;
-  gap: 8px;
-  padding: 8px 12px;
-  border: 1px solid color-mix(in srgb, var(--vp-c-purple-1) 40%, transparent);
-  border-radius: 10px;
-  background: var(--vp-c-bg);
-  font-size: 0.85rem;
-  line-height: 1.35;
-}
-
-.curio-flow-chip :deep(svg) {
-  flex: none;
-  width: 16px;
-  height: 16px;
-  margin-top: 1px;
+.curio-flow-count {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--vp-c-purple-1);
 }
 
-.curio-flow-chip strong {
-  font-weight: 700;
-  color: var(--vp-c-text-1);
+.curio-flow-band-head .curio-flow-text {
+  margin-top: 2px;
 }
 
-.curio-flow-chip small {
-  font-size: inherit;
-  color: var(--vp-c-text-2);
+.curio-flow-band-head .curio-flow-link {
+  margin-left: 6px;
+}
+
+.curio-flow-body {
+  display: grid;
+  gap: 32px;
+  margin-top: 16px;
 }
 
 .curio-flow-stages {
   display: grid;
-  gap: 40px;
-  margin: 28px 0 0;
-  padding: 0 0 0 28px;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
   list-style: none;
 }
 
-.curio-flow-card {
+.curio-flow-card,
+.curio-flow-curio {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 20px 22px 22px;
   border: 1px solid var(--vp-c-divider);
   border-radius: var(--curio-radius);
   background: var(--vp-c-bg);
   box-shadow: var(--curio-shadow);
 }
 
-.curio-flow-card-top {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
+.curio-flow-card {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 14px;
+  padding: 14px 16px;
 }
 
 .curio-flow-tile {
@@ -539,8 +386,8 @@ onBeforeUnmount(() => {
   flex: none;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 10px;
   background: var(--vp-c-brand-soft);
   color: var(--vp-c-brand-1);
@@ -552,8 +399,8 @@ onBeforeUnmount(() => {
 }
 
 .curio-flow-tile :deep(svg) {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
 }
 
 .curio-flow-kicker {
@@ -561,61 +408,99 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 8px;
   margin: 0;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--vp-c-brand-1);
 }
 
-.curio-flow-kicker.is-agent {
-  color: var(--vp-c-purple-1);
-}
-
 .curio-flow-step {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: var(--vp-c-brand-1);
   color: var(--vp-c-bg);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   letter-spacing: 0;
 }
 
 .curio-flow h3 {
-  margin: 4px 0 0;
-  font-size: 1.3rem;
+  margin: 2px 0 0;
+  font-size: 1.15rem;
   font-weight: 800;
-  line-height: 1.3;
+  line-height: 1.35;
   letter-spacing: -0.01em;
   color: var(--vp-c-text-1);
 }
 
+.curio-flow h3 a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.curio-flow h3 a:hover {
+  color: var(--vp-c-brand-1);
+}
+
+.curio-flow h3 a :deep(svg) {
+  width: 16px;
+  height: 16px;
+  color: var(--vp-c-brand-1);
+}
+
 .curio-flow-text {
-  margin: 8px 0 0;
-  font-size: 0.95rem;
-  line-height: 1.65;
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
   color: var(--vp-c-text-2);
+}
+
+.curio-flow-agents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.curio-flow-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px 3px 8px;
+  border: 1px solid color-mix(in srgb, var(--vp-c-purple-1) 35%, transparent);
+  border-radius: 999px;
+  background: var(--vp-c-purple-soft);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--vp-c-text-1);
+}
+
+.curio-flow-chip :deep(svg) {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  color: var(--vp-c-purple-1);
 }
 
 .curio-flow-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-top: 14px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--vp-c-brand-1);
   text-decoration: none;
-}
-
-.curio-flow-card .curio-flow-link {
-  align-self: flex-start;
-  margin-top: auto;
-  padding-top: 14px;
+  white-space: nowrap;
 }
 
 .curio-flow-link.is-agent {
@@ -627,24 +512,27 @@ onBeforeUnmount(() => {
 }
 
 .curio-flow-link :deep(svg) {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
 }
 
-/* Curio, under the band, where every stage's wire ends. */
+/* Curio, where every stage's wire ends: a real dataflow, with its parts highlighted. */
 .curio-flow-curio {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 24px;
-  align-items: center;
-  margin-top: 40px;
+  padding: 16px;
   border: 2px solid color-mix(in srgb, var(--curio-orange) 45%, transparent);
-  border-radius: 18px;
+}
+
+.curio-flow-curio-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px 24px;
 }
 
 .curio-flow-logo {
   width: auto;
-  height: 22px;
+  height: 20px;
 }
 
 .curio-flow-logo.is-dark,
@@ -660,24 +548,19 @@ onBeforeUnmount(() => {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 8px 20px;
-  margin-top: 18px;
-}
-
-.curio-flow-actions .curio-flow-link {
-  margin-top: 0;
+  gap: 8px 18px;
 }
 
 .curio-flow-button {
   display: inline-block;
-  padding: 0 20px;
+  padding: 0 18px;
   border: 1px solid var(--vp-button-brand-border);
   border-radius: 20px;
   background: var(--vp-button-brand-bg);
   color: var(--vp-button-brand-text);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  line-height: 38px;
+  line-height: 34px;
   text-decoration: none;
   transition: background-color 0.25s;
 }
@@ -688,110 +571,106 @@ onBeforeUnmount(() => {
   color: var(--vp-button-brand-hover-text);
 }
 
-/* A dotted canvas, like Curio's own. */
-.curio-flow-canvas {
-  margin: 0;
-  padding: 12px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: var(--curio-radius);
-  background:
-    radial-gradient(circle, var(--vp-c-divider) 1px, transparent 1.5px) 0 0 / 18px 18px,
-    var(--vp-c-bg-soft);
+.curio-flow-shot {
+  position: relative;
+  margin: 14px 0 0;
+  container-type: inline-size;
 }
 
-.curio-flow-canvas svg {
+.curio-flow-shot a {
+  display: block;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: var(--curio-radius-sm);
+  overflow: hidden;
+}
+
+.curio-flow-shot a:hover {
+  border-color: var(--vp-c-brand-1);
+}
+
+.curio-flow-shot img {
   display: block;
   width: 100%;
-  max-width: 520px;
   height: auto;
-  margin: 0 auto;
-  font-family: inherit;
 }
 
-.curio-flow-canvas figcaption {
-  margin-top: 8px;
-  font-size: 0.8rem;
+/* A highlight is drawn a few pixels outside the box it marks, so the node's own border stays visible. */
+.curio-flow-mark {
+  position: absolute;
+  pointer-events: none;
+}
+
+.curio-flow-mark::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border: 2px solid var(--curio-orange);
+  border-radius: 8px;
+}
+
+.curio-flow-mark.is-agent::before {
+  inset: -2px;
+  border-color: #6f42c1;
+  border-radius: 999px;
+}
+
+.curio-flow-mark span {
+  position: absolute;
+  bottom: 100%;
+  left: -3px;
+  margin-bottom: 5px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: var(--curio-orange);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+/* The screenshot is of the light interface in both themes, so the agent colour is the light one. */
+.curio-flow-mark.is-agent span {
+  top: 50%;
+  bottom: auto;
+  margin: 0;
+  background: #6f42c1;
+  transform: translateY(-50%);
+}
+
+.curio-flow-mark.is-right span {
+  left: 100%;
+  margin-left: 6px;
+}
+
+.curio-flow-mark.is-left span {
+  right: 100%;
+  left: auto;
+  margin-right: 6px;
+}
+
+/* Too narrow for every agent's name: the rings stay, the names go, and a node's name moves inside its box so
+   it cannot run into the node above. */
+@container (max-width: 520px) {
+  .curio-flow-mark.is-agent span {
+    display: none;
+  }
+
+  .curio-flow-mark span {
+    top: 3px;
+    bottom: auto;
+    left: 3px;
+    margin: 0;
+    padding: 0 5px;
+    font-size: 0.6rem;
+  }
+}
+
+.curio-flow-helpers {
+  margin: 14px 0 0;
+  font-size: 0.82rem;
   line-height: 1.5;
-  text-align: center;
   color: var(--vp-c-text-2);
-}
-
-.curio-flow-node {
-  fill: var(--vp-c-bg);
-}
-
-.curio-flow-node-head {
-  fill: var(--vp-c-default-soft);
-}
-
-.curio-flow-node-edge {
-  fill: none;
-  stroke: var(--vp-c-divider);
-}
-
-.curio-flow-node-label {
-  font-size: 11.5px;
-  font-weight: 600;
-  fill: var(--vp-c-text-2);
-}
-
-.curio-flow-table rect {
-  fill: var(--vp-c-default-soft);
-}
-
-.curio-flow-table rect.is-head,
-.curio-flow-code rect {
-  fill: var(--vp-c-text-3);
-  opacity: 0.45;
-}
-
-.curio-flow-code rect.is-key {
-  fill: var(--curio-orange);
-  opacity: 1;
-}
-
-.curio-flow-badge circle {
-  fill: var(--vp-c-bg);
-  stroke: var(--vp-c-purple-1);
-  stroke-width: 1.5;
-}
-
-.curio-flow-badge g {
-  fill: none;
-  stroke: var(--vp-c-purple-1);
-  stroke-width: 2.2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.curio-flow-map polygon,
-.curio-flow-bars rect {
-  fill: var(--curio-orange);
-  transition: opacity 0.35s;
-}
-
-.curio-flow-map polygon.is-on {
-  stroke: var(--vp-c-text-1);
-  stroke-width: 1.2;
-}
-
-.curio-flow-map .is-dim,
-.curio-flow-bars .is-dim {
-  opacity: 0.4;
-}
-
-.curio-flow-bars rect.curio-flow-bar-hit {
-  fill: transparent;
-}
-
-.curio-flow-bars line {
-  stroke: var(--vp-c-divider);
-}
-
-.curio-flow-port {
-  fill: var(--vp-c-bg);
-  stroke: var(--curio-orange);
-  stroke-width: 1.5;
 }
 
 /* The wires between the cards, drawn over the band and under the cards. */
@@ -806,29 +685,15 @@ onBeforeUnmount(() => {
 
 .curio-flow-wire {
   fill: none;
-  stroke-linecap: round;
-}
-
-.curio-flow-wire.is-data {
   stroke: var(--curio-orange);
   stroke-width: 2.5;
+  stroke-linecap: round;
   stroke-dasharray: 7 6;
   animation: curio-flow-data 1.6s linear infinite;
 }
 
-.curio-flow-wire.is-agent {
-  stroke: var(--vp-c-purple-1);
-  stroke-width: 1.75;
-  stroke-dasharray: 1 5;
-  animation: curio-flow-agent 2.4s linear infinite;
-}
-
 .curio-flow-arrowhead {
   fill: var(--curio-orange);
-}
-
-.curio-flow-dothead {
-  fill: var(--vp-c-purple-1);
 }
 
 @keyframes curio-flow-data {
@@ -837,69 +702,26 @@ onBeforeUnmount(() => {
   }
 }
 
-@keyframes curio-flow-agent {
-  to {
-    stroke-dashoffset: -6;
+@media (min-width: 640px) {
+  .curio-flow {
+    padding: 20px 24px 18px;
   }
 }
 
-@media (min-width: 768px) {
-  .curio-flow-curio {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-    gap: 40px;
-    padding: 28px 28px 28px 32px;
-  }
-}
-
-/* Wide: the three stages side by side, each agent over the stages it helps. */
+/* Wide: the stages in a column, with Curio beside them. */
 @media (min-width: 960px) {
-  .curio-flow-band {
-    padding: 28px 32px 32px;
-  }
-
-  .curio-flow-agents,
-  .curio-flow-stages {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    column-gap: 56px;
-  }
-
-  .curio-flow-agents {
-    margin-top: 24px;
-  }
-
-  /* Chips sit on the row's bottom edge, so every agent wire starts at the same height. */
-  .curio-flow-agents > li {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-  }
-
-  .curio-flow-agents > li:first-child {
-    grid-column: 1 / 3;
-  }
-
-  .curio-flow-chips {
-    justify-content: center;
-  }
-
-  .curio-flow-stages {
-    margin-top: 44px;
-    padding-left: 0;
-  }
-
-  .curio-flow-curio {
-    margin-top: 64px;
+  .curio-flow-body {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 56px;
+    align-items: center;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .curio-flow-wire {
-    animation: none !important;
+    animation: none;
   }
 
-  .curio-flow-map polygon,
-  .curio-flow-bars rect,
   .curio-flow-button {
     transition: none;
   }

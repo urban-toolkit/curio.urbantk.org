@@ -19,10 +19,10 @@ export default {
   Layout() {
     return h(DefaultTheme.Layout, null, {
       'doc-after': () => h(GoDeeper),
-      // The home page: badges under the hero's buttons, then the use cases and how the catalogs fit, above the
+      // The home page: badges under the hero's buttons, then how the catalogs fit and the use cases, above the
       // topic grid.
       'home-hero-actions-after': () => h(HeroBadges),
-      'home-features-after': () => [h(UseCases), h(CatalogFlow)],
+      'home-features-after': () => [h(CatalogFlow), h(UseCases)],
       'layout-bottom': () => h(SiteFooter),
     })
   },

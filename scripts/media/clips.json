@@ -204,6 +204,18 @@
       }
     },
     {
+      "id": "catalogs",
+      "page": "home",
+      "take": "catalogs1",
+      "name": "catalogs",
+      "crop": {
+        "left": 42,
+        "top": 66,
+        "width": 1846,
+        "height": 1054
+      }
+    },
+    {
       "id": "data-loading",
       "page": "quick-start",
       "take": "quickstart1",
