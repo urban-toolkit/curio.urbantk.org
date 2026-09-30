@@ -3,6 +3,7 @@ import type { Theme } from 'vitepress'
 import { h } from 'vue'
 import './styles/vars.css'
 import './styles/base.css'
+import CatalogFlow from './components/CatalogFlow.vue'
 import GoDeeper from './components/GoDeeper.vue'
 import GuideFigure from './components/GuideFigure.vue'
 import HeroBadges from './components/HeroBadges.vue'
@@ -18,9 +19,10 @@ export default {
   Layout() {
     return h(DefaultTheme.Layout, null, {
       'doc-after': () => h(GoDeeper),
-      // The home page: badges under the hero's buttons, then the use cases, above the topic grid.
+      // The home page: badges under the hero's buttons, then the use cases and how the catalogs fit, above the
+      // topic grid.
       'home-hero-actions-after': () => h(HeroBadges),
-      'home-features-after': () => h(UseCases),
+      'home-features-after': () => [h(UseCases), h(CatalogFlow)],
       'layout-bottom': () => h(SiteFooter),
     })
   },
