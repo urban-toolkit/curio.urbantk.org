@@ -16,7 +16,7 @@ A dataflow is a set of nodes on a canvas, joined by connections. Each node does 
 
 ## The canvas and the palette
 
-Drag a node from the **Built-in** column on the left onto the canvas; hover over an icon to see its name. Below that column, the **Node Catalog**, **Data Catalog** and **Agent Catalog** dropdowns hold your [packages](/node-catalog/), [datasets](/data-catalog/) and [AI agents](/ai-agents/). A dataset dropped on the canvas becomes a Data Loading node with its code already written. **Help > Tutorial** tours the built-in nodes.
+Drag a node from the **Built-in** column on the left onto the canvas; hover over an icon to see its name. Below that column, the **Node Catalog**, **Data Catalog** and **Agent Catalog** dropdowns hold your [packages](/node-catalog/), [datasets](/data-catalog/) and [AI agents](/ai-agents/). A dataset dropped on the canvas becomes a Data Loading node with its code already written.
 
 Click the title at the top to rename the dataflow. The disk icon in the menu bar is green when the canvas is saved and orange when it is not; click it, or choose **File > Save dataflow**. After the first save, Curio saves every 30 seconds while there are unsaved changes, and asks before you leave with changes it has not saved.
 

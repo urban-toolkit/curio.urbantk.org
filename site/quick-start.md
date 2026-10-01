@@ -27,7 +27,7 @@ Open the hosted instance and choose **Create account** on the sign-in page. A na
 
 ## Create a dataflow
 
-On the **Projects** page, click **+ New Dataflow**. The canvas opens with the built-in nodes in the rail on the left (hover a tile to see its name) and the **File**, **View**, **Data**, **Provenance**, **Help** and **Share** menus along the top. **Help > Tutorial** points out the main nodes, and clicking the dataflow's name at the top lets you rename it.
+On the **Projects** page, click **+ New Dataflow**. The canvas opens with the built-in nodes in the rail on the left (hover a tile to see its name) and the **File**, **View**, **Data**, **Provenance** and **Share** menus along the top. Click the dataflow's name at the top to rename it.
 
 <LoopVideo src="/media/dataflows/canvas.mp4" poster="/media/dataflows/canvas.webp" caption="Clicking + New Dataflow opens an empty canvas, and the tiles of the built-in node rail and the menus along the top are pointed out one by one." :w="1280" :h="768" />
 
