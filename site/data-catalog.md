@@ -41,7 +41,7 @@ Click **Import dataset** at the bottom of the drawer, or at the top of the Data 
 - GeoTIFF rasters (`.tif`, `.tiff`)
 - OpenStreetMap extracts (`.pbf`) and GeoPackages (`.gpkg`), which become one dataset per layer
 
-Importing does not add the file to the open dataflow, so click **Add to project** on it next. To get a dataset from an open data portal instead, see [Data lakes](/data-lakes/).
+Importing does not add the file to the open dataflow, so click **Add to project** on it next. To get a dataset from an open data portal, storage or a service instead, see [Discovery Catalog](/discovery/).
 
 **Delete** removes one of your uploads or computed datasets from your account and from every dataflow that uses it. Removing an upload from the last dataflow that uses it also deletes it, and the confirmation says so first.
 

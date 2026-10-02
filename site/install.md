@@ -3,7 +3,6 @@ title: "Install"
 description: "Run Curio on your own computer with pip or Docker, learn its main commands, and set up the AI features."
 group: getting-started
 order: 30
-card: { poster: /media/install/ai-settings.webp, alt: "The AI Settings window" }
 deeper:
   - { doc: docs/USAGE.md, anchor: installation-from-pip, label: "Installing from pip" }
   - { doc: docs/USAGE.md, anchor: installation-from-git, label: "Installing from git, with Docker or by hand" }
@@ -55,9 +54,11 @@ To change Curio itself, run it from a clone with `python curio.py start` instead
 
 ## Set up the AI features
 
-Curio ships with no AI provider. Its agents, node-authoring assistants and chat all answer through one provider you configure, and Curio sets no spending limit: the provider bills the key's owner.
+Curio ships with no AI provider. Its agents, node-authoring assistants and chat answer through an LLM configuration you set up, and Curio sets no spending limit: the provider bills the key's owner.
 
-On a local Curio you are the shared guest, who cannot save a key in **AI Settings**, so name the provider when you start Curio: the key in an environment variable, the provider and model as flags.
+Add a configuration in **API Settings**, at the top of the Projects page or in the Agent Catalog drawer on the canvas: **Add configuration**, pick **OpenAI**, **Anthropic**, **Gemini** or **Custom** (which also asks for a **Base URL**), paste the **API key**, choose a **Model** (**Fetch models** lists what the endpoint serves) and click **Save**. On a local Curio you are the shared guest, and everyone using that Curio shares the configurations you save. [AI agents](/ai-agents/) covers the rest.
+
+You can instead name a default provider when you start Curio: the key in an environment variable, the provider and model as flags.
 
 ```bash
 export CURIO_DEFAULT_LLM_API_KEY="your-api-key"
@@ -66,6 +67,4 @@ curio start --llm-provider anthropic --llm-model "model-name"
 
 `--llm-provider` is `anthropic`, `gemini` or `openai_compatible`, the default, which covers OpenAI and, with `--llm-base-url`, any OpenAI-compatible server such as Ollama or LM Studio. A keyless server still needs a placeholder value in the variable. With Docker, put the same settings in `utk_curio/backend/.env` as `CURIO_DEFAULT_LLM_API_TYPE`, `CURIO_DEFAULT_LLM_MODEL`, `CURIO_DEFAULT_LLM_BASE_URL` and `CURIO_DEFAULT_LLM_API_KEY`, then rebuild with `docker compose up --build`.
 
-With an account, on the hosted instance or on a server started with `--deploy`, each person sets their own provider in **AI Settings**, at the top of the Projects page or in the Agent Catalog drawer on the canvas: pick **OpenAI**, **Anthropic**, **Gemini** or **Custom** (which also asks for a **Base URL**), paste the **API Key**, choose a **Model** (**Fetch models** lists what the endpoint serves) and click **Save**. [AI agents](/ai-agents/) covers the rest.
-
-<GuideFigure src="/media/install/ai-settings.webp" alt="The AI Settings window" caption="The AI Settings window, with a tab for each provider, the API key, the model and Fetch models." :w="1280" :h="768" />
+On the hosted instance, or on a server started with `--deploy`, each account adds its own configurations in **API Settings**, and a guest answers with the server's guest configuration.

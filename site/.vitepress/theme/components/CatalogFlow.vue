@@ -4,8 +4,8 @@ import { useData, withBase } from 'vitepress'
 import Icon from './Icon.vue'
 
 // The home page's picture of how Curio's parts fit, above the use cases. The Agent Catalog is a band around
-// everything, since its agents work at every stage; inside it the Data Lake, Data and Node catalogs take a
-// dataset from a portal to computed results, and Curio composes them into an analysis, shown by a real
+// everything, since its agents work at every stage; inside it the Discovery, Data, Model and Node catalogs take
+// a dataset from a portal to computed results, and Curio composes them into an analysis, shown by a real
 // screenshot. The cards are HTML so their text wraps; the wires between them are drawn over the measured cards,
 // with the stages beside Curio on wide screens and above it on narrow ones.
 const { theme } = useData()
@@ -18,12 +18,12 @@ interface Agent {
 
 const STAGES: { id: string; step: string; title: string; icon: string; text: string; url: string; agents: Agent[] }[] = [
   {
-    id: 'lake',
+    id: 'discovery',
     step: 'Discover',
-    title: 'Data Lake Catalog',
+    title: 'Discovery Catalog',
     icon: 'website',
-    text: 'Search open data portals from one box, and download a dataset into your Data Catalog.',
-    url: '/data-lakes/',
+    text: 'Search open data portals, storage and services from one place, and bring datasets into your Data Catalog and models into your Model Catalog.',
+    url: '/discovery/',
     agents: [
       { name: 'Dataset Finder', text: 'Finds datasets across the connected portals and proposes the download.' },
       { name: 'Node Researcher', text: 'Checks outside facts, such as dataset ids, API endpoints and schemas, on the web.' },
@@ -37,6 +37,15 @@ const STAGES: { id: string; step: string; title: string; icon: string; text: str
     text: 'The datasets your dataflows read. Drag one onto the canvas and Curio writes the code that loads it.',
     url: '/data-catalog/',
     agents: [{ name: 'Dataset Finder', text: 'Picks a dataset from your Data Catalog for a loading node.' }],
+  },
+  {
+    id: 'models',
+    step: 'Infer',
+    title: 'Model Catalog',
+    icon: 'brain',
+    text: 'Trained models a node runs over your data, such as image segmentation for street photos. Drag one onto the node.',
+    url: '/model-catalog/',
+    agents: [],
   },
   {
     id: 'nodes',
@@ -127,24 +136,26 @@ function measure(el: HTMLElement): Record<string, Box> {
 function route() {
   frame = 0
   if (!root.value) return
-  const { lake, data, nodes, curio } = measure(root.value)
+  const boxes = measure(root.value)
+  const stages = STAGES.map((s) => boxes[s.id])
+  const curio = boxes.curio
+  const last = stages[stages.length - 1]
+  if (!curio || stages.some((s) => !s)) return
   const out: string[] = []
   // Down the stages, one into the next.
-  for (const [a, b] of [
-    [lake, data],
-    [data, nodes],
-  ]) {
+  for (let i = 1; i < stages.length; i++) {
+    const [a, b] = [stages[i - 1], stages[i]]
     out.push(`M${px(a.cx)} ${px(a.b)} V${px(b.t)}`)
   }
-  if (curio.l > nodes.r) {
+  if (curio.l > last.r) {
     // Wide: every stage feeds Curio, beside them, through a curve that lands spread along its left edge.
-    for (const s of [lake, data, nodes]) {
+    for (const s of stages) {
       const y = curio.cy + (s.cy - curio.cy) * 0.4
       const m = (s.r + curio.l) / 2
       out.push(`M${px(s.r)} ${px(s.cy)} C${px(m)} ${px(s.cy)} ${px(m)} ${px(y)} ${px(curio.l)} ${px(y)}`)
     }
   } else {
-    out.push(`M${px(nodes.cx)} ${px(nodes.b)} V${px(curio.t)}`)
+    out.push(`M${px(last.cx)} ${px(last.b)} V${px(curio.t)}`)
   }
   wires.value = out
 }
@@ -171,10 +182,10 @@ onBeforeUnmount(() => {
 <template>
   <section id="overview" class="curio-flow-section" aria-labelledby="overview-title">
     <div class="curio-flow-container">
-      <h2 id="overview-title">Four catalogs, many dataflows</h2>
+      <h2 id="overview-title">Five catalogs, many dataflows</h2>
       <p class="curio-flow-lead">
-        Find a dataset, load it and compute with it, with AI agents at every stage. Curio composes the pieces into an
-        analysis.
+        Find a dataset, load it, run models and compute with it, with AI agents at every stage. Curio composes the
+        pieces into an analysis.
       </p>
 
       <div ref="root" class="curio-flow">
@@ -200,7 +211,7 @@ onBeforeUnmount(() => {
                   <a :href="withBase(s.url)">{{ s.title }} <Icon name="arrow" /></a>
                 </h3>
                 <p class="curio-flow-text">{{ s.text }}</p>
-                <ul class="curio-flow-agents" :aria-label="`Agents for ${s.title}`">
+                <ul v-if="s.agents.length" class="curio-flow-agents" :aria-label="`Agents for ${s.title}`">
                   <li v-for="a in s.agents" :key="a.name" class="curio-flow-chip" :title="a.text">
                     <Icon name="bot" />{{ a.name }}
                   </li>

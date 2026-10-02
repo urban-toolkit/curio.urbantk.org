@@ -64,7 +64,7 @@ docker compose build --no-cache
 docker compose up -d --force-recreate
 ```
 
-Back up `instance/` (the database of users, projects and sessions), `datasets/` (the shared Data Catalog) and `.curio/` (each user's projects, datasets, packages and outputs). Node packages and data lake sources ship inside the image. At every start, isolation restricts `instance/`, `datasets/` and parts of `.curio/` to their owner, so a backup job must run as root or as that owner.
+Back up `instance/` (the database of users, projects and sessions), `datasets/` (the shared Data Catalog) and `.curio/` (each user's projects, datasets, packages and outputs). Node packages, Discovery Catalog sources and shipped models ship inside the image. At every start, isolation restricts `instance/`, `datasets/` and parts of `.curio/` to their owner, so a backup job must run as root or as that owner.
 
 ## The monitor page
 

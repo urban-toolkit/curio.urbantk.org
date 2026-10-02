@@ -49,6 +49,7 @@ Running Curio yourself, with pip or Docker, puts its three parts on your compute
 - [Quick start](/quick-start/): build a first dataflow in the hosted instance.
 - [Install](/install/): run Curio on your own computer.
 - [Dataflows and nodes](/dataflows/) and [Projects and files](/projects-and-files/): the canvas, running nodes, saving, and notebooks.
-- [Data Catalog](/data-catalog/) and [Data lakes](/data-lakes/): datasets, your own files, and open data portals.
+- [Data Catalog](/data-catalog/) and [Discovery Catalog](/discovery/): datasets, your own files, open data portals, storage and services.
+- [Model Catalog](/model-catalog/): trained models your nodes run.
 - [Charts and maps](/visualization/) and [Dashboards and sharing](/dashboards/): views, and pages that present them.
 - [Run your own server](/self-hosting/): host Curio for a group, with accounts.

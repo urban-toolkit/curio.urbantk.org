@@ -16,11 +16,16 @@ Agents are AI assistants you attach to a node, a connection between two nodes, o
 
 ## Choose the provider and model
 
-Agents answer through the provider you choose in **AI Settings**, which opens from the button at the top of the Projects and catalog pages or from the Agent Catalog drawer on the canvas. Pick **OpenAI**, **Anthropic**, **Gemini**, or **Custom** for any OpenAI-compatible endpoint, such as a model you run yourself (Custom asks for a **Base URL**). Paste your API key and choose the **Model**: **Fetch models** asks the endpoint what it serves and turns the field into a list, or you can type a model name. Then click **Save**.
+Agents answer with an **LLM configuration**: a provider, its key and a model, which you set up in **API Settings**. It opens from the button at the top of the Projects and catalog pages, or from the Agent Catalog drawer on the canvas.
 
-Your account holds one API key, so saving a key under another provider replaces it. If whoever runs the server set a default, AI Settings shows it, and a field you leave blank uses it. Guest accounts cannot save a key, and get AI only if the server provides a guest key. Curio does not bill agent runs: the provider charges whoever's key is used.
+1. Under **LLM configurations**, click **Add configuration**.
+2. Give it a **Label**, and pick the **Provider**: **OpenAI**, **Anthropic**, **Gemini**, or **Custom** for any OpenAI-compatible endpoint, such as a model you run yourself (Custom asks for a **Base URL**).
+3. Paste the **API key**, and choose the **Model**: **Fetch models** suggests what the endpoint serves, or type a model name.
+4. Click **Save**. Your first configuration is your default.
 
-<GuideFigure src="/media/install/ai-settings.webp" alt="The AI Settings window" caption="AI Settings, with a tab for each provider, the API key and the model." :w="1280" :h="768" />
+You can keep several configurations, for different providers or models. Under **Agent models**, choose which one each agent runs on; an agent left on **Default** uses your default. If whoever runs the server set a Deployment default, it is offered too. On a server started with `--deploy`, guest accounts cannot add a configuration and answer with the server's guest configuration. Curio does not bill agent runs: the provider charges whoever's key is used.
+
+<MediaTodo kind="still" source="new:apisettings" caption="API Settings, with your LLM configurations, the model each agent runs on, and the keys the Discovery Catalog's sources send." />
 
 ## Add an agent to a dataflow
 
@@ -48,6 +53,6 @@ An agent only accepts the targets it was made for. Each attachment has its own c
 
 Click a badge to open the agent's chat. The header says what the agent is attached to, the arrows step through your attached agents, and you can rename or clear the conversation. The first message is the agent's instruction, which the pencil lets you edit. Type in **Message this agent…** and send.
 
-What an agent does depends on the agent: explain or debug a node, write node code, find datasets (including in the [data lakes](/data-lakes/)), plan or build a whole dataflow, suggest connections and packages, or review your work. Proposed changes, such as new nodes, connections, code or packages, appear as cards in the chat. Nothing changes until you click **Apply**, and **Dismiss** drops a proposal.
+What an agent does depends on the agent: explain or debug a node, write node code, find datasets (including in the open data portals of the [Discovery Catalog](/discovery/)), plan or build a whole dataflow, suggest connections and packages, or review your work. Proposed changes, such as new nodes, connections, code or packages, appear as cards in the chat. Nothing changes until you click **Apply**, and **Dismiss** drops a proposal.
 
 <MediaTodo kind="clip" source="tour:agentrun" caption="An agent's chat opens from its badge on a node, a question about the node is sent, and the answer appears in the chat." />

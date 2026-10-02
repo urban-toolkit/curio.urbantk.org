@@ -244,26 +244,12 @@
       "at": 10.5
     },
     {
-      "id": "data-lakes",
-      "page": "data-lakes",
-      "take": "tour1",
-      "name": "datalakes-catalog"
-    },
-    {
       "id": "libraries",
       "page": "node-catalog",
       "take": "tour1",
       "source": "tour",
       "scene": "libraries",
       "at": 5.5
-    },
-    {
-      "id": "ai-settings",
-      "page": "install",
-      "take": "tour1",
-      "source": "tour",
-      "scene": "aisettings",
-      "at": 3.0
     },
     {
       "id": "share-menu",
