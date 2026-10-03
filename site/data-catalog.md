@@ -16,7 +16,7 @@ The Data Catalog holds the datasets your dataflows read: the ones that come with
 
 ## Find a dataset
 
-On the canvas, open **Data > Data Catalog**, or open the **Data Catalog** dropdown in the Tools panel on the left and click **Browse Data Catalog +**. The drawer has three tabs: **Browse all**, **In project** for the datasets this dataflow uses, and **Computed** for outputs your nodes saved. In the catalogs, a project is one of your saved dataflows.
+On the canvas, click **Data Catalog** in the top bar, or open the **Data Catalog** dropdown in the Tools panel on the left and click **Browse Data Catalog +**. The drawer has three tabs: **Browse all**, **In project** for the datasets this dataflow uses, and **Computed** for outputs your nodes saved. In the catalogs, a project is one of your saved dataflows.
 
 Click **Add to project** on a dataset and confirm, and it appears in the Tools panel's **Data Catalog** dropdown. **Remove from project** takes it out again.
 

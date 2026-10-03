@@ -16,7 +16,7 @@ Every node on the canvas comes from a package: a small bundle of node types, wit
 
 ## Add a package to a project
 
-On the canvas, open **Data > Node Catalog**, or open the **Node Catalog** dropdown in the Tools panel and click **Browse Node Catalog +**. The drawer has two tabs: **Browse all**, and **In project** for the packages this dataflow uses. In the catalogs, a project is one of your saved dataflows.
+On the canvas, click **Node Catalog** in the top bar, or open the **Node Catalog** dropdown in the Tools panel and click **Browse Node Catalog +**. The drawer has two tabs: **Browse all**, and **In project** for the packages this dataflow uses. In the catalogs, a project is one of your saved dataflows.
 
 Click **Add to project** on a package. A dialog lists the permissions it asks for and the Python and JavaScript libraries it depends on; click **Add to project** there to install it. Its nodes then appear in the **Node Catalog** dropdown, ready to drag onto the canvas. **Remove from project** takes a package out of this dataflow. Installing a package runs its setup code, so add only packages you trust.
 
@@ -38,7 +38,7 @@ Nodes often need Python libraries, and Curio installs them in three ways:
 
 - **With a package.** Adding a package installs the libraries it declares. Opening one of your dataflows that uses packages you do not have installs those too, and a message says so. A package that is not installed automatically, such as a very large one, shows **Missing node package** on its nodes, with a button that opens the Node Catalog on it.
 - **When a node needs one.** If your code imports a library that is not installed, the node's error names the library and offers a button to install it, then **Run node** to try again.
-- **By hand.** **Data > Installed libraries** lists every library and where it came from. Type a Python library, such as `numpy` or `scikit-learn==1.4.0`, and click **Add**. JavaScript libraries only arrive with the packages that declare them.
+- **By hand.** **File > Installed libraries** lists every library and where it came from. Type a Python library, such as `numpy` or `scikit-learn==1.4.0`, and click **Add**. JavaScript libraries only arrive with the packages that declare them.
 
 On a server with sign-in, guest accounts cannot install Python libraries, so sign in with an account first.
 

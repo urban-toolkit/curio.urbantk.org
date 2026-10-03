@@ -47,7 +47,7 @@ Open the **Hugging Face models** card and search, for example for `segformer`. E
 
 ## Use a download in a dataflow
 
-A download is an ordinary dataset in your Data Catalog, with a preview, a schema and loading code, and its details say where it came from. Downloading does not add it to a dataflow: on the canvas, open **Data > Data Catalog**, click **Add to project** on the dataset, and drag it onto the canvas. A row marked **In your Data Catalog** was already downloaded, and its **View dataset** button opens your copy instead of downloading it again.
+A download is an ordinary dataset in your Data Catalog, with a preview, a schema and loading code, and its details say where it came from. Downloading does not add it to a dataflow: on the canvas, click **Data Catalog** in the top bar, click **Add to project** on the dataset, and drag it onto the canvas. A row marked **In your Data Catalog** was already downloaded, and its **View dataset** button opens your copy instead of downloading it again.
 
 The Dataset Finder agent can also search the portals for you and propose a download, which only happens once you apply it. See [AI agents](/ai-agents/).
 

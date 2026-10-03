@@ -15,7 +15,7 @@ Curio keeps two histories while you work. The dataflow's version history records
 
 ## The version history
 
-Choose **Provenance > Provenance** to open the dataflow's history as a graph. Each card is one version: a thumbnail of the dataflow at that step, with the date and time it was recorded. The graph starts at the top with the empty dataflow, and each line joins a version to the one made after it. Drag the graph to move around it, and use the zoom buttons in its corner.
+Click **Provenance** in the top bar to open the dataflow's history as a graph. Each card is one version: a thumbnail of the dataflow at that step, with the date and time it was recorded. The graph starts at the top with the empty dataflow, and each line joins a version to the one made after it. Drag the graph to move around it, and use the zoom buttons in its corner.
 
 A dataflow opened without a saved history, such as a loaded file or an example opened for the first time, starts one with a version for each of its nodes and connections.
 
@@ -23,7 +23,7 @@ A dataflow opened without a saved history, such as a loaded file or an example o
 
 ## Going back to an earlier version
 
-Click a card to put that version on the canvas. The rest of the history stays, so a click on a newer card moves forward again. Going back is an edit like any other: the save icon turns orange, the nodes need to run again, and the next save stores the version you picked. If you change the dataflow from there, the new versions branch off from the one you went back to, and the later ones stay in the graph.
+Click a card to put that version on the canvas. The rest of the history stays, so a click on a newer card moves forward again. Going back is an edit like any other: the save state reads **Unsaved**, the nodes need to run again, and the next save stores the version you picked. If you change the dataflow from there, the new versions branch off from the one you went back to, and the later ones stay in the graph.
 
 <LoopVideo src="/media/provenance/provenance-revert.mp4" poster="/media/provenance/provenance-revert.webp" caption="Clicking earlier and earlier versions in the provenance graph changes the canvas each time to the dataflow that version holds." :w="1280" :h="768" />
 

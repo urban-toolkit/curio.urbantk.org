@@ -29,7 +29,7 @@ You can keep several configurations, for different providers or models. Under **
 
 ## Add an agent to a dataflow
 
-On the canvas, open **Data > Agent Catalog**, or open the **Agent Catalog** dropdown in the Tools panel and click **Browse Agent Catalog +**. The drawer has two tabs: **Browse all**, and **In project** for the agents this dataflow has. In the catalogs, a project is one of your saved dataflows.
+On the canvas, click **Agent Catalog** in the top bar, or open the **Agent Catalog** dropdown in the Tools panel and click **Browse Agent Catalog +**. The drawer has two tabs: **Browse all**, and **In project** for the agents this dataflow has. In the catalogs, a project is one of your saved dataflows.
 
 Click **Add to project** and confirm. An agent that relies on others says so on its button, as in **Add to project (+1 required)**, and the agents it needs are added with it. Added agents appear in the Tools panel's **Agent Catalog** dropdown.
 

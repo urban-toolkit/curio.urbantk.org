@@ -20,7 +20,7 @@ A dataflow is a set of nodes joined by connections. Each node does one step: it 
 
 Nodes work at different levels. Some hold Python or JavaScript code, some hold a declarative grammar such as a Vega-Lite chart spec, and some offer widgets, so people with different skills can build one analysis together. Pressing a node's play button runs it, after first running whatever it depends on that is out of date.
 
-Curio also keeps the dataflow's history as you work, and **Provenance > Provenance** shows its earlier versions as a graph you can step back through (see [Provenance](/provenance/)).
+Curio also keeps the dataflow's history as you work, and the **Provenance** button in the top bar shows its earlier versions as a graph you can step back through (see [Provenance](/provenance/)).
 
 <LoopVideo src="/media/dataflows/build.mp4" poster="/media/dataflows/build.webp" caption="A dataset dragged onto the canvas becomes a Data Loading node, which is connected to a Data Transformation node and run with the play button." :w="1280" :h="768" />
 
