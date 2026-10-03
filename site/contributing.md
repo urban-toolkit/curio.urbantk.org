@@ -45,7 +45,7 @@ A suite also runs on its own: `backend`, `sandbox`, `jest` or `e2e`. The end-to-
 - `utk_curio/backend/`: the Flask API for accounts, projects, the catalogs and node runs, with its tests, including the Playwright suite, in `tests/`.
 - `utk_curio/sandbox/`: the process that runs node code, with its tests.
 - `utk_curio/frontend/urban-workflows/`: the React and TypeScript app, with Jest tests in `src/tests/`.
-- `packages/`, `datasets/` and `datalakes/`: the node packages, datasets and data portals an install ships with.
+- `packages/`, `datasets/`, `discovery/` and `models/`: the node packages, datasets, Discovery Catalog sources and models an install ships with.
 - `docs/`: the in-depth guides, the schemas, and the example dataflows the tests load.
 - `scripts/`: the test runner and helpers such as the package scaffold.
 - `curio.py`: the launcher.
