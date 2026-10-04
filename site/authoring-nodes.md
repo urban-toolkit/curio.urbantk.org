@@ -42,7 +42,7 @@ Before the first build, paste the entry the scaffold prints into `webpack.packag
 
 ## Reading upstream data
 
-In a Python node, `arg` is a Python object such as a DataFrame, a GeoDataFrame, a value, a list or a dict, or a list of them in edge order when several inputs arrive through a Merge Flow. Read a Data Catalog dataset with `curio_dataset_path("<dataset id>")`, using the id without its `@` version, not a file path, so the dataflow keeps working for others.
+In a Python node, `arg` is a Python object such as a DataFrame, a GeoDataFrame, a value, a list or a dict, or a list of them in edge order when several inputs arrive through a Merge Flow. Read a Data Catalog dataset with `curio_load_data("<dataset id>")`, using the id without its `@` version, not a file path, so the dataflow keeps working for others. `curio_data_path("<dataset id>")` gives the dataset's file, for a reader of your own.
 
 In a custom node, `data.input` usually holds a reference to a stored result, not the data. Fetch it from the backend at `window.curio.backendUrl` with the user's session token, not `process.env.BACKEND_URL`, which bakes in your own machine's address. A DataFrame arrives as one array per column, while hand-written data may key each column by row, so accept both. The example package's `resolveInput` handles every shape.
 
