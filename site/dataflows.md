@@ -1,6 +1,6 @@
 ---
 title: "Dataflows and nodes"
-description: "The canvas, the built-in nodes, how to connect them, and how to run a dataflow."
+description: "The canvas and its notebook view, the built-in nodes, how to connect them, and how to run a dataflow."
 group: using
 order: 10
 card: { poster: /media/dataflows/build.webp, alt: "A Data Loading node connected to a Data Transformation node" }
@@ -8,6 +8,7 @@ deeper:
   - { doc: docs/ARCHITECTURE.md, anchor: execution-pipeline, label: "What happens when a node runs" }
   - { doc: docs/examples/02-vega-lite-spatial-density.md, label: "Example: one table feeding several views" }
   - { doc: docs/examples/04-vega-lite-multi-flow-dashboard.md, label: "Example: joining flows with Merge Flow" }
+  - { doc: docs/USAGE.md, anchor: notebook-view, label: "The notebook view" }
   - { doc: docs/USAGE.md, anchor: keys-for-node-code, label: "Keys for node code" }
 ---
 
@@ -56,6 +57,14 @@ The **Run all nodes** button, at the bottom of the left column, runs the whole d
 The icons along a node's bottom switch its tabs: **Code**, **Widgets**, **Grammar**, **Provenance** (its [past runs](/provenance/)) and **Output**, as the node has them. In **Widgets**, markers in the code become controls: `[!! threshold$INPUT_VALUE$10 !!]` is a number field that starts at 10. The switch beside the play button saves the node's table output to your Data Catalog.
 
 In the header, **Minimize** folds the node into an icon that opens again with a click; **View > Minimize Nodes** folds them all, and **View > Expand Nodes** opens them again. Click the title to rename the node; the gear opens **Node settings**, for [making a reusable node](/authoring-nodes/). Then come a button that explains the node, **Pin to dashboard** for the dataflow's [dashboard](/dashboards/), **Comments** for notes that others can mark as resolved, and **Delete node**.
+
+## Notebook view
+
+The **Canvas | Notebook** switch, at the right of the top bar beside **Monitor**, shows the same dataflow as a column of cells, like a Jupyter notebook, and the page scrolls. The nodes that read from nothing come first, and every other cell comes after each cell it reads from, in the order **File > Export as notebook** writes.
+
+Every cell has the same size. A code cell shows its code with its output below it; a Vega-Lite or Autark cell shows its spec above its chart or map. Connections run in the bar to the right of the cells, where each cell has its inputs as dots at the top, its interaction dot halfway down and its output at the bottom. Hover over a dot to see what feeds it; selecting a cell darkens its connections.
+
+Editing works as on the canvas. Drag from an output dot to an input dot to connect two cells, and select a connection and press Delete to remove it. A node dragged in from the left column becomes a new cell, and the page scrolls to it. The view changes nothing in the dataflow, so **Canvas** shows it as it was laid out. The address carries the view (`?view=notebook`), so a reload, or the address copied from the browser, opens the notebook view again.
 
 ## Use an API key in node code
 
