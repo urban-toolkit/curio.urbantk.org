@@ -60,9 +60,9 @@ Mapillary and Google Street View need a key of your own. The City of Chicago por
    - **Google Maps API key**: create a key in the [Google Cloud console](https://developers.google.com/maps/documentation/streetview/get-api-key) and enable the **Street View Static API** for its project.
    - **Hugging Face token**: create one with read access at [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens).
    - **Socrata app token**: sign up at [evergreen.data.socrata.com](https://evergreen.data.socrata.com/signup) and create an app token.
-2. **Open API Settings**: the button at the top of the Projects and catalog pages, or in the Agent Catalog drawer on the canvas. A source's **Add yours in API Settings** opens it at that source's row.
-3. **Find the row** under **Discovery Catalog**. Each row says which sources use it.
-4. **Paste the key** into the row and click its **Save**. The field then reads *(saved - leave blank to keep)*.
+2. **Open API Settings** from the top bar. On the Projects and catalog pages it opens the settings page; on the canvas it opens on the right. A source's **Add yours in API Settings** opens it on that key's form, so you can skip the next step.
+3. **Pick the key.** On the **API keys** tab, click **Add configuration**, and in **Kind** choose the key's name under **Data source**. The form says which sources use it.
+4. **Paste the key** and click **Save**. The key shows in the list with **saved** in its **Key** column.
 5. **Check the card.** In the Discovery Catalog, the source's card reads **Token set**, and its rows download.
 
-A key belongs to your account and is sent only to its own source. Curio shows whether a key is set, never its value, and **Remove saved key** clears it. If the server provides a key for everyone, the row says so, and a key of your own takes its place. On a server started with `--deploy`, guest accounts cannot save a key.
+A key belongs to your account and is sent only to its own source. Curio shows whether a key is set, never its value; the key's row offers **Replace** and **Remove**. If the server provides a key for everyone, the list shows it as **set by this Curio**, and **Override** saves your own in its place. On a server started with `--deploy`, guest accounts cannot save a key.

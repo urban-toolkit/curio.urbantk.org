@@ -56,7 +56,7 @@ To change Curio itself, run it from a clone with `python curio.py start` instead
 
 Curio ships with no AI provider. Its agents, node-authoring assistants and chat answer through an LLM configuration you set up, and Curio sets no spending limit: the provider bills the key's owner.
 
-Add a configuration in **API Settings**, at the top of the Projects page or in the Agent Catalog drawer on the canvas: **Add configuration**, pick **OpenAI**, **Anthropic**, **Gemini** or **Custom** (which also asks for a **Base URL**), paste the **API key**, choose a **Model** (**Fetch models** lists what the endpoint serves) and click **Save**. On a local Curio you are the shared guest, and everyone using that Curio shares the configurations you save. [AI agents](/ai-agents/) covers the rest.
+Add a configuration in **API Settings**, in the top bar of every page: on the **API keys** tab, click **Add configuration**, choose **Language model** in **Kind**, pick **OpenAI**, **Anthropic**, **Gemini** or **Custom** (which also asks for a **Base URL**), paste the **API key**, choose a **Model** (**Fetch models** lists what the endpoint serves) and click **Add configuration**. On a local Curio you are the shared guest, and everyone using that Curio shares the configurations you save. [AI agents](/ai-agents/) covers the rest.
 
 You can instead name a default provider when you start Curio: the key in an environment variable, the provider and model as flags.
 

@@ -16,16 +16,17 @@ Agents are AI assistants you attach to a node, a connection between two nodes, o
 
 ## Choose the provider and model
 
-Agents answer with an **LLM configuration**: a provider, its key and a model, which you set up in **API Settings**. It opens from the button at the top of the Projects and catalog pages, or from the Agent Catalog drawer on the canvas.
+Agents answer with an **LLM configuration**: a provider, its key and a model, which you set up in **API Settings**. **API Settings** is in the top bar: on the Projects and catalog pages it opens the settings page, and on the canvas it opens on the right, with your dataflow still open. It has two tabs, **API keys** and **Agent configuration**.
 
-1. Under **LLM configurations**, click **Add configuration**.
-2. Give it a **Label**, and pick the **Provider**: **OpenAI**, **Anthropic**, **Gemini**, or **Custom** for any OpenAI-compatible endpoint, such as a model you run yourself (Custom asks for a **Base URL**).
-3. Paste the **API key**, and choose the **Model**: **Fetch models** suggests what the endpoint serves, or type a model name.
-4. Click **Save**. Your first configuration is your default.
+1. On the **API keys** tab, click **Add configuration**.
+2. In **Kind**, choose **Language model**.
+3. Give it a **Label**, and pick the **Provider**: **OpenAI**, **Anthropic**, **Gemini**, or **Custom** for any OpenAI-compatible endpoint, such as a model you run yourself (Custom asks for a **Base URL**).
+4. Paste the **API key**, and choose the **Model**: **Fetch models** suggests what the endpoint serves, or type a model name.
+5. Click **Add configuration**. The configuration shows in the list with **saved** in its **Key** column, and your first configuration is your default.
 
-You can keep several configurations, for different providers or models. Under **Agent models**, choose which one each agent runs on; an agent left on **Default** uses your default. If whoever runs the server set a Deployment default, it is offered too. On a server started with `--deploy`, guest accounts cannot add a configuration and answer with the server's guest configuration. Curio does not bill agent runs: the provider charges whoever's key is used.
+You can keep several configurations, for different providers or models. On the **Agent configuration** tab, **Default for agents** picks your default, and **Agent models** picks which one each agent runs on; an agent left on **Default** uses your default. If whoever runs the server set a Deployment default, it is offered too. On a server started with `--deploy`, guest accounts cannot add a configuration and answer with the server's guest configuration. Curio does not bill agent runs: the provider charges whoever's key is used.
 
-<MediaTodo kind="still" source="new:apisettings" caption="API Settings, with your LLM configurations, the model each agent runs on, and the keys the Discovery Catalog's sources send." />
+<MediaTodo kind="still" source="new:apisettings" caption="API Settings: every key in one list on the API keys tab, and the model each agent runs on under Agent configuration." />
 
 ## Add an agent to a dataflow
 
