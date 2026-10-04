@@ -55,14 +55,15 @@ The Dataset Finder agent can also search the portals for you and propose a downl
 
 Mapillary and Google Street View need a key of your own. The City of Chicago portal and Hugging Face answer without one, and a token raises your rate limit; a Hugging Face token also opens the gated models your account can read.
 
-1. **Get the key** from the service. The source's **View details** links to where you get one.
+1. **Get the key** from the service. The source's **View details** links to where you get one, and so does the key's form in API Settings (**Get a Mapillary access token**, for example).
    - **Mapillary access token**: sign in at [mapillary.com/dashboard/developers](https://www.mapillary.com/dashboard/developers), register an application, and copy its **Client Token**. It starts with `MLY|`.
    - **Google Maps API key**: create a key in the [Google Cloud console](https://developers.google.com/maps/documentation/streetview/get-api-key) and enable the **Street View Static API** for its project.
    - **Hugging Face token**: create one with read access at [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens).
    - **Socrata app token**: sign up at [evergreen.data.socrata.com](https://evergreen.data.socrata.com/signup) and create an app token.
-2. **Open API Settings** from the top bar. On the Projects and catalog pages it opens the settings page; on the canvas it opens on the right. A source's **Add yours in API Settings** opens it on that key's form, so you can skip the next step.
-3. **Pick the key.** On the **API keys** tab, click **Add configuration**, and in **Kind** choose the key's name under **Data source**. The form says which sources use it.
-4. **Paste the key** and click **Save**. The key shows in the list with **saved** in its **Key** column.
-5. **Check the card.** In the Discovery Catalog, the source's card reads **Token set**, and its rows download.
+2. **Open API Settings** from the top bar. On the Projects and catalog pages it opens the settings page; on the canvas and the dashboard it opens as a drawer on the right. A source's **Add yours in API Settings**, in its details, opens it on that key's form, so you can skip the next two steps.
+3. On the **API keys** tab, click **Add configuration**.
+4. In **Kind**, under **Data source**, choose the key's name: **Socrata app token**, **Hugging Face token**, **Google Maps API key** or **Mapillary access token**. The form says which sources use it.
+5. **Paste the key** and click **Save**. A line confirms it, such as *Saved the Mapillary access token.*, and the key's row shows **saved** in its **Key** column.
+6. **Check the card.** In the Discovery Catalog, the source's card reads **Token set** as soon as you save, and its rows download.
 
 A key belongs to your account and is sent only to its own source. Curio shows whether a key is set, never its value; the key's row offers **Replace** and **Remove**. If the server provides a key for everyone, the list shows it as **set by this Curio**, and **Override** saves your own in its place. On a server started with `--deploy`, guest accounts cannot save a key.

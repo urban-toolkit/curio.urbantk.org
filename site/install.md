@@ -56,7 +56,17 @@ To change Curio itself, run it from a clone with `python curio.py start` instead
 
 Curio ships with no AI provider. Its agents, node-authoring assistants and chat answer through an LLM configuration you set up, and Curio sets no spending limit: the provider bills the key's owner.
 
-Add a configuration in **API Settings**, in the top bar of every page: on the **API keys** tab, click **Add configuration**, choose **Language model** in **Kind**, pick **OpenAI**, **Anthropic**, **Gemini** or **Custom** (which also asks for a **Base URL**), paste the **API key**, choose a **Model** (**Fetch models** lists what the endpoint serves) and click **Add configuration**. On a local Curio you are the shared guest, and everyone using that Curio shares the configurations you save. [AI agents](/ai-agents/) covers the rest.
+To add a configuration:
+
+1. **Get an API key** from the provider: [OpenAI](https://platform.openai.com/api-keys), [Anthropic](https://console.anthropic.com/keys) or [Gemini](https://aistudio.google.com/apikey). A model you run yourself, such as one in Ollama or LM Studio, may need no key.
+2. **Open API Settings** from the top bar. On the Projects and catalog pages it opens the settings page; on the canvas and the dashboard it opens as a drawer on the right.
+3. On the **API keys** tab, click **Add configuration**.
+4. In **Kind**, choose **Language model**.
+5. Give it a **Label**, and pick the **Provider**: **OpenAI**, **Anthropic**, **Gemini**, or **Custom** for any OpenAI-compatible endpoint (Custom asks for a **Base URL**).
+6. Paste the **API key**, and choose the **Model**: **Fetch models** suggests what the endpoint serves, or type a model name.
+7. Click **Add configuration**. The configuration shows in the list, with **saved** in its **Key** column when you gave a key.
+
+On a local Curio you are the shared guest, and everyone using that Curio shares the configurations you save. [AI agents](/ai-agents/) covers the rest.
 
 You can instead name a default provider when you start Curio: the key in an environment variable, the provider and model as flags.
 
