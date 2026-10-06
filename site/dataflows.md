@@ -60,11 +60,11 @@ In the header, **Minimize** folds the node into an icon that opens again with a 
 
 ## Notebook view
 
-The **Canvas | Notebook** switch, at the right of the top bar beside **Monitor**, shows the same dataflow as a column of cells, like a Jupyter notebook, and the page scrolls. The nodes that read from nothing come first, and every other cell comes after each cell it reads from, in the order **File > Export as notebook** writes.
+The **Canvas | Notebook** switch, at the right of the top bar beside **Monitor**, shows the same dataflow as a column of cells across the page, like a Jupyter notebook, and the page scrolls. Each cell is followed by the cells it feeds, the most recently connected first, before the next cell that reads from nothing: the order **File > Export as notebook** writes.
 
-Every cell has the same size. A code cell shows its code with its output below it; a Vega-Lite or Autark cell shows its spec above its chart or map. Connections run in the bar to the right of the cells, where each cell has its inputs as dots at the top, its interaction dot halfway down and its output at the bottom. Hover over a dot to see what feeds it; selecting a cell darkens its connections.
+A cell grows with its code and its output. Its header shows **Play** at the top left, the node's name and kind, and its run status; the node's other buttons (its tabs, the switch that saves its output, the gear, the explainer, **Pin to dashboard**, **Comments** and **Delete node**) show while the pointer is over the cell or the cell is selected. A code cell shows its code in a gray box with its output below it; a Vega-Lite or Autark cell shows its spec above its chart or map. Connections run in the bar to the right of the cells, where each cell has its inputs as dots at the top, its interaction dot halfway down and its output at the bottom. Hover over a dot to see what feeds it; selecting a cell outlines it and darkens its connections.
 
-Editing works as on the canvas. Drag from an output dot to an input dot to connect two cells, and select a connection and press Delete to remove it. A node dragged in from the left column becomes a new cell, and the page scrolls to it. The view changes nothing in the dataflow, so **Canvas** shows it as it was laid out. The address carries the view (`?view=notebook`), so a reload, or the address copied from the browser, opens the notebook view again.
+Nodes are added and connected on the canvas: the notebook view has no column of nodes on its left, and its dots do not connect. In it, you edit and run a cell's code, delete a cell, or select a connection and press Delete to remove it; **Run all** sits at the top right of the page. The view changes nothing in the dataflow, so **Canvas** shows it as it was laid out. The address carries the view (`?view=notebook`), so a reload, or the address copied from the browser, opens the notebook view again.
 
 ## Use an API key in node code
 
