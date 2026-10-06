@@ -20,19 +20,31 @@ export const SITE = {
     { id: 'using', title: 'Using Curio' },
     { id: 'extending', title: 'Extending Curio' },
   ],
+  // The logos show under the funding line on the home page (scripts/media/sponsors.mjs makes them); a logo
+  // with black ink has a dark version.
   funding: {
     lead: 'Curio has been supported by:',
     sponsors: [
       {
         name: 'National Science Foundation (NSF)',
+        url: 'https://www.nsf.gov',
+        logo: { light: '/media/sponsors/nsf.webp' },
         awards: [
           { id: '2320261', url: 'https://www.nsf.gov/awardsearch/showAward?AWD_ID=2320261' },
           { id: '2330565', url: 'https://www.nsf.gov/awardsearch/showAward?AWD_ID=2330565' },
           { id: '2411223', url: 'https://www.nsf.gov/awardsearch/showAward?AWD_ID=2411223' },
         ],
       },
-      { name: 'Discovery Partners Institute (DPI)' },
-      { name: 'IDOT' },
+      {
+        name: 'Discovery Partners Institute (DPI)',
+        url: 'https://dpi.uillinois.edu',
+        logo: { light: '/media/sponsors/dpi.webp', dark: '/media/sponsors/dpi-dark.webp' },
+      },
+      {
+        name: 'IDOT',
+        url: 'https://idot.illinois.gov',
+        logo: { light: '/media/sponsors/idot.webp', dark: '/media/sponsors/idot-dark.webp' },
+      },
     ],
   },
   // Both logos are black, so dark mode shows them inverted.

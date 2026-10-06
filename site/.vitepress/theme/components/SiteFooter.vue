@@ -3,18 +3,16 @@ import { computed } from 'vue'
 import { useData, withBase } from 'vitepress'
 import FundingLine from './FundingLine.vue'
 
-// The funding line and institution logos, as on urbantk.org (theme/components/SiteFooter.vue there). The home
-// page shows the funding line under its badges instead.
-const { frontmatter, theme } = useData()
+// The funding line and institution logos, as on urbantk.org (theme/components/SiteFooter.vue there).
+const { theme } = useData()
 const guide = computed(() => theme.value.guide)
-const home = computed(() => frontmatter.value.layout === 'home')
 const year = new Date().getFullYear()
 </script>
 
 <template>
   <footer class="curio-footer">
     <div class="curio-container curio-footer-inner">
-      <FundingLine v-if="!home" class="curio-footer-funding" />
+      <FundingLine class="curio-footer-funding" />
       <div class="curio-footer-logos">
         <a v-for="inst in guide.institutions" :key="inst.name" :href="inst.url" target="_blank" rel="noopener" :aria-label="inst.name">
           <img :src="withBase(inst.logo)" :alt="inst.name" />

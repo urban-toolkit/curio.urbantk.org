@@ -9,8 +9,14 @@ interface Badge {
   src: string
 }
 
+interface Sponsor {
+  name: string
+  url: string
+  logo: { light: string; dark?: string }
+}
+
 // Under the home page hero's buttons, like the badges at the top of the curio README (theme/node/badges.ts),
-// then the funding line.
+// then the funding line and the sponsors' logos.
 const { theme } = useData()
 const badges = computed(() =>
   (theme.value.guide.badges as Badge[]).map((b) => {
@@ -18,6 +24,7 @@ const badges = computed(() =>
     return { ...b, href: external ? b.href : withBase(b.href), external }
   }),
 )
+const sponsors = computed(() => theme.value.guide.funding.sponsors as Sponsor[])
 </script>
 
 <template>
@@ -29,10 +36,19 @@ const badges = computed(() =>
     </li>
   </ul>
   <FundingLine class="curio-hero-funding" />
+  <ul class="curio-sponsors" aria-label="Sponsors">
+    <li v-for="sponsor in sponsors" :key="sponsor.name">
+      <a :href="sponsor.url" target="_blank" rel="noopener" :title="sponsor.name">
+        <img :class="{ light: sponsor.logo.dark }" :src="withBase(sponsor.logo.light)" :alt="sponsor.name" height="32" decoding="async" />
+        <img v-if="sponsor.logo.dark" class="dark" :src="withBase(sponsor.logo.dark)" :alt="sponsor.name" height="32" decoding="async" />
+      </a>
+    </li>
+  </ul>
 </template>
 
 <style scoped>
-.curio-badges {
+.curio-badges,
+.curio-sponsors {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -45,8 +61,30 @@ const badges = computed(() =>
   margin: 16px 0 0;
 }
 
+.curio-sponsors {
+  align-items: center;
+  gap: 24px;
+  margin-top: 12px;
+}
+
+.curio-sponsors a {
+  display: block;
+}
+
+.curio-sponsors img {
+  display: block;
+  height: 32px;
+  width: auto;
+}
+
+.dark .curio-sponsors img.light,
+html:not(.dark) .curio-sponsors img.dark {
+  display: none;
+}
+
 @media (max-width: 959px) {
-  .curio-badges {
+  .curio-badges,
+  .curio-sponsors {
     justify-content: center;
   }
 
