@@ -14,7 +14,7 @@ Every dataflow has a dashboard: a page of its own that shows only the nodes you 
 
 ## Pin nodes
 
-Each node has a small circle in its header, labelled **Pin to dashboard**. Click it on the charts and maps you want to show, and it turns into a red dot; click it again (**Unpin from dashboard**) to take the node off. Pinning also means the data behind those nodes is saved to your [Data Catalog](/data-catalog/) when the dataflow runs, and that saved data is what the dashboard draws.
+Each node has a small circle labelled **Pin to dashboard** among the buttons in its header, which show while the pointer is over the node. Click it on the charts and maps you want to show, and it turns into a red dot; click it again (**Unpin from dashboard**) to take the node off. Pinning also means the data behind those nodes is saved to your [Data Catalog](/data-catalog/) when the dataflow runs, and that saved data is what the dashboard draws.
 
 After pinning, run the dataflow and save it. The dashboard shows the last saved version: save again whenever you change pins or rerun nodes.
 

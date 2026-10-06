@@ -47,7 +47,7 @@ Importing does not add the file to the open dataflow, so click **Add to project*
 
 ## Save node outputs as datasets
 
-Next to a node's play button is a small database toggle, off by default. Turn it on and run the node: its output is saved to your Data Catalog as a computed dataset and appears in the drawer's **Computed** tab, ready to add to any dataflow. Running it again replaces the saved copy, and the dataflow must be saved for its outputs to be stored.
+Among the buttons in a node's header, which show while the pointer is over the node, is a small database toggle, off by default. Turn it on and run the node: its output is saved to your Data Catalog as a computed dataset and appears in the drawer's **Computed** tab, ready to add to any dataflow. Running it again replaces the saved copy, and the dataflow must be saved for its outputs to be stored.
 
 Tables are saved as Parquet (a GeoDataFrame keeps its geometry and coordinate system), rasters as GeoTIFF, plain Python values as JSON, and a tuple of results as a multi-part dataset. A node whose output was saved shows an **OUTPUT** pill.
 
