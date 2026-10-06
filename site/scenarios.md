@@ -44,7 +44,11 @@ Each copy remembers the node it was copied from.
 
 Pointing at a scenario in the panel marks its fixed context on the canvas.
 
+<GuideFigure src="/media/scenarios/panel.webp" alt="Example 06 with the Scenarios panel open" caption="The Scenarios panel beside example 06: each scenario&#x27;s fixed context, levers and outcomes, and its commands. Pointing at Baseline marks the Data Pool, the fixed context it reads." :w="1480" :h="890" />
+
 A collapsed scenario is one box in its color that lists its fixed context and its outcomes with their latest output. Its connections are drawn to the box, and dragging the box moves it. Double-click the box to expand it in place. A collapsed scenario's nodes still run with **Run All**, and the context they share runs once.
+
+<GuideFigure src="/media/scenarios/collapsed.webp" alt="The Baseline scenario collapsed into one box" caption="Baseline collapsed into one box: the Data Pool it reads, and its outcome, Roads by sunlight, done. The connection from the pool and those to the Compare Scenarios nodes are drawn to the box." :w="1260" :h="960" />
 
 The nodes of a scenario's fixed context and its outcomes save their outputs to your [Data Catalog](/data-catalog/) when they run, whatever their **Save output** setting, so the [Scenario Catalog](/scenario-catalog/) can show them and other dataflows can use them. Scenarios, their colors, descriptions and collapsed state are saved with the dataflow.
 

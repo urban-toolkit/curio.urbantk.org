@@ -206,13 +206,13 @@
     {
       "id": "catalogs",
       "page": "home",
-      "take": "catalogs1",
+      "take": "scout1",
       "name": "catalogs",
       "crop": {
-        "left": 42,
-        "top": 66,
-        "width": 1846,
-        "height": 1054
+        "left": 0,
+        "top": 0,
+        "width": 1920,
+        "height": 1084
       }
     },
     {
@@ -290,6 +290,138 @@
       "page": "collaboration",
       "take": "collab2",
       "name": "collaboration-proposal"
+    },
+    {
+      "id": "panel",
+      "page": "scenarios",
+      "take": "scout2",
+      "name": "scenarios-panel",
+      "crop": {
+        "left": 440,
+        "top": 280,
+        "width": 1480,
+        "height": 890
+      }
+    },
+    {
+      "id": "collapsed",
+      "page": "scenarios",
+      "take": "scout2",
+      "name": "scenario-collapsed",
+      "crop": {
+        "left": 660,
+        "top": 130,
+        "width": 1260,
+        "height": 960
+      }
+    },
+    {
+      "id": "browse",
+      "page": "scenario-catalog",
+      "take": "scout2",
+      "name": "scenario-catalog"
+    },
+    {
+      "id": "details",
+      "page": "scenario-catalog",
+      "take": "scout2",
+      "name": "scenario-details",
+      "crop": {
+        "left": 150,
+        "top": 16,
+        "width": 1200,
+        "height": 880
+      }
+    },
+    {
+      "id": "drawer",
+      "page": "scenario-catalog",
+      "take": "scout2",
+      "name": "scenario-drawer"
+    },
+    {
+      "id": "dropped",
+      "page": "scenario-catalog",
+      "take": "scout2",
+      "name": "scenario-dropped",
+      "crop": {
+        "left": 280,
+        "top": 280,
+        "width": 930,
+        "height": 370
+      }
+    },
+    {
+      "id": "parameter",
+      "page": "widgets",
+      "take": "scout3",
+      "name": "parameter-node",
+      "crop": {
+        "left": 455,
+        "top": 695,
+        "width": 1190,
+        "height": 360
+      }
+    },
+    {
+      "id": "selection-tag",
+      "page": "widgets",
+      "take": "scout3b",
+      "name": "selection-tag",
+      "crop": {
+        "left": 440,
+        "top": 250,
+        "width": 1220,
+        "height": 800
+      }
+    },
+    {
+      "id": "node-from-function",
+      "page": "authoring-nodes",
+      "take": "scout3b",
+      "name": "node-from-function",
+      "crop": {
+        "left": 600,
+        "top": 240,
+        "width": 720,
+        "height": 720
+      }
+    },
+    {
+      "id": "buildings-3d",
+      "page": "scout",
+      "take": "scout1b",
+      "name": "shadows-buildings-8",
+      "crop": {
+        "left": 694,
+        "top": 422,
+        "width": 532,
+        "height": 356
+      }
+    },
+    {
+      "id": "height-mosaic",
+      "page": "scout",
+      "take": "scout1b",
+      "name": "shadows-mosaic-8",
+      "crop": {
+        "left": 694,
+        "top": 422,
+        "width": 532,
+        "height": 356
+      }
+    },
+    {
+      "id": "summer-shadow",
+      "page": "scout",
+      "take": "scout1b",
+      "name": "shadows-summer-7",
+      "crop": {
+        "left": 694,
+        "top": 422,
+        "width": 532,
+        "height": 356
+      }
     }
   ]
 }

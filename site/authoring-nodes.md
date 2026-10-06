@@ -36,6 +36,8 @@ A package that ships Python modules beside its templates gives you a node for an
 3. For each parameter, choose what it gets: a [widget](/widgets/), whose type Curio suggests from the parameter's annotation or default; a fixed value, written as Python writes it; an input of the node; or its default.
 4. Name the node, choose the package it goes into, and click **Create node**.
 
+<GuideFigure src="/media/authoring-nodes/node-from-function.webp" alt="The New node from a Python function dialog" caption="New node from a Python function, for season_factor in the SCOUT Shadow package: its season parameter becomes a text widget that starts at winter, and the node goes into a new package." :w="720" :h="720" />
+
 The node joins the project's palette. Its code imports the function and returns its call, with the widgets and inputs as chips:
 
 ```python

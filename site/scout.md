@@ -27,7 +27,15 @@ The four dataflows are in the examples every account starts with, under **By sou
 - **Accumulated Shadow**, from the SCOUT Shadow package, runs Deep Umbra, SCOUT's shadow model in the [Model Catalog](/model-catalog/), on that mosaic. It gives the minutes of a day the ground spends in shadow, as a raster on the same grid; its **Season** widget picks spring, summer or winter.
 - **Raster Statistics** then gives the mean and median shadow over the ground.
 
-Example 24, "SCOUT building rasters", runs them on the buildings of SCOUT's Chicago Loop example: the buildings in 3D, the height mosaic and the summer shadow on Autark maps, and the mean and median shadow. ScoutShadows compares two scenarios of the same buildings over a shared season, Existing and Towers removed (15 buildings taken out): one Compare Scenarios node charts the mean shadow, and another maps its change.
+Example 24, "SCOUT building rasters", runs them on the buildings of SCOUT's Chicago Loop example: the buildings in 3D, the height mosaic and the summer shadow on Autark maps, and the mean and median shadow. Each map opens on a much wider area than the Loop; the mouse wheel over a map zooms in.
+
+<GuideFigure src="/media/scout/buildings-3d.webp" alt="An Autark map of the Chicago Loop's buildings in 3D" caption="Example 24: the Loop&#x27;s buildings in 3D, colored by their height in metres, zoomed in with the mouse wheel." :w="532" :h="356" />
+
+<GuideFigure src="/media/scout/height-mosaic.webp" alt="An Autark map of the height mosaic" caption="The height mosaic Rasterize Buildings makes of them: one raster on SCOUT&#x27;s zoom-16 tile grid, each cell a height." :w="532" :h="356" />
+
+<GuideFigure src="/media/scout/summer-shadow.webp" alt="An Autark map of the summer shadow" caption="Deep Umbra&#x27;s summer shadow on the same grid: the minutes of the day each cell spends in shadow, darker where it is longer." :w="532" :h="356" />
+
+ScoutShadows compares two scenarios of the same buildings over a shared season, Existing and Towers removed (15 buildings taken out): one Compare Scenarios node charts the mean shadow, and another maps its change.
 
 Deep Umbra ships with Curio's repository and its Docker image, but not with the pip package; on a pip install, Accumulated Shadow says the model is missing and how to add it.
 

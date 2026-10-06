@@ -96,20 +96,20 @@ interface Mark {
 }
 const SHOT: { src: string; alt: string; w: number; h: number; marks: Mark[] } = {
   src: '/media/home/catalogs.webp',
-  alt: "A dataflow in Curio: a Data Loading node and a Data Transformation node feed an Autark map and a Vega-Lite bar chart of downtown Chicago's ZIP codes, with agents attached to every node, to a connection and to the canvas.",
+  alt: "A dataflow in Curio, under the top bar with its six catalogs: a Data Loading node and a Data Transformation node feed an Autark map and a Vega-Lite bar chart of downtown Chicago's ZIP codes, with agents attached to every node, to a connection and to the canvas.",
   w: 1600,
-  h: 914,
+  h: 903,
   marks: [
-    { label: 'Load', kind: 'node', x: 163, y: 368, w: 413, h: 276 },
-    { label: 'Transform', kind: 'node', x: 667, y: 368, w: 413, h: 276 },
-    { label: 'Map', kind: 'node', x: 1171, y: 164, w: 413, h: 276 },
-    { label: 'Chart', kind: 'node', x: 1171, y: 573, w: 413, h: 276 },
-    { label: 'Dataset Finder', kind: 'agent', side: 'right', x: 160, y: 646, w: 30, h: 30 },
-    { label: 'Node Builder', kind: 'agent', side: 'right', x: 664, y: 646, w: 30, h: 30 },
-    { label: 'Chat', kind: 'agent', side: 'right', x: 1168, y: 441, w: 30, h: 30 },
-    { label: 'Connection Builder', kind: 'agent', side: 'left', x: 1110, y: 593, w: 30, h: 30 },
-    { label: 'Package Recommendation', kind: 'agent', side: 'left', x: 1168, y: 851, w: 30, h: 30 },
-    { label: 'Canvas agents', kind: 'agent', side: 'right', x: 831, y: 6, w: 102, h: 33 },
+    { label: 'Load', kind: 'node', x: 192, y: 409, w: 398, h: 265 },
+    { label: 'Transform', kind: 'node', x: 676, y: 409, w: 398, h: 265 },
+    { label: 'Map', kind: 'node', x: 1161, y: 212, w: 398, h: 265 },
+    { label: 'Chart', kind: 'node', x: 1161, y: 606, w: 398, h: 265 },
+    { label: 'Dataset Finder', kind: 'agent', side: 'right', x: 192, y: 679, w: 24, h: 24 },
+    { label: 'Node Builder', kind: 'agent', side: 'right', x: 676, y: 679, w: 24, h: 24 },
+    { label: 'Chat', kind: 'agent', side: 'right', x: 1161, y: 482, w: 24, h: 24 },
+    { label: 'Connection Builder', kind: 'agent', side: 'left', x: 1105, y: 606, w: 24, h: 24 },
+    { label: 'Package Recommendation', kind: 'agent', side: 'left', x: 1161, y: 876, w: 24, h: 24 },
+    { label: 'Canvas agents', kind: 'agent', side: 'right', x: 890, y: 63, w: 93, h: 27 },
   ],
 }
 const pct = (n: number, of: number) => `${Math.round((n / of) * 10000) / 100}%`

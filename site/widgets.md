@@ -44,6 +44,8 @@ A **Parameter** node holds one widget that any node of the dataflow can read, su
 
 A Parameter node has no connections. It lists the nodes whose code uses it, and changing its value marks them as needing a new run. **Edit** renames it, and their code follows the new name. Pinned to the [dashboard](/dashboards/), it shows its value.
 
+<GuideFigure src="/media/widgets/parameter.webp" alt="A location Parameter node beside a Data Loading node that reads it" caption="From the FloodScenarios dataflow: the Top-left corner Parameter node, a location, lists the three nodes whose code uses it. Beside it, a Data Loading node shows the shared tags above its code and the amber chips in it." :w="1190" :h="360" />
+
 ## Hand a node what you selected
 
 A selection tag gives a node's code the rows you selected in a view: a brush or a click in a Vega-Lite chart, or a pick or a brush in an Autark map or plot.
@@ -61,3 +63,5 @@ return arg[arg["osm_id"].isin(picked)]
 ```
 
 With nothing selected, the list is empty. A new selection marks the node as needing a new run, and the ids are saved with the dataflow. A tag holds at most 10,000 ids.
+
+<GuideFigure src="/media/widgets/selection-tag.webp" alt="An Autark map with one ZIP code picked, and a Python node that reads it" caption="From example 17: a ZIP code picked on an Autark map with a double-click, and a Python node whose code reads the picked ZIP codes through the zips selection tag, a peach chip. The node printed the one it was handed." :w="1220" :h="800" />
