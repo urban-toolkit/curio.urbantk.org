@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useData, withBase } from 'vitepress'
+import FundingLine from './FundingLine.vue'
 
 interface Badge {
   alt: string
@@ -8,7 +9,8 @@ interface Badge {
   src: string
 }
 
-// Under the home page hero's buttons, like the badges at the top of the curio README (theme/node/badges.ts).
+// Under the home page hero's buttons, like the badges at the top of the curio README (theme/node/badges.ts),
+// then the funding line.
 const { theme } = useData()
 const badges = computed(() =>
   (theme.value.guide.badges as Badge[]).map((b) => {
@@ -26,6 +28,7 @@ const badges = computed(() =>
       </a>
     </li>
   </ul>
+  <FundingLine class="curio-hero-funding" />
 </template>
 
 <style scoped>
@@ -38,9 +41,17 @@ const badges = computed(() =>
   list-style: none;
 }
 
+.curio-hero-funding {
+  margin: 16px 0 0;
+}
+
 @media (max-width: 959px) {
   .curio-badges {
     justify-content: center;
+  }
+
+  .curio-hero-funding {
+    text-align: center;
   }
 }
 
