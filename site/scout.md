@@ -27,7 +27,7 @@ The four dataflows are in the examples every account starts with, under **By sou
 - **Accumulated Shadow**, from the SCOUT Shadow package, runs Deep Umbra, SCOUT's shadow model in the [Model Catalog](/model-catalog/), on that mosaic. It gives the minutes of a day the ground spends in shadow, as a raster on the same grid; its **Season** widget picks spring, summer or winter.
 - **Raster Statistics** then gives the mean and median shadow over the ground.
 
-Example 24, "SCOUT building rasters", runs them on the buildings of SCOUT's Chicago Loop example: the buildings in 3D, the height mosaic and the summer shadow on Autark maps, and the mean and median shadow. Each map opens on a much wider area than the Loop; the mouse wheel over a map zooms in.
+Example 24, "SCOUT building rasters", runs them on the buildings of SCOUT's Chicago Loop example: the buildings in 3D, the height mosaic and the summer shadow on Autark maps, and the mean and median shadow.
 
 <GuideFigure src="/media/scout/buildings-3d.webp" alt="An Autark map of the Chicago Loop's buildings in 3D" caption="Example 24: the Loop&#x27;s buildings in 3D, colored by their height in metres, zoomed in with the mouse wheel." :w="532" :h="356" />
 
