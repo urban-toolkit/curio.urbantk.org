@@ -36,11 +36,13 @@ Press play to draw it. If the editor is still empty when data first arrives, Cur
 
 ## Autark maps
 
-An **Autark** node takes one JSON specification, called an UrbanSpec, with up to four parts: `data` loads OpenStreetMap, CSV or GeoJSON data; `compute` runs a GPU shader written in WGSL; `map` draws layers in 2D or 3D, colored by a column; and `plot` adds a chart such as a histogram. A node with only `data` passes its layers on, named after their tables (such as `table_osm_buildings`), for another Autark node to draw. A single table from another node arrives as a layer named `upstream`, here colored by its `mean` column:
+An **Autark** node takes one JSON specification, called an UrbanSpec, with up to four parts: `data` loads OpenStreetMap, CSV or GeoJSON data; `compute` runs a GPU shader written in WGSL; `map` draws layers in 2D or 3D, colored by a column; and `plot` adds a chart such as a histogram. A node with only `data` passes its layers on, named after their tables (such as `table_osm_buildings`), for another Autark node to draw. A table from another node arrives as a layer named after the input circle it comes in on, `input_0` for the first, here colored by its `mean` column:
 
 ```json
-{ "map": { "layerRefs": [{ "dataRef": "upstream", "getFnv": "mean", "getFnvType": "quantitative" }] } }
+{ "map": { "layerRefs": [{ "dataRef": "input_0", "getFnv": "mean", "getFnvType": "quantitative" }] } }
 ```
+
+A raster, such as a GeoTIFF from the Data Catalog or the output of a Raster Calculator, draws as a raster layer colored by one of its bands, `band_1`, `band_2` and so on: `{ "dataRef": "input_0", "getFnv": "band_1" }`.
 
 Maps, plots and compute need a browser with WebGPU, such as a recent Chrome or Edge. Without it, the node says **WebGPU is not available**, and its **Check again** button asks the browser again.
 

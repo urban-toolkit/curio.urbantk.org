@@ -6,6 +6,7 @@ order: 10
 card: { poster: /media/authoring-nodes/node-settings.webp, alt: "The Node settings dialog" }
 deeper:
   - { doc: docs/AUTHORING-NODES.md, label: "Authoring nodes" }
+  - { doc: docs/NODE-CATALOG.md, anchor: new-node-from-a-python-function, label: "New node from a Python function" }
   - { doc: docs/AUTHORING-NODES.md, anchor: reading-upstream-data, label: "Reading upstream data" }
   - { doc: docs/AUTHORING-NODES.md, anchor: things-that-will-trip-you-up, label: "Things that will trip you up" }
   - { doc: docs/EXTENDING.md, label: "Extending Curio: backends, external APIs and dependencies" }
@@ -26,6 +27,23 @@ The node now belongs to your package, in your own store under `.curio/users/`: i
 
 <GuideFigure src="/media/authoring-nodes/node-settings.webp" alt="The Node settings dialog" caption="The Node settings dialog, where a node&#x27;s label, capabilities and port types are set before it is saved as a package node." :w="1280" :h="768" />
 
+## A node from a Python function
+
+A package that ships Python modules beside its templates gives you a node for any of their functions, with no code to write:
+
+1. Open the **Node Catalog** drawer and click **New node from a Python function** in its footer.
+2. Pick the function. The list holds every public function of the modules your installed packages ship.
+3. For each parameter, choose what it gets: a [widget](/widgets/), whose type Curio suggests from the parameter's annotation or default; a fixed value, written as Python writes it; an input of the node; or its default.
+4. Name the node, choose the package it goes into, and click **Create node**.
+
+The node joins the project's palette. Its code imports the function and returns its call, with the widgets and inputs as chips:
+
+```python
+from scout_shadow.deep_umbra import season_factor
+
+return season_factor(season=[!! season !!])
+```
+
 ## A node with its own interface
 
 A custom node replaces the code editor with controls you design, in a React hook that renders inside the node body. **Save as package node** never includes the compiled bundle such a node needs, so this kind is written as files in a git clone:
@@ -42,7 +60,7 @@ Before the first build, paste the entry the scaffold prints into `webpack.packag
 
 ## Reading upstream data
 
-In a Python node, `arg` is a Python object such as a DataFrame, a GeoDataFrame, a value, a list or a dict, or a list of them in edge order when several inputs arrive through a Merge Flow. Read a Data Catalog dataset with `curio_load_data("<dataset id>")`, using the id without its `@` version, not a file path, so the dataflow keeps working for others. `curio_data_path("<dataset id>")` gives the dataset's file, for a reader of your own.
+In a Python node, `arg` is a Python object such as a DataFrame, a GeoDataFrame, a value, a list or a dict, or, when the node has several inputs, a list of them in the order of its input circles. Read a Data Catalog dataset with `curio_load_data("<dataset id>")`, using the id without its `@` version, not a file path, so the dataflow keeps working for others. `curio_data_path("<dataset id>")` gives the dataset's file, for a reader of your own.
 
 In a custom node, `data.input` usually holds a reference to a stored result, not the data. Fetch it from the backend at `window.curio.backendUrl` with the user's session token, not `process.env.BACKEND_URL`, which bakes in your own machine's address. A DataFrame arrives as one array per column, while hand-written data may key each column by row, so accept both. The example package's `resolveInput` handles every shape.
 
@@ -50,7 +68,6 @@ In a custom node, `data.input` usually holds a reference to a stored result, not
 
 - A custom node that shows a plain code editor has a bundle that failed to load, which the browser console reports, or mismatched keys: the template's `behavior`, the key passed to `registerBehavior` and the manifest's `behaviorScript` path must agree.
 - Build with `npm run build:packages`, not the full `npm run build`, and never bundle your own copy of React.
-- A Python template has a single source file, so it cannot ship helper modules.
 - After editing a package in place, refresh its hashes with `python scripts/regen_integrity.py packages/<id>@<major>`.
 
 ## Sharing it

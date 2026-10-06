@@ -5,7 +5,8 @@ import Icon from './Icon.vue'
 
 // The home page's picture of how Curio's parts fit, above the use cases. The Agent Catalog is a band around
 // everything, since its agents work at every stage; inside it the Discovery, Data, Model and Node catalogs take
-// a dataset from a portal to computed results, and Curio composes them into an analysis, shown by a real
+// a dataset from a portal to computed results, the Scenario Catalog holds the alternatives to compare, and Curio
+// composes them into an analysis, shown by a real
 // screenshot. The cards are HTML so their text wraps; the wires between them are drawn over the measured cards,
 // with the stages beside Curio on wide screens and above it on narrow ones.
 const { theme } = useData()
@@ -60,6 +61,15 @@ const STAGES: { id: string; step: string; title: string; icon: string; text: str
       { name: 'Package Recommendation', text: 'Recommends the node packages a task needs, and proposes installing them.' },
       { name: 'Package Builder', text: 'Writes a new node package, or extends one of yours.' },
     ],
+  },
+  {
+    id: 'scenarios',
+    step: 'Compare',
+    title: 'Scenario Catalog',
+    icon: 'compare',
+    text: 'The scenarios saved in your projects, with their results. Drag one into another dataflow to compare it with yours.',
+    url: '/scenario-catalog/',
+    agents: [],
   },
 ]
 
@@ -182,10 +192,10 @@ onBeforeUnmount(() => {
 <template>
   <section id="overview" class="curio-flow-section" aria-labelledby="overview-title">
     <div class="curio-flow-container">
-      <h2 id="overview-title">Five catalogs, many dataflows</h2>
+      <h2 id="overview-title">Six catalogs, many dataflows</h2>
       <p class="curio-flow-lead">
-        Find a dataset, load it, run models and compute with it, with AI agents at every stage. Curio composes the
-        pieces into an analysis.
+        Find a dataset, load it, run models and compute with it, then compare scenarios, with AI agents at every
+        stage. Curio composes the pieces into an analysis.
       </p>
 
       <div ref="root" class="curio-flow">

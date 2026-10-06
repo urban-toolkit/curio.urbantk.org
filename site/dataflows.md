@@ -7,7 +7,7 @@ card: { poster: /media/dataflows/build.webp, alt: "A Data Loading node connected
 deeper:
   - { doc: docs/ARCHITECTURE.md, anchor: execution-pipeline, label: "What happens when a node runs" }
   - { doc: docs/examples/02-vega-lite-spatial-density.md, label: "Example: one table feeding several views" }
-  - { doc: docs/examples/04-vega-lite-multi-flow-dashboard.md, label: "Example: joining flows with Merge Flow" }
+  - { doc: docs/examples/04-vega-lite-multi-flow-dashboard.md, label: "Example: joining flows in nodes with two inputs" }
   - { doc: docs/USAGE.md, anchor: notebook-view, label: "The notebook view" }
   - { doc: docs/USAGE.md, anchor: keys-for-node-code, label: "Keys for node code" }
 ---
@@ -33,16 +33,18 @@ Click the title at the top to rename the dataflow. The save state in the top bar
 - **JS Computation** does the same in JavaScript.
 - **Data Summary** reports a table's column types, missing values and statistics.
 - **Data Pool** shows one result as a table and feeds it to several views; it is also where views [link](/interactions/).
-- **Merge Flow** joins several flows; the next node gets them as `arg[0]`, `arg[1]` and so on, top input first.
+- **Parameter** holds one value that any node's code can read (see [Widgets and parameters](/widgets/)).
 - **Spatial Join** tags points with the polygon they fall in, or counts the points in each polygon.
 - **Data Export** downloads its input as CSV, GeoJSON or JSON, with the **Download** button in its **Widgets** tab.
+- **Raster Calculator** computes one operation over rasters on one grid, cell by cell, and **Raster Statistics** gives a raster's mean, median, minimum, maximum and count.
+- **Edit Features** removes or changes features of a layer by hand, and **Compare Scenarios** compares the outcomes of [scenarios](/scenarios/).
 - **Vega-Lite**, **Autark** and **Simple View** draw [charts, maps, tables and images](/visualization/).
 
 Code runs on the Curio server, not in your browser.
 
 ## Connecting nodes
 
-Drag from an output (on a node's right edge) to an input (on another node's left edge). Curio refuses a connection between types that do not fit, and one that would make a loop. An output can feed many nodes, but each input takes one connection, so combine flows with a Merge Flow. The handle on top of views and Data Pools is for [interaction edges](/interactions/). To remove a connection, click it and press Delete or Backspace; a node must lose its connections before it can be deleted.
+Drag from an output (on a node's right edge) to an input (on another node's left edge). Curio refuses a connection between types that do not fit, and one that would make a loop. An output can feed many nodes. A node that takes several inputs, such as Python Computation, Data Pool, Vega-Lite, Autark or Compare Scenarios, shows a new empty input circle below each one you connect; in code and specs, each input is a chip. The handle on top of views and Data Pools is for [interaction edges](/interactions/). To remove a connection, click it and press Delete or Backspace; deleting a node also removes its connections.
 
 ## Running a dataflow
 
