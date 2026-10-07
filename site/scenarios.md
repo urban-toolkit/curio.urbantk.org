@@ -83,7 +83,7 @@ The node starts in Difference when its two inputs are rasters or layers, and in 
 
 <GuideFigure src="/media/scenarios/compare-chart.webp" alt="A Compare Scenarios node in Chart, with two lollipops" caption="Compare Scenarios in Chart: the mean sunlight of Baseline and Twice as tall as lollipops. Above it, the node warns that one scenario reads fixed context the other does not." :w="560" :h="420" />
 
-<GuideFigure src="/media/scenarios/compare-difference.webp" alt="A Compare Scenarios node in Difference, with a raster map" caption="Compare Scenarios in Difference: two rasters on one grid subtracted cell by cell, a darker red where the difference is larger." :w="560" :h="420" />
+<GuideFigure src="/media/scenarios/compare-difference.webp" alt="A Compare Scenarios node in Difference, with a raster map" caption="Compare Scenarios in Difference: two rasters on one grid subtracted cell by cell, from dark purple where the difference is lowest to yellow where it is highest." :w="560" :h="420" />
 
 The **What differs** tab lists the levers that differ between the scenarios: the widget values and code lines that changed, and each scenario's Edit Features edits. A node and its copies count as one lever. Above the tabs, the node warns when the scenarios read different fixed context, when an input comes from a node in no scenario, and when two inputs come from one scenario.
 

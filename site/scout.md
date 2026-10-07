@@ -29,7 +29,7 @@ The four dataflows are in the examples every account starts with, under **By sou
 
 Example 24, "SCOUT building rasters", runs them on the buildings of SCOUT's Chicago Loop example: the buildings in 3D, the height mosaic and the summer shadow on Autark maps, and the mean and median shadow.
 
-<GuideFigure src="/media/scout/buildings-3d.webp" alt="An Autark map of the Chicago Loop's buildings in 3D" caption="Example 24: the Loop&#x27;s buildings in 3D, colored by their height in metres, zoomed in with the mouse wheel." :w="532" :h="356" />
+<GuideFigure src="/media/scout/buildings-3d.webp" alt="An Autark map of the Chicago Loop's buildings in 3D" caption="Example 24: the Loop&#x27;s buildings in 3D, colored by their height in metres." :w="532" :h="356" />
 
 <GuideFigure src="/media/scout/height-mosaic.webp" alt="An Autark map of the height mosaic" caption="The height mosaic Rasterize Buildings makes of them: one raster on SCOUT&#x27;s zoom-16 tile grid, each cell a height." :w="532" :h="356" />
 

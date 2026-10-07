@@ -206,7 +206,7 @@
     {
       "id": "catalogs",
       "page": "home",
-      "take": "scout1",
+      "take": "reframe2",
       "name": "catalogs",
       "crop": {
         "left": 0,
@@ -294,7 +294,7 @@
     {
       "id": "panel",
       "page": "scenarios",
-      "take": "scout2",
+      "take": "reframe1",
       "name": "scenarios-panel",
       "crop": {
         "left": 440,
@@ -306,7 +306,7 @@
     {
       "id": "collapsed",
       "page": "scenarios",
-      "take": "scout2",
+      "take": "reframe1",
       "name": "scenario-collapsed",
       "crop": {
         "left": 660,
@@ -366,7 +366,7 @@
     {
       "id": "selection-tag",
       "page": "widgets",
-      "take": "scout3b",
+      "take": "reframe1",
       "name": "selection-tag",
       "crop": {
         "left": 440,
@@ -390,8 +390,8 @@
     {
       "id": "buildings-3d",
       "page": "scout",
-      "take": "scout1b",
-      "name": "shadows-buildings-8",
+      "take": "reframe1",
+      "name": "shadows-buildings",
       "crop": {
         "left": 694,
         "top": 422,
@@ -402,8 +402,8 @@
     {
       "id": "height-mosaic",
       "page": "scout",
-      "take": "scout1b",
-      "name": "shadows-mosaic-8",
+      "take": "reframe1",
+      "name": "shadows-mosaic",
       "crop": {
         "left": 694,
         "top": 422,
@@ -414,8 +414,8 @@
     {
       "id": "summer-shadow",
       "page": "scout",
-      "take": "scout1b",
-      "name": "shadows-summer-7",
+      "take": "reframe1",
+      "name": "shadows-summer",
       "crop": {
         "left": 694,
         "top": 422,
