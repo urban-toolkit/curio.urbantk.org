@@ -20,7 +20,7 @@ A dataflow is a set of nodes joined by connections. Each node does one step: it 
 
 Nodes work at different levels. Some hold Python or JavaScript code, some hold a declarative grammar such as a Vega-Lite chart spec, and some offer widgets, so people with different skills can build one analysis together. Pressing a node's play button runs it, after first running whatever it depends on that is out of date.
 
-Curio also keeps the dataflow's history as you work, and the **Provenance** button in the top bar shows its earlier versions as a graph you can step back through (see [Provenance](/provenance/)).
+Curio also keeps the dataflow's history as you work, and **View > Provenance** shows its earlier versions as a graph you can step back through (see [Provenance](/provenance/)).
 
 <LoopVideo src="/media/dataflows/build.mp4" poster="/media/dataflows/build.webp" caption="A dataset dragged onto the canvas becomes a Data Loading node, which is connected to a Data Transformation node and run with the play button." :w="1280" :h="768" />
 
@@ -28,9 +28,11 @@ Curio also keeps the dataflow's history as you work, and the **Provenance** butt
 
 The rail on the left of the canvas holds the built-in nodes, in three groups:
 
-- **Data and flow.** **Data Loading** brings data in, **Data Transformation** filters and reshapes it, **Data Export** saves a result as a file, **Spatial Join** tags points with the polygon they fall in, **Data Pool** shares one result with several linked views, and **Merge Flow** combines several flows into one.
-- **Computation.** **Python Computation** and **JS Computation** run your own analysis code, and **Data Summary** describes a table: its shape, column types and missing values.
-- **Visualization.** **Vega-Lite** draws charts, and maps from a GeoDataFrame; **Autark** draws 2D and 3D maps and runs GPU computations from one spec; **Simple View** shows a table, or a card per row for images.
+- **Data and flow.** **Data Loading** brings data in, **Data Transformation** filters and reshapes it, **Data Export** saves a result as a file, **Spatial Join** tags points with the polygon they fall in, **Edit Features** removes or changes features by hand, **Data Pool** shares one result with several linked views, and **Parameter** holds one value every node can read.
+- **Computation.** **Python Computation** and **JS Computation** run your own analysis code, **Data Summary** describes a table: its shape, column types and missing values, and **Raster Calculator** and **Raster Statistics** work on rasters.
+- **Visualization.** **Vega-Lite** draws charts, and maps from a GeoDataFrame; **Autark** draws 2D and 3D maps and runs GPU computations from one spec; **Simple View** shows a table, or a card per row for images; **Compare Scenarios** compares the outcomes of scenarios.
+
+A node can take several inputs: each connection gets its own input circle, and the code reads each input through a chip (see [Connecting nodes](/dataflows/#connecting-nodes)).
 
 A selection in one chart or map becomes data the rest of the dataflow can read, which is how views are linked (see [Linked views](/interactions/)). More nodes come as packages from the [Node Catalog](/node-catalog/), and you can [write your own](/authoring-nodes/). AI agents attach to a node, a connection or the whole dataflow to help you write code, debug and plan (see [AI agents](/ai-agents/)).
 

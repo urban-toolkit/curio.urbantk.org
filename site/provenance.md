@@ -15,7 +15,7 @@ Curio keeps two histories while you work. The dataflow's version history records
 
 ## The version history
 
-Click **Provenance** in the top bar to open the dataflow's history as a graph. Each card is one version: a thumbnail of the dataflow at that step, with the date and time it was recorded. The graph starts at the top with the empty dataflow, and each line joins a version to the one made after it. Drag the graph to move around it, and use the zoom buttons in its corner.
+Choose **View > Provenance** to open the dataflow's history as a graph. Each card is one version: a thumbnail of the dataflow at that step, with the date and time it was recorded. The graph starts at the top with the empty dataflow, and each line joins a version to the one made after it. Drag the graph to move around it, and use the zoom buttons in its corner.
 
 A dataflow opened without a saved history, such as a loaded file or an example opened for the first time, starts one with a version for each of its nodes and connections.
 

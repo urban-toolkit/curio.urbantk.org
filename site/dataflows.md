@@ -50,13 +50,13 @@ Drag from an output (on a node's right edge) to an input (on another node's left
 
 Press the play button at the left of a node's header, or select the node and press Ctrl+Enter (Cmd+Enter on a Mac), which also works inside its editor. Upstream nodes that have not run successfully, or whose code has changed, run first. The node then reads **Done** or **Error**; a code node prints its output below its editor, and offers to install a Python library it is missing.
 
-The **Run all nodes** button, at the bottom of the left column, runs the whole dataflow in order and turns into a stop button while it runs. A node that fails does not hold up the run.
+The **Run all nodes** button, at the bottom of the left column, runs the whole dataflow in order and turns into a stop button while it runs. When a node fails, the nodes after it do not run, and each says that the node feeding it failed; the rest of the dataflow still runs.
 
 <LoopVideo src="/media/dataflows/build.mp4" poster="/media/dataflows/build.webp" caption="A dataset dragged onto the canvas becomes a Data Loading node, which is connected to a Data Transformation node, run with the play button and saved." :w="1280" :h="768" />
 
 ## Inside a node
 
-A node's header shows the play button, the node's title and kind, and its run status. Its other buttons show while the pointer is over the node or the node is selected. The first of them switch its tabs: **Code**, **Widgets**, **Grammar**, **Provenance** (its [past runs](/provenance/)) and **Output**, as the node has them. Code and specs sit in a gray box, and a code node prints its output below its code. In **Widgets**, markers in the code become controls: `[!! threshold$INPUT_VALUE$10 !!]` is a number field that starts at 10. The switch after the tabs saves the node's table output to your Data Catalog.
+A node's header shows the play button, the node's title and kind, and its run status. Its other buttons show while the pointer is over the node or the node is selected. The first of them switch its tabs: **Code**, **Widgets**, **Grammar**, **Provenance** (its [past runs](/provenance/)) and **Output**, as the node has them. Code and specs sit in a gray box, and a code node prints its output below its code. In **Widgets**, you add the node's controls, such as a slider or a date, and drag each one's tag into the code (see [Widgets and parameters](/widgets/)). The switch after the tabs saves the node's table output to your Data Catalog.
 
 Click the title to rename the node; the gear beside it opens **Node settings**, for [making a reusable node](/authoring-nodes/). After the switch come a button that explains the node, **Pin to dashboard** for the dataflow's [dashboard](/dashboards/), **Comments** for notes that others can mark as resolved, **Delete node**, and **Minimize**, which folds the node into an icon that opens again with a click. **View > Minimize Nodes** folds them all, and **View > Expand Nodes** opens them again. Drag a node's bottom-right corner to resize it, and double-click a node where you would drag it, such as its header, to zoom the view onto it.
 
