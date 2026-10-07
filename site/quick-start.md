@@ -68,7 +68,7 @@ Click the Vega-Lite node's play button, and the chart appears in the node with o
 
 ## Save it and bring your own data
 
-Save with **File > Save dataflow**, or click the save state next to the **Share** menu, which reads **Saved** once everything on the canvas is saved. After the first save, Curio also saves your changes automatically as you work. **File > Save dataflow as** downloads the dataflow as a file, which **File > Load dataflow** opens again.
+Save with **File > Save dataflow**, or click the save state next to the **Share** menu, which reads **Saved** once everything on the canvas is saved. After the first save, Curio also saves your changes automatically as you work. **File > Save dataflow as** downloads the dataflow as a file, which **File > Load dataflow** opens as a new dataflow.
 
 To chart a file of your own, click **Data Catalog** in the top bar, click **Import dataset** at the bottom of the drawer and pick a CSV, GeoJSON or other supported file, then click **Add to project** on its card and confirm. Drag the dataset from the rail's **Data Catalog** list onto the canvas, and Curio creates a Data Loading node with the code that reads it. [Data Catalog](/data-catalog/) covers datasets in depth, and [Charts and maps](/visualization/) covers what Vega-Lite and Autark can draw.
 

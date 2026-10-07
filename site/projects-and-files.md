@@ -37,7 +37,7 @@ On your own computer, the examples come from starting Curio with `--with-example
 
 **File > Save dataflow as** downloads the open dataflow as a `.json` file named after it. The file holds the nodes, their code and specifications, and the connections, but not their results or the [version history](/provenance/), so its nodes need to run again once it is loaded.
 
-**File > Load dataflow** reads such a file and puts its dataflow on the canvas in place of the open one. Loaded into a saved project, it replaces that project the next time the project saves, so to keep both, choose **File > New dataflow** first, then load the file and save. Curio installs the node packages the dataflow uses that you are missing; for a very large package, it puts an install button on the nodes that need it instead.
+**File > Load dataflow** reads such a file and opens it as a new dataflow, asking first when the open dataflow has unsaved changes. Saving it adds it to your projects under its own name, and the dataflow that was open stays as it was. Curio installs the node packages the dataflow uses that you are missing; for a very large package, it puts an install button on the nodes that need it instead.
 
 <LoopVideo src="/media/projects-and-files/saveload.mp4" poster="/media/projects-and-files/saveload.webp" caption="A dataflow is saved to a file with File &gt; Save dataflow as, then loaded into a new dataflow with File &gt; Load dataflow." :w="1280" :h="768" />
 
