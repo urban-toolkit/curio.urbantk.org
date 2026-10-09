@@ -85,12 +85,12 @@
     {
       "id": "autark",
       "page": "visualization",
-      "take": "tour1",
+      "take": "autark2",
       "source": "tour",
       "scene": "autark",
-      "from": 29.5,
-      "to": 42.3,
-      "poster": 41.8
+      "from": 27.8,
+      "to": 40.5,
+      "poster": 39.5
     },
     {
       "id": "provenance-graph",

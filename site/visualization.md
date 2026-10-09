@@ -3,7 +3,7 @@ title: "Charts and maps"
 description: "Vega-Lite charts, Autark maps, and simple views of tables and images."
 group: using
 order: 30
-card: { poster: /media/visualization/autark.webp, alt: "An Autark map of Lower Manhattan" }
+card: { poster: /media/visualization/autark.webp, alt: "A brushed Autark histogram of building heights and the Autark map that highlights those buildings" }
 deeper:
   - { doc: docs/USAGE.md, anchor: vega-lite-node, label: "The Vega-Lite node" }
   - { doc: docs/ARCHITECTURE.md, anchor: data-between-nodes, label: "How charts and maps read their input" }
@@ -14,7 +14,7 @@ deeper:
 
 # Charts and maps
 
-Three kinds of node draw what flows into them. A Vega-Lite node draws a chart from a JSON specification, an Autark node draws maps and plots of city data, and a Simple View shows a table or a set of pictures with nothing to write.
+Three kinds of node draw what flows into them. A Vega-Lite node draws a chart from a JSON specification, an Autark node draws a map or a plot of city data, and a Simple View shows a table or a set of pictures with nothing to write.
 
 ## Vega-Lite charts
 
@@ -36,7 +36,7 @@ Press play to draw it. If the editor is still empty when data first arrives, Cur
 
 ## Autark maps
 
-An **Autark** node takes one JSON specification, called an UrbanSpec, with up to four parts: `data` loads OpenStreetMap, CSV or GeoJSON data; `compute` runs a GPU shader written in WGSL; `map` draws layers in 2D or 3D, colored by a column; and `plot` adds a chart such as a histogram. A node with only `data` passes its layers on, named after their tables (such as `table_osm_buildings`), for another Autark node to draw. A table from another node arrives as a layer named after the input circle it comes in on, `input_0` for the first, here colored by its `mean` column:
+An **Autark** node takes one JSON specification, called an UrbanSpec: `data` loads OpenStreetMap, CSV or GeoJSON data; `compute` runs a GPU shader written in WGSL; and either `map` draws layers in 2D or 3D, colored by a column, or `plot` draws a chart such as a histogram. A node draws one view, so a map and a plot take two Autark nodes, which an interaction edge can link (see [Linked views](/interactions/)). A node with only `data` passes its layers on, named after their tables (such as `table_osm_buildings`), for another Autark node to draw. A table from another node arrives as a layer named after the input circle it comes in on, `input_0` for the first, here colored by its `mean` column:
 
 ```json
 { "map": { "layerRefs": [{ "dataRef": "input_0", "getFnv": "mean", "getFnvType": "quantitative" }] } }
@@ -46,7 +46,7 @@ A raster, such as a GeoTIFF from the Data Catalog or the output of a Raster Calc
 
 Maps, plots and compute need a browser with WebGPU, such as a recent Chrome or Edge. Without it, the node says **WebGPU is not available**, and its **Check again** button asks the browser again.
 
-<LoopVideo src="/media/visualization/autark.mp4" poster="/media/visualization/autark.webp" caption="An Autark node draws Lower Manhattan from an OpenStreetMap extract, with buildings, roads and water as separate layers." :w="1280" :h="768" />
+<LoopVideo src="/media/visualization/autark.mp4" poster="/media/visualization/autark.webp" caption="One Autark node loads Lower Manhattan from an OpenStreetMap extract, and two more draw a histogram of building heights and a map, linked by an interaction edge: brushing the lowest bars highlights those buildings on the map." :w="1280" :h="768" />
 
 ## Simple View
 
