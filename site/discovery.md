@@ -17,7 +17,7 @@ The Discovery Catalog lists the places your Curio server can reach for data and 
 
 Open the **Discovery Catalog** tab at the top of the Projects page. Each card is one source. The ones that come with Curio include the City of Chicago Data Portal, data.gov.uk, ArcGIS Hub Open Data, GeoSampa (São Paulo), OpenStreetMap, Mapillary, Google Street View and Hugging Face models. Filter the cards by provider or by access in the left rail. **View details** on a card shows the source's address, licence, formats, download limit and whether it takes a key.
 
-The **Direct URL** card is marked **Link only**: it downloads one file from a link you paste, and searches skip it.
+The **Direct URL** card is marked **Link only**: it downloads one file from a link you paste, and searches skip it. A link to a GeoParquet file (`.parquet`) also takes an **Area**: only the parts of the file inside it are read.
 
 <MediaTodo kind="still" source="new:discovery" caption="The Discovery Catalog page lists the sources this deployment can reach, with filters by provider and access, and the details of the selected source." />
 
