@@ -28,7 +28,7 @@ Curio also keeps the dataflow's history as you work, and **View > Provenance** s
 
 The rail on the left of the canvas holds the built-in nodes, in three groups:
 
-- **Data and flow.** **Data Loading** brings data in, **Data Transformation** filters and reshapes it, **Data Export** saves a result as a file, **Spatial Join** tags points with the polygon they fall in, **Edit Features** removes or changes features by hand, **Data Pool** shares one result with several linked views, and **Parameter** holds one value every node can read.
+- **Data and flow.** **Data Loading** brings data in, **Data Transformation** filters and reshapes it, **Data Export** saves a result as a file, **Spatial Join** pairs the rows of two inputs whose shapes meet, **Edit Features** removes or changes features by hand, **Data Pool** shares one result with several linked views, and **Parameter** holds one value every node can read.
 - **Computation.** **Python Computation** and **JS Computation** run your own analysis code, **Data Summary** describes a table: its shape, column types and missing values, and **Raster Calculator** and **Raster Statistics** work on rasters.
 - **Visualization.** **Vega-Lite** draws charts, and maps from a GeoDataFrame; **Autark** draws 2D and 3D maps and runs GPU computations from one spec; **Simple View** shows a table, or a card per row for images; **Compare Scenarios** compares the outcomes of scenarios.
 
