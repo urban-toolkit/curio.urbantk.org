@@ -37,7 +37,7 @@ Clicking a dataset in the dropdown highlights the nodes that use it. A node that
 Click **Import dataset** at the bottom of the drawer, or at the top of the Data Catalog page, and pick a file. Curio accepts:
 
 - CSV (`.csv`), JSON (`.json`) and Parquet (`.parquet`) files
-- GeoJSON (`.geojson`) and Shapefiles (`.shp`)
+- GeoJSON (`.geojson`) files
 - GeoTIFF rasters (`.tif`, `.tiff`)
 - OpenStreetMap extracts (`.pbf`) and GeoPackages (`.gpkg`), which become one dataset per layer
 

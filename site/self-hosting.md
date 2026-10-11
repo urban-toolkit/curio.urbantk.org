@@ -44,15 +44,16 @@ Visitors sign up with a username and password, or continue as a guest unless the
 
 ## Configuration
 
-A deployment's settings live in `docker-compose.site.yml`, next to the compose files. Its `command` lists `curio.py start` flags:
+A deployment's settings live in `docker-compose.site.yml`, next to the compose files. Its `ports` keep the backend and the frontend on loopback, behind the proxy, and its `command` lists `curio.py start` flags:
 
 ```yaml
 services:
   curio:
+    ports: !override ["127.0.0.1:5002:5002", "127.0.0.1:8080:8080"]
     command: ["--backend-url", "https://curio.example.org/curio/api", "--base-path", "/curio"]
 ```
 
-`--backend-url` is the address browsers reach the backend at, and `--base-path` the path the app is served under; both match the proxy above. A second stack on the same server also sets `ports: !override ["5012:5002", "8090:8080"]` there, for host ports of its own. Other flags go in the same list, such as `--exec-memory-mb`, `--exec-timeout` and `--exec-parallelism` for node limits, or `--llm-provider`, `--llm-base-url` and `--llm-model` for a default AI provider (see [AI agents](/ai-agents/)). The backend reads `SECRET_KEY`, which every deployment should set, and the default AI key `CURIO_DEFAULT_LLM_API_KEY` from its environment or from `utk_curio/backend/.env`.
+`--backend-url` is the address browsers reach the backend at, and `--base-path` the path the app is served under; both match the proxy above. A second stack on the same server sets `ports: !override ["127.0.0.1:5012:5002", "127.0.0.1:8090:8080"]` there, for host ports of its own. Other flags go in the same list, such as `--exec-memory-mb`, `--exec-timeout` and `--exec-parallelism` for node limits, or `--llm-provider`, `--llm-base-url` and `--llm-model` for a default AI provider (see [AI agents](/ai-agents/)). The backend reads the default AI key `CURIO_DEFAULT_LLM_API_KEY` from its environment or from `utk_curio/backend/.env`.
 
 ## Updating and backups
 
