@@ -39,6 +39,7 @@ Click **Import dataset** at the bottom of the drawer, or at the top of the Data 
 - CSV (`.csv`), JSON (`.json`) and Parquet (`.parquet`) files
 - GeoJSON (`.geojson`) files
 - GeoTIFF rasters (`.tif`, `.tiff`)
+- Shapefiles, as a `.zip` holding the `.shp` with its `.dbf` and `.shx` (and its `.prj`), which become one dataset
 - OpenStreetMap extracts (`.pbf`) and GeoPackages (`.gpkg`), which become one dataset per layer
 
 Importing does not add the file to the open dataflow, so click **Add to project** on it next. To get a dataset from an open data portal, storage or a service instead, see [Discovery Catalog](/discovery/).
