@@ -7,6 +7,7 @@ card: { poster: /media/widgets/widgets-tab.webp, alt: "A node's Widgets tab with
 deeper:
   - { doc: docs/USAGE.md, anchor: widgets, label: "Widgets in the usage guide" }
   - { doc: docs/USAGE.md, anchor: shared-values-the-parameter-node, label: "The Parameter node" }
+  - { doc: docs/USAGE.md, anchor: running-stale-nodes-automatically, label: "Running stale nodes automatically" }
   - { doc: docs/USAGE.md, anchor: selection-tags, label: "Selection tags" }
   - { doc: docs/AUTHORING-NODES.md, anchor: widgets-in-a-template, label: "Widgets in a node template" }
 ---
@@ -32,7 +33,7 @@ When the node runs, each chip is replaced by its value, written in the code's la
 
 <GuideFigure src="/media/widgets/code-chips.webp" alt="Widget tags above a node's code and chips inside it" caption="Each widget's tag in the strip above the code, and the same widgets as chips in the code." :w="526" :h="350" />
 
-Values are saved with the dataflow. Changing one marks the node as needing a new run, so **Run** and **Run All** run it again. A chip whose name the node has no widget for stops the run with a message naming it.
+Values are saved with the dataflow. Changing one marks the node as needing a new run, so **Run** and **Run All** run it again. With **View > Run stale nodes automatically** on, the change runs the node and the nodes below it by itself, half a second after the last change, so a slider drag runs them once. A chip whose name the node has no widget for stops the run with a message naming it.
 
 ## Share a value with a Parameter node
 
@@ -42,7 +43,7 @@ A **Parameter** node holds one widget that any node of the dataflow can read, su
 2. Its tag, **@name**, shows under **Shared** in the strip above every node's code. Drag it into the code, where it shows as an amber chip.
 3. Set the value in the Parameter node.
 
-A Parameter node has no connections. It lists the nodes whose code uses it, and changing its value marks them as needing a new run. **Edit** renames it, and their code follows the new name. Pinned to the [dashboard](/dashboards/), it shows its value.
+A Parameter node has no connections. It lists the nodes whose code uses it, and changing its value marks them as needing a new run, or runs them when **Run stale nodes automatically** is on. **Edit** renames it, and their code follows the new name. Pinned to the [dashboard](/dashboards/), it shows its value.
 
 <GuideFigure src="/media/widgets/parameter.webp" alt="A location Parameter node beside a Data Loading node that reads it" caption="From the FloodScenarios dataflow: the Top-left corner Parameter node, a location, lists the three nodes whose code uses it. Beside it, a Data Loading node shows the shared tags above its code and the amber chips in it." :w="1190" :h="360" />
 
