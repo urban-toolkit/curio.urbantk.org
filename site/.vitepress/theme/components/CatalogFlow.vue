@@ -27,7 +27,7 @@ const STAGES: { id: string; step: string; title: string; icon: string; text: str
     url: '/discovery/',
     agents: [
       { name: 'Dataset Finder', text: 'Finds datasets across the connected portals and proposes the download.' },
-      { name: 'Node Researcher', text: 'Checks outside facts, such as dataset ids, API endpoints and schemas, on the web.' },
+      { name: 'Researcher', text: 'Checks outside facts, such as dataset ids, API endpoints and schemas, on the web.' },
     ],
   },
   {
@@ -56,10 +56,8 @@ const STAGES: { id: string; step: string; title: string; icon: string; text: str
     text: 'Node packages that transform, analyze and visualize, with the libraries they need.',
     url: '/node-catalog/',
     agents: [
-      { name: 'Node Builder', text: 'Creates a node, or changes one, as a proposal you review.' },
-      { name: 'Node Content Builder', text: 'Writes the content of a node.' },
-      { name: 'Package Recommendation', text: 'Recommends the node packages a task needs, and proposes installing them.' },
-      { name: 'Package Builder', text: 'Writes a new node package, or extends one of yours.' },
+      { name: 'Node Builder', text: 'Creates a node, or writes the content of one, as a proposal you review.' },
+      { name: 'Package Builder', text: 'Proposes installing the node packages a task needs, or writes a new package or extends one of yours.' },
     ],
   },
   {
@@ -108,7 +106,7 @@ const SHOT: { src: string; alt: string; w: number; h: number; marks: Mark[] } = 
     { label: 'Node Builder', kind: 'agent', side: 'right', x: 676, y: 679, w: 24, h: 24 },
     { label: 'Chat', kind: 'agent', side: 'right', x: 1161, y: 482, w: 24, h: 24 },
     { label: 'Connection Builder', kind: 'agent', side: 'left', x: 1105, y: 606, w: 24, h: 24 },
-    { label: 'Package Recommendation', kind: 'agent', side: 'left', x: 1161, y: 876, w: 24, h: 24 },
+    { label: 'Package Builder', kind: 'agent', side: 'left', x: 1161, y: 876, w: 24, h: 24 },
     { label: 'Canvas agents', kind: 'agent', side: 'right', x: 890, y: 63, w: 93, h: 27 },
   ],
 }
