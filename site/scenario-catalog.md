@@ -15,7 +15,7 @@ The Scenario Catalog lists the [scenarios](/scenarios/) of all your projects, th
 
 ## Browse the scenarios
 
-Open the **Scenario Catalog** tab at the top of the Projects page. Each card shows a scenario's name in its color, its project, how many nodes it holds, its description and its project's graph. Search by name, description or project, sort by **Recently edited**, **Name** or **Project**, and filter by project or by origin (**Your dataflows** or **Examples**) in the left rail. The drawer on the right sums up the selected scenario.
+Open the **Scenario Catalog** tab at the top of the Projects page. Each card shows a square of the scenario's color before its name, then its project, how many nodes it holds, its description and its project's graph; the strip at the top is the same on every card. Search by name, description or project, sort by **Recently edited**, **Name** or **Project**, and filter by project or by origin (**Your dataflows** or **Examples**) in the left rail. The drawer on the right sums up the selected scenario.
 
 <GuideFigure src="/media/scenario-catalog/browse.webp" alt="The Scenario Catalog page" caption="The Scenario Catalog: the scenarios of example 06 and of the SCOUT dataflows. Baseline is selected, and the drawer on the right shows its project&#x27;s graph and how many levers, fixed context nodes and outcomes it has." :w="1280" :h="768" />
 

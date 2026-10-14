@@ -37,7 +37,7 @@ Example 24, "SCOUT building rasters", runs them on the buildings of SCOUT's Chic
 
 ScoutShadows compares two scenarios of the same buildings over a shared season, Existing and Towers removed (15 buildings taken out): one Compare Scenarios node charts the mean shadow, and another maps its change.
 
-Deep Umbra ships with Curio's repository and its Docker image, but not with the pip package; on a pip install, Accumulated Shadow says the model is missing and how to add it.
+Deep Umbra ships with Curio's repository and its Docker image; a pip install downloads its weights from GitHub the first time Accumulated Shadow runs.
 
 ## Flooding and nature-based solutions
 
