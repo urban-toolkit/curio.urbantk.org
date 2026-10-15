@@ -206,7 +206,7 @@
     {
       "id": "catalogs",
       "page": "home",
-      "take": "reframe2",
+      "take": "catalogs2",
       "name": "catalogs",
       "crop": {
         "left": 0,

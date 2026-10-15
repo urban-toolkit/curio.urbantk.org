@@ -91,7 +91,7 @@ interface Mark {
 }
 const SHOT: { src: string; alt: string; w: number; h: number; marks: Mark[] } = {
   src: '/media/home/catalogs.webp',
-  alt: "A dataflow in Curio, under the top bar with its six catalogs: a Data Loading node and a Data Transformation node feed an Autark map and a Vega-Lite bar chart of downtown Chicago's ZIP codes, with agents attached to every node, to a connection and to the canvas.",
+  alt: "A dataflow in Curio, under the top bar with its six catalogs: a Data Loading node and a Data Transformation node feed an Autark map and a Vega-Lite bar chart of downtown Chicago's ZIP codes, with the Dataset Finder on the loading node, the Node Builder on the transformation and on its connection to the chart, the Researcher on the map, and the Dataflow Builder and the Researcher on the canvas.",
   w: 1600,
   h: 903,
   marks: [
@@ -103,7 +103,7 @@ const SHOT: { src: string; alt: string; w: number; h: number; marks: Mark[] } = 
     { label: 'Node Builder', kind: 'agent', side: 'right', x: 676, y: 679, w: 24, h: 24 },
     { label: 'Researcher', kind: 'agent', side: 'right', x: 1161, y: 482, w: 24, h: 24 },
     { label: 'Node Builder', kind: 'agent', side: 'left', x: 1105, y: 606, w: 24, h: 24 },
-    { label: 'Canvas agents', kind: 'agent', side: 'right', x: 890, y: 63, w: 93, h: 27 },
+    { label: 'Canvas agents', kind: 'agent', side: 'right', x: 923, y: 63, w: 60, h: 27 },
   ],
 }
 const pct = (n: number, of: number) => `${Math.round((n / of) * 10000) / 100}%`
