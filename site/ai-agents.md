@@ -59,3 +59,30 @@ Click a badge to open the agent's chat. The header says what the agent is attach
 What an agent does depends on the agent: explain or debug a node, write node code, find datasets (including in the open data portals of the [Discovery Catalog](/discovery/)), plan or build a whole dataflow, suggest connections and packages, or review your work. Proposed changes, such as new nodes, connections, code or packages, appear as cards in the chat. Nothing changes until you click **Apply**, and **Dismiss** drops a proposal.
 
 <MediaTodo kind="clip" source="tour:agentrun" caption="An agent's chat opens from its badge on a node, a question about the node is sent, and the answer appears in the chat." />
+
+## In chat, tools and modes
+
+Curio describes what an agent does in three words:
+
+- **In chat:** what you can ask an agent where you dropped it.
+- **Tools:** the actions an agent takes during a chat, such as reading the dataflow, searching the web, proposing a node or proposing a package install. Anything that changes your dataflow is a proposal you apply.
+- **Modes:** what another agent, Solve or the agent itself can ask it to do. A mode runs as a separate call with no tools, on evidence Curio gathers for it. You never chat with a mode.
+
+| Agent | In chat | Tools | Modes (who asks) |
+|---|---|---|---|
+| **Researcher** | Explains a node or the dataflow, diagnoses errors, helps define what to build, answers web questions as notes, checks facts | Read the dataflow and a node's last run; search and read the web; propose notes; propose a notes package | Check a fact (Node Builder, Dataset Finder, Dataflow Builder); Notes from search results (Dataflow Builder) |
+| **Node Builder** | Builds a node, rewrites a node's content, suggests nodes for a connection, finds or writes node types | Read the dataflow and a node's last run; search the Data and Model Catalogs; propose a node, a content change, a node type, a package install or a package draft | Write a node's content (Node Builder, Dataflow Builder, Solve); Recommend packages (Dataflow Builder); Write a package (Node Builder, Researcher, Dataflow Builder) |
+| **Dataflow Builder** | Plans a whole dataflow, then solves its nodes | Read the dataflow and runs; propose a plan or a node; read worked examples | None |
+| **Dataset Finder** | Finds datasets in the Data Catalog and in portals | Search the catalog and portals; propose a download | Find datasets (Node Builder, Dataflow Builder) |
+
+### How an agent picks what to run
+
+Every call to the model is the shared preamble plus one instruction. A message you type goes to the agent's chat instruction, and in that same call the model decides what you asked for and which tools to use. A mode runs only when something asks for it, as a separate call.
+
+For example, you ask the Node Builder on a node to "turn this into a bar chart":
+
+1. Your message goes to the Node Builder's chat, which reads the node and asks for its content mode.
+2. The content mode writes the chart in a separate call, with no tools, from the node and what feeds it.
+3. The chat shows the change as a review card. The node changes when you apply it.
+
+The [Agent Catalog reference](https://github.com/urban-toolkit/curio/blob/main/docs/AGENT-CATALOG.md#the-agents) lists every agent's prompts, walks through more examples, and describes the three helpers that only have modes.

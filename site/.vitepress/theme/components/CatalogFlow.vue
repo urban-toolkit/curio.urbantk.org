@@ -56,8 +56,7 @@ const STAGES: { id: string; step: string; title: string; icon: string; text: str
     text: 'Node packages that transform, analyze and visualize, with the libraries they need.',
     url: '/node-catalog/',
     agents: [
-      { name: 'Node Builder', text: 'Creates a node, or writes the content of one, as a proposal you review.' },
-      { name: 'Package Builder', text: 'Proposes installing the node packages a task needs, or writes a new package or extends one of yours.' },
+      { name: 'Node Builder', text: 'Builds a node or rewrites one, suggests nodes for a connection, and finds or writes the node packages it needs.' },
     ],
   },
   {
@@ -74,9 +73,7 @@ const STAGES: { id: string; step: string; title: string; icon: string; text: str
 // The agents that work on the dataflow as a whole, shown with Curio.
 const CANVAS_AGENTS: Agent[] = [
   { name: 'Dataflow Builder', text: 'Plans a whole dataflow from a goal, then fills in its nodes.' },
-  { name: 'Connection Builder', text: 'Suggests and creates connections between nodes.' },
-  { name: 'Researcher', text: 'Answers questions from the web as note nodes on the canvas.' },
-  { name: 'Chat', text: 'Explains a node or the dataflow, diagnoses errors, and helps you decide what to build.' },
+  { name: 'Researcher', text: 'Explains a node or the dataflow, diagnoses errors, answers web questions as notes and checks facts.' },
 ]
 
 // The screenshot (scripts/media/clips.json, still "catalogs"), and the parts of it that get a highlight, in the
@@ -104,9 +101,8 @@ const SHOT: { src: string; alt: string; w: number; h: number; marks: Mark[] } = 
     { label: 'Chart', kind: 'node', x: 1161, y: 606, w: 398, h: 265 },
     { label: 'Dataset Finder', kind: 'agent', side: 'right', x: 192, y: 679, w: 24, h: 24 },
     { label: 'Node Builder', kind: 'agent', side: 'right', x: 676, y: 679, w: 24, h: 24 },
-    { label: 'Chat', kind: 'agent', side: 'right', x: 1161, y: 482, w: 24, h: 24 },
-    { label: 'Connection Builder', kind: 'agent', side: 'left', x: 1105, y: 606, w: 24, h: 24 },
-    { label: 'Package Builder', kind: 'agent', side: 'left', x: 1161, y: 876, w: 24, h: 24 },
+    { label: 'Researcher', kind: 'agent', side: 'right', x: 1161, y: 482, w: 24, h: 24 },
+    { label: 'Node Builder', kind: 'agent', side: 'left', x: 1105, y: 606, w: 24, h: 24 },
     { label: 'Canvas agents', kind: 'agent', side: 'right', x: 890, y: 63, w: 93, h: 27 },
   ],
 }
@@ -202,7 +198,7 @@ onBeforeUnmount(() => {
           <div>
             <h3>Agent Catalog <span class="curio-flow-count">Every stage</span></h3>
             <p class="curio-flow-text">
-              Ten AI agents you attach to a node, a connection or the whole canvas. Nothing changes until you apply
+              Four AI agents you attach to a node, a connection or the whole canvas. Nothing changes until you apply
               what one proposes.
               <a class="curio-flow-link is-agent" :href="withBase('/ai-agents/')">AI agents <Icon name="arrow" /></a>
             </p>
@@ -251,7 +247,7 @@ onBeforeUnmount(() => {
               </a>
               <span
                 v-for="m in SHOT.marks"
-                :key="m.label"
+                :key="`${m.label}-${m.x}-${m.y}`"
                 class="curio-flow-mark"
                 :class="[`is-${m.kind}`, m.side && `is-${m.side}`]"
                 :style="{ left: pct(m.x, SHOT.w), top: pct(m.y, SHOT.h), width: pct(m.w, SHOT.w), height: pct(m.h, SHOT.h) }"
