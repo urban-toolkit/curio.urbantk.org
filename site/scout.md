@@ -49,7 +49,7 @@ FloodScenarios is SCOUT's flood study of the Quad Cities, built from Curio's own
 
 Two Compare Scenarios nodes then map the size of the change in depth between No NbS and NbS, and chart each scenario's median depth. A pip install downloads the flood rasters from GitHub the first time a node reads them.
 
-<MediaTodo kind="still" source="e2e:scout-flood-depth-change" caption="Depth change: the size of the change in flood depth between No NbS and NbS, cell by cell, over the region the Parameter nodes set." />
+<GuideFigure src="/media/scout/flood-change.webp" alt="A Compare Scenarios node mapping the size of the change in flood depth" caption="Depth change: the size of the change in flood depth between No NbS and NbS, cell by cell, over the region the Parameter nodes set." :w="560" :h="420" />
 
 <GuideFigure src="/media/scout/flood-median.webp" alt="A Compare Scenarios node charting the median flood depth of two scenarios" caption="Median flood depth: the median depth of No NbS and NbS, as bars." :w="560" :h="420" />
 
@@ -61,6 +61,6 @@ The **Raster Calculator** and **Raster Statistics** nodes work on any rasters on
 
 WeatherRouting is SCOUT's weather routing example. An Autark node loads the roads of SCOUT's box in downtown Chicago, and one Weather Routing node finds SCOUT's two routes over them: the fastest, and the one its weather weights favor. Two scenarios, Fastest route and Weather-aware route, each keep one of them. An Autark map draws both routes over the roads in their scenarios' colors, and four Compare Scenarios nodes chart their duration, distance and rain and wind exposure.
 
-<MediaTodo kind="still" source="e2e:scout-routing-routes-map" caption="The Fastest route and the Weather-aware route over the roads of SCOUT's box, each in its scenario's color." />
+<GuideFigure src="/media/scout/routes-map.webp" alt="An Autark map of two routes over the roads of SCOUT's box in downtown Chicago" caption="The Fastest route and the Weather-aware route over the roads of SCOUT's box, each in its scenario's color." :w="526" :h="350" />
 
-<MediaTodo kind="still" source="e2e:scout-routing-duration" caption="Duration: each route's duration in minutes, as bars in its scenario's color." />
+<GuideFigure src="/media/scout/routing-duration.webp" alt="A Compare Scenarios node charting the two routes' durations as bars" caption="Duration: each route's mean duration in minutes, as bars in its scenario's color." :w="560" :h="420" />
