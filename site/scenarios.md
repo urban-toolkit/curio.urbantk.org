@@ -34,17 +34,16 @@ Each copy remembers the node it was copied from.
 
 ## Work with scenarios
 
-**View > Show scenarios** opens the Scenarios panel. For each scenario it lists the fixed context, levers and outcomes, and it lets you:
+The dataflow's scenarios are in the [Scenario Catalog](/scenario-catalog/) drawer's **In project** tab: click **Scenario** in the top bar, then **In project**, which shows how many the dataflow has. Saving a selection or duplicating it as a scenario opens that tab. On top of it are **Save selection as scenario** and **Duplicate as scenario**, and each scenario's card offers:
 
-- rename, recolor and describe it;
 - **Run scenario**: run its levers, and the nodes of its fixed context that have not run or have changed since;
-- **Collapse** or **Expand** it;
-- **Add selected** or **Remove selected** nodes;
-- **Delete** it, which leaves its nodes on the canvas.
+- **Collapse** or **Expand**;
+- **Add selected** or **Remove selected**: the nodes selected on the canvas before the drawer opened;
+- **Delete**, which leaves its nodes on the canvas.
 
-Pointing at a scenario in the panel marks its fixed context on the canvas.
+**View details** on a card renames, recolors and describes the scenario, and lists its fixed context, levers and outcomes. Pointing at a card marks the scenario's fixed context on the canvas.
 
-<GuideFigure src="/media/scenarios/panel.webp" alt="Example 06 with the Scenarios panel open" caption="The Scenarios panel beside example 06: each scenario&#x27;s fixed context, levers and outcomes, and its commands. Pointing at Baseline marks the Data Pool, the fixed context it reads." :w="1480" :h="890" />
+<MediaTodo kind="still" source="tour:scenarios" caption="The In project tab beside example 06: a card for each scenario, with its commands. Pointing at Baseline marks the Data Pool, the fixed context it reads." />
 
 A collapsed scenario is one box in its color that lists its fixed context and its outcomes with their latest output. Its connections are drawn to the box, and dragging the box moves it. Double-click the box to expand it in place. A collapsed scenario's nodes still run with **Run All**, and the context they share runs once.
 
@@ -77,7 +76,7 @@ The **Compare Scenarios** node compares scenarios' outcomes on the canvas.
 It works in one of two ways, which **Compare as** switches:
 
 - **Chart** stacks its inputs into one table, with each scenario's name on its rows, and draws it in the scenarios' colors as bars, grouped bars, lines, points, a pie, lollipops or a table. Pick the **X** and **Y** columns, and how the values of a group are combined in **Combine**: mean, sum, median, minimum, maximum or a count.
-- **Difference** subtracts input 0 from input 1: two rasters cell by cell, or two layers or tables row by row, matched on `osm_id`, `building_id` or a key you pick. It maps the difference, colored by a band or a number column, or by whether each row changed, stayed the same, was removed or was added.
+- **Difference** subtracts `input_0`, the reference, from `input_1`: two rasters on one grid cell by cell, each up to 4096 by 4096 cells, or two layers or tables row by row, matched on `osm_id`, `building_id` or a key you pick. **Change** picks the signed difference or, with **Absolute**, its size. It maps the difference, colored by a band or a number column, or by whether each row changed, stayed the same, was removed or was added.
 
 The node starts in Difference when its two inputs are rasters or layers, and in Chart otherwise. What it makes is its output: other nodes can read it, and the node can be pinned to the [dashboard](/dashboards/).
 

@@ -19,7 +19,7 @@ Every node in Curio, the built-ins included, comes from a package: a folder whos
 
 ## A Python node
 
-1. Drop a **Data Transformation** node on the canvas and write your Python in its editor. The upstream node's output arrives as `arg`, and whatever you `return` becomes this node's output. Run it until it does what you want.
+1. Drop a **Data Transformation** node on the canvas and write your Python in its editor. What the connection on input circle 0 delivers arrives as `input_0`, on circle 1 as `input_1`, and so on, and whatever you `return` becomes this node's output. Run it until it does what you want.
 2. Click the cog in the node header to open **Node settings**, and set the label, the port types and the editor mode.
 3. Click **Save as package node…**, pick **New package…**, give the package a name and save.
 
@@ -36,12 +36,12 @@ A package that ships Python modules beside its templates gives you a node for an
 3. For each parameter, choose what it gets: a [widget](/widgets/), whose type Curio suggests from the parameter's annotation or default; a fixed value, written as Python writes it; an input of the node; or its default.
 4. Name the node, choose the package it goes into, and click **Create node**.
 
-<GuideFigure src="/media/authoring-nodes/node-from-function.webp" alt="The New node from a Python function dialog" caption="New node from a Python function, for season_factor in the SCOUT Shadow package: its season parameter becomes a text widget that starts at winter, and the node goes into a new package." :w="720" :h="720" />
+<MediaTodo kind="still" source="tour:nodefromfunction" caption="New node from a Python function, for season_factor in the Deep Umbra model package: its season parameter becomes a text widget that starts at winter, and the node goes into a new package." />
 
 The node joins the project's palette. Its code imports the function and returns its call, with the widgets and inputs as chips:
 
 ```python
-from scout_shadow.deep_umbra import season_factor
+from deep_umbra.deep_umbra import season_factor
 
 return season_factor(season=[!! season !!])
 ```
@@ -62,7 +62,7 @@ Before the first build, paste the entry the scaffold prints into `webpack.packag
 
 ## Reading upstream data
 
-In a Python node, `arg` is a Python object such as a DataFrame, a GeoDataFrame, a value, a list or a dict, or, when the node has several inputs, a list of them in the order of its input circles. Read a Data Catalog dataset with `curio_load_data("<dataset id>")`, using the id without its `@` version, not a file path, so the dataflow keeps working for others. `curio_data_path("<dataset id>")` gives the dataset's file, for a reader of your own.
+In a Python node, each input circle is its own variable: `input_0` for the first, `input_1` for the second, and so on. Each holds a Python object such as a DataFrame, a GeoDataFrame, a value, a list or a dict, and a circle with no connection is `None`. Read a Data Catalog dataset with `curio_load_data("<dataset id>")`, using the id without its `@` version, not a file path, so the dataflow keeps working for others. `curio_data_path("<dataset id>")` gives the dataset's file, for a reader of your own.
 
 In a custom node, `data.input` usually holds a reference to a stored result, not the data. Fetch it from the backend at `window.curio.backendUrl` with the user's session token, not `process.env.BACKEND_URL`, which bakes in your own machine's address. A DataFrame arrives as one array per column, while hand-written data may key each column by row, so accept both. The example package's `resolveInput` handles every shape.
 

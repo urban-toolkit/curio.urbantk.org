@@ -43,7 +43,7 @@ Click **Download** on the row you want, and set the **Area**: a place you search
 
 ## Add a model
 
-Open the **Hugging Face models** card and search, for example for `segformer`. Each row names the model's task, its weights, its downloads and its licence. Click **Add to Model Catalog**: Curio downloads the model and, when it needs them, the libraries it runs on. Then drag the model onto an **Image Segmentation** node on the canvas. See [Model Catalog](/model-catalog/).
+Open the **Hugging Face models** card and search, for example for `segformer`. Each row names the model's task, its weights, its downloads and its licence. Click **Add to Model Catalog**: Curio downloads the model and, when it needs them, the libraries it runs on. Then, on the canvas, drag the model from the **Model Catalog** dropdown in the Tools panel onto an **Image Segmentation** node, or onto the canvas for an Image Segmentation node of its own. See [Model Catalog](/model-catalog/).
 
 ## Use a download in a dataflow
 

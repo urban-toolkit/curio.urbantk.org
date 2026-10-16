@@ -15,7 +15,7 @@ deeper:
 
 # SCOUT examples
 
-[SCOUT](https://github.com/urban-toolkit/scout) studies three urban questions: how much shadow tall buildings cast, how deep a flood gets with and without nature-based solutions, and which route avoids rain or wind. Curio runs each one with packages, models and datasets that ship with it, in dataflows that compare [scenarios](/scenarios/). SCOUT's data and models are used with the permission of its authors.
+[SCOUT](https://github.com/urban-toolkit/scout) studies three urban questions: how much shadow tall buildings cast, how deep a flood gets with and without nature-based solutions, and which route avoids bad weather. Curio runs each one with packages, models and datasets that ship with it, in dataflows that compare [scenarios](/scenarios/). SCOUT's data and models are used with the permission of its authors.
 
 ## Find them
 
@@ -23,7 +23,7 @@ The four dataflows are in the examples every account starts with, under **By sou
 
 ## Building rasters and shadows
 
-- **Rasterize Buildings**, from the SCOUT Raster Conversion package, turns a buildings layer with heights in metres into SCOUT's zoom-16 height tiles, and a mosaic of them: one raster an Autark map draws.
+- **Rasterize Buildings**, from the SCOUT Raster Conversion package, turns a buildings layer with heights in metres into SCOUT's zoom-16 height tiles, side by side in one raster: a mosaic an Autark map draws.
 - **Accumulated Shadow**, the node of the Deep Umbra model package in the [Model Catalog](/model-catalog/), runs Deep Umbra, SCOUT's shadow model, on that mosaic. It gives the minutes of a day the ground spends in shadow, as a raster on the same grid; its **Season** widget picks spring, summer or winter.
 - **Raster Statistics** then gives the mean and median shadow over the ground.
 
@@ -35,7 +35,7 @@ Example 24, "SCOUT building rasters", runs them on the buildings of SCOUT's Chic
 
 <GuideFigure src="/media/scout/summer-shadow.webp" alt="An Autark map of the summer shadow" caption="Deep Umbra&#x27;s summer shadow on the same grid: the minutes of the day each cell spends in shadow, darker where it is longer." :w="532" :h="356" />
 
-ScoutShadows compares two scenarios of the same buildings over a shared season, Existing and Towers removed (15 buildings taken out): one Compare Scenarios node charts the mean shadow, and another maps its change.
+ScoutShadows compares two scenarios of the same buildings over a shared season, Existing and Towers removed (15 buildings taken out), each with an Autark map of its shadow: one Compare Scenarios node charts the mean shadow, and another maps its change.
 
 Deep Umbra ships with Curio's repository and its Docker image; a pip install downloads its weights from GitHub the first time Accumulated Shadow runs.
 
@@ -43,13 +43,13 @@ Deep Umbra ships with Curio's repository and its Docker image; a pip install dow
 
 FloodScenarios is SCOUT's flood study of the Quad Cities, built from Curio's own nodes:
 
-- three [Parameter nodes](/widgets/#share-a-value-with-a-parameter-node) set the period (2020 to 2040, 2050 to 2080 or 2080 to 2100) and the region's two corners;
-- Data Loading nodes read only that region's window of SCOUT's flood depth rasters, with and without nature-based solutions (NbS), and of its raster of where each solution would go;
-- in each of two scenarios, No NbS and NbS, a **Raster Calculator** takes the depth with NbS where the class is one of the solutions its widget checks, and the depth without NbS elsewhere, and a **Raster Statistics** node gives the median and mean depth.
+- three [Parameter nodes](/widgets/#share-a-value-with-a-parameter-node) set the period (2020 to 2040, 2050 to 2080 or 2080 to 2100) and the region's two corners, which start at the region of SCOUT's flood example;
+- Data Loading nodes read only that region's window of SCOUT's whole flood depth rasters, with and without nature-based solutions (NbS), and of its raster of where each solution would go;
+- in each of two scenarios, No NbS and NbS, a **Raster Calculator** takes the depth with NbS where the class is one of the solutions its widget checks, and the depth without NbS elsewhere, a **Raster Statistics** node gives the median and mean depth, and an Autark map draws the depth.
 
-Two Compare Scenarios nodes then map the change in depth, NbS minus No NbS, and chart each scenario's median depth.
+Two Compare Scenarios nodes then map the size of the change in depth between No NbS and NbS, and chart each scenario's median depth. A pip install downloads the flood rasters from GitHub the first time a node reads them.
 
-<GuideFigure src="/media/scout/flood-change.webp" alt="A Compare Scenarios node mapping the change in flood depth" caption="Depth change: the flood depth with nature-based solutions minus the depth without, cell by cell, over the region the Parameter nodes set." :w="560" :h="420" />
+<MediaTodo kind="still" source="e2e:scout-flood-depth-change" caption="Depth change: the size of the change in flood depth between No NbS and NbS, cell by cell, over the region the Parameter nodes set." />
 
 <GuideFigure src="/media/scout/flood-median.webp" alt="A Compare Scenarios node charting the median flood depth of two scenarios" caption="Median flood depth: the median depth of No NbS and NbS, as bars." :w="560" :h="420" />
 
@@ -57,10 +57,10 @@ The **Raster Calculator** and **Raster Statistics** nodes work on any rasters on
 
 ## Weather-aware routing
 
-**Weather Routing**, the node of the SCOUT weather GNN model package in the [Model Catalog](/model-catalog/), finds routes between two points over a roads layer. It weighs each road by the weather that SCOUT's weather graph network predicts on it from SCOUT's WRF forecast in the Data Catalog. Its widgets set the origin and destination, the start time, the mode, and the rain and wind weights; the forecast runs from 5 July 2025, 19:00, to 7 July, 19:00, Chicago time. It outputs the routes, which an Autark map draws, and a table of each route's duration, distance and rain, heat, wind and humidity exposure, which Compare Scenarios charts.
+**Weather Routing**, the node of the SCOUT weather GNN model package in the [Model Catalog](/model-catalog/), finds routes between two points over a roads layer. It weighs each road by the weather that SCOUT's weather graph network predicts on it from SCOUT's WRF forecast in the Data Catalog. Its widgets set the origin and destination, the start time, the mode, the number of routes per factor, and the rain and wind weights; the forecast runs from 5 July 2025, 19:00, to 7 July, 19:00, Chicago time. It outputs the routes, which an Autark map draws, and a table of each route's duration, distance and rain, heat, wind and humidity exposure, which Compare Scenarios charts.
 
-WeatherRouting runs it over the Chicago Loop's roads from an Autark node, with a start time the two scenarios share, Avoid rain and Avoid wind, which weigh rain and wind differently. An Autark map draws the routes, and four Compare Scenarios nodes chart their duration, distance and rain and wind exposure.
+WeatherRouting is SCOUT's weather routing example. An Autark node loads the roads of SCOUT's box in downtown Chicago, and one Weather Routing node finds SCOUT's two routes over them: the fastest, and the one its weather weights favor. Two scenarios, Fastest route and Weather-aware route, each keep one of them. An Autark map draws both routes over the roads in their scenarios' colors, and four Compare Scenarios nodes chart their duration, distance and rain and wind exposure.
 
-<GuideFigure src="/media/scout/routes-map.webp" alt="An Autark map of routes over the Chicago Loop's roads" caption="The routes over the Chicago Loop's roads; the legend gives the Avoid wind routes' duration in minutes." :w="526" :h="350" />
+<MediaTodo kind="still" source="e2e:scout-routing-routes-map" caption="The Fastest route and the Weather-aware route over the roads of SCOUT's box, each in its scenario's color." />
 
-<GuideFigure src="/media/scout/routing-duration.webp" alt="A Compare Scenarios node charting route durations as grouped bars" caption="Duration: each route's mean duration in Avoid rain and Avoid wind, as grouped bars." :w="560" :h="420" />
+<MediaTodo kind="still" source="e2e:scout-routing-duration" caption="Duration: each route's duration in minutes, as bars in its scenario's color." />

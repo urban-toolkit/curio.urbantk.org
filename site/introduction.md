@@ -32,7 +32,7 @@ The rail on the left of the canvas holds the built-in nodes, in three groups:
 - **Computation.** **Python Computation** and **JS Computation** run your own analysis code, **Data Summary** describes a table: its shape, column types and missing values, and **Raster Calculator** and **Raster Statistics** work on rasters.
 - **Visualization.** **Vega-Lite** draws charts, and maps from a GeoDataFrame; **Autark** draws 2D and 3D maps and runs GPU computations from one spec; **Simple View** shows a table, or a card per row for images; **Compare Scenarios** compares the outcomes of scenarios.
 
-A node can take several inputs: each connection gets its own input circle, and the code reads each input through a chip (see [Connecting nodes](/dataflows/#connecting-nodes)).
+A node can take several inputs: each connection gets its own input circle, and the code reads each input by its name, `input_0`, `input_1` and so on, or through a chip (see [Connecting nodes](/dataflows/#connecting-nodes)).
 
 A selection in one chart or map becomes data the rest of the dataflow can read, which is how views are linked (see [Linked views](/interactions/)). More nodes come as packages from the [Node Catalog](/node-catalog/), and you can [write your own](/authoring-nodes/). AI agents attach to a node, a connection or the whole dataflow to help you write code, debug and plan (see [AI agents](/ai-agents/)).
 

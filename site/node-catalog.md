@@ -12,13 +12,13 @@ deeper:
 
 # Nodes and packages
 
-Every node on the canvas comes from a package: a small bundle of node types, with the code and libraries they need. The built-in nodes are one package that every project has, the Node Catalog holds more, and you can save your own.
+Every node on the canvas comes from a package: a small bundle of node types, with the code and libraries they need. The built-in nodes are one package that every project has, the Node Catalog holds more, and you can save your own. Trained models and the nodes that run them come as model packages, in the [Model Catalog](/model-catalog/).
 
 ## Add a package to a project
 
 On the canvas, click **Node Catalog** in the top bar, or open the **Node Catalog** dropdown in the Tools panel and click **Browse Node Catalog +**. The drawer has two tabs: **Browse all**, and **In project** for the packages this dataflow uses. In the catalogs, a project is one of your saved dataflows.
 
-Click **Add to project** on a package. A dialog lists the permissions it asks for and the Python and JavaScript libraries it depends on; click **Add to project** there to install it. Its nodes then appear in the **Node Catalog** dropdown, ready to drag onto the canvas. **Remove from project** takes a package out of this dataflow. Installing a package runs its setup code, so add only packages you trust.
+Click **Add to project** on a package. A dialog lists the permissions it asks for and the Python and JavaScript libraries it depends on; click **Add to project** there to install it. Its nodes then appear in the **Node Catalog** dropdown, ready to drag onto the canvas. You can also drag a package's card from the drawer onto the canvas: its node appears where you drop it, after the same review when the dataflow does not have the package yet, and a package with several nodes first opens a menu of them to pick from. **Remove from project** takes a package out of this dataflow. Installing a package runs its setup code, so add only packages you trust.
 
 The **Node Catalog** tab at the top of the Projects page lists the same packages for your whole account. There, **Add to all projects** adds a package to every project you have and to new ones. To take it out again, use **Remove from project** in each project's drawer.
 

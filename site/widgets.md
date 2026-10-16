@@ -60,7 +60,7 @@ The chip becomes the list of the selected rows' ids:
 
 ```python
 picked = [!! selection buildings !!]
-return arg[arg["osm_id"].isin(picked)]
+return input_0[input_0["osm_id"].isin(picked)]
 ```
 
 With nothing selected, the list is empty. A new selection marks the node as needing a new run, and the ids are saved with the dataflow. A tag holds at most 10,000 ids.

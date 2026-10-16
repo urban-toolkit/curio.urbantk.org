@@ -44,7 +44,7 @@ const STAGES: { id: string; step: string; title: string; icon: string; text: str
     step: 'Infer',
     title: 'Model Catalog',
     icon: 'brain',
-    text: 'Trained models a node runs over your data, such as image segmentation for street photos. Drag one onto the node.',
+    text: 'Trained models and the nodes that run them, such as image segmentation for street photos. Drag one onto the canvas as its node.',
     url: '/model-catalog/',
     agents: [],
   },

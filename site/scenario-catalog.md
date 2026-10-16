@@ -25,7 +25,7 @@ Open the **Scenario Catalog** tab at the top of the Projects page. Each card sho
 
 ## Bring a scenario into another dataflow
 
-On the canvas, click **Scenario** in the top bar to open the catalog's drawer, and drag a scenario's card onto the canvas.
+On the canvas, click **Scenario** in the top bar to open the catalog's drawer, and drag a scenario's card from its **Browse all** tab onto the canvas. Its **In project** tab holds the open dataflow's own scenarios (see [Scenarios](/scenarios/#work-with-scenarios)).
 
 <GuideFigure src="/media/scenario-catalog/drawer.webp" alt="The Scenario Catalog drawer over an empty dataflow" caption="The Scenario Catalog drawer over a new dataflow: each scenario&#x27;s card, ready to drag onto the canvas." :w="1280" :h="768" />
 
@@ -33,6 +33,7 @@ It arrives as a copy, collapsed where you dropped it, in its own color:
 
 - its levers are copied, each naming the node it was copied from;
 - its fixed context arrives as **Data Loading** nodes that read copies of what its project saved, wired where the context was, and a Parameter node of its context comes with its value;
+- a node of its fixed context with no saved output runs first, on the server and in the scenario's project, which saves its output there; a notice names it while it runs;
 - its outcomes show the results its project saved, before anything runs;
 - the packages its nodes use are added to the dataflow.
 
@@ -44,8 +45,9 @@ To compare the scenario with your own work, connect its outcome and yours to a [
 
 A drop is refused, and nothing is added, when:
 
-- a node of its fixed context has no saved output: run the scenario in its project and save it, then drag it again;
-- its nodes need a package, a dataset or a model your account does not have; the message names it;
+- a node of its fixed context has no saved output and cannot run on the server: only the browser runs it, such as an Autark compute node, you are a guest on a hosted Curio, or Curio runs with `--no-project`. Run the scenario in its project and save it, then drag it again;
+- running a node of its fixed context fails; the message says why;
+- its nodes need a package, a dataset or a model your account does not have, or a package your account cannot add; the message names it;
 - it brings a Parameter node whose name the dataflow already uses: rename yours, then drag it again.
 
 ## Share scenarios

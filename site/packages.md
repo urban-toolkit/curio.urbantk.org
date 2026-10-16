@@ -19,6 +19,7 @@ A package is how Curio ships nodes: a folder named `<packageId>@<major>`, such a
 - `manifest.json`: the id, name, publisher, version and compatibility, the dependencies, and one entry per node template with its label, category, input and output port types, editor, and the behavior key that implements it. Its schema is `docs/schemas/node-package.v4.json`.
 - `sources/`: one starter file per template, or the TypeScript hooks of a custom-UI node.
 - `scripts/`: the compiled `behaviors.js` that a custom-UI node needs, named by the manifest's `behaviorScript`.
+- `models/`: in a model package, the trained model's weights (see [Model Catalog](/model-catalog/)).
 - `README.md`, shown in the catalog, and `LICENSE`.
 - `integrity.json`: a SHA-256 hash of every other file, written on install. After editing a package in place, regenerate it (see [Write a node](/authoring-nodes/)).
 

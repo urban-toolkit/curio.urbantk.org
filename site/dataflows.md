@@ -8,6 +8,7 @@ deeper:
   - { doc: docs/ARCHITECTURE.md, anchor: execution-pipeline, label: "What happens when a node runs" }
   - { doc: docs/examples/02-vega-lite-spatial-density.md, label: "Example: one table feeding several views" }
   - { doc: docs/examples/04-vega-lite-multi-flow-dashboard.md, label: "Example: joining flows in nodes with two inputs" }
+  - { doc: docs/examples/26-several-inputs.md, label: "Example: several inputs in every node kind that takes them" }
   - { doc: docs/USAGE.md, anchor: notebook-view, label: "The notebook view" }
   - { doc: docs/USAGE.md, anchor: keys-for-node-code, label: "Keys for node code" }
   - { doc: docs/USAGE.md, anchor: spatial-join-node, label: "The Spatial Join node" }
@@ -31,7 +32,7 @@ Click the title at the top to rename the dataflow. The save state in the top bar
 ## Kinds of nodes
 
 - **Data Loading** brings data in with Python.
-- **Data Transformation** and **Python Computation** run Python on their input, which arrives as `arg`, and pass on what the code returns.
+- **Data Transformation** and **Python Computation** run Python on their inputs, which arrive as `input_0`, `input_1` and so on, one per input circle, and pass on what the code returns.
 - **JS Computation** does the same in JavaScript.
 - **Data Summary** reports a table's column types, missing values and statistics.
 - **Data Pool** shows one result as a table and feeds it to several views; it is also where views [link](/interactions/).
@@ -46,7 +47,7 @@ Code runs on the Curio server, not in your browser.
 
 ## Connecting nodes
 
-Drag from an output (on a node's right edge) to an input (on another node's left edge). Curio refuses a connection between types that do not fit, and one that would make a loop. An output can feed many nodes. A node that takes several inputs, such as Python Computation, Data Pool, Vega-Lite, Autark or Compare Scenarios, shows a new empty input circle below each one you connect; in code and specs, each input is a chip. The handle on top of views and Data Pools is for [interaction edges](/interactions/). To remove a connection, click it and press Delete or Backspace; deleting a node also removes its connections.
+Drag from an output (on a node's right edge) to an input (on another node's left edge). Curio refuses a connection between types that do not fit, and one that would make a loop. An output can feed many nodes. A node that takes several inputs, such as Python Computation, Data Pool, Vega-Lite, Autark or Compare Scenarios, shows a new empty input circle below each one you connect; in code and specs, each input is a chip or its name, `input_0` for the first circle, `input_1` for the second, and so on. The handle on top of views and Data Pools is for [interaction edges](/interactions/). To remove a connection, click it and press Delete or Backspace; deleting a node also removes its connections.
 
 ## Running a dataflow
 
@@ -60,7 +61,7 @@ The **Run all nodes** button, at the bottom of the left column, runs the whole d
 
 A node's header shows the play button, the node's title and kind, and its run status. Its other buttons show while the pointer is over the node or the node is selected. The first of them switch its tabs: **Code**, **Widgets**, **Grammar**, **Provenance** (its [past runs](/provenance/)) and **Output**, as the node has them. Code and specs sit in a gray box, and a code node prints its output below its code. In **Widgets**, you add the node's controls, such as a slider or a date, and drag each one's tag into the code (see [Widgets and parameters](/widgets/)). The switch after the tabs saves the node's table output to your Data Catalog.
 
-Click the title to rename the node; the gear beside it opens **Node settings**, for [making a reusable node](/authoring-nodes/). After the switch come a button that explains the node, **Pin to dashboard** for the dataflow's [dashboard](/dashboards/), **Comments** for notes that others can mark as resolved, **Delete node**, and **Minimize**, which folds the node into an icon that opens again with a click. **View > Minimize Nodes** folds them all, and **View > Expand Nodes** opens them again. Drag a node's bottom-right corner to resize it, and double-click a node where you would drag it, such as its header, to zoom the view onto it. For viewers of a shared dataflow, nodes keep their size and have no **Delete node**.
+Click the title to rename the node; the gear beside it opens **Node settings**, for [making a reusable node](/authoring-nodes/). After the switch come a button that explains the node, **Pin to dashboard** for the dataflow's [dashboard](/dashboards/), **Comments** for notes that others can mark as resolved, **Minimize**, which folds the node into an icon that opens again with a click, and, at the right end, **Delete node**. **View > Minimize Nodes** folds them all, and **View > Expand Nodes** opens them again. Drag a node's bottom-right corner to resize it, and double-click a node where you would drag it, such as its header, to zoom the view onto it. For viewers of a shared dataflow, nodes keep their size and have no **Delete node**.
 
 ## Notebook view
 
