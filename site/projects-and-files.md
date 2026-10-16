@@ -23,7 +23,7 @@ Double-click a card to open it, or click it once to see its details, with **Open
 
 Saving needs an account: on a server with sign-in, a guest can open dataflows but not save them.
 
-<LoopVideo src="/media/projects-and-files/projects.mp4" poster="/media/projects-and-files/projects.webp" caption="The projects page, with the search box, the switch between grid and list views, and the Import Jupyter notebook button." :w="1280" :h="768" />
+<LoopVideo src="/media/projects-and-files/projects.mp4" poster="/media/projects-and-files/projects.webp" label="The projects page, with the search box, the switch between grid and list views, and the Import Jupyter notebook button." :w="1280" :h="768" />
 
 ## The examples
 
@@ -39,7 +39,7 @@ On your own computer, the examples come from starting Curio with `--with-example
 
 **File > Load dataflow** reads such a file and opens it as a new dataflow, asking first when the open dataflow has unsaved changes. Saving it adds it to your projects under its own name, and the dataflow that was open stays as it was. Curio installs the node packages the dataflow uses that you are missing; for a very large package, it puts an install button on the nodes that need it instead.
 
-<LoopVideo src="/media/projects-and-files/saveload.mp4" poster="/media/projects-and-files/saveload.webp" caption="A dataflow is saved to a file with File &gt; Save dataflow as, then loaded into a new dataflow with File &gt; Load dataflow." :w="1280" :h="768" />
+<LoopVideo src="/media/projects-and-files/saveload.mp4" poster="/media/projects-and-files/saveload.webp" label="A dataflow is saved to a file with File &gt; Save dataflow as, then loaded into a new dataflow with File &gt; Load dataflow." :w="1280" :h="768" />
 
 ## Jupyter notebooks
 
@@ -47,4 +47,4 @@ On your own computer, the examples come from starting Curio with `--with-example
 
 **File > Export as notebook** goes the other way and downloads the dataflow as an `.ipynb` file, with its nodes in run order. Python nodes become functions you can run in Jupyter, and Vega-Lite nodes display their chart. Autark, JavaScript, Spatial Join and Simple View nodes, and nodes from other packages, are kept as notes, because a Python kernel cannot run them.
 
-<LoopVideo src="/media/projects-and-files/jupyter.mp4" poster="/media/projects-and-files/jupyter.webp" caption="A Jupyter notebook is imported from the projects page and opens as a dataflow with one node per code cell." :w="1280" :h="768" />
+<LoopVideo src="/media/projects-and-files/jupyter.mp4" poster="/media/projects-and-files/jupyter.webp" label="A Jupyter notebook is imported from the projects page and opens as a dataflow with one node per code cell." :w="1280" :h="768" />

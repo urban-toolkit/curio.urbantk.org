@@ -25,7 +25,7 @@ Drag a node from the **Built-in** column on the left onto the canvas; hover over
 
 Click the title at the top to rename the dataflow. The save state in the top bar reads **Saved** when the canvas is saved and **Unsaved** when it is not; click it, or choose **File > Save dataflow**. After the first save, Curio saves every 30 seconds while there are unsaved changes, and asks before you leave with changes it has not saved.
 
-<LoopVideo src="/media/dataflows/canvas.mp4" poster="/media/dataflows/canvas.webp" caption="A new dataflow opens, the built-in node icons on the left are picked out one by one, and the File, View, Data and Provenance menus open in turn." :w="1280" :h="768" />
+<LoopVideo src="/media/dataflows/canvas.mp4" poster="/media/dataflows/canvas.webp" label="A new, empty dataflow: the tiles of the built-in node rail are pointed out one by one, and the File menu opens." :w="1280" :h="768" />
 
 <TryIt path="/dataflow/new" label="Start a new dataflow" />
 
@@ -55,7 +55,7 @@ Press the play button at the left of a node's header, or select the node and pre
 
 The **Run all nodes** button, at the bottom of the left column, runs the whole dataflow in order and turns into a stop button while it runs. When a node fails, the nodes after it do not run, and each says that the node feeding it failed; the rest of the dataflow still runs.
 
-<LoopVideo src="/media/dataflows/build.mp4" poster="/media/dataflows/build.webp" caption="A dataset dragged onto the canvas becomes a Data Loading node, which is connected to a Data Transformation node, run with the play button and saved." :w="1280" :h="768" />
+<LoopVideo src="/media/dataflows/build.mp4" poster="/media/dataflows/build.webp" label="A dataset dragged onto the canvas becomes a Data Loading node, which is connected to a Data Transformation node, run with the play button and saved." :w="1280" :h="768" />
 
 ## Inside a node
 

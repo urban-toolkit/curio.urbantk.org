@@ -29,7 +29,7 @@ Then everyone signs in and opens the same dataflow. **Share > Copy dataflow link
 
 On a server with collaboration on, a people icon appears in the canvas top bar, with the number of people in the dataflow once there is more than one. Click it to open the side panel: **Users** lists everyone in the dataflow, **Proposals** holds code changes waiting for approval, and **Activity** shows recent events, such as people joining and changes being applied.
 
-<LoopVideo src="/media/collaboration/collaboration.mp4" poster="/media/collaboration/collaboration.webp" caption="Seen from the owner&#x27;s screen: a second person joins and the panel lists them both, the node they add appears on this canvas, and their code change arrives as a proposal." :w="1280" :h="768" />
+<LoopVideo src="/media/collaboration/collaboration.mp4" poster="/media/collaboration/collaboration.webp" label="Seen from the owner&#x27;s screen: a second person joins and the panel lists them both, the node they add appears on this canvas, and their code change arrives as a proposal." :w="1280" :h="768" />
 
 ## Edit together
 

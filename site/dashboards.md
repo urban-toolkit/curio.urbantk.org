@@ -26,7 +26,7 @@ As the owner, click **Edit layout** to move tiles by their title bar and resize 
 
 A map made with Autark draws in the viewer's own browser, so it needs a browser with WebGPU. Text that a code node prints is not shown on the dashboard.
 
-<LoopVideo src="/media/dashboards/dashboard.mp4" poster="/media/dashboards/dashboard.webp" caption="Two charts are pinned and the dataflow is saved, then the dashboard opens and draws both charts without running anything." :w="1280" :h="768" />
+<LoopVideo src="/media/dashboards/dashboard.mp4" poster="/media/dashboards/dashboard.webp" label="Two charts are pinned and the dataflow is saved, then the dashboard opens and draws both charts without running anything." :w="1280" :h="768" />
 
 ## Share a link
 

@@ -3,11 +3,12 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { withBase } from 'vitepress'
 import Icon from './Icon.vue'
 
-// A short silent loop with its caption, adapted from urbantk.org. It never autoplays in the prerendered HTML:
-// once the page has loaded it plays while at least half visible, unless the visitor prefers reduced motion.
-// The pause control is always there.
-const props = defineProps<{ src: string; poster?: string; caption: string; label?: string; w?: number; h?: number }>()
-const label = props.label ?? props.caption
+// A short silent loop, adapted from urbantk.org. A clip has no caption: its label names it for screen readers and
+// on the play control, and shows nowhere on the page. It never autoplays in the prerendered HTML: once the page
+// has loaded it plays while at least half visible, unless the visitor prefers reduced motion. The pause control
+// is always there.
+const props = defineProps<{ src: string; poster?: string; label: string; w?: number; h?: number }>()
+const label = props.label
 
 const video = ref<HTMLVideoElement>()
 const playing = ref(false)
@@ -72,7 +73,6 @@ onBeforeUnmount(() => observer?.disconnect())
         <Icon :name="playing ? 'pause' : 'play'" />
       </button>
     </div>
-    <figcaption>{{ props.caption }}</figcaption>
   </figure>
 </template>
 

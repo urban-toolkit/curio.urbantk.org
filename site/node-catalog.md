@@ -22,7 +22,7 @@ Click **Add to project** on a package. A dialog lists the permissions it asks fo
 
 The **Node Catalog** tab at the top of the Projects page lists the same packages for your whole account. There, **Add to all projects** adds a package to every project you have and to new ones. To take it out again, use **Remove from project** in each project's drawer.
 
-<LoopVideo src="/media/node-catalog/nodecatalog.mp4" poster="/media/node-catalog/nodecatalog.webp" caption="A package is found in the Node Catalog drawer, its dependencies are listed before it is added, and its nodes appear in the Tools panel." :w="1280" :h="768" />
+<LoopVideo src="/media/node-catalog/nodecatalog.mp4" poster="/media/node-catalog/nodecatalog.webp" label="A package is found in the Node Catalog drawer, its dependencies are listed before it is added, and its nodes appear in the Tools panel." :w="1280" :h="768" />
 
 ## Versions and your own packages
 

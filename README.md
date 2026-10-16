@@ -51,12 +51,12 @@ Components you can use in the body:
 | Component | Use |
 |---|---|
 | `<GuideFigure src="/media/x/y.webp" alt="..." caption="..." :w="1280" :h="768" />` | a screenshot |
-| `<LoopVideo src="/media/x/y.mp4" poster="/media/x/y.webp" caption="..." :w="1280" :h="768" />` | a short silent loop |
+| `<LoopVideo src="/media/x/y.mp4" poster="/media/x/y.webp" label="..." :w="1280" :h="768" />` | a short silent loop |
 | `<TryIt path="/catalog/data" label="Open the Data Catalog" />` | a button to a page of the hosted app |
 | `<MediaTodo kind="clip" source="tour:build" caption="..." />` | a spot for media not recorded yet |
 
 Writing rules:
-- Every screenshot and clip has a caption.
+- Every screenshot has a caption. A clip never has one: its `label` names it for screen readers and shows nowhere on the page.
 - Pages say what things do. They give no internal rationale, and no counts or versions that go stale (such as the number of built-in agents).
 - No en or em dashes.
 - Link to other guide pages as `/slug/`, and to the hosted app only through `TryIt` or `app:`. The app's address lives in `site.ts` alone.

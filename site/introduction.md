@@ -22,7 +22,7 @@ Nodes work at different levels. Some hold Python or JavaScript code, some hold a
 
 Curio also keeps the dataflow's history as you work, and **View > Provenance** shows its earlier versions as a graph you can step back through (see [Provenance](/provenance/)).
 
-<LoopVideo src="/media/dataflows/build.mp4" poster="/media/dataflows/build.webp" caption="A dataset dragged onto the canvas becomes a Data Loading node, which is connected to a Data Transformation node and run with the play button." :w="1280" :h="768" />
+<LoopVideo src="/media/dataflows/build.mp4" poster="/media/dataflows/build.webp" label="A dataset dragged onto the canvas becomes a Data Loading node, which is connected to a Data Transformation node and run with the play button." :w="1280" :h="768" />
 
 ## The kinds of nodes
 
@@ -36,7 +36,7 @@ A node can take several inputs: each connection gets its own input circle, and t
 
 A selection in one chart or map becomes data the rest of the dataflow can read, which is how views are linked (see [Linked views](/interactions/)). More nodes come as packages from the [Node Catalog](/node-catalog/), and you can [write your own](/authoring-nodes/). AI agents attach to a node, a connection or the whole dataflow to help you write code, debug and plan (see [AI agents](/ai-agents/)).
 
-<LoopVideo src="/media/visualization/linked-charts.mp4" poster="/media/visualization/linked-charts.webp" caption="An example dataflow on Chicago speed-camera violations runs with Run all nodes, and one aggregation feeds both a bar chart and a line chart." :w="1280" :h="768" />
+<LoopVideo src="/media/visualization/linked-charts.mp4" poster="/media/visualization/linked-charts.webp" label="An example dataflow on Chicago speed-camera violations runs with Run all nodes, and one aggregation feeds both a bar chart and a line chart." :w="1280" :h="768" />
 
 ## The hosted instance or your own computer
 

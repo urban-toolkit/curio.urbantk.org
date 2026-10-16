@@ -32,7 +32,7 @@ Connect a table, such as a pandas DataFrame or a GeoPandas GeoDataFrame, to a **
 
 Press play to draw it. If the editor is still empty when data first arrives, Curio fills it with a starter specification chosen from the column types. For a GeoDataFrame, `"mark": "geoshape"` draws a map, and Curio picks the geometry column and a projection unless you set them yourself. A chart with several views keeps its size, and the node scrolls to show all of it. Once a chart has a specification, it redraws by itself whenever new data arrives.
 
-<LoopVideo src="/media/visualization/linked-charts.mp4" poster="/media/visualization/linked-charts.webp" caption="Run all nodes on an example dataflow draws two Vega-Lite charts, a stacked bar chart and a line chart, from the same computed table." :w="1280" :h="768" />
+<LoopVideo src="/media/visualization/linked-charts.mp4" poster="/media/visualization/linked-charts.webp" label="Run all nodes on an example dataflow draws two Vega-Lite charts, a stacked bar chart and a line chart, from the same computed table." :w="1280" :h="768" />
 
 ## Autark maps
 
@@ -48,7 +48,7 @@ A layer's `title` names it in the legend, and `color` draws it in one color. A l
 
 Maps, plots and compute need a browser with WebGPU, such as a recent Chrome or Edge. Without it, the node says **WebGPU is not available**, and its **Check again** button asks the browser again.
 
-<LoopVideo src="/media/visualization/autark.mp4" poster="/media/visualization/autark.webp" caption="One Autark node loads Lower Manhattan from an OpenStreetMap extract, and two more draw a histogram of building heights and a map, linked by an interaction edge: brushing the lowest bars highlights those buildings on the map." :w="1280" :h="768" />
+<LoopVideo src="/media/visualization/autark.mp4" poster="/media/visualization/autark.webp" label="One Autark node loads Lower Manhattan from an OpenStreetMap extract, and two more draw a histogram of building heights and a map, linked by an interaction edge: brushing the lowest bars highlights those buildings on the map." :w="1280" :h="768" />
 
 ## Simple View
 

@@ -19,13 +19,13 @@ Choose **View > Provenance** to open the dataflow's history as a graph. Each car
 
 A dataflow opened without a saved history, such as a loaded file or an example opened for the first time, starts one with a version for each of its nodes and connections.
 
-<LoopVideo src="/media/provenance/provenance-graph.mp4" poster="/media/provenance/provenance-graph.webp" caption="The Provenance window opens from the Provenance menu, and its graph of versions is dragged to reach the ones below the fold." :w="1280" :h="768" />
+<LoopVideo src="/media/provenance/provenance-graph.mp4" poster="/media/provenance/provenance-graph.webp" label="The Provenance window opens from the Provenance menu, and its graph of versions is dragged to reach the ones below the fold." :w="1280" :h="768" />
 
 ## Going back to an earlier version
 
 Click a card to put that version on the canvas. The rest of the history stays, so a click on a newer card moves forward again. Going back is an edit like any other: the save state reads **Unsaved**, the nodes need to run again, and the next save stores the version you picked. If you change the dataflow from there, the new versions branch off from the one you went back to, and the later ones stay in the graph.
 
-<LoopVideo src="/media/provenance/provenance-revert.mp4" poster="/media/provenance/provenance-revert.webp" caption="Clicking earlier and earlier versions in the provenance graph changes the canvas each time to the dataflow that version holds." :w="1280" :h="768" />
+<LoopVideo src="/media/provenance/provenance-revert.mp4" poster="/media/provenance/provenance-revert.webp" label="Clicking earlier and earlier versions in the provenance graph changes the canvas each time to the dataflow that version holds." :w="1280" :h="768" />
 
 ## A node's run history
 
