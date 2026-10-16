@@ -43,7 +43,7 @@ The dataflow's scenarios are in the [Scenario Catalog](/scenario-catalog/) drawe
 
 **View details** on a card renames, recolors and describes the scenario, and lists its fixed context, levers and outcomes. Pointing at a card marks the scenario's fixed context on the canvas.
 
-<MediaTodo kind="still" source="tour:scenarios" caption="The In project tab beside example 06: a card for each scenario, with its commands. Pointing at Baseline marks the Data Pool, the fixed context it reads." />
+<GuideFigure src="/media/scenarios/in-project.webp" alt="Example 06 with the Scenario Catalog drawer's In project tab open" caption="The In project tab beside example 06: a card for each scenario, with its commands. Pointing at Baseline marks the Data Pool, the fixed context it reads." :w="1490" :h="1030" />
 
 A collapsed scenario is one box in its color that lists its fixed context and its outcomes with their latest output. Its connections are drawn to the box, and dragging the box moves it. Double-click the box to expand it in place. A collapsed scenario's nodes still run with **Run All**, and the context they share runs once.
 

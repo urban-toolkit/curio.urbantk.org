@@ -292,9 +292,21 @@
       "name": "collaboration-proposal"
     },
     {
+      "id": "in-project",
+      "page": "scenarios",
+      "take": "inproject1",
+      "name": "scenarios-in-project",
+      "crop": {
+        "left": 430,
+        "top": 0,
+        "width": 1490,
+        "height": 1030
+      }
+    },
+    {
       "id": "collapsed",
       "page": "scenarios",
-      "take": "reframe1",
+      "take": "inproject1",
       "name": "scenario-collapsed",
       "crop": {
         "left": 660,
@@ -306,13 +318,13 @@
     {
       "id": "browse",
       "page": "scenario-catalog",
-      "take": "scout2",
+      "take": "inproject1",
       "name": "scenario-catalog"
     },
     {
       "id": "details",
       "page": "scenario-catalog",
-      "take": "scout2",
+      "take": "inproject1",
       "name": "scenario-details",
       "crop": {
         "left": 150,
@@ -324,13 +336,13 @@
     {
       "id": "drawer",
       "page": "scenario-catalog",
-      "take": "scout2",
+      "take": "inproject1",
       "name": "scenario-drawer"
     },
     {
       "id": "dropped",
       "page": "scenario-catalog",
-      "take": "scout2",
+      "take": "inproject1",
       "name": "scenario-dropped",
       "crop": {
         "left": 280,
@@ -361,6 +373,18 @@
         "top": 250,
         "width": 1220,
         "height": 800
+      }
+    },
+    {
+      "id": "node-from-function",
+      "page": "authoring-nodes",
+      "take": "inproject1",
+      "name": "node-from-function",
+      "crop": {
+        "left": 600,
+        "top": 240,
+        "width": 720,
+        "height": 720
       }
     },
     {

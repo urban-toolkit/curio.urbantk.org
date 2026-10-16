@@ -27,7 +27,7 @@ Open the **Scenario Catalog** tab at the top of the Projects page. Each card sho
 
 On the canvas, click **Scenario** in the top bar to open the catalog's drawer, and drag a scenario's card from its **Browse all** tab onto the canvas. Its **In project** tab holds the open dataflow's own scenarios (see [Scenarios](/scenarios/#work-with-scenarios)).
 
-<GuideFigure src="/media/scenario-catalog/drawer.webp" alt="The Scenario Catalog drawer over an empty dataflow" caption="The Scenario Catalog drawer over a new dataflow: each scenario&#x27;s card, ready to drag onto the canvas." :w="1280" :h="768" />
+<GuideFigure src="/media/scenario-catalog/drawer.webp" alt="The Scenario Catalog drawer over an empty dataflow" caption="The Scenario Catalog drawer&#x27;s Browse all tab over a new dataflow: each scenario&#x27;s card, ready to drag onto the canvas." :w="1280" :h="768" />
 
 It arrives as a copy, collapsed where you dropped it, in its own color:
 
