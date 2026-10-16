@@ -25,22 +25,22 @@
     {
       "id": "build",
       "page": "dataflows",
-      "take": "tour1",
+      "take": "inproject2",
       "source": "tour",
       "scene": "build",
-      "from": 2.0,
-      "to": 34.0,
-      "poster": 31.5
+      "from": 2.5,
+      "to": 38.2,
+      "poster": 35.5
     },
     {
       "id": "quickstart-chart",
       "page": "quick-start",
-      "take": "quickstart1",
+      "take": "inproject2",
       "source": "tour",
       "scene": "quickstart",
       "from": 19.5,
-      "to": 29.9,
-      "poster": 29.4
+      "to": 29.6,
+      "poster": 29.2
     },
     {
       "id": "projects",
@@ -113,12 +113,12 @@
     {
       "id": "datacatalog",
       "page": "data-catalog",
-      "take": "tour1",
+      "take": "inproject2",
       "source": "tour",
       "scene": "datacatalog",
-      "from": 1.0,
-      "to": 12.4,
-      "poster": 12.0
+      "from": 1.5,
+      "to": 13.4,
+      "poster": 13.0
     },
     {
       "id": "lineage",
@@ -218,7 +218,7 @@
     {
       "id": "data-loading",
       "page": "quick-start",
-      "take": "quickstart1",
+      "take": "inproject2",
       "name": "quickstart-data-loading"
     },
     {
@@ -366,7 +366,7 @@
     {
       "id": "selection-tag",
       "page": "widgets",
-      "take": "reframe1",
+      "take": "inproject2",
       "name": "selection-tag",
       "crop": {
         "left": 440,

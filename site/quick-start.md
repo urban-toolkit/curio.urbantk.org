@@ -46,7 +46,7 @@ return df
 
 Click the orange play button at the left of the node's header, or press Ctrl+Enter (Cmd+Enter on a Mac) while you edit it. The node shows **Done** when the run succeeds and **Error** when it fails.
 
-<GuideFigure src="/media/quick-start/data-loading.webp" alt="A Data Loading node with the table code" caption="A Data Loading node holds the table code, and shows Done after its run." :w="1280" :h="768" />
+<GuideFigure src="/media/quick-start/data-loading.webp" alt="A Data Loading node with the table code" caption="A Data Loading node holds the table code, with the play button at the left of its header and Done after its run." :w="1280" :h="768" />
 
 ## Chart it with Vega-Lite
 
