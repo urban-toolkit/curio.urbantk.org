@@ -25,9 +25,9 @@ Open the **Scenario Catalog** tab at the top of the Projects page. Each card sho
 
 ## Bring a scenario into another dataflow
 
-On the canvas, click **Scenario** in the top bar to open the catalog's drawer, and drag a scenario's card from its **Browse all** tab onto the canvas. Its **In project** tab holds the open dataflow's own scenarios (see [Scenarios](/scenarios/#work-with-scenarios)).
+On the canvas, click **Scenario** in the top bar to open the catalog's drawer, and drag a scenario's card from its **Browse all** tab onto the canvas. **Browse all** lists the scenarios under a heading for each project, with how many of the listed scenarios come from it; the sort orders the groups by their first card, and the cards within each group. Its **In project** tab holds the open dataflow's own scenarios (see [Scenarios](/scenarios/#work-with-scenarios)).
 
-<GuideFigure src="/media/scenario-catalog/drawer.webp" alt="The Scenario Catalog drawer over an empty dataflow" caption="The Scenario Catalog drawer&#x27;s Browse all tab over a new dataflow: each scenario&#x27;s card, ready to drag onto the canvas." :w="1280" :h="768" />
+<GuideFigure src="/media/scenario-catalog/drawer.webp" alt="The Scenario Catalog drawer with its cards grouped by project" caption="The Scenario Catalog drawer&#x27;s Browse all tab, searched for Elm Grove: two scenarios under Elm Grove heat and one under Elm Grove flood, each card ready to drag onto the canvas." :w="519" :h="720" />
 
 It arrives as a copy, collapsed where you dropped it, in its own color:
 

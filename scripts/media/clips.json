@@ -336,8 +336,14 @@
     {
       "id": "drawer",
       "page": "scenario-catalog",
-      "take": "inproject1",
-      "name": "scenario-drawer"
+      "take": "main-a391b90",
+      "name": "scenario-drawer-groups",
+      "crop": {
+        "left": 761,
+        "top": 0,
+        "width": 519,
+        "height": 720
+      }
     },
     {
       "id": "dropped",
@@ -421,6 +427,90 @@
         "top": 422,
         "width": 532,
         "height": 356
+      }
+    },
+    {
+      "id": "shadow-study",
+      "page": "scenarios",
+      "take": "main-a391b90",
+      "name": "shadow-study",
+      "crop": {
+        "left": 236,
+        "top": 220,
+        "width": 960,
+        "height": 400
+      }
+    },
+    {
+      "id": "interaction",
+      "page": "scenarios",
+      "take": "main-a391b90",
+      "name": "interaction-log",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 560,
+        "height": 460
+      }
+    },
+    {
+      "id": "compare-chart",
+      "page": "scenarios",
+      "take": "main-a391b90",
+      "name": "compare-chart",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 560,
+        "height": 420
+      }
+    },
+    {
+      "id": "compare-difference",
+      "page": "scenarios",
+      "take": "main-a391b90",
+      "name": "compare-difference",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 560,
+        "height": 124
+      }
+    },
+    {
+      "id": "compare-difference-map",
+      "page": "scenarios",
+      "take": "main-a391b90",
+      "name": "compare-difference-map",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 526,
+        "height": 350
+      }
+    },
+    {
+      "id": "add-widget",
+      "page": "widgets",
+      "take": "main-a391b90",
+      "name": "add-widget",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 526,
+        "height": 350
+      }
+    },
+    {
+      "id": "widgets-tab",
+      "page": "widgets",
+      "take": "main-a391b90",
+      "name": "widgets-tab",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 526,
+        "height": 350
       }
     }
   ]

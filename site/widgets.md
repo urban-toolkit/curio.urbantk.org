@@ -23,7 +23,7 @@ A widget is a value a node's code reads that you set in a form instead of in the
 3. Drag the widget's tag from the strip above the code into the code, or click the tag to put it at the cursor. It shows as a chip; point at the chip to see the value it stands for.
 4. Set the value in the **Widgets** tab and run the node.
 
-<GuideFigure src="/media/widgets/add-widget.webp" alt="The Add widget form of a Python node" caption="The Add widget form for a slider named rain: its label, minimum, maximum, step, units and default." :w="526" :h="350" />
+<GuideFigure src="/media/widgets/add-widget.webp" alt="The Add widget form of a Python node" caption="The Add widget form for a slider labelled Rain: its type, label, minimum, maximum, step, units and default." :w="526" :h="350" />
 
 A widget is a number, a slider, a text, a choice (a dropdown or radio buttons), a checkbox, a checkbox group, a multi-select, a date and time, a location (a latitude and a longitude, or a place search), a list of numbers or of texts, a range, or a text file.
 

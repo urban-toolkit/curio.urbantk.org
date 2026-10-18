@@ -9,10 +9,12 @@ deeper:
   - { doc: docs/examples/02-vega-lite-spatial-density.md, label: "Example: one table feeding several views" }
   - { doc: docs/examples/04-vega-lite-multi-flow-dashboard.md, label: "Example: joining flows in nodes with two inputs" }
   - { doc: docs/examples/26-several-inputs.md, label: "Example: several inputs in every node kind that takes them" }
+  - { doc: docs/USAGE.md, anchor: notes, label: "Notes" }
   - { doc: docs/USAGE.md, anchor: notebook-view, label: "The notebook view" }
   - { doc: docs/USAGE.md, anchor: keys-for-node-code, label: "Keys for node code" }
   - { doc: docs/USAGE.md, anchor: spatial-join-node, label: "The Spatial Join node" }
   - { doc: docs/examples/25-spatial-join-operations.md, label: "Example: every Spatial Join operation" }
+  - { doc: docs/USAGE.md, anchor: rasters, label: "Rasters: the Raster Calculator" }
 ---
 
 # Dataflows and nodes
@@ -39,9 +41,10 @@ Click the title at the top to rename the dataflow. The save state in the top bar
 - **Parameter** holds one value that any node's code can read (see [Widgets and parameters](/widgets/)).
 - **Spatial Join** pairs the rows of two inputs whose shapes meet, by the operation you pick: intersects, within, contains, touches, overlaps, crosses or nearest. It outputs one row per pair, or its second input's rows, each with a count of its pairs.
 - **Data Export** downloads its input as CSV, GeoJSON or JSON, with the **Download** button in its **Widgets** tab.
-- **Raster Calculator** computes one operation over rasters on one grid, cell by cell, and **Raster Statistics** gives a raster's mean, median, minimum, maximum and count.
-- **Edit Features** removes or changes features of a layer by hand, and **Compare Scenarios** compares the outcomes of [scenarios](/scenarios/).
+- **Raster Calculator** works on rasters on one grid: cell by cell, such as one raster minus another, or a raster's statistics, its mean, median, minimum, maximum and count. Its starter code lists its operations.
+- **Interaction** removes or changes features of a layer, by hand or by a condition (see [Scenarios](/scenarios/#remove-or-change-features)), and **Compare Scenarios** compares the outcomes of [scenarios](/scenarios/).
 - **Vega-Lite**, **Autark** and **Simple View** draw [charts, maps, tables and images](/visualization/).
+- **Note** holds a title and a short text that explain a part of the dataflow (see [Notes](#notes)).
 
 Code runs on the Curio server, not in your browser.
 
@@ -62,6 +65,16 @@ The **Run all nodes** button, at the bottom of the left column, runs the whole d
 A node's header shows the play button, the node's title and kind, and its run status. Its other buttons show while the pointer is over the node or the node is selected. The first of them switch its tabs: **Code**, **Widgets**, **Grammar**, **Provenance** (its [past runs](/provenance/)) and **Output**, as the node has them. Code and specs sit in a gray box, and a code node prints its output below its code. In **Widgets**, you add the node's controls, such as a slider or a date, and drag each one's tag into the code (see [Widgets and parameters](/widgets/)). The switch after the tabs saves the node's table output to your Data Catalog.
 
 Click the title to rename the node; the gear beside it opens **Node settings**, for [making a reusable node](/authoring-nodes/). After the switch come a button that explains the node, **Pin to dashboard** for the dataflow's [dashboard](/dashboards/), **Comments** for notes that others can mark as resolved, **Minimize**, which folds the node into an icon that opens again with a click, and, at the right end, **Delete node**. **View > Minimize Nodes** folds them all, and **View > Expand Nodes** opens them again. Drag a node's bottom-right corner to resize it, and double-click a node where you would drag it, such as its header, to zoom the view onto it. For viewers of a shared dataflow, nodes keep their size and have no **Delete node**.
+
+## Notes
+
+A **Note** node explains a part of the dataflow: a title and a short text on one of six colors. It has no inputs or outputs, and a run skips it.
+
+1. Drag **Note** from the palette onto the canvas. A new note opens on its form.
+2. Write its **Title** and **Text**, pick its **Color**, and click **Save**.
+3. To change it, click **Edit** on the note.
+
+The text is simple markdown: `#` headings, `-` lists, `**bold**`, `*italics*`, `` `code` `` and links. Only an `https` link is a link, and it opens in a new tab. On the dashboard and on a shared dataflow, a note shows its text and cannot be edited. The [Researcher](/ai-agents/) answers questions from the web with notes: the question on a yellow one, then each answer on a green one with its sources.
 
 ## Notebook view
 

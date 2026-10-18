@@ -7,6 +7,7 @@ card: { poster: /media/projects-and-files/examples.webp, alt: "The Projects page
 app: /projects
 deeper:
   - { doc: docs/README.md, anchor: examples, label: "Example gallery" }
+  - { doc: docs/USAGE.md, anchor: finding-a-dataflow, label: "Finding a dataflow: the rail's filters and tags" }
   - { doc: docs/TRILL-SPEC.md, label: "The saved dataflow format" }
   - { doc: docs/USAGE.md, label: "Running Curio yourself, with or without the examples" }
 ---
@@ -18,6 +19,8 @@ Every dataflow you save is a project, listed on the projects page. There you ope
 ## The projects page
 
 **+ New Dataflow** opens an empty canvas, which becomes a project the first time you save it. The **Search projects…** box filters the list by name, the sort menu orders it by recent activity, name or creation date, and **Grid** and **List** switch the layout. Each card shows a thumbnail of the dataflow and a revision number that goes up with every save.
+
+The rail on the left filters the list: **Your dataflows**, **By source** (the Use cases, Examples and Tests that ship with Curio), **Tags**, **Data type**, **City**, **Topic** and **Complexity**. Tags name the tools a dataflow uses, such as Autark, Vega-Lite, GeoPandas or GPU compute, and **SCOUT** when it uses a SCOUT node, model or dataset. Curio sets them from the dataflow's nodes, code, models and datasets each time you save; add your own with **+ Category** under the dataflow's title on the canvas.
 
 Double-click a card to open it, or click it once to see its details, with **Open dataflow**, **Rename**, **Duplicate** and **Delete**; right-clicking a card offers the same actions. **Duplicate** adds a copy with "(copy)" after its name, and **Delete** asks you to confirm, then deletes the project permanently. From the canvas, **File > Go to projects** or the Curio logo brings you back here.
 
