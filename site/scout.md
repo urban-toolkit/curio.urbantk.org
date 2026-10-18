@@ -1,15 +1,16 @@
 ---
 title: "SCOUT examples"
-description: "Building shadows, flooding with nature-based solutions and weather-aware routing from SCOUT, as Curio packages, models and dataflows that compare scenarios."
+description: "Building shadows, park shade, flooding with nature-based solutions and weather-aware routing from SCOUT, as Curio packages, models and dataflows that compare scenarios."
 group: using
 order: 47
 card: { poster: /media/scout/flood-change.webp, alt: "A map of the change in flood depth between two scenarios" }
 deeper:
-  - { doc: docs/examples/24-scout-building-rasters.md, label: "Example 24: SCOUT building rasters" }
+  - { doc: docs/examples/24-scout-shadow-model-chicago-loop.md, label: "Example 24: SCOUT shadow model on Chicago Loop buildings" }
+  - { doc: docs/README.md, anchor: scout-scenario-studies, label: "The SCOUT scenario studies" }
   - { doc: packages/scout.raster-conversion@1/README.md, label: "The SCOUT Raster Conversion package" }
   - { doc: packages/model.scout.deep-umbra@1/README.md, label: "The Deep Umbra model package" }
   - { doc: packages/model.scout.weather-gnn@1/README.md, label: "The SCOUT weather GNN model package" }
-  - { doc: docs/USAGE.md, anchor: rasters, label: "Raster Calculator and Raster Statistics" }
+  - { doc: docs/USAGE.md, anchor: rasters, label: "Rasters: the Raster Calculator" }
   - { doc: docs/README.md, anchor: examples, label: "Example gallery" }
 ---
 
@@ -19,15 +20,15 @@ deeper:
 
 ## Find them
 
-The four dataflows are in the examples every account starts with, under **By source** on the projects page: "SCOUT building rasters" (example 24) under **Examples**, and FloodScenarios, ScoutShadows and WeatherRouting under **Tests**. On your own computer they come with `--with-examples`, which also installs the SCOUT packages.
+The five dataflows are in the examples every account starts with, under **By source** on the projects page: "SCOUT shadow model on Chicago Loop buildings" (example 24) under **Examples**, and four under **Tests**: "Chicago Loop shadow with towers removed or edited", "Lower Manhattan park shade with towers removed or capped", "Quad Cities flood depth, nature-based solutions and vulnerability" and "Routing around rain and wind in downtown Chicago". The **SCOUT** tag in the [rail](/projects-and-files/#the-projects-page) lists every dataflow that uses a SCOUT node, model or dataset. On your own computer they come with `--with-examples`, which also installs the SCOUT packages.
 
 ## Building rasters and shadows
 
 - **Rasterize Buildings**, from the SCOUT Raster Conversion package, turns a buildings layer with heights in metres into SCOUT's zoom-16 height tiles, side by side in one raster: a mosaic an Autark map draws.
 - **Accumulated Shadow**, the node of the Deep Umbra model package in the [Model Catalog](/model-catalog/), runs Deep Umbra, SCOUT's shadow model, on that mosaic. It gives the minutes of a day the ground spends in shadow, as a raster on the same grid; its **Season** widget picks spring, summer or winter.
-- **Raster Statistics** then gives the mean and median shadow over the ground.
+- A **Raster Calculator** then takes the shadow's statistics: its mean and median over the ground.
 
-Example 24, "SCOUT building rasters", runs them on the buildings of SCOUT's Chicago Loop example: the buildings in 3D, the height mosaic and the summer shadow on Autark maps, and the mean and median shadow.
+Example 24, "SCOUT shadow model on Chicago Loop buildings", runs them on the buildings of SCOUT's Chicago Loop example: the buildings in 3D, the height mosaic and the summer shadow on Autark maps, and the mean and median shadow.
 
 <GuideFigure src="/media/scout/buildings-3d.webp" alt="An Autark map of the Chicago Loop's buildings in 3D" caption="Example 24: the Loop&#x27;s buildings in 3D, colored by their height in metres." :w="532" :h="356" />
 
@@ -35,31 +36,55 @@ Example 24, "SCOUT building rasters", runs them on the buildings of SCOUT's Chic
 
 <GuideFigure src="/media/scout/summer-shadow.webp" alt="An Autark map of the summer shadow" caption="Deep Umbra&#x27;s summer shadow on the same grid: the minutes of the day each cell spends in shadow, darker where it is longer." :w="532" :h="356" />
 
-ScoutShadows compares two scenarios of the same buildings over a shared season, Existing and Towers removed (15 buildings taken out), each with an Autark map of its shadow: one Compare Scenarios node charts the mean shadow, and another maps its change.
+"Chicago Loop shadow with towers removed or edited" compares two scenarios of the same buildings over a shared season, Existing and Towers removed, each with an Autark map of its shadow. Both maps set the same `colorMapRange`, 0 to 720 minutes, so a minute of shadow has one color on both. In Towers removed, an [Interaction node](/scenarios/#remove-or-change-features) takes SCOUT's 15 buildings out by their `building_id`. Add edits to its log to remove, raise or lower more, and **Update results** runs the shadow again. One Compare Scenarios node charts the mean shadow, and another takes its change, which an Autark map draws.
+
+<GuideFigure src="/media/scout/shadow-existing.webp" alt="An Autark map of the Loop's accumulated shadow, Existing" caption="Existing: the accumulated shadow of the Loop&#x27;s buildings, colored from 0 to 720 minutes." :w="526" :h="350" />
+
+<GuideFigure src="/media/scout/shadow-towers.webp" alt="An Autark map of the Loop's accumulated shadow, Towers removed" caption="Towers removed, on the same range: the shadow without SCOUT&#x27;s 15 buildings." :w="526" :h="350" />
+
+<GuideFigure src="/media/scout/towers-lever.webp" alt="The Towers removed scenario's Interaction node with a log of two edits" caption="The Interaction node of Towers removed: SCOUT&#x27;s 15 buildings removed by building_id, and an edit added after them, Remove where height &gt; 200, for 20 removed in all." :w="560" :h="460" />
 
 Deep Umbra ships with Curio's repository and its Docker image; a pip install downloads its weights from GitHub the first time Accumulated Shadow runs.
 
+## Shade in Lower Manhattan's parks
+
+"Lower Manhattan park shade with towers removed or capped" measures the shade in the parks of the Financial District and City Hall with the towers around them removed or capped:
+
+- an Autark node loads Lower Manhattan's parks, and the buildings of a box about 300 m larger, from an OpenStreetMap extract;
+- Python nodes give every building part a height, keep the open-air parks, and mark the parts at least the **Tall building height** tall within the **Distance from a park** of any park, two [Parameter nodes](/widgets/#share-a-value-with-a-parameter-node) set to 60 m and 75 m;
+- in three scenarios, Existing, Towers removed and Height cap, Interaction nodes remove the marked parts or cut them to the Tall building height. Rasterize Buildings and Accumulated Shadow give the shadow over the season a third Parameter node sets, a Python node measures it in each park, and Autark maps draw the buildings in 3D and the shadow.
+
+One Compare Scenarios node charts each park's mean minutes of shadow, and four take each what-if's change in shadow, cell by cell and per park, which Autark maps draw.
+
+<GuideFigure src="/media/scout/park-change.webp" alt="An Autark map of the change in each park's mean shadow with the towers removed" caption="Towers removed: the change in each park&#x27;s mean shadow, in red, yellow and blue from -720 to 720 minutes." :w="526" :h="350" />
+
 ## Flooding and nature-based solutions
 
-FloodScenarios is SCOUT's flood study of the Quad Cities, built from Curio's own nodes:
+"Quad Cities flood depth, nature-based solutions and vulnerability" is SCOUT's flood study of the Quad Cities, built from Curio's own nodes:
 
 - three [Parameter nodes](/widgets/#share-a-value-with-a-parameter-node) set the period (2020 to 2040, 2050 to 2080 or 2080 to 2100) and the region's two corners, which start at the region of SCOUT's flood example;
 - Data Loading nodes read only that region's window of SCOUT's whole flood depth rasters, with and without nature-based solutions (NbS), and of its raster of where each solution would go;
-- in each of two scenarios, No NbS and NbS, a **Raster Calculator** takes the depth with NbS where the class is one of the solutions its widget checks, and the depth without NbS elsewhere, a **Raster Statistics** node gives the median and mean depth, and an Autark map draws the depth.
+- in each of two scenarios, No NbS and NbS, a **Raster Calculator** takes the depth with NbS where the class is one of the solutions its widget checks, and the depth without NbS elsewhere, a second takes the depth's median and mean, and an Autark map draws the depth. Both depth maps set the same `colorMapRange`, 0 to 11 m.
 
-Two Compare Scenarios nodes then map the size of the change in depth between No NbS and NbS, and chart each scenario's median depth. A pip install downloads the flood rasters from GitHub the first time a node reads them.
+Two Compare Scenarios nodes then take the size of the change in depth between No NbS and NbS, which an Autark map draws, and chart each scenario's median depth.
 
-<GuideFigure src="/media/scout/flood-change.webp" alt="A Compare Scenarios node mapping the size of the change in flood depth" caption="Depth change: the size of the change in flood depth between No NbS and NbS, cell by cell, over the region the Parameter nodes set." :w="560" :h="420" />
+<GuideFigure src="/media/scout/flood-change.webp" alt="An Autark map of the size of the change in flood depth" caption="Depth change: the size of the change in flood depth between No NbS and NbS, cell by cell, over the region the Parameter nodes set." :w="526" :h="350" />
 
 <GuideFigure src="/media/scout/flood-median.webp" alt="A Compare Scenarios node charting the median flood depth of two scenarios" caption="Median flood depth: the median depth of No NbS and NbS, as bars." :w="560" :h="420" />
 
-The **Raster Calculator** and **Raster Statistics** nodes work on any rasters on one grid, from a Python node or the Data Catalog. A Data Loading node reads only part of a large GeoTIFF when its `curio_load_data` call is given `bounds`.
+The dataflow also weighs the flood against social vulnerability. Two more Data Loading nodes read CDC/ATSDR's Social Vulnerability Index (SVI) for the census tracts and USGS's rivers, lakes and reservoirs from the Data Catalog, and a Data Transformation node keeps the tracts the rivers touch, which an Autark map draws by their SVI percentile. In each scenario, two Data Transformation nodes average the depth over each tract's land, the water left out, and over the riverside land in each period. Compare Scenarios then takes the size of the change in each tract's mean depth, which an Autark map draws, and charts vulnerability against depth and the mean depth by period.
+
+<GuideFigure src="/media/scout/flood-vulnerability.webp" alt="An Autark map of the riverside tracts by their SVI percentile" caption="The tracts the rivers touch, by their SVI percentile: darker where social vulnerability is higher." :w="526" :h="350" />
+
+<GuideFigure src="/media/scout/flood-period.webp" alt="A Compare Scenarios node charting the mean flood depth by period as grouped bars" caption="Depth by period: the riverside tracts&#x27; mean flood depth in each period, No NbS beside NbS." :w="560" :h="420" />
+
+A pip install downloads the flood rasters from GitHub the first time a node reads them. The **Raster Calculator** works on any rasters on one grid, from a Python node or the Data Catalog, cell by cell or as statistics. A Data Loading node reads only part of a large GeoTIFF when its `curio_load_data` call is given `bounds`.
 
 ## Weather-aware routing
 
 **Weather Routing**, the node of the SCOUT weather GNN model package in the [Model Catalog](/model-catalog/), finds routes between two points over a roads layer. It weighs each road by the weather that SCOUT's weather graph network predicts on it from SCOUT's WRF forecast in the Data Catalog. Its widgets set the origin and destination, the start time, the mode, the number of routes per factor, and the rain and wind weights; the forecast runs from 5 July 2025, 19:00, to 7 July, 19:00, Chicago time. It outputs the routes, which an Autark map draws, and a table of each route's duration, distance and rain, heat, wind and humidity exposure, which Compare Scenarios charts.
 
-WeatherRouting is SCOUT's weather routing example. An Autark node loads the roads of SCOUT's box in downtown Chicago, and one Weather Routing node finds SCOUT's two routes over them: the fastest, and the one its weather weights favor. Two scenarios, Fastest route and Weather-aware route, each keep one of them. An Autark map draws both routes over the roads in their scenarios' colors, and four Compare Scenarios nodes chart their duration, distance and rain and wind exposure.
+"Routing around rain and wind in downtown Chicago" is SCOUT's weather routing example. An Autark node loads the roads of SCOUT's box in downtown Chicago, and one Weather Routing node finds SCOUT's two routes over them: the fastest, and the one its weather weights favor. Two scenarios, Fastest route and Weather-aware route, each keep one of them. An Autark map draws both routes over the roads in their scenarios' colors, and four Compare Scenarios nodes chart their duration, distance and rain and wind exposure.
 
 <GuideFigure src="/media/scout/routes-map.webp" alt="An Autark map of two routes over the roads of SCOUT's box in downtown Chicago" caption="The Fastest route and the Weather-aware route over the roads of SCOUT's box, each in its scenario's color." :w="526" :h="350" />
 

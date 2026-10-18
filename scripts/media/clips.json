@@ -432,7 +432,7 @@
     {
       "id": "shadow-study",
       "page": "scenarios",
-      "take": "main-a391b90",
+      "take": "main-9712294",
       "name": "shadow-study",
       "crop": {
         "left": 236,
@@ -511,6 +511,102 @@
         "top": 0,
         "width": 526,
         "height": 350
+      }
+    },
+    {
+      "id": "charts-carbon",
+      "page": "scenarios",
+      "take": "main-9712294",
+      "name": "charts-building-carbon",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 680,
+        "height": 440
+      }
+    },
+    {
+      "id": "shadow-existing",
+      "page": "scout",
+      "take": "main-9712294",
+      "name": "shadow-map-existing",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 526,
+        "height": 350
+      }
+    },
+    {
+      "id": "shadow-towers",
+      "page": "scout",
+      "take": "main-9712294",
+      "name": "shadow-map-towers",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 526,
+        "height": 350
+      }
+    },
+    {
+      "id": "towers-lever",
+      "page": "scout",
+      "take": "main-9712294",
+      "name": "shadow-towers-lever",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 560,
+        "height": 460
+      }
+    },
+    {
+      "id": "park-change",
+      "page": "scout",
+      "take": "main-9712294",
+      "name": "park-change-towers",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 526,
+        "height": 350
+      }
+    },
+    {
+      "id": "flood-change",
+      "page": "scout",
+      "take": "main-9712294",
+      "name": "flood-change-map",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 526,
+        "height": 350
+      }
+    },
+    {
+      "id": "flood-vulnerability",
+      "page": "scout",
+      "take": "main-9712294",
+      "name": "flood-vulnerability-map",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 526,
+        "height": 350
+      }
+    },
+    {
+      "id": "flood-period",
+      "page": "scout",
+      "take": "main-9712294",
+      "name": "flood-depth-period",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 560,
+        "height": 420
       }
     }
   ]
