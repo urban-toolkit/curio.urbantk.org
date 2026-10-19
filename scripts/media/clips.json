@@ -360,13 +360,13 @@
     {
       "id": "parameter",
       "page": "widgets",
-      "take": "retake1",
+      "take": "main-3ca164c",
       "name": "parameter-node",
       "crop": {
-        "left": 455,
-        "top": 695,
-        "width": 1190,
-        "height": 360
+        "left": 0,
+        "top": 0,
+        "width": 360,
+        "height": 230
       }
     },
     {
@@ -492,7 +492,7 @@
     {
       "id": "add-widget",
       "page": "widgets",
-      "take": "main-a391b90",
+      "take": "main-3ca164c",
       "name": "add-widget",
       "crop": {
         "left": 0,
@@ -504,8 +504,20 @@
     {
       "id": "widgets-tab",
       "page": "widgets",
-      "take": "main-a391b90",
+      "take": "main-3ca164c",
       "name": "widgets-tab",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 526,
+        "height": 350
+      }
+    },
+    {
+      "id": "code-chips",
+      "page": "widgets",
+      "take": "main-3ca164c",
+      "name": "code-chips",
       "crop": {
         "left": 0,
         "top": 0,
