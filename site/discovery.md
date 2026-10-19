@@ -62,8 +62,8 @@ Mapillary and Google Street View need a key of your own. The City of Chicago por
    - **Socrata app token**: sign up at [evergreen.data.socrata.com](https://evergreen.data.socrata.com/signup) and create an app token.
 2. **Open API Settings** from the top bar. On the Projects and catalog pages it opens the settings page; on the canvas and the dashboard it opens as a drawer on the right. A source's **Add yours in API Settings**, in its details, opens it on that key's form, so you can skip the next two steps.
 3. On the **API keys** tab, click **Add configuration**.
-4. In **Kind**, under **Data source**, choose the key's name: **Socrata app token**, **Hugging Face token**, **Google Maps API key** or **Mapillary access token**. The form says which sources use it.
+4. In **Kind**, under **Data source**, choose the key's name. It lists the key of every source on this Curio that takes one: with the sources Curio ships, **Socrata app token**, **Hugging Face token**, **Google Maps API key** and **Mapillary access token**. The form says which sources use it.
 5. **Paste the key** and click **Save**. A line confirms it, such as *Saved the Mapillary access token.*, and the key's row shows **saved** in its **Key** column.
 6. **Check the card.** In the Discovery Catalog, the source's card reads **Token set** as soon as you save, and its rows download.
 
-A key belongs to your account and is sent only to its own source. Curio shows whether a key is set, never its value; the key's row offers **Replace** and **Remove**. If the server provides a key for everyone, the list shows it as **set by this Curio**, and **Override** saves your own in its place. On a server started with `--deploy`, guest accounts cannot save a key.
+A key belongs to your account and is sent only to the sources that use it. Curio shows whether a key is set, never its value; the key's row offers **Replace** and **Remove**. If the server provides a key for everyone, the list shows it as **set by this Curio**, and **Override** saves your own in its place. On a server started with `--deploy`, guest accounts cannot save a key.
