@@ -456,7 +456,7 @@
     {
       "id": "compare-chart",
       "page": "scenarios",
-      "take": "main-a391b90",
+      "take": "main-45d55da",
       "name": "compare-chart",
       "crop": {
         "left": 0,
@@ -468,7 +468,7 @@
     {
       "id": "compare-difference",
       "page": "scenarios",
-      "take": "main-a391b90",
+      "take": "main-45d55da",
       "name": "compare-difference",
       "crop": {
         "left": 0,
@@ -586,6 +586,18 @@
       }
     },
     {
+      "id": "flood-median",
+      "page": "scout",
+      "take": "main-45d55da",
+      "name": "flood-median",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 560,
+        "height": 420
+      }
+    },
+    {
       "id": "flood-vulnerability",
       "page": "scout",
       "take": "main-9712294",
@@ -602,6 +614,18 @@
       "page": "scout",
       "take": "main-9712294",
       "name": "flood-depth-period",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 560,
+        "height": 420
+      }
+    },
+    {
+      "id": "routing-duration",
+      "page": "scout",
+      "take": "main-45d55da",
+      "name": "routing-duration",
       "crop": {
         "left": 0,
         "top": 0,
