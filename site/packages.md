@@ -6,6 +6,7 @@ order: 20
 deeper:
   - { doc: docs/EXTENDING.md, label: "Extending Curio with node packages" }
   - { doc: docs/EXTENDING.md, anchor: 1-anatomy-of-a-package, label: "Anatomy of a package" }
+  - { doc: docs/AUTHORING-NODES.md, anchor: tags-and-data-types, label: "Tags and data types" }
   - { doc: docs/AUTHORING-NODES.md, anchor: submitting-your-package, label: "Submitting your package" }
   - { doc: docs/NODE-CATALOG.md, label: "Node Catalog reference" }
 ---
@@ -16,12 +17,24 @@ A package is how Curio ships nodes: a folder named `<packageId>@<major>`, such a
 
 ## What a package contains
 
-- `manifest.json`: the id, name, publisher, version and compatibility, the dependencies, and one entry per node template with its label, category, input and output port types, editor, and the behavior key that implements it. Its schema is `docs/schemas/node-package.v4.json`.
+- `manifest.json`: the id, name, publisher, version and compatibility, the dependencies, and one entry per node template with its label, icon, category, input and output port types, editor, and the behavior key that implements it. Its schema is `docs/schemas/node-package.v4.json`.
 - `sources/`: one starter file per template, or the TypeScript hooks of a custom-UI node.
 - `scripts/`: the compiled `behaviors.js` that a custom-UI node needs, named by the manifest's `behaviorScript`.
 - `models/`: in a model package, the trained model's weights (see [Model Catalog](/model-catalog/)).
 - `README.md`, shown in the catalog, and `LICENSE`.
 - `integrity.json`: a SHA-256 hash of every other file, written on install. After editing a package in place, regenerate it (see [Write a node](/authoring-nodes/)).
+
+## Icons, tags and data types
+
+A template's `iconRef` names its icon in the palette: any icon of Font Awesome's free solid or brands set, by the name [fontawesome.com](https://fontawesome.com/icons) gives it, such as `fa-solid:tree` or `fa-brands:github`. A name Font Awesome does not have shows a cube.
+
+The [projects page](/projects-and-files/#the-projects-page) files each dataflow under tags and data types. Curio finds most of them in the dataflow itself, such as Pandas for code that imports it. For what your nodes bring that their code does not show, declare `dataflowCategories`, at the top of the manifest for every node of the package, or in a template for its nodes:
+
+```json
+"dataflowCategories": { "tags": ["Hydrology"], "dataTypes": ["Rasters"] }
+```
+
+A dataflow with one of those nodes is then under Hydrology and Rasters. A name the rail already lists, such as Rasters, files the dataflow there, and a new name, such as Hydrology, adds an entry. A model package declares them the same way.
 
 ## Dependencies
 
