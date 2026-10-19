@@ -10,6 +10,7 @@ deeper:
   - { doc: docs/USAGE.md, anchor: comparing-scenarios, label: "Comparing scenarios" }
   - { doc: docs/examples/06-back-bay-road-sunlight.md, label: "Example 06: Back Bay road sunlight when buildings change" }
   - { doc: docs/README.md, anchor: charts-that-compare-scenarios, label: "Nine ways to chart scenario comparisons" }
+  - { doc: packages/scout.comparison@1/README.md, label: "The SCOUT Comparison package" }
 ---
 
 # Scenarios
@@ -92,6 +93,8 @@ To draw a raster's or a layer's difference on a map, connect the node to an [Aut
 
 To map each scenario's outcome side by side, give their maps the same `colorMapRange`, `[low, high]`, and a value has one color on all of them.
 
+A [Vega-Lite node](/visualization/#vega-lite-charts) that reads a Compare Scenarios node's output on its first input draws the scenarios as the **Chart** tab does: a color, fill or stroke by `scenario_name` is in the colors of their boxes, and an axis, an offset or a facet by it follows the order of the Compare node's inputs, whatever the spec writes for that column. When a scenario is renamed or recolored, the chart is drawn again with no run, and a selection made in it stays. For comparisons the **Chart** tab does not draw, the [SCOUT Comparison package](/scout/#charts-that-compare-scenarios) has charts made to go after it.
+
 <GuideFigure src="/media/scenarios/compare-chart.webp" alt="A Compare Scenarios node in Chart, with two lollipops" caption="Compare Scenarios in Chart: the mean sunlight of Baseline and Twice as tall as lollipops. Above it, the node warns that one scenario reads fixed context the other does not." :w="560" :h="420" />
 
 <GuideFigure src="/media/scenarios/compare-difference.webp" alt="A Compare Scenarios node in Difference" caption="Compare Scenarios in Difference, with Change set to Signed: the node holds two rasters' difference and says to draw it with an Autark node after it." :w="560" :h="124" />
@@ -104,6 +107,6 @@ The **What differs** tab lists the levers that differ between the scenarios: the
 
 Example 06, "Back Bay road sunlight when buildings change", has three scenarios over one loader: Baseline, Twice as tall (its `height_factor` widget set to 2), and Two towers removed (an Interaction node takes out two towers). Its two Compare Scenarios nodes chart their mean road sunlight and take the sunlight each road loses, which an Autark map draws in red, yellow and blue from -360 to 360 minutes. The [SCOUT examples](/scout/) compare scenarios of shadows, park shade, flooding and routes.
 
-"Nine ways to chart scenario comparisons", under **Tests** on the projects page, charts the scenarios of nine example tables from the Data Catalog, each a different way. Compare Scenarios draws two of them itself, as grouped bars and as a table. A Vega-Lite node after it draws each of the others: lines with a band, curves by state, bars with error bars, a strip of ticks per scenario, stacked bars with totals, donuts and a matrix of weights.
+"Nine ways to chart scenario comparisons", under **Tests** on the projects page, charts the scenarios of nine example tables from the Data Catalog, each a different way. Compare Scenarios draws two of them itself, as grouped bars and as a table. A chart of the [SCOUT Comparison package](/scout/#charts-that-compare-scenarios) after it draws each of the others, with its columns set in its **Widgets** tab: **Lines with a band**, **Curves by group**, **Bars with error bars**, **Ensemble strips**, **Stacked bars with totals**, **Donuts** and **Weighted matrix**.
 
-<GuideFigure src="/media/scenarios/charts-carbon.webp" alt="Stacked bars of two building frames' carbon by life-cycle stage, with their totals" caption="From Nine ways to chart scenario comparisons: a Vega-Lite node after a Compare Scenarios node stacks the carbon of a concrete frame and a timber frame by life-cycle stage, with each total on top." :w="680" :h="440" />
+<GuideFigure src="/media/scenarios/charts-carbon.webp" alt="Stacked bars of two building frames' carbon by life-cycle stage, with their totals" caption="From Nine ways to chart scenario comparisons: Stacked bars with totals, from SCOUT Comparison, stacks the carbon of a concrete frame and a timber frame by life-cycle stage after a Compare Scenarios node, with each total on top and each frame&#x27;s name in its scenario&#x27;s color." :w="680" :h="440" />

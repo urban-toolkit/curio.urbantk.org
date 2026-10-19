@@ -8,6 +8,7 @@ deeper:
   - { doc: docs/examples/24-scout-shadow-model-chicago-loop.md, label: "Example 24: SCOUT shadow model on Chicago Loop buildings" }
   - { doc: docs/README.md, anchor: scout-scenario-studies, label: "The SCOUT scenario studies" }
   - { doc: packages/scout.rasters@1/README.md, label: "The SCOUT Rasters package" }
+  - { doc: packages/scout.comparison@1/README.md, label: "The SCOUT Comparison package" }
   - { doc: packages/model.scout.deep-umbra@1/README.md, label: "The Deep Umbra model package" }
   - { doc: packages/model.scout.weather-gnn@1/README.md, label: "The SCOUT weather GNN model package" }
   - { doc: docs/USAGE.md, anchor: rasters, label: "Rasters: the Raster Calculator" }
@@ -91,3 +92,13 @@ A pip install downloads the flood rasters from GitHub the first time a node read
 <GuideFigure src="/media/scout/routes-map.webp" alt="An Autark map of two routes over the roads of SCOUT's box in downtown Chicago" caption="The Fastest route and the Weather-aware route over the roads of SCOUT's box, each in its scenario's color." :w="526" :h="350" />
 
 <GuideFigure src="/media/scout/routing-duration.webp" alt="A Compare Scenarios node charting the two routes' durations as bars" caption="Duration: each route's mean duration in minutes, as bars in its scenario's color." :w="560" :h="420" />
+
+## Charts that compare scenarios
+
+The SCOUT Comparison package holds charts to connect after a [Compare Scenarios](/scenarios/#compare-scenarios) node, for comparisons its **Chart** tab does not draw: **Lines with a band**, **Curves by group**, **Bars with error bars**, **Ensemble strips**, **Stacked bars with totals**, **Donuts** and **Weighted matrix**. Each is a Vega-Lite node with a spec of its own, and draws the scenarios in the colors of their boxes, in the order of the Compare node's inputs.
+
+1. Click **Add to project** on the SCOUT Comparison card in the [Node Catalog drawer](/node-catalog/#add-a-package-to-a-project). Its charts are then under **SCOUT Comparison** in the Tools panel's **Node Catalog** dropdown.
+2. Drag a chart onto the canvas and connect a Compare Scenarios node to it.
+3. In its **Widgets** tab, set the columns it plots: each column widget, such as `y` or `part`, takes the name of a column of the Compare node's table. A new chart's widgets hold their own names, so the chart says which column the table lacks until you set them.
+
+In "Nine ways to chart scenario comparisons", under **Tests** on the projects page, each of these charts draws one example table (see [Scenarios](/scenarios/#in-the-examples)).
