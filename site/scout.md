@@ -26,9 +26,9 @@ The five dataflows are in the examples every account starts with, under **By sou
 
 - **Rasterize Buildings**, from the SCOUT Rasters package, turns a buildings layer with heights in metres into SCOUT's zoom-16 height tiles, side by side in one raster: a mosaic an Autark map draws.
 - **Accumulated Shadow**, the node of the Deep Umbra model package in the [Model Catalog](/model-catalog/), runs Deep Umbra, SCOUT's shadow model, on that mosaic. It gives the minutes of a day the ground spends in shadow, as a raster on the same grid; its **Season** widget picks spring, summer or winter.
-- A **Raster Calculator**, SCOUT Rasters' other node, then takes the shadow's statistics: its mean and median over the ground.
+- A **Raster Calculator**, also from SCOUT Rasters, then takes the shadow's statistics: its mean and median over the ground.
 
-To use SCOUT Rasters in a dataflow of your own, click **Add to project** on its card in the [Node Catalog drawer](/node-catalog/#add-a-package-to-a-project). Both of its nodes are then under **SCOUT Rasters** in the Tools panel's **Node Catalog** dropdown.
+To use SCOUT Rasters in a dataflow of your own, click **Add to project** on its card in the [Node Catalog drawer](/node-catalog/#add-a-package-to-a-project). Its nodes are then under **SCOUT Rasters** in the Tools panel's **Node Catalog** dropdown.
 
 Example 24, "SCOUT shadow model on Chicago Loop buildings", runs them on the buildings of SCOUT's Chicago Loop example: the buildings in 3D, the height mosaic and the summer shadow on Autark maps, and the mean and median shadow.
 
