@@ -56,7 +56,7 @@ cd utk_curio/frontend/urban-workflows
 npm run build:packages
 ```
 
-Before the first build, paste the entry the scaffold prints into `webpack.packages.config.js`, then add the package to a dataflow from the Node Catalog drawer. Curio runs your installed copy, not the files in `packages/`, and refreshes that copy when those files change, so reload the page after each rebuild. The `curio.example-ui@1` package, a column filter, is the example to read and fork.
+`npm run build:packages` compiles the `sources/index.tsx` of every package under `packages/` whose manifest declares `behaviorScript`, as the scaffold's does, into the file `behaviorScript` names. After the first build, add the package to a dataflow from the Node Catalog drawer. Curio runs your installed copy, not the files in `packages/`, and refreshes that copy when those files change, so reload the page after each rebuild. The `curio.example-ui@1` package, a column filter, is the example to read and fork.
 
 <GuideFigure src="/media/authoring-nodes/column-filter.webp" alt="A Column Filter node next to a Data Loading node" caption="The Column Filter from the example package, wired to a Data Loading node, names the numeric column it found and counts the rows that match." :w="1100" :h="440" />
 
