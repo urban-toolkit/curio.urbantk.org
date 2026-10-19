@@ -95,7 +95,7 @@ A pip install downloads the flood rasters from GitHub the first time a node read
 
 ## Charts that compare scenarios
 
-The SCOUT Comparison package holds charts to connect after a [Compare Scenarios](/scenarios/#compare-scenarios) node, for comparisons its **Chart** tab does not draw: **Lines with a band**, **Curves by group**, **Bars with error bars**, **Ensemble strips**, **Stacked bars with totals**, **Donuts** and **Weighted matrix**. Each is a Vega-Lite node with a spec of its own, and draws the scenarios in the colors of their boxes, in the order of the Compare node's inputs.
+The SCOUT Comparison package holds charts to connect after a [Compare Scenarios](/scenarios/#compare-scenarios) node, for comparisons its **Chart** tab does not draw: **Lines with a band**, **Curves by group**, **Bars with error bars**, **Ensemble strips**, **Stacked bars with totals**, **Donuts** and **Weighted matrix**. Each is a Vega-Lite node with a spec of its own. Whatever it colors by scenario, a mark or a name, is in the color of that scenario's box, and the scenarios follow the order of the Compare node's inputs.
 
 1. Click **Add to project** on the SCOUT Comparison card in the [Node Catalog drawer](/node-catalog/#add-a-package-to-a-project). Its charts are then under **SCOUT Comparison** in the Tools panel's **Node Catalog** dropdown.
 2. Drag a chart onto the canvas and connect a Compare Scenarios node to it.
