@@ -45,7 +45,7 @@ A **Parameter** node holds one widget that any node of the dataflow can read, su
 
 A Parameter node has no connections. It lists the nodes whose code uses it, and changing its value marks them as needing a new run, or runs them when **Run stale nodes automatically** is on. **Edit** renames it, and their code follows the new name. Pinned to the [dashboard](/dashboards/), it shows its value.
 
-<GuideFigure src="/media/widgets/parameter.webp" alt="A location Parameter node beside a Data Loading node that reads it" caption="From the Quad Cities flood dataflow: the Top-left corner Parameter node, a location, lists the three nodes whose code uses it. Beside it, a Data Loading node shows the shared tags above its code and the amber chips in it." :w="1190" :h="360" />
+<GuideFigure src="/media/widgets/parameter.webp" alt="A location Parameter node beside a Data Loading node that reads it" caption="From the Quad Cities flood dataflow: the Top-left corner Parameter node, a location, lists the nodes whose code uses it. Beside it, a Data Loading node shows the shared tags above its code and the amber chips in it." :w="1190" :h="360" />
 
 ## Hand a node what you selected
 
