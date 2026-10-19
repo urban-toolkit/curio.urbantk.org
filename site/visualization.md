@@ -42,7 +42,7 @@ An **Autark** node takes one JSON specification, called an UrbanSpec: `data` loa
 { "map": { "layerRefs": [{ "dataRef": "input_0", "getFnv": "mean", "getFnvType": "quantitative" }] } }
 ```
 
-A raster, such as a GeoTIFF from the Data Catalog or the output of a Raster Calculator, draws as a raster layer colored by one of its bands, `band_1`, `band_2` and so on: `{ "dataRef": "input_0", "getFnv": "band_1" }`.
+A raster, such as a GeoTIFF from the Data Catalog or the output of a [Raster Calculator](/scout/#building-rasters-and-shadows), draws as a raster layer colored by one of its bands, `band_1`, `band_2` and so on: `{ "dataRef": "input_0", "getFnv": "band_1" }`.
 
 A layer's `title` names it in the legend, and `color` draws it in one color. A line layer takes a `width` in meters, a polygon layer a `stroke` color, and a raster layer `colorMapReverse` and `colorMapCenter` to reverse its color scheme or center it on a value. A layer colored by a number runs its colors from its lowest value to its highest, or over `colorMapRange`, `[low, high]`: maps that set the same range color a value alike. A layer that names a scenario of the dataflow by its id, `"scenario": "<id>"`, is drawn in that scenario's color.
 

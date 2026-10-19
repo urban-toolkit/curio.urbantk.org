@@ -14,7 +14,6 @@ deeper:
   - { doc: docs/USAGE.md, anchor: keys-for-node-code, label: "Keys for node code" }
   - { doc: docs/USAGE.md, anchor: spatial-join-node, label: "The Spatial Join node" }
   - { doc: docs/examples/25-spatial-join-operations.md, label: "Example: every Spatial Join operation" }
-  - { doc: docs/USAGE.md, anchor: rasters, label: "Rasters: the Raster Calculator" }
 ---
 
 # Dataflows and nodes
@@ -41,7 +40,6 @@ Click the title at the top to rename the dataflow. The save state in the top bar
 - **Parameter** holds one value that any node's code can read (see [Widgets and parameters](/widgets/)).
 - **Spatial Join** pairs the rows of two inputs whose shapes meet, by the operation you pick: intersects, within, contains, touches, overlaps, crosses or nearest. It outputs one row per pair, or its second input's rows, each with a count of its pairs.
 - **Data Export** downloads its input as CSV, GeoJSON or JSON, with the **Download** button in its **Widgets** tab.
-- **Raster Calculator** works on rasters on one grid: cell by cell, such as one raster minus another, or a raster's statistics, its mean, median, minimum, maximum and count. Its starter code lists its operations.
 - **Interaction** removes or changes features of a layer, by hand or by a condition (see [Scenarios](/scenarios/#remove-or-change-features)), and **Compare Scenarios** compares the outcomes of [scenarios](/scenarios/).
 - **Vega-Lite**, **Autark** and **Simple View** draw [charts, maps, tables and images](/visualization/).
 - **Note** holds a title and a short text that explain a part of the dataflow (see [Notes](#notes)).

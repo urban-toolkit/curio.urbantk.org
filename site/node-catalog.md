@@ -12,7 +12,7 @@ deeper:
 
 # Nodes and packages
 
-Every node on the canvas comes from a package: a small bundle of node types, with the code and libraries they need. The built-in nodes are one package that every project has, the Node Catalog holds more, and you can save your own. Trained models and the nodes that run them come as model packages, in the [Model Catalog](/model-catalog/).
+Every node on the canvas comes from a package: a small bundle of node types, with the code and libraries they need. The built-in nodes are one package that every project has, the Node Catalog holds more, and you can save your own. A node from any package but the built-in one shows a **PACKAGE** pill in its header. Trained models and the nodes that run them come as model packages, in the [Model Catalog](/model-catalog/).
 
 ## Add a package to a project
 

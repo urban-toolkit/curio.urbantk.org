@@ -7,7 +7,7 @@ card: { poster: /media/scout/flood-change.webp, alt: "A map of the change in flo
 deeper:
   - { doc: docs/examples/24-scout-shadow-model-chicago-loop.md, label: "Example 24: SCOUT shadow model on Chicago Loop buildings" }
   - { doc: docs/README.md, anchor: scout-scenario-studies, label: "The SCOUT scenario studies" }
-  - { doc: packages/scout.raster-conversion@1/README.md, label: "The SCOUT Raster Conversion package" }
+  - { doc: packages/scout.rasters@1/README.md, label: "The SCOUT Rasters package" }
   - { doc: packages/model.scout.deep-umbra@1/README.md, label: "The Deep Umbra model package" }
   - { doc: packages/model.scout.weather-gnn@1/README.md, label: "The SCOUT weather GNN model package" }
   - { doc: docs/USAGE.md, anchor: rasters, label: "Rasters: the Raster Calculator" }
@@ -24,9 +24,11 @@ The five dataflows are in the examples every account starts with, under **By sou
 
 ## Building rasters and shadows
 
-- **Rasterize Buildings**, from the SCOUT Raster Conversion package, turns a buildings layer with heights in metres into SCOUT's zoom-16 height tiles, side by side in one raster: a mosaic an Autark map draws.
+- **Rasterize Buildings**, from the SCOUT Rasters package, turns a buildings layer with heights in metres into SCOUT's zoom-16 height tiles, side by side in one raster: a mosaic an Autark map draws.
 - **Accumulated Shadow**, the node of the Deep Umbra model package in the [Model Catalog](/model-catalog/), runs Deep Umbra, SCOUT's shadow model, on that mosaic. It gives the minutes of a day the ground spends in shadow, as a raster on the same grid; its **Season** widget picks spring, summer or winter.
-- A **Raster Calculator** then takes the shadow's statistics: its mean and median over the ground.
+- A **Raster Calculator**, SCOUT Rasters' other node, then takes the shadow's statistics: its mean and median over the ground.
+
+To use SCOUT Rasters in a dataflow of your own, click **Add to project** on its card in the [Node Catalog drawer](/node-catalog/#add-a-package-to-a-project). Both of its nodes are then under **SCOUT Rasters** in the Tools panel's **Node Catalog** dropdown.
 
 Example 24, "SCOUT shadow model on Chicago Loop buildings", runs them on the buildings of SCOUT's Chicago Loop example: the buildings in 3D, the height mosaic and the summer shadow on Autark maps, and the mean and median shadow.
 
@@ -60,7 +62,7 @@ One Compare Scenarios node charts each park's mean minutes of shadow, and four t
 
 ## Flooding and nature-based solutions
 
-"Quad Cities flood depth, nature-based solutions and vulnerability" is SCOUT's flood study of the Quad Cities, built from Curio's own nodes:
+"Quad Cities flood depth, nature-based solutions and vulnerability" is SCOUT's flood study of the Quad Cities, built from Curio's own nodes and SCOUT Rasters' Raster Calculator:
 
 - three [Parameter nodes](/widgets/#share-a-value-with-a-parameter-node) set the period (2020 to 2040, 2050 to 2080 or 2080 to 2100) and the region's two corners, which start at the region of SCOUT's flood example;
 - Data Loading nodes read only that region's window of SCOUT's whole flood depth rasters, with and without nature-based solutions (NbS), and of its raster of where each solution would go;
