@@ -93,22 +93,22 @@
       "poster": 42.5
     },
     {
-      "id": "provenance-graph",
+      "id": "provenance-history",
       "page": "provenance",
-      "take": "walk1",
+      "take": "provenance1",
       "source": "walkthrough:provenance-graph-navigation",
-      "from": 4.5,
-      "to": 14.3,
-      "poster": 12.0
+      "from": 14.0,
+      "to": 23.8,
+      "poster": 20.5
     },
     {
       "id": "provenance-revert",
       "page": "provenance",
-      "take": "walk1",
+      "take": "provenance1",
       "source": "walkthrough:provenance-reverting-to-a-previous-version",
-      "from": 8.0,
-      "to": 22.0,
-      "poster": 21.0
+      "from": 42.0,
+      "to": 56.3,
+      "poster": 47.0
     },
     {
       "id": "datacatalog",
@@ -643,6 +643,30 @@
         "top": 0,
         "width": 560,
         "height": 420
+      }
+    },
+    {
+      "id": "branch",
+      "page": "provenance",
+      "take": "main-7fa46a9",
+      "name": "provenance-branch",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 520,
+        "height": 720
+      }
+    },
+    {
+      "id": "node-runs",
+      "page": "provenance",
+      "take": "main-7fa46a9",
+      "name": "node-provenance-list",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 520,
+        "height": 720
       }
     }
   ]

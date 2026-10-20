@@ -27,7 +27,7 @@ Open the hosted instance and choose **Create account** on the sign-in page. A na
 
 ## Create a dataflow
 
-On the **Projects** page, click **+ New Dataflow**. The canvas opens with the built-in nodes in the rail on the left (hover a tile to see its name) and the top bar along the top: the **File**, **View** and **Share** menus, **Provenance**, the save state, and a button for each catalog. Click the dataflow's name at the top to rename it.
+On the **Projects** page, click **+ New Dataflow**. The canvas opens with the built-in nodes in the rail on the left (hover a tile to see its name) and the top bar along the top: the **File**, **View** and **Share** menus, the save state, and a button for each catalog. Click the dataflow's name at the top to rename it.
 
 <LoopVideo src="/media/dataflows/canvas.mp4" poster="/media/dataflows/canvas.webp" label="A new, empty dataflow: the tiles of the built-in node rail are pointed out one by one, and the File menu opens." :w="1280" :h="768" />
 
