@@ -294,13 +294,13 @@
     {
       "id": "in-project",
       "page": "scenarios",
-      "take": "retake1",
+      "take": "main-03343c5",
       "name": "scenarios-in-project",
       "crop": {
-        "left": 0,
+        "left": 761,
         "top": 0,
-        "width": 1920,
-        "height": 1030
+        "width": 519,
+        "height": 520
       }
     },
     {
@@ -432,13 +432,13 @@
     {
       "id": "shadow-study",
       "page": "scenarios",
-      "take": "main-9712294",
+      "take": "main-03343c5",
       "name": "shadow-study",
       "crop": {
-        "left": 236,
-        "top": 220,
-        "width": 960,
-        "height": 400
+        "left": 390,
+        "top": 160,
+        "width": 670,
+        "height": 520
       }
     },
     {
@@ -454,39 +454,27 @@
       }
     },
     {
-      "id": "compare-chart",
+      "id": "chart-header",
       "page": "scenarios",
-      "take": "main-45d55da",
-      "name": "compare-chart",
-      "crop": {
-        "left": 0,
-        "top": 0,
-        "width": 560,
-        "height": 420
-      }
-    },
-    {
-      "id": "compare-difference",
-      "page": "scenarios",
-      "take": "main-45d55da",
-      "name": "compare-difference",
-      "crop": {
-        "left": 0,
-        "top": 0,
-        "width": 560,
-        "height": 124
-      }
-    },
-    {
-      "id": "compare-difference-map",
-      "page": "scenarios",
-      "take": "main-a391b90",
-      "name": "compare-difference-map",
+      "take": "pr1054-fe97740",
+      "name": "chart-header",
       "crop": {
         "left": 0,
         "top": 0,
         "width": 526,
         "height": 350
+      }
+    },
+    {
+      "id": "sunlight-change",
+      "page": "scenarios",
+      "take": "main-03343c5",
+      "name": "sunlight-change",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 588,
+        "height": 496
       }
     },
     {
@@ -600,13 +588,13 @@
     {
       "id": "flood-median",
       "page": "scout",
-      "take": "main-45d55da",
+      "take": "main-03343c5",
       "name": "flood-median",
       "crop": {
         "left": 0,
         "top": 0,
-        "width": 560,
-        "height": 420
+        "width": 526,
+        "height": 350
       }
     },
     {
@@ -624,25 +612,25 @@
     {
       "id": "flood-period",
       "page": "scout",
-      "take": "main-9712294",
+      "take": "main-03343c5",
       "name": "flood-depth-period",
       "crop": {
         "left": 0,
         "top": 0,
-        "width": 560,
-        "height": 420
+        "width": 526,
+        "height": 350
       }
     },
     {
       "id": "routing-duration",
       "page": "scout",
-      "take": "main-45d55da",
+      "take": "main-03343c5",
       "name": "routing-duration",
       "crop": {
         "left": 0,
         "top": 0,
-        "width": 560,
-        "height": 420
+        "width": 526,
+        "height": 350
       }
     },
     {

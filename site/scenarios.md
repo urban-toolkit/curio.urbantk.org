@@ -1,16 +1,18 @@
 ---
 title: "Scenarios"
-description: "Keep alternatives of a dataflow as scenarios, change their levers, and compare their outcomes in a Compare Scenarios node."
+description: "Keep alternatives of a dataflow as scenarios, change their levers, and compare their outcomes in charts and maps drawn in the scenarios' colors."
 group: using
 order: 45
-card: { poster: /media/scenarios/compare-chart.webp, alt: "A Compare Scenarios node charting the mean sunlight of two scenarios" }
+card: { poster: /media/scenarios/shadow-study.webp, alt: "Example 06 on the canvas with three scenario frames" }
 deeper:
   - { doc: docs/USAGE.md, anchor: scenarios, label: "Scenarios in the usage guide" }
   - { doc: docs/USAGE.md, anchor: the-interaction-node, label: "The Interaction node" }
   - { doc: docs/USAGE.md, anchor: comparing-scenarios, label: "Comparing scenarios" }
+  - { doc: docs/USAGE.md, anchor: every-input-in-one-dataset, label: "Every input in one dataset" }
+  - { doc: docs/USAGE.md, anchor: scenario-colors-and-order, label: "Scenario colors and order" }
   - { doc: docs/examples/06-back-bay-road-sunlight.md, label: "Example 06: Back Bay road sunlight when buildings change" }
   - { doc: docs/README.md, anchor: charts-that-compare-scenarios, label: "Nine ways to chart scenario comparisons" }
-  - { doc: packages/scout.comparison@1/README.md, label: "The SCOUT Comparison package" }
+  - { doc: packages/curio.scout@1/README.md, label: "The Scout package" }
 ---
 
 # Scenarios
@@ -23,7 +25,7 @@ A scenario is a named selection of a dataflow's nodes, or the whole dataflow, ke
 
 A node belongs to one scenario at most.
 
-<GuideFigure src="/media/scenarios/shadow-study.webp" alt="Example 06 on the canvas with three scenario frames" caption="Example 06 on the canvas: a shared loader and Data Pool feed three scenarios, each in its own color inside a frame. Two Compare Scenarios nodes chart their mean sunlight and take the sunlight each road loses, which an Autark map draws." :w="960" :h="400" />
+<GuideFigure src="/media/scenarios/shadow-study.webp" alt="Example 06 on the canvas with three scenario frames" caption="Example 06 on the canvas: a shared loader and Data Pool feed three scenarios, each in its own color inside a frame. Scout's Bars charts the mean sunlight of their roads, and a Python node takes the sunlight each road loses, which an Autark map draws." :w="670" :h="520" />
 
 ## Make a scenario
 
@@ -45,11 +47,11 @@ The dataflow's scenarios are in the [Scenario Catalog](/scenario-catalog/) drawe
 
 **View details** on a card renames, recolors and describes the scenario, and lists its fixed context, levers and outcomes. Pointing at a card marks the scenario's fixed context on the canvas.
 
-<GuideFigure src="/media/scenarios/in-project.webp" alt="Example 06 with the Scenario Catalog drawer's In project tab open" caption="The In project tab beside example 06: a card for each scenario, with its commands. Pointing at Baseline marks the Data Pool, the fixed context it reads." :w="1600" :h="858" />
+<GuideFigure src="/media/scenarios/in-project.webp" alt="The Scenario Catalog drawer's In project tab with one scenario's card" caption="The In project tab: Save selection as scenario and Duplicate as scenario on top, then a card for each of the dataflow's scenarios, here Twice as tall, with its commands." :w="519" :h="520" />
 
 A collapsed scenario is one box in its color that lists its fixed context and its outcomes with their latest output. Its connections are drawn to the box, and dragging the box moves it. Double-click the box to expand it in place. A collapsed scenario's nodes still run with **Run All**, and the context they share runs once.
 
-<GuideFigure src="/media/scenarios/collapsed.webp" alt="The Baseline scenario collapsed into one box" caption="Baseline collapsed into one box: the Data Pool it reads, and its outcome, Roads by sunlight, done. The connection from the pool and those to the Compare Scenarios nodes are drawn to the box." :w="1260" :h="960" />
+<GuideFigure src="/media/scenarios/collapsed.webp" alt="The Baseline scenario collapsed into one box" caption="Baseline collapsed into one box, with the Data Pool it reads and its outcome Roads by sunlight, done. The connections into and out of the scenario are drawn to the box." :w="1260" :h="960" />
 
 The nodes of a scenario's fixed context and its outcomes save their outputs to your [Data Catalog](/data-catalog/) when they run, whatever their **Save output** setting, so the [Scenario Catalog](/scenario-catalog/) can show them and other dataflows can use them. Scenarios, their colors, descriptions and collapsed state are saved with the dataflow.
 
@@ -72,41 +74,76 @@ The edits apply in order. An edit by `building_id` applies to every part of a bu
 
 ## Compare scenarios
 
-The **Compare Scenarios** node compares scenarios' outcomes on the canvas.
+To compare scenarios, connect each scenario's outcome to an input circle of its own on a node outside the scenario boxes: each connection takes the next circle. That node charts them, maps them or takes their difference.
 
-1. Drag **Compare Scenarios** from the palette onto the canvas.
-2. Connect each scenario's outcome to one of its input circles. Each input is labelled by its scenario.
-3. Run it.
+A [Vega-Lite node](/visualization/#vega-lite-charts) whose spec names its dataset with the chip `[!! inputs !!]` reads every input's rows in one table, in circle order. Each row has three more columns:
 
-It works in one of two ways, which **Compare as** switches:
+- `scenario_name`, the name of the scenario box its input comes from, or the name of the node that feeds it when that node is in no box;
+- `scenario`, that box's id, empty for a node in no box;
+- `__input__`, the circle its input came in on.
 
-- **Chart** stacks its inputs into one table, with each scenario's name on its rows, and draws it in the scenarios' colors as bars, grouped bars, lines, points, a pie, lollipops or a table. Pick the **X** and **Y** columns, and how the values of a group are combined in **Combine**: mean, sum, median, minimum, maximum, a count, or none, which plots each row's value as it is. A table writes a scenario whose color is too light to read on white in a darker shade of that color.
-- **Difference** subtracts `input_0`, the reference, from `input_1`: two rasters on one grid cell by cell, each up to 4096 by 4096 cells, or two layers or tables row by row, matched on `osm_id`, `building_id` or a column you pick in **Key**. **Change** picks the signed difference or, with **Absolute**, its size. Each row of a layer's or a table's difference says in its `change` column whether it changed, stayed the same, was removed or was added. A table's difference shows as a table, each row in the color of its change.
+The scenario chips write the boxes' names and colors into the spec:
 
-The node starts in Difference when its two inputs are rasters or layers, and in Chart otherwise. What it makes is its output: other nodes can read it, and the node can be pinned to the [dashboard](/dashboards/).
-
-To draw a raster's or a layer's difference on a map, connect the node to an [Autark node](/visualization/#autark-maps) after it. The Autark spec picks what the map colors by, its color scheme and its legend's `title`. A signed difference of rasters reads best on a diverging scheme centered on 0, and an absolute one on a sequential scheme:
+| Chip | Writes | Goes in |
+|---|---|---|
+| `[!! scenario colors !!]` | a scale: the boxes' names as its `domain`, their colors as its `range` | the `scale` of a color, fill or stroke by `scenario_name` |
+| `[!! scenario text_colors !!]` | the same scale, each color in a shade that reads on white | the `scale` of a text mark's color |
+| `[!! scenario order !!]` | the boxes' names | the `sort` of an axis, an offset or a facet by `scenario_name` |
+| `[!! scenario input_1 !!]` | the color input_1 has in that scale | a mark's color, or a map layer's |
 
 ```json
-{ "map": { "layerRefs": [{ "dataRef": "input_0", "getFnv": "band_1", "colorMapInterpolator": "interpolateRdBu", "colorMapCenter": 0, "title": "Shadow change (minutes)" }] } }
+{
+  "data": {"name": "[!! inputs !!]"},
+  "mark": "bar",
+  "encoding": {
+    "x": {"field": "scenario_name", "type": "nominal", "sort": [!! scenario order !!]},
+    "y": {"field": "sunlight", "type": "quantitative", "aggregate": "mean"},
+    "color": {"field": "scenario_name", "type": "nominal", "scale": [!! scenario colors !!]}
+  }
+}
 ```
 
-To map each scenario's outcome side by side, give their maps the same `colorMapRange`, `[low, high]`, and a value has one color on all of them.
+The boxes come in the order the dataflow lists them. An input from no box comes after them, named by its node, in a gray of its own. When no input comes from a box, `[!! scenario colors !!]` and `[!! scenario text_colors !!]` write the names alone, and the chart's own palette colors them. Renaming or recoloring a box, or drawing one around a node that feeds the chart, draws the chart again with no run. A spec without the chips draws in Vega-Lite's own colors. The [Scout package's charts](/scout/#charts-that-compare-scenarios) are written this way, ready to connect.
 
-A [Vega-Lite node](/visualization/#vega-lite-charts) that reads a Compare Scenarios node's output on its first input draws the scenarios as the **Chart** tab does: a color, fill or stroke by `scenario_name` is in the colors of their boxes, and an axis, an offset or a facet by it follows the order of the Compare node's inputs, whatever the spec writes for that column. When a scenario is renamed or recolored, the chart is drawn again with no run, and a selection made in it stays. For comparisons the **Chart** tab does not draw, the [SCOUT Comparison package](/scout/#charts-that-compare-scenarios) has charts made to go after a Compare Scenarios node.
+## The chips above the spec
 
-<GuideFigure src="/media/scenarios/compare-chart.webp" alt="A Compare Scenarios node in Chart, with two lollipops" caption="Compare Scenarios in Chart: the mean sunlight of Baseline and Twice as tall as lollipops. Above it, the node warns that one scenario reads fixed context the other does not." :w="560" :h="420" />
+Above a node's code or spec, one row lists every chip the node can use, by category, each with its count: **Inputs**, **Scenarios**, **Widgets**, **Selections** and **Shared**. A category shows only when it has chips. The categories start closed: click one to list its chips under the row, and click it again to close it. Several can be open, and a category stays open while the dataflow is open. Drag a chip's tag into the code or spec, or click it to put the chip at the cursor.
 
-<GuideFigure src="/media/scenarios/compare-difference.webp" alt="A Compare Scenarios node in Difference" caption="Compare Scenarios in Difference, with Change set to Signed: the node holds two rasters' difference and says to draw it with an Autark node after it." :w="560" :h="124" />
+- **Inputs:** a tag for each input, `input_0`, `input_1` and so on, whose arrow lists its columns once the node feeding it has run. In a Vega-Lite spec with an input, also the **inputs** tag, whose arrow lists the fields of the stacked rows, `scenario_name`, `scenario` and `__input__` first.
+- **Scenarios:** on a node with an input from a scenario box. In a Vega-Lite spec, first the boxes' swatches with their names, the tag of `[!! scenario colors !!]`, then **text colors** and **order**. In a Vega-Lite or Autark spec, a tag for each input, such as **input_1 ■ Twice as tall**, in the color its chip writes.
+- **Widgets**, **Selections** and **Shared:** the node's [widgets](/widgets/), its [selection tags](/widgets/#hand-a-node-what-you-selected) and the Parameter nodes' values.
 
-<GuideFigure src="/media/scenarios/compare-difference-map.webp" alt="An Autark map of the difference between two rasters" caption="The Autark node after it draws that difference, Twice as tall minus Baseline, on a red to blue scheme centered on 0, under the title its spec gives." :w="526" :h="350" />
+A node with no input from a box has no **Scenarios**, and the hover of a scenario chip in its spec says what the chip writes there. On a node with no input, `[!! inputs !!]` is red until you connect one. `[!! inputs !!]` and the scenario chips are for specs: Python and JavaScript code takes neither.
 
-The **What differs** tab lists the levers that differ between the scenarios: the widget values and code lines that changed, and each scenario's Interaction edits, an edit switched off marked off. A node and its copies count as one lever. Above the tabs, the node warns when the scenarios read different fixed context, when an input comes from a node in no scenario, and when two inputs come from one scenario.
+<GuideFigure src="/media/scenarios/chart-header.webp" alt="A Scout Bars chart on its Grammar tab, with the Scenarios category open above its spec" caption="Scout's Bars chart of the mean accumulated shadow in Chicago Loop shadow with towers removed or edited, on its Grammar tab. Its row reads Inputs 3, Scenarios 5, Widgets 3 and Shared 1, with Scenarios open: the two boxes' swatches and names, text colors and order, then each input in its box's color. The spec names its dataset with the inputs chip." :w="526" :h="350" />
+
+## Maps and differences
+
+An [Autark map](/visualization/#autark-maps) draws a layer in the color of the scenario box its input comes from when that input's scenario chip is the layer's `color`. Its tag under **Scenarios** drags it in, in quotes:
+
+```json
+{ "dataRef": "[!! input_1 !!]", "width": 80, "title": "Fastest route", "color": "[!! scenario input_1 !!]" }
+```
+
+A recolored box gives the layer its new color at the map's next run. To map each scenario's outcome side by side, give their maps the same `colorMapRange`, `[low, high]`, and a value has one color on all of them.
+
+To take a difference:
+
+- **Of two rasters**, a [Raster Calculator](/scout/#building-rasters-and-shadows) subtracts them cell by cell. `raster_calculate("subtract", [input_1, input_0], output_file=curio_output_file)` gives input_1 minus input_0, and with `absolute=True` the size of that difference, 0 where nothing changed. The two rasters must lie on one grid.
+- **Of two tables or layers**, a Python node joins the two inputs' rows on a column both have, such as `osm_id` or `building_id`, and subtracts their numbers.
+
+To draw a difference on a map, connect the node to an Autark node after it. Its spec picks what the map colors by, its color scheme and its legend's `title`. A signed difference reads best on a diverging scheme centered on 0, and an absolute one on a sequential scheme:
+
+```json
+{ "map": { "layerRefs": [{ "dataRef": "[!! input_0 !!]", "getFnv": "band_1", "colorMapInterpolator": "interpolateRdBu", "colorMapCenter": 0, "title": "Shadow change (minutes)" }] } }
+```
+
+<GuideFigure src="/media/scenarios/sunlight-change.webp" alt="An Autark map of Back Bay's roads colored by the sunlight each one loses" caption="Example 06's Roads by sunlight change: the sunlight each road loses when the buildings get twice as tall, which a Python node takes road by road, in red, yellow and blue from -360 to 360 minutes." :w="588" :h="496" />
 
 ## In the examples
 
-Example 06, "Back Bay road sunlight when buildings change", has three scenarios over one loader: Baseline, Twice as tall (its `height_factor` widget set to 2), and Two towers removed (an Interaction node takes out two towers). Its two Compare Scenarios nodes chart their mean road sunlight and take the sunlight each road loses, which an Autark map draws in red, yellow and blue from -360 to 360 minutes. The [SCOUT examples](/scout/) compare scenarios of shadows, park shade, flooding and routes.
+Example 06, "Back Bay road sunlight when buildings change", has three scenarios over one loader: Baseline, Twice as tall (its `height_factor` widget set to 2), and Two towers removed (an Interaction node takes out two towers). Each ends in a Roads node that takes its roads with their sunlight. Scout's **Bars** charts each scenario's mean road sunlight from the three Roads nodes, and a Python node takes the sunlight each road loses in Twice as tall, which an Autark map draws in red, yellow and blue from -360 to 360 minutes. The [SCOUT examples](/scout/) compare scenarios of shadows, park shade, flooding and routes.
 
-"Nine ways to chart scenario comparisons", under **Tests** on the projects page, charts the scenarios of nine example tables from the Data Catalog, each a different way. Compare Scenarios draws two of them itself, as grouped bars and as a table. A chart of the [SCOUT Comparison package](/scout/#charts-that-compare-scenarios) after it draws each of the others, with its columns set in its **Widgets** tab: **Lines with a band**, **Curves by group**, **Bars with error bars**, **Ensemble strips**, **Stacked bars with totals**, **Donuts** and **Weighted matrix**.
+"Nine ways to chart scenario comparisons", under **Tests** on the projects page, charts the scenarios of nine example tables from the Data Catalog, each a different way. For each table, a Data Transformation node per scenario keeps that scenario's rows, and a chart of the [Scout package](/scout/#charts-that-compare-scenarios) takes each scenario's node on an input of its own, with its columns set in its **Widgets** tab: **Lines with a band**, **Curves by group**, **Bars with error bars**, **Ensemble strips**, **Grouped bars**, **Stacked bars with totals**, **Donuts**, **Weighted matrix** and **Table**.
 
-<GuideFigure src="/media/scenarios/charts-carbon.webp" alt="Stacked bars of two building frames' carbon by life-cycle stage, with their totals" caption="From Nine ways to chart scenario comparisons: Stacked bars with totals, from SCOUT Comparison, stacks the carbon of a concrete frame and a timber frame by life-cycle stage after a Compare Scenarios node, with each total on top and each frame&#x27;s name in its scenario&#x27;s color." :w="680" :h="440" />
+<GuideFigure src="/media/scenarios/charts-carbon.webp" alt="Stacked bars of two building frames' carbon by life-cycle stage, with their totals" caption="From Nine ways to chart scenario comparisons: Scout's Stacked bars with totals stacks the carbon of a concrete frame and a timber frame by life-cycle stage, with each total on top and each frame's name in its scenario's color." :w="680" :h="440" />
