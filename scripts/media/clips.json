@@ -478,6 +478,18 @@
       }
     },
     {
+      "id": "chip-preview",
+      "page": "scenarios",
+      "take": "main-d0c26b4",
+      "name": "chip-preview",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 343,
+        "height": 296
+      }
+    },
+    {
       "id": "sunlight-change",
       "page": "scenarios",
       "take": "main-03343c5",

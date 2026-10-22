@@ -123,6 +123,10 @@ Click a line's square button to open its list, indented under the line, and clic
 
 <GuideFigure src="/media/scenarios/input-lines.webp" alt="A Vega-Lite chart's Inputs open, with input_0's columns listed under its line" caption="A Vega-Lite chart fed from a Data Pool, with Inputs open. The line of input_0 reads from Data Pool: 3 columns, and its list, open under it, holds geometry, accessibility and neighborhood_name. The line of inputs, input_0, stacked: 5 fields, comes last, closed." :w="526" :h="350" />
 
+Hover over a tag, or over its chip in the code or spec, to preview what it holds: an input's source, size and first rows, a column's type, first values and range or count of distinct values, a widget's or Parameter's value, a selection's ids and selected rows, or the scenario boxes' colors.
+
+<GuideFigure src="/media/scenarios/chip-preview.webp" alt="A Vega-Lite chart's input_0 tag with its preview: source, size, column types and first rows" caption="A Vega-Lite chart's input_0 tag, hovered: from Data Pool, 79 rows by 3 columns of a GeoDataFrame, and its first 5 rows under each column's name and type." :w="343" :h="296" />
+
 A node with no input from a box has no **Scenarios**, and the hover of a scenario chip in its spec says what the chip writes there. On a node with no input, `[!! inputs !!]` is red until you connect one. `[!! inputs !!]` and the scenario chips are for specs: Python and JavaScript code takes neither.
 
 <GuideFigure src="/media/scenarios/chart-header.webp" alt="A Scout Bars chart on its Grammar tab, with the Scenarios category open above its spec" caption="Scout's Bars chart of the mean accumulated shadow in Chicago Loop shadow with towers removed or edited, on its Grammar tab. Its row reads Inputs 3, Scenarios 5, Widgets 3 and Shared 1, with Scenarios open: the two boxes' swatches and names, text colors and order, then each input in its box's color. The spec names its dataset with the inputs chip." :w="526" :h="350" />
