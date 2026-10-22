@@ -442,10 +442,10 @@
       }
     },
     {
-      "id": "interaction",
+      "id": "map-edits",
       "page": "scenarios",
-      "take": "main-a391b90",
-      "name": "interaction-log",
+      "take": "main-800c40b",
+      "name": "map-edits",
       "crop": {
         "left": 0,
         "top": 0,
@@ -564,7 +564,7 @@
     {
       "id": "towers-lever",
       "page": "scout",
-      "take": "main-9712294",
+      "take": "main-800c40b",
       "name": "shadow-towers-lever",
       "crop": {
         "left": 0,

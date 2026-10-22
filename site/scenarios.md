@@ -74,7 +74,7 @@ Each edit is an entry in the node's list and in its [Provenance](/provenance/) d
 
 Edits find features by a column whose values differ in every feature, such as `osm_id` or `building_id`, and an edit by `building_id` changes every part of a building. The input itself is never changed.
 
-<GuideFigure src="/media/scenarios/map-edits.webp" alt="A Map Edits node with a rule and a list of two edits" caption="A Map Edits node on three building parts. Its list holds Remove where height &lt; 40, switched off, so the run skips it, and Compute height as height * 0.5 where height &gt; 40." :w="560" :h="460" />
+<GuideFigure src="/media/scenarios/map-edits.webp" alt="A Map Edits node with its layer's actions and a list of one edit" caption="A Map Edits node linked to its buildings map: the actions for its Buildings layer, and a list of one edit, Set height to 99 on building_id 1, which the two nodes below get with Commit edits." :w="560" :h="460" />
 
 ## Compare scenarios
 
