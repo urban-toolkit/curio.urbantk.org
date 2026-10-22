@@ -20,7 +20,7 @@ A widget is a value a node's code reads that you set in a form instead of in the
 
 1. Open the node's **Widgets** tab (the toolbox icon in its header) and click **Add widget**.
 2. Give it a name (letters, digits and underscores), a type, a label and a default. A choice, a checkbox group or a multi-select also takes its choices, and a number or a slider takes a minimum, a maximum, a step and units.
-3. Drag the widget's tag from the strip above the code into the code, or click the tag to put it at the cursor. It shows as a chip; point at the chip to see the value it stands for.
+3. Above the code or spec, click the **Widgets** category to list the tags of the node's widgets. Drag the widget's tag into the code, or click the tag to put it at the cursor. It shows as a chip; point at the chip to see the value it stands for.
 4. Set the value in the **Widgets** tab and run the node.
 
 <GuideFigure src="/media/widgets/add-widget.webp" alt="The Add widget form of a Python node" caption="The Add widget form for a slider labelled Rain: its type, label, minimum, maximum, step, units and default." :w="526" :h="350" />
@@ -31,7 +31,7 @@ A widget is a number, a slider, a text, a choice (a dropdown or radio buttons), 
 
 When the node runs, each chip is replaced by its value, written in the code's language: a season chip runs as `"winter"` in Python, and an opacity chip as `0.5` in a Vega-Lite spec. Inside a quoted text, a chip becomes the value's text. The code saves a chip as `[!! name !!]`.
 
-<GuideFigure src="/media/widgets/code-chips.webp" alt="Widget tags above a node's code and chips inside it" caption="Each widget's tag in the strip above the code, and the same widgets as chips in the code." :w="526" :h="350" />
+<GuideFigure src="/media/widgets/code-chips.webp" alt="A Python node's code with widget chips, under the closed Widgets category" caption="A Python node's code with its five widgets as chips. Above it, the Widgets category, closed, counts them: a click lists their tags." :w="526" :h="350" />
 
 Values are saved with the dataflow. Changing one marks the node as needing a new run, so **Run** and **Run All** run it again. With **View > Run stale nodes automatically** on, the change runs the node and the nodes below it by itself, half a second after the last change, so a slider drag runs them once. A chip whose name the node has no widget for stops the run with a message naming it.
 
@@ -40,7 +40,7 @@ Values are saved with the dataflow. Changing one marks the node as needing a new
 A **Parameter** node holds one widget that any node of the dataflow can read, such as a period or a region that several nodes use.
 
 1. Drag **Parameter** from the palette onto the canvas, give it a name, a type, a label and a default as for a widget, and click **Add parameter**.
-2. Its tag, **@name**, shows under **Shared** in the strip above every node's code. Drag it into the code, where it shows as an amber chip.
+2. Its tag, **@name**, shows under **Shared** above every node's code or spec, and in every node's **Widgets** tab. Drag it into the code, where it shows as an amber chip.
 3. Set the value in the Parameter node.
 
 A Parameter node has no connections. It lists the nodes whose code uses it, and changing its value marks them as needing a new run, or runs them when **Run stale nodes automatically** is on. **Edit** renames it, and their code follows the new name. Pinned to the [dashboard](/dashboards/), it shows its value.
@@ -53,7 +53,7 @@ A selection tag gives a node's code the rows you selected in a view: a brush or 
 
 1. Run the view, so its rows are known.
 2. In the reading node's **Widgets** tab, under **Selections**, click **Add selection**. Pick the view and the column that identifies its rows, such as `osm_id` or `building_id`, name the tag, and click **Add selection tag**.
-3. Drag the tag into the code, where it shows as a peach chip.
+3. Above the code, click the **Selections** category and drag the tag into the code, where it shows as a peach chip.
 4. Select in the view and run the node.
 
 The chip becomes the list of the selected rows' ids:

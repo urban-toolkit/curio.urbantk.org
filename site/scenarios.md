@@ -8,6 +8,7 @@ deeper:
   - { doc: docs/USAGE.md, anchor: scenarios, label: "Scenarios in the usage guide" }
   - { doc: docs/USAGE.md, anchor: the-interaction-node, label: "The Interaction node" }
   - { doc: docs/USAGE.md, anchor: comparing-scenarios, label: "Comparing scenarios" }
+  - { doc: docs/USAGE.md, anchor: several-inputs, label: "Several inputs and their chips" }
   - { doc: docs/USAGE.md, anchor: every-input-in-one-dataset, label: "Every input in one dataset" }
   - { doc: docs/USAGE.md, anchor: scenario-colors-and-order, label: "Scenario colors and order" }
   - { doc: docs/examples/06-back-bay-road-sunlight.md, label: "Example 06: Back Bay road sunlight when buildings change" }
@@ -107,11 +108,17 @@ The boxes come in the order the dataflow lists them. An input from no box comes 
 
 ## The chips above the spec
 
-Above a node's code or spec, one row lists every chip the node can use, by category, each with its count: **Inputs**, **Scenarios**, **Widgets**, **Selections** and **Shared**. A category shows only when it has chips. The categories start closed: click one to list its chips under the row, and click it again to close it. Several can be open, and a category stays open while the dataflow is open. Drag a chip's tag into the code or spec, or click it to put the chip at the cursor.
+Above a node's code or spec, one row lists every chip the node can use, by category, each with its count: **Inputs**, **Scenarios**, **Widgets**, **Selections** and **Shared**. A category shows only when it has chips. The categories start closed, each with a chevron pointing down. Click one to list its chips under the row, and its chevron points up; click it again to close it. Several can be open, and a category stays open on that node while the dataflow is open. On the canvas, the row and its open chips take at most half of the node's editor, and the chips scroll past that. Drag a chip's tag into the code or spec, or click it to put the chip at the cursor.
 
-- **Inputs:** a tag for each input, `input_0`, `input_1` and so on, whose arrow lists its columns once the node feeding it has run. In a Vega-Lite spec with an input, also the **inputs** tag, whose arrow lists the fields of the stacked rows, `scenario_name`, `scenario` and `__input__` first.
+- **Inputs:** a line for each input, `input_0`, `input_1` and so on, in circle order. In a Vega-Lite spec, the line of **inputs**, the stacked rows, comes last.
 - **Scenarios:** on a node with an input from a scenario box. In a Vega-Lite spec, first the boxes' swatches with their names, the tag of `[!! scenario colors !!]`, then **text colors** and **order**. In a Vega-Lite or Autark spec, a tag for each input, such as **input_1 ■ Twice as tall**, in the color its chip writes.
 - **Widgets**, **Selections** and **Shared:** the node's [widgets](/widgets/), its [selection tags](/widgets/#hand-a-node-what-you-selected) and the Parameter nodes' values.
+
+A line of **Inputs** holds a square button, the input's tag, and where the input comes from: its scenario box, or else the kind of node that feeds it. Once that node has run, the line also says what the input holds, such as **from Existing: 5 columns**, **from Autark: 5 layers** or **from Python Computation: 2 values, a tuple**. The line of **inputs** names the inputs it stacks and, once they have run, how many fields their rows carry, such as **input_0 and input_1, stacked: 8 fields**.
+
+Click a line's square button to open its list, indented under the line, and click it again to close it. An input's list holds its columns, and the list of **inputs** the fields of the stacked rows, `scenario_name`, `scenario` and `__input__` first. An input with layers, such as an Autark node's tables, lists a line for each layer: the layer's tag, then its columns, or **no columns**. Drag a column's tag where a column name goes. Several lists can be open, and each stays open on its node while the dataflow is open.
+
+<GuideFigure src="/media/scenarios/input-lines.webp" alt="A Vega-Lite chart's Inputs open, with input_0's columns listed under its line" caption="A Vega-Lite chart fed from a Data Pool, with Inputs open. The line of input_0 reads from Data Pool: 3 columns, and its list, open under it, holds geometry, accessibility and neighborhood_name. The line of inputs, input_0, stacked: 5 fields, comes last, closed." :w="526" :h="350" />
 
 A node with no input from a box has no **Scenarios**, and the hover of a scenario chip in its spec says what the chip writes there. On a node with no input, `[!! inputs !!]` is red until you connect one. `[!! inputs !!]` and the scenario chips are for specs: Python and JavaScript code takes neither.
 

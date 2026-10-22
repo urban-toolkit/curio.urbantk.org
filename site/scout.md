@@ -101,6 +101,6 @@ Scout holds charts that compare scenarios: **Lines with a band**, **Curves by gr
 2. Drag a chart onto the canvas and connect each scenario's outcome to one of its input circles: each connection takes the next circle. Until the first one, the chart's `[!! inputs !!]` chip is red.
 3. In its **Widgets** tab, set the columns it plots: each column widget, such as `y` or `part`, takes the name of a column of its inputs. A new chart's widgets hold their own names, so the chart says which column its inputs lack until you set them. **Combine**, in Bars, Grouped bars, Lines, Pie and Lollipops, is how a scenario's rows are combined: `mean`, `sum`, `median`, `min`, `max` or `count`.
 
-A new chart opens with its template's spec on its Grammar tab, and the spec is yours to edit. The row above the spec lists the chips it can use (see [The chips above the spec](/scenarios/#the-chips-above-the-spec)).
+A new chart opens with its template's spec on its Grammar tab, and the spec is yours to edit. The row above the spec lists the chips it can use, in categories that open with a click (see [The chips above the spec](/scenarios/#the-chips-above-the-spec)).
 
 In "Nine ways to chart scenario comparisons", under **Tests** on the projects page, nine of these charts each draw one example table (see [Scenarios](/scenarios/#in-the-examples)).

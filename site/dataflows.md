@@ -64,6 +64,8 @@ A node's header shows the play button, the node's title and kind, and its run st
 
 Click the title to rename the node; the gear beside it opens **Node settings**, for [making a reusable node](/authoring-nodes/). After the switch come a button that explains the node, **Pin to dashboard** for the dataflow's [dashboard](/dashboards/), **Minimize**, which folds the node into an icon that opens again with a click, and, at the right end, **Delete node**. **View > Minimize Nodes** folds them all, and **View > Expand Nodes** opens them again. Drag a node's bottom-right corner to resize it, and double-click a node where you would drag it, such as its header, to zoom the view onto it. For viewers of a shared dataflow, nodes keep their size and have no **Delete node**.
 
+Above the code or spec, one row lists every chip the node can use, in categories that start closed: **Inputs**, **Scenarios**, **Widgets**, **Selections** and **Shared**. Click a category to list its chips, then drag a chip's tag into the code or spec, or click the tag to put the chip at the cursor (see [The chips above the spec](/scenarios/#the-chips-above-the-spec)).
+
 ## Notes
 
 A **Note** node explains a part of the dataflow: a title and a short text on one of six colors. It has no inputs or outputs, and a run skips it.
