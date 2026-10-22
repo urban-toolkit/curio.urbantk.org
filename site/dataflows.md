@@ -36,7 +36,7 @@ Click the title at the top to rename the dataflow. The save state in the top bar
 - **Data Transformation** and **Python Computation** run Python on their inputs, which arrive as `input_0`, `input_1` and so on, one per input circle, and pass on what the code returns.
 - **JS Computation** does the same in JavaScript.
 - **Data Summary** reports a table's column types, missing values and statistics.
-- **Data Pool** shows one result as a table and feeds it to several views; it is also where views [link](/interactions/).
+- **Data Pool** shows one result as a table and feeds it to the nodes after it, marking the rows selected in the views [linked](/interactions/) to it.
 - **Parameter** holds one value that any node's code can read (see [Widgets and parameters](/widgets/)).
 - **Spatial Join** pairs the rows of two inputs whose shapes meet, by the operation you pick: intersects, within, contains, touches, overlaps, crosses or nearest. It outputs one row per pair, or its second input's rows, each with a count of its pairs.
 - **Data Export** downloads its input as CSV, GeoJSON or JSON, with the **Download** button in its **Widgets** tab.

@@ -28,13 +28,13 @@ Curio also keeps the dataflow's history as you work, and **View > Provenance** l
 
 The rail on the left of the canvas holds the built-in nodes, in three groups:
 
-- **Data and flow.** **Data Loading** brings data in, **Data Transformation** filters and reshapes it, **Data Export** saves a result as a file, **Spatial Join** pairs the rows of two inputs whose shapes meet, **Interaction** removes or changes features by hand or by a condition, **Data Pool** shares one result with several linked views, **Parameter** holds one value every node can read, and **Note** explains a part of the dataflow in a title and a short text.
+- **Data and flow.** **Data Loading** brings data in, **Data Transformation** filters and reshapes it, **Data Export** saves a result as a file, **Spatial Join** pairs the rows of two inputs whose shapes meet, **Interaction** removes or changes features by hand or by a condition, **Data Pool** shows a result as a table and marks the rows the views linked to it select, **Parameter** holds one value every node can read, and **Note** explains a part of the dataflow in a title and a short text.
 - **Computation.** **Python Computation** and **JS Computation** run your own analysis code, and **Data Summary** describes a table: its shape, column types and missing values.
 - **Visualization.** **Vega-Lite** draws charts, and maps from a GeoDataFrame; **Autark** draws 2D and 3D maps and runs GPU computations from one spec; **Simple View** shows a table, or a card per row for images.
 
 A node can take several inputs: each connection gets its own input circle, and the code reads each input by its name, `input_0`, `input_1` and so on, or through a chip (see [Connecting nodes](/dataflows/#connecting-nodes)).
 
-A selection in one chart or map becomes data the rest of the dataflow can read, which is how views are linked (see [Linked views](/interactions/)). More nodes come as packages from the [Node Catalog](/node-catalog/), and you can [write your own](/authoring-nodes/). AI agents attach to a node, a connection or the whole dataflow to help you write code, debug and plan (see [AI agents](/ai-agents/)).
+A selection in one chart or map highlights the matching rows in the views linked to it, and node code can read it (see [Linked views](/interactions/)). More nodes come as packages from the [Node Catalog](/node-catalog/), and you can [write your own](/authoring-nodes/). AI agents attach to a node, a connection or the whole dataflow to help you write code, debug and plan (see [AI agents](/ai-agents/)).
 
 <LoopVideo src="/media/visualization/linked-charts.mp4" poster="/media/visualization/linked-charts.webp" label="An example dataflow on Chicago speed-camera violations runs with Run all nodes, and one aggregation feeds both a bar chart and a line chart." :w="1280" :h="768" />
 
