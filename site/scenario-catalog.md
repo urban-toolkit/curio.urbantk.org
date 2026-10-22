@@ -41,7 +41,7 @@ It arrives as a copy, collapsed where you dropped it, in its own color:
 
 Editing the copy leaves the original as it is. A second scenario of the same project, dragged into the same dataflow, shares the fixed context the first one brought.
 
-To compare the scenario with your own work, connect its outcome and yours to a [Compare Scenarios](/scenarios/#compare-scenarios) node. To run it on your own data, double-click its box, delete a Data Loading node, and connect your node where it was; **Run scenario** then runs your node first.
+To compare the scenario with your own work, connect its outcome and yours to one chart or map, as in [Compare scenarios](/scenarios/#compare-scenarios). To run it on your own data, double-click its box, delete a Data Loading node, and connect your node where it was; **Run scenario** then runs your node first.
 
 A drop is refused, and nothing is added, when:
 

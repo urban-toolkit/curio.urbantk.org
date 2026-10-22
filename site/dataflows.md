@@ -40,7 +40,7 @@ Click the title at the top to rename the dataflow. The save state in the top bar
 - **Parameter** holds one value that any node's code can read (see [Widgets and parameters](/widgets/)).
 - **Spatial Join** pairs the rows of two inputs whose shapes meet, by the operation you pick: intersects, within, contains, touches, overlaps, crosses or nearest. It outputs one row per pair, or its second input's rows, each with a count of its pairs.
 - **Data Export** downloads its input as CSV, GeoJSON or JSON, with the **Download** button in its **Widgets** tab.
-- **Interaction** removes or changes features of a layer, by hand or by a condition (see [Scenarios](/scenarios/#remove-or-change-features)), and **Compare Scenarios** compares the outcomes of [scenarios](/scenarios/).
+- **Interaction** removes or changes features of a layer, by hand or by a condition (see [Scenarios](/scenarios/#remove-or-change-features)).
 - **Vega-Lite**, **Autark** and **Simple View** draw [charts, maps, tables and images](/visualization/).
 - **Note** holds a title and a short text that explain a part of the dataflow (see [Notes](#notes)).
 
@@ -48,7 +48,7 @@ Code runs on the Curio server, not in your browser.
 
 ## Connecting nodes
 
-Drag from an output (on a node's right edge) to an input (on another node's left edge). Curio refuses a connection between types that do not fit, and one that would make a loop. An output can feed many nodes. A node that takes several inputs, such as Python Computation, Data Pool, Vega-Lite, Autark or Compare Scenarios, shows a new empty input circle below each one you connect; in code and specs, each input is a chip or its name, `input_0` for the first circle, `input_1` for the second, and so on. The handle on top of views and Data Pools is for [interaction edges](/interactions/). To remove a connection, click it and press Delete or Backspace; deleting a node also removes its connections.
+Drag from an output (on a node's right edge) to an input (on another node's left edge). Curio refuses a connection between types that do not fit, and one that would make a loop. An output can feed many nodes. A node that takes several inputs, such as Python Computation, Data Pool, Vega-Lite or Autark, shows a new empty input circle below each one you connect; in code and specs, each input is a chip or its name, `input_0` for the first circle, `input_1` for the second, and so on. The handle on top of views and Data Pools is for [interaction edges](/interactions/). To remove a connection, click it and press Delete or Backspace; deleting a node also removes its connections.
 
 ## Running a dataflow
 
