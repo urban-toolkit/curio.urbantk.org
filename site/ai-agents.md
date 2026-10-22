@@ -36,7 +36,7 @@ On the canvas, click **Agent Catalog** in the top bar, or open the **Agent Catal
 
 Click **Add to project** and confirm. An agent that relies on others says so on its button, as in **Add to project (+1 required)**, and the agents it needs are added with it. Added agents appear in the Tools panel's **Agent Catalog** dropdown.
 
-The **Agent Catalog** tab at the top of the Projects page lists the agents for your whole account. Click one to read about it; **Add to all projects** adds it to every project you have and to new ones. **Import agent** adds one you wrote yourself.
+The **Agent Catalog** tab at the top of the Projects page lists the agents for your whole account. Click one to read about it; **Add to all projects** adds it to every project you have and to new ones. **Import agent** adds one you wrote yourself. Importing a newer version of an agent you have replaces yours, a new major version is added beside the old one, and the same or an older version is refused. When the server allows it, **Publish** shares an agent you imported with everyone on that server, and whoever added it gets a newer version of the same major the next time they add the agent to a dataflow.
 
 <LoopVideo src="/media/ai-agents/agentcatalog.mp4" poster="/media/ai-agents/agentcatalog.webp" label="Agents are found by search in the Agent Catalog drawer and added to the dataflow, then listed in the Tools panel." :w="1280" :h="768" />
 
