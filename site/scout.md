@@ -39,13 +39,13 @@ Example 24, "SCOUT shadow model on Chicago Loop buildings", runs them on the bui
 
 <GuideFigure src="/media/scout/summer-shadow.webp" alt="An Autark map of the summer shadow" caption="Deep Umbra&#x27;s summer shadow on the same grid: the minutes of the day each cell spends in shadow, darker where it is longer." :w="532" :h="356" />
 
-"Chicago Loop shadow with towers removed or edited" compares two scenarios of the same buildings over a shared season, Existing and Towers removed, each with an Autark map of its shadow. Both maps set the same `colorMapRange`, 0 to 720 minutes, so a minute of shadow has one color on both. In Towers removed, an [Interaction node](/scenarios/#remove-or-change-features) takes SCOUT's 15 buildings out by their `building_id`. Add edits to its log to remove, raise or lower more, and **Update results** runs the shadow again. Scout's **Bars** charts the two scenarios' mean shadow over the ground, each scenario's statistics on an input of its own, and another Raster Calculator takes Towers removed's shadow minus Existing's, cell by cell, which an Autark map draws on a red to blue scheme centered on 0.
+"Chicago Loop shadow with towers removed or edited" compares two scenarios of the same buildings over a shared season, Existing and Towers removed, each with an Autark map of its shadow. Both maps set the same `colorMapRange`, 0 to 720 minutes, so a minute of shadow has one color on both. In Towers removed, a [Map Edits node](/scenarios/#edit-features-on-a-map) takes SCOUT's 15 buildings out by their `building_id`, and feeds a buildings map in the scenario's box that it is linked to. Pick more buildings on that map to remove, raise or lower them, and **Commit edits** runs the shadow again. Scout's **Bars** charts the two scenarios' mean shadow over the ground, each scenario's statistics on an input of its own, and another Raster Calculator takes Towers removed's shadow minus Existing's, cell by cell, which an Autark map draws on a red to blue scheme centered on 0.
 
 <GuideFigure src="/media/scout/shadow-existing.webp" alt="An Autark map of the Loop's accumulated shadow, Existing" caption="Existing: the accumulated shadow of the Loop&#x27;s buildings, colored from 0 to 720 minutes." :w="526" :h="350" />
 
 <GuideFigure src="/media/scout/shadow-towers.webp" alt="An Autark map of the Loop's accumulated shadow, Towers removed" caption="Towers removed, on the same range: the shadow without SCOUT&#x27;s 15 buildings." :w="526" :h="350" />
 
-<GuideFigure src="/media/scout/towers-lever.webp" alt="The Towers removed scenario's Interaction node with a log of two edits" caption="The Interaction node of Towers removed: SCOUT&#x27;s 15 buildings removed by building_id, and an edit added after them, Remove where height &gt; 200, for 20 removed in all." :w="560" :h="460" />
+<GuideFigure src="/media/scout/towers-lever.webp" alt="The Towers removed scenario's Map Edits node with a list of two edits" caption="The Map Edits node of Towers removed: SCOUT&#x27;s 15 buildings removed by building_id, and an edit added after them, Remove where height &gt; 200, for 20 removed in all." :w="560" :h="460" />
 
 Deep Umbra ships with Curio's repository and its Docker image; a pip install downloads its weights from GitHub the first time Accumulated Shadow runs.
 
@@ -55,7 +55,7 @@ Deep Umbra ships with Curio's repository and its Docker image; a pip install dow
 
 - an Autark node loads Lower Manhattan's parks, and the buildings of a box about 300 m larger, from an OpenStreetMap extract;
 - Python nodes give every building part a height, keep the open-air parks, and mark the parts at least the **Tall building height** tall within the **Distance from a park** of any park, two [Parameter nodes](/widgets/#share-a-value-with-a-parameter-node) set to 60 m and 75 m;
-- in three scenarios, Existing, Towers removed and Height cap, Interaction nodes remove the marked parts or cut them to the Tall building height. Rasterize Buildings and Accumulated Shadow give the shadow over the season a third Parameter node sets, a Python node measures it in each park, and Autark maps draw the buildings in 3D and the shadow.
+- in three scenarios, Existing, Towers removed and Height cap, Map Edits nodes remove the marked parts or cut them to the Tall building height, each linked to the buildings map it feeds. Rasterize Buildings and Accumulated Shadow give the shadow over the season a third Parameter node sets, a Python node measures it in each park, and Autark maps draw the buildings in 3D and the shadow.
 
 Scout's **Dots with a range** charts each park's mean minutes of shadow, a dot per scenario on a rule from the park's lowest to its highest, each scenario's parks on an input of its own. For each what-if, a Raster Calculator takes its change in shadow from Existing, cell by cell, and a Python node the change per park, matched by the park's name, which Autark maps draw.
 
