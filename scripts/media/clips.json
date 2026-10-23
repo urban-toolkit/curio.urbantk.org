@@ -680,6 +680,18 @@
         "width": 520,
         "height": 720
       }
+    },
+    {
+      "id": "map-edits-entry",
+      "page": "ai-agents",
+      "take": "main-63b00d6",
+      "name": "map-edits-agent-entry",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 520,
+        "height": 190
+      }
     }
   ]
 }

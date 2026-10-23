@@ -70,7 +70,7 @@ The **Map Edits** node edits a map's layers on the map: two towers taken out of 
 4. Pick features on the map with a click; shift-click adds more, and Escape forgets them.
 5. The map shows each edit at once. **Commit edits** runs the nodes below with them.
 
-Each edit is an entry in the node's list and in its [Provenance](/provenance/) drawer. The box before an entry switches it off: it stays in the list, and the run skips it. The × beside it deletes it, and **Undo** and **Redo**, or Ctrl+Z and Shift+Ctrl+Z (Cmd on a Mac), move between the entries.
+Each edit is an entry in the node's list and in its [Provenance](/provenance/) drawer. The box before an entry switches it off: it stays in the list, and the run skips it. The × beside it deletes it, and **Undo** and **Redo**, or Ctrl+Z and Shift+Ctrl+Z (Cmd on a Mac), move between the entries. [Agents](/ai-agents/#what-agents-work-with) read these edits, and the edits an agent makes show as entries named after it.
 
 Edits find features by a column whose values differ in every feature, such as `osm_id` or `building_id`, and an edit by `building_id` changes every part of a building. The input itself is never changed.
 

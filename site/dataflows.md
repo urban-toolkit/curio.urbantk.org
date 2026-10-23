@@ -101,4 +101,6 @@ Then read the key in the node's code by its name:
 api_key = curio_secret("census")
 ```
 
+`curio_secret` is one of the functions Curio gives node code, listed with their arguments in [Functions node code calls](https://github.com/urban-toolkit/curio/blob/main/agents/agent.curio.builtin@1/knowledge/node-functions.md).
+
 The key reaches the node only while it runs, and it never appears in the saved dataflow, in proposals, in the chat or in the run log. A node that names a key you have not saved fails with a message naming it. When you paste code that holds a key, a bar above the editor offers **Save as API key**, which opens the same form with the host filled in; an agent's Solve that reaches an API without a saved key offers **Add key for** the host. On a server started with `--deploy`, guest accounts cannot save a key.

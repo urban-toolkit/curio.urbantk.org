@@ -26,7 +26,7 @@ The **Data Catalog** tab at the top of the Projects page shows the same datasets
 
 ## Load it on the canvas
 
-Drag a dataset from the Tools panel onto empty canvas, and Curio creates a Data Loading node with code that reads it the right way for its format. Drop it onto an existing node, and the loading code is added to that node instead. The code names the dataset rather than a file path, so it keeps working when you share or move the dataflow.
+Drag a dataset from the Tools panel onto empty canvas, and Curio creates a Data Loading node with code that reads it the right way for its format. Drop it onto an existing node, and the loading code is added to that node instead. The code names the dataset rather than a file path, so it keeps working when you share or move the dataflow. [Functions node code calls](https://github.com/urban-toolkit/curio/blob/main/agents/agent.curio.builtin@1/knowledge/node-functions.md) lists the calls that read a dataset, with their arguments.
 
 Clicking a dataset in the dropdown highlights the nodes that use it. A node that reads a dataset shows a **DATASET** pill in its title bar; click the pill to find the dataset in the Tools panel.
 

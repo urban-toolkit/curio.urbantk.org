@@ -60,6 +60,18 @@ What an agent does depends on the agent: explain or debug a node, write node cod
 
 <MediaTodo kind="clip" source="tour:agentrun" caption="An agent's chat opens from its badge on a node, a question about the node is sent, and the answer appears in the chat." />
 
+## What agents work with
+
+Agents build with Curio's own nodes, [functions](https://github.com/urban-toolkit/curio/blob/main/agents/agent.curio.builtin@1/knowledge/node-functions.md), catalogs and chips, as you do, and read what you made with them.
+
+An agent uses only what you have. The code it writes reads your Data Catalog's datasets, runs the models you added and uses the keys you saved. It calls only the functions and imports only the modules its node gets. For any other model, the agent asks you to add it in the [Model Catalog](/model-catalog/).
+
+An agent that writes code reads what the dataflow can use: its datasets and models, and the names of your Node code keys, never their values. When it writes a node's code, it also reads the node's template: its description, its starter and the functions its code can import.
+
+An agent writing a node beside a [Map Edits](/scenarios/#edit-features-on-a-map) node reads its edits. Once you apply a change an agent made to a Map Edits node, it is an entry named after the agent in the node's [Provenance](/provenance/) drawer.
+
+<GuideFigure src="/media/ai-agents/map-edits-entry.webp" alt="The Node provenance drawer of a Map Edits node with one entry, Node Builder" caption="The Provenance drawer of a Map Edits node, with the change the Node Builder made as entry 1, named after the agent." :w="520" :h="190" />
+
 ## In chat, tools and modes
 
 Curio describes what an agent does in three words:

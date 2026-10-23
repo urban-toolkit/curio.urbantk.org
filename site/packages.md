@@ -24,6 +24,8 @@ A package is how Curio ships nodes: a folder named `<packageId>@<major>`, such a
 - `README.md`, shown in the catalog, and `LICENSE`.
 - `integrity.json`: a SHA-256 hash of every other file, written on install. After editing a package in place, regenerate it (see [Write a node](/authoring-nodes/)).
 
+An [agent](/ai-agents/#what-agents-work-with) that writes a node of a template reads its description, its starter, and the public functions of the package's modules and of the packages it needs. It reads each function by its signature and the first paragraph of its docstring.
+
 ## Icons, tags and data types
 
 A template's `iconRef` names its icon in the palette: any icon of Font Awesome's free solid or brands set, by the name [fontawesome.com](https://fontawesome.com/icons) gives it, such as `fa-solid:tree` or `fa-brands:github`. A name Font Awesome does not have shows a cube.

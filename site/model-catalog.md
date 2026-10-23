@@ -28,9 +28,11 @@ Drag a model's card onto the canvas, and its node appears where you drop it: **I
 
 ## Run a model in a dataflow
 
-A node's code loads its model by id, with `curio_load_model("<id>")`. **Image Segmentation** runs a segmentation model over a collection of photos, such as street photos from Mapillary that a **Data Loading** node reads. Each photo gets the share of its pixels every class covers, the class that covers most, and an overlay that **Simple View** shows beside the photo. Set `classes` in the code to the classes you want reported, or `None` for all of them.
+A node's code loads its model by id, with `curio_load_model("<id>")`, which [Functions node code calls](https://github.com/urban-toolkit/curio/blob/main/agents/agent.curio.builtin@1/knowledge/node-functions.md) lists with its arguments. **Image Segmentation** runs a segmentation model over a collection of photos, such as street photos from Mapillary that a **Data Loading** node reads. Each photo gets the share of its pixels every class covers, the class that covers most, and an overlay that **Simple View** shows beside the photo. Set `classes` in the code to the classes you want reported, or `None` for all of them.
 
 To run another model of the same type, drag its card onto the node: the node's `curio_load_model` line names that model, and the rest of its code stays as it is. A model of another type is refused, with a message naming both types.
+
+An [agent](/ai-agents/#what-agents-work-with) writes only models you added into a node, and asks you to add any other.
 
 [Example 10](https://github.com/urban-toolkit/curio/blob/main/docs/examples/10-street-vision-cv-analysis.md) runs two models over the same 40 Mapillary photos of Lincoln Park in Chicago: DDRNet23-Slim, and a model from Hugging Face.
 
