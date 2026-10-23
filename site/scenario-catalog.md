@@ -41,6 +41,8 @@ It arrives as a copy, collapsed where you dropped it, in its own color:
 
 Editing the copy leaves the original as it is. A second scenario of the same project, dragged into the same dataflow, shares the fixed context the first one brought.
 
+An [agent](/ai-agents/) that reads your dataflow tells which project and scenario a copy came from, or that they are gone. Asked for a scenario of another project, the Dataflow Builder names it and its project for you to drag in from **Browse all**.
+
 To compare the scenario with your own work, connect its outcome and yours to one chart or map, as in [Compare scenarios](/scenarios/#compare-scenarios). To run it on your own data, double-click its box, delete a Data Loading node, and connect your node where it was; **Run scenario** then runs your node first.
 
 A drop is refused, and nothing is added, when:

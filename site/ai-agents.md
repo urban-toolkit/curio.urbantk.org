@@ -56,7 +56,7 @@ An agent only accepts the targets it was made for. Each attachment has its own c
 
 Click a badge to open the agent's chat. The header says what the agent is attached to, the arrows step through your attached agents, and you can rename or clear the conversation. The first message is the agent's instruction, which the pencil lets you edit. Type in **Message this agent…** and send.
 
-What an agent does depends on the agent: explain or debug a node, write node code, find datasets (including in the open data portals of the [Discovery Catalog](/discovery/)), plan or build a whole dataflow, suggest connections and packages, or review your work. Proposed changes, such as new nodes, connections, code or packages, appear as cards in the chat. Nothing changes until you click **Apply**, and **Dismiss** drops a proposal.
+What an agent does depends on the agent: explain or debug a node, write node code, find datasets (including in the open data portals of the [Discovery Catalog](/discovery/)), plan or build a whole dataflow, suggest connections and packages, or review your work. Proposed changes, such as new nodes, connections, code, settings or packages, appear as cards in the chat. Nothing changes until you click **Apply**, and **Dismiss** drops a proposal.
 
 <MediaTodo kind="clip" source="tour:agentrun" caption="An agent's chat opens from its badge on a node, a question about the node is sent, and the answer appears in the chat." />
 
@@ -68,9 +68,13 @@ An agent uses only what you have. The code it writes reads your Data Catalog's d
 
 An agent that writes code reads what the dataflow can use: its datasets and models, and the names of your Node code keys, never their values. When it writes a node's code, it also reads the node's template: its description, its starter and the functions its code can import.
 
-An agent writing a node beside a [Map Edits](/scenarios/#edit-features-on-a-map) node reads its edits. Once you apply a change an agent made to a Map Edits node, it is an entry named after the agent in the node's [Provenance](/provenance/) drawer.
+An agent that reads the dataflow also sees how each node is set, such as a Data Pool's modes, a Simple View's image column, a Spatial Join's operation and each widget's value, and which nodes are tiles of the [dashboard](/dashboards/#pin-nodes). The Node Builder and the Dataflow Builder set these on the nodes they add, and change them on a node you have: ask, for example, to make a pool merge with AND, or to use *within* instead of *intersects*. The review card names each change as the node's own controls do, such as **Image column: overlay_url**, and applying it changes the node as picking it there would.
 
-<GuideFigure src="/media/ai-agents/map-edits-entry.webp" alt="The Node provenance drawer of a Map Edits node with one entry, Node Builder" caption="The Provenance drawer of a Map Edits node, with the change the Node Builder made as entry 1, named after the agent." :w="520" :h="190" />
+An agent writing a node beside a [Map Edits](/scenarios/#edit-features-on-a-map) node reads its edits. Asked for a scenario of another project, the Dataflow Builder finds it in your [Scenario Catalog](/scenario-catalog/) and names it and its project for you to drag in.
+
+Once you apply a change an agent made to a node's code, it is an entry named after the agent in the node's [Provenance](/provenance/) drawer, and a node an agent adds with its code starts with one. Open it to see when it was made and the code it left, and put that code back as you would a run's. The Node Builder and the Dataflow Builder read these histories as the dataflow was last saved, so you can ask either what changed in a node since a run.
+
+<GuideFigure src="/media/ai-agents/agent-entry.webp" alt="The Node provenance drawer of a Python node named Years, with one entry, Node Builder" caption="The Provenance drawer of a Python node after a change the Node Builder made to its code was applied: entry 1, named after the agent." :w="520" :h="190" />
 
 ## In chat, tools and modes
 
@@ -83,8 +87,8 @@ Curio describes what an agent does in three words:
 | Agent | In chat | Tools | Modes (who asks) |
 |---|---|---|---|
 | **Researcher** | Explains a node or the dataflow, diagnoses errors, helps define what to build, answers web questions as notes, checks facts | Read the dataflow and a node's last run; search and read the web; propose notes as [Note nodes](/dataflows/#notes); propose a notes package | Notes from search results (Dataflow Builder); Check a fact (Node Builder, Dataset Finder, Dataflow Builder) |
-| **Node Builder** | Builds a node, rewrites a node's content, suggests nodes for a connection, finds or writes node types | Read the dataflow and a node's last run; search the Data and Model Catalogs; propose a node, a content change, a package install or a package draft | Write a node's content (Node Builder, Dataflow Builder, Solve); Recommend packages (Dataflow Builder); Write a package (Node Builder, Researcher, Dataflow Builder) |
-| **Dataflow Builder** | Plans a whole dataflow, then solves its nodes | Read the dataflow and runs; propose a plan, a node or a package draft; read worked examples | None |
+| **Node Builder** | Builds a node, rewrites a node's content, changes a node's settings, suggests nodes for a connection, finds or writes node types | Read the dataflow, a node's last run and its history; search the Data and Model Catalogs; propose a node, a content change, a settings change, a package install or a package draft | Write a node's content (Node Builder, Dataflow Builder, Solve); Recommend packages (Dataflow Builder); Write a package (Node Builder, Researcher, Dataflow Builder) |
+| **Dataflow Builder** | Plans a whole dataflow, then solves its nodes | Read the dataflow, runs and node histories; search the Scenario Catalog; propose a plan, a node, a settings change or a package draft; read worked examples | None |
 | **Dataset Finder** | Finds datasets in the Data Catalog and in portals | Search the catalog and portals; propose a download | Find datasets (Node Builder, Dataflow Builder, Solve) |
 
 ### How an agent picks what to run

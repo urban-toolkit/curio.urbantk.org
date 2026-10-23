@@ -694,10 +694,10 @@
       }
     },
     {
-      "id": "map-edits-entry",
+      "id": "agent-entry",
       "page": "ai-agents",
-      "take": "main-63b00d6",
-      "name": "map-edits-agent-entry",
+      "take": "main-10721a7",
+      "name": "agent-provenance-entry",
       "crop": {
         "left": 0,
         "top": 0,

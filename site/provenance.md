@@ -42,6 +42,8 @@ Click a run to open it: when it started, how long it ran, and the code or specif
 
 <GuideFigure src="/media/provenance/node-runs.webp" alt="The Node provenance drawer with three runs of a Python Computation node" caption="The runs of a Python Computation node: run 1's code was put back after run 2, so run 3 branches from run 1 and run 2 sits on another branch, shown open under run 1. Run 3 is open, with when it started, its code and the button that puts that code back in the node." :w="520" :h="720" />
 
+Once you apply a change an [agent](/ai-agents/#what-agents-work-with) made to the node's code, the change is an entry too, named after the agent, such as **Node Builder**, and a node an agent added with its code starts with one. Open it to see when it was made and the code it left, and put that code back as you would a run's. The Node Builder and the Dataflow Builder read this history as the dataflow was last saved, so you can ask either what changed in a node since a run.
+
 ## What is kept
 
 Both histories are saved inside the project every time it saves. A file from **File > Save dataflow as** holds only the dataflow itself, not its history, so a dataflow loaded from a file starts a new one (see [Projects and files](/projects-and-files/)).
