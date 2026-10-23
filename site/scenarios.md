@@ -62,6 +62,9 @@ The **Map Edits** node edits a map's layers on the map: two towers taken out of 
 
 1. Connect the nodes that load your layers to **Map Edits**, and Map Edits to an [Autark map](/visualization/#autark-maps).
 2. Link the two with an [interaction edge](/interactions/), from the dot on top of Map Edits to the dot on top of the map. A feature picked on the map is then picked in Map Edits, and the features Map Edits picks light up on the map.
+
+<GuideFigure src="/media/scenarios/map-edits-pick.webp" alt="An Autark buildings map in which both parts of the picked building are lit in blue, under the tip Click an area to pick it, and shift-click to add one" caption="A buildings map linked to Map Edits: the building picked with a click lights up, both of its parts, in the map's own highlight." :w="515" :h="343" />
+
 3. Pick a layer in the node, then an action:
    - **Add** draws a point, a line or an area on the map, then asks for its values.
    - **Edit** changes a feature's values or its shape, one value of several features at once, or the features a rule such as `height > 100` matches, with a value or an expression such as `levels * 3.2`.

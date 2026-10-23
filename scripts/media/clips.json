@@ -454,6 +454,18 @@
       }
     },
     {
+      "id": "map-edits-pick",
+      "page": "scenarios",
+      "take": "main-2dff584",
+      "name": "map-pick-lit",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 515,
+        "height": 343
+      }
+    },
+    {
       "id": "chart-header",
       "page": "scenarios",
       "take": "pr1054-3c08f6d",
