@@ -18,7 +18,7 @@ Each node has a small circle labelled **Pin to dashboard** among the buttons in 
 
 After pinning, run the dataflow and save it. The dashboard shows the last saved version: save again whenever you change pins or rerun nodes.
 
-[Agents](/ai-agents/) know which nodes are tiles, so you can ask one whether a chart is on the dashboard; only you pin and unpin. A specification an agent writes for a pinned Autark map is sent back when it loads data of its own, and the agent loads that data in a node before the map instead. Solve stops on such a map, says why and leaves it to you. The review card of a plan that removes pinned nodes marks each as a **dashboard tile** and says how many leave the dashboard.
+[Agents](/ai-agents/) know which nodes are tiles, so you can ask one whether a chart is on the dashboard; only you pin and unpin. A specification an agent writes for a pinned Autark map is sent back when it loads data of its own, and the agent loads that data in a node before the map instead. An agent's Solve stops on such a map, says why and leaves it to you. The review card of a plan that removes pinned nodes marks each as a **dashboard tile** and says how many leave the dashboard.
 
 ## Open the dashboard
 
