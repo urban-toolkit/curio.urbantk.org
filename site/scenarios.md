@@ -77,7 +77,7 @@ Each edit is an entry in the node's list and in its [Provenance](/provenance/) d
 
 Edits find features by a column whose values differ in every feature, such as `osm_id` or `building_id`, and an edit by `building_id` changes every part of a building. The input itself is never changed.
 
-On a building of several parts, the map's tools change one part at a time, and the form in **Edit** is for all of them: a property its parts differ in is empty, with their values listed under it, and a value typed there goes to every part. Its **Parts** menu picks one part, and the form then shows and changes that part alone. A change on the map that would make a shape's outline cross itself, or its parts overlap, is refused: the shape goes back as it was, and the map's tip says why.
+On a building of several parts, the map's tools change one part at a time, and the form in **Edit** is for all of them: a property its parts differ in is empty, with their values listed under it, and a value typed there goes to every part. Its **Parts** menu picks one part, and the form then shows and changes that part alone. A change on the map that would make a shape's outline cross itself, or its parts overlap, is refused: the shape goes back as it was, and the map's tip says why. An edit in the node's code that would do the same is skipped: the map keeps the shape as it was, and the run's output says why.
 
 <GuideFigure src="/media/scenarios/map-edits.webp" alt="A Map Editor node with its layer's actions and a list of one edit" caption="A Map Editor node linked to its buildings map: the actions for its Buildings layer, and a list of one edit, Set height to 99 on building_id 1, which the two nodes below get with Commit edits." :w="560" :h="460" />
 
