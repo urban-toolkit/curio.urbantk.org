@@ -70,7 +70,7 @@ An agent that writes code reads what the dataflow can use: its datasets and mode
 
 An agent that reads the dataflow also sees how each node is set, such as a Data Pool's modes, a Simple View's image column, a Spatial Join's operation and each widget's value, and which nodes are tiles of the [dashboard](/dashboards/#pin-nodes). The Node Builder and the Dataflow Builder set these on the nodes they add, and change them on a node you have: ask, for example, to make a pool merge with AND, or to use *within* instead of *intersects*. The review card names each change as the node's own controls do, such as **Image column: overlay_url**, and applying it changes the node as picking it there would.
 
-An agent writing a node beside a [Map Edits](/scenarios/#edit-features-on-a-map) node reads its edits. Asked for a scenario of another project, the Dataflow Builder finds it in your [Scenario Catalog](/scenario-catalog/) and names it and its project for you to drag in.
+An agent writing a node beside a [Map Editor](/scenarios/#edit-features-on-a-map) node reads its edits. Asked for a scenario of another project, the Dataflow Builder finds it in your [Scenario Catalog](/scenario-catalog/) and names it and its project for you to drag in.
 
 Once you apply a change an agent made to a node's code, it is an entry named after the agent in the node's [Provenance](/provenance/) drawer, and a node an agent adds with its code starts with one. Open it to see when it was made and the code it left, and put that code back as you would a run's. The Node Builder and the Dataflow Builder read these histories as the dataflow was last saved, so you can ask either what changed in a node since a run.
 

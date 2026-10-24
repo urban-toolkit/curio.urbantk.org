@@ -444,7 +444,7 @@
     {
       "id": "map-edits",
       "page": "scenarios",
-      "take": "main-800c40b",
+      "take": "main-52c719c",
       "name": "map-edits",
       "crop": {
         "left": 0,
@@ -588,7 +588,7 @@
     {
       "id": "towers-lever",
       "page": "scout",
-      "take": "main-800c40b",
+      "take": "main-52c719c",
       "name": "shadow-towers-lever",
       "crop": {
         "left": 0,

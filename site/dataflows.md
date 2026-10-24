@@ -40,7 +40,7 @@ Click the title at the top to rename the dataflow. The save state in the top bar
 - **Parameter** holds one value that any node's code can read (see [Widgets and parameters](/widgets/)).
 - **Spatial Join** pairs the rows of two inputs whose shapes meet, by the operation you pick: intersects, within, contains, touches, overlaps, crosses or nearest. It outputs one row per pair, or its second input's rows, each with a count of its pairs.
 - **Data Export** downloads its input as CSV, GeoJSON or JSON, with the **Download** button in its **Widgets** tab.
-- **Map Edits** adds, changes and removes the features of a map's layers, on the map (see [Scenarios](/scenarios/#edit-features-on-a-map)).
+- **Map Editor** adds, changes and removes the features of a map's layers, on the map (see [Scenarios](/scenarios/#edit-features-on-a-map)).
 - **Vega-Lite**, **Autark** and **Simple View** draw [charts, maps, tables and images](/visualization/).
 - **Note** holds a title and a short text that explain a part of the dataflow (see [Notes](#notes)).
 

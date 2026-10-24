@@ -6,7 +6,7 @@ order: 45
 card: { poster: /media/scenarios/shadow-study.webp, alt: "Example 06 on the canvas with three scenario frames" }
 deeper:
   - { doc: docs/USAGE.md, anchor: scenarios, label: "Scenarios in the usage guide" }
-  - { doc: docs/USAGE.md, anchor: the-map-edits-node, label: "The Map Edits node" }
+  - { doc: docs/USAGE.md, anchor: the-map-editor-node, label: "The Map Editor node" }
   - { doc: docs/USAGE.md, anchor: comparing-scenarios, label: "Comparing scenarios" }
   - { doc: docs/USAGE.md, anchor: several-inputs, label: "Several inputs and their chips" }
   - { doc: docs/USAGE.md, anchor: every-input-in-one-dataset, label: "Every input in one dataset" }
@@ -21,7 +21,7 @@ deeper:
 A scenario is a named selection of a dataflow's nodes, or the whole dataflow, kept to compare alternatives: the same shadow study with buildings twice as tall, say, or with two towers removed. Its boundary splits the dataflow into three parts:
 
 - **Fixed context:** the nodes outside the scenario that it reads, through a connection or through a [Parameter node](/widgets/#share-a-value-with-a-parameter-node). The scenario takes their outputs as given. A node that two alternatives share sits outside both, as their common context.
-- **Levers:** the nodes in the scenario, which is what an alternative changes: its loaders, widget values, code and specs, and the features a [Map Edits node](#edit-features-on-a-map) adds, changes or removes.
+- **Levers:** the nodes in the scenario, which is what an alternative changes: its loaders, widget values, code and specs, and the features a [Map Editor node](#edit-features-on-a-map) adds, changes or removes.
 - **Outcomes:** the outputs of the scenario's last nodes, which is what gets compared.
 
 A node belongs to one scenario at most.
@@ -58,12 +58,12 @@ The nodes of a scenario's fixed context and its outcomes save their outputs to y
 
 ## Edit features on a map
 
-The **Map Edits** node edits a map's layers on the map: two towers taken out of a city's buildings, every building over 100 m lowered, a road reshaped or a park drawn, say. In a scenario, it is a lever.
+The **Map Editor** node edits a map's layers on the map: two towers taken out of a city's buildings, every building over 100 m lowered, a road reshaped or a park drawn, say. In a scenario, it is a lever.
 
-1. Connect the nodes that load your layers to **Map Edits**, and Map Edits to an [Autark map](/visualization/#autark-maps).
-2. Link the two with an [interaction edge](/interactions/), from the dot on top of Map Edits to the dot on top of the map. A feature picked on the map is then picked in Map Edits, and the features Map Edits picks light up on the map.
+1. Connect the nodes that load your layers to **Map Editor**, and Map Editor to an [Autark map](/visualization/#autark-maps).
+2. Link the two with an [interaction edge](/interactions/), from the dot on top of Map Editor to the dot on top of the map. A feature picked on the map is then picked in Map Editor, and the features Map Editor picks light up on the map.
 
-<GuideFigure src="/media/scenarios/map-edits-pick.webp" alt="An Autark buildings map in which both parts of the picked building are lit in blue, under the tip Click an area to pick it, and shift-click to add one" caption="A buildings map linked to Map Edits: the building picked with a click lights up, both of its parts, in the map's own highlight." :w="515" :h="343" />
+<GuideFigure src="/media/scenarios/map-edits-pick.webp" alt="An Autark buildings map in which both parts of the picked building are lit in blue, under the tip Click an area to pick it, and shift-click to add one" caption="A buildings map linked to Map Editor: the building picked with a click lights up, both of its parts, in the map's own highlight." :w="515" :h="343" />
 
 3. Pick a layer in the node, then an action:
    - **Add** draws a point, a line or an area on the map, then asks for its values.
@@ -77,7 +77,9 @@ Each edit is an entry in the node's list and in its [Provenance](/provenance/) d
 
 Edits find features by a column whose values differ in every feature, such as `osm_id` or `building_id`, and an edit by `building_id` changes every part of a building. The input itself is never changed.
 
-<GuideFigure src="/media/scenarios/map-edits.webp" alt="A Map Edits node with its layer's actions and a list of one edit" caption="A Map Edits node linked to its buildings map: the actions for its Buildings layer, and a list of one edit, Set height to 99 on building_id 1, which the two nodes below get with Commit edits." :w="560" :h="460" />
+On a building of several parts, the map's tools change one part at a time, and the form in **Edit** is for all of them: a property its parts differ in is empty, with their values listed under it, and a value typed there goes to every part. Its **Parts** menu picks one part, and the form then shows and changes that part alone. A change on the map that would make a shape's outline cross itself, or its parts overlap, is refused: the shape goes back as it was, and the map's tip says why.
+
+<GuideFigure src="/media/scenarios/map-edits.webp" alt="A Map Editor node with its layer's actions and a list of one edit" caption="A Map Editor node linked to its buildings map: the actions for its Buildings layer, and a list of one edit, Set height to 99 on building_id 1, which the two nodes below get with Commit edits." :w="560" :h="460" />
 
 ## Compare scenarios
 
@@ -159,7 +161,7 @@ To draw a difference on a map, connect the node to an Autark node after it. Its 
 
 ## In the examples
 
-Example 06, "Back Bay road sunlight when buildings change", has three scenarios over one loader: Baseline, Twice as tall (its `height_factor` widget set to 2), and Two towers removed (a Map Edits node takes out two towers, on a buildings map it feeds). Each ends in a Roads node that takes its roads with their sunlight. Scout's **Bars** charts each scenario's mean road sunlight from the three Roads nodes, and a Python node takes the sunlight each road loses in Twice as tall, which an Autark map draws in red, yellow and blue from -360 to 360 minutes. The [SCOUT examples](/scout/) compare scenarios of shadows, park shade, flooding and routes.
+Example 06, "Back Bay road sunlight when buildings change", has three scenarios over one loader: Baseline, Twice as tall (its `height_factor` widget set to 2), and Two towers removed (a Map Editor node takes out two towers, on a buildings map it feeds). Each ends in a Roads node that takes its roads with their sunlight. Scout's **Bars** charts each scenario's mean road sunlight from the three Roads nodes, and a Python node takes the sunlight each road loses in Twice as tall, which an Autark map draws in red, yellow and blue from -360 to 360 minutes. The [SCOUT examples](/scout/) compare scenarios of shadows, park shade, flooding and routes.
 
 "Nine ways to chart scenario comparisons", under **Tests** on the projects page, charts the scenarios of nine example tables from the Data Catalog, each a different way. For each table, a Data Transformation node per scenario keeps that scenario's rows, and a chart of the [Scout package](/scout/#charts-that-compare-scenarios) takes each scenario's node on an input of its own, with its columns set in its **Widgets** tab: **Lines with a band**, **Curves by group**, **Bars with error bars**, **Ensemble strips**, **Grouped bars**, **Stacked bars with totals**, **Donuts**, **Weighted matrix** and **Table**.
 
