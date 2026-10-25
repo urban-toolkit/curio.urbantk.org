@@ -44,7 +44,7 @@ Anyone viewing the dashboard can change its pinned controls: the value of a pinn
 The **Share** menu offers two links, and both need the dataflow to be saved first:
 
 - **Copy dashboard link** copies the dashboard's address. Visitors see the pinned tiles and can change the pinned controls, with no account.
-- **Copy dataflow link** copies the canvas address. Visitors see the whole dataflow, read-only, and **File > Save dataflow** saves a copy to their own workspace.
+- **Copy dataflow link** copies the canvas address. Visitors see the whole dataflow, read-only, and **File > Save dataflow** saves a copy, with its saved results, to their own workspace.
 
 Anyone who can sign in to that Curio server can open a dataflow link. If the server allows guests, the sign-in page also offers **Continue as Guest**. The dashboard has the same **Share** menu, with both links.
 
