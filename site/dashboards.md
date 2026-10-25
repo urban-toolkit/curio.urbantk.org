@@ -22,7 +22,7 @@ After pinning, run the dataflow and save it. The dashboard shows the last saved 
 
 ## Open the dashboard
 
-On the canvas, choose **Share > Open dashboard**. The dashboard opens in a new tab at an address of its own, and its tiles draw from the saved outputs, with nothing to press. A tile whose nodes have no saved output runs them when the page opens. **Open dataflow**, at the top, takes you back to the canvas.
+On the canvas, choose **Share > Open dashboard**. The dashboard opens in a new tab at an address of its own, and its tiles draw from the saved outputs, with nothing to press. A tile whose nodes have no saved output runs them when the page opens, and says **Computing...** until its results are ready. **Open dataflow**, at the top, takes you back to the canvas.
 
 As the owner, click **Edit layout** to move tiles by their title bar and resize them, then **Save layout**. This arranges the dashboard only: nodes keep their places on the canvas. If nothing is pinned yet, the page says so and links back to the dataflow.
 
