@@ -45,6 +45,11 @@ export const SITE = {
         url: 'https://idot.illinois.gov',
         logo: { light: '/media/sponsors/idot.webp', dark: '/media/sponsors/idot-dark.webp' },
       },
+      {
+        name: 'Spencer Foundation',
+        url: 'https://www.spencer.org',
+        logo: { light: '/media/sponsors/spencer.webp', dark: '/media/sponsors/spencer-dark.webp' },
+      },
     ],
   },
   // Both logos are black, so dark mode shows them inverted.

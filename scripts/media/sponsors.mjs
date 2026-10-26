@@ -1,10 +1,11 @@
 // The sponsor logos under the home page's funding line, made once from the sponsors' own files.
 //
-// node scripts/media/sponsors.mjs <dir with nsf.svg, dpi.png and idot.png>
+// node scripts/media/sponsors.mjs <dir with nsf.svg, dpi.png, idot.png and spencer.png>
 //
 // nsf.svg is "National Science Foundation (2009-).svg" and dpi.png is "Dpi-under-black-green.png", both from
-// Wikimedia Commons; idot.png is idotlogo.png from idot.illinois.gov. Writes each logo 96 px tall to
-// site/public/media/sponsors/, and a dark version of DPI's and IDOT's, whose black turns white.
+// Wikimedia Commons; idot.png is idotlogo.png from idot.illinois.gov; spencer.png is the white wordmark
+// spencer-white.png from spencer.org. Writes each logo 96 px tall to site/public/media/sponsors/, and a dark
+// version of DPI's and IDOT's, whose black turns white, and of Spencer's, which stays white.
 
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -55,3 +56,17 @@ function ink(value) {
 }
 await write(await pixels(path.join(src, 'idot.png'), ink(0)), 'idot.webp')
 await write(await pixels(path.join(src, 'idot.png'), ink(255)), 'idot-dark.webp')
+
+// Spencer: capitals only, which would look heavier than the other logos at their full height, so the letters
+// are 48 px tall in the 96 px logo. White on transparent, so the light version turns the white black.
+async function wordmark(input, name) {
+  const pad = (HEIGHT - 48) / 2
+  const letters = await sharp(input).trim().resize({ height: 48 }).png().toBuffer()
+  await sharp(letters)
+    .extend({ top: pad, bottom: pad, background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .webp({ quality: 90 })
+    .toFile(path.join(OUT, name))
+}
+const spencerFile = path.join(src, 'spencer.png')
+await wordmark(await pixels(spencerFile, (data, i) => (data[i] = data[i + 1] = data[i + 2] = 0)), 'spencer.webp')
+await wordmark(spencerFile, 'spencer-dark.webp')
