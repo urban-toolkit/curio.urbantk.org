@@ -38,7 +38,7 @@ Click the title at the top to rename the dataflow. The save state in the top bar
 - **Data Summary** reports a table's column types, missing values and statistics.
 - **Data Pool** shows one result as a table and feeds it to the nodes after it, marking the rows selected in the views [linked](/interactions/) to it.
 - **Spatial Join** pairs the rows of two inputs whose shapes meet, by the operation you pick: intersects, within, contains, touches, overlaps, crosses or nearest. It outputs one row per pair, or its second input's rows, each with a count of its pairs.
-- **Data Export** downloads its input as CSV, GeoJSON or JSON, with the **Download** button in its **Widgets** tab.
+- **Data Export** writes its input to a file with Python: a table as CSV, a GeoDataFrame as GeoJSON, a raster as GeoTIFF and anything else as JSON. It opens on its **File name** and its **Download** button, which saves the file, and its code is on the **Code** tab.
 - **Map Editor** adds, changes and removes the features of a map's layers, on the map (see [Scenarios](/scenarios/#edit-features-on-a-map)).
 - **Vega-Lite**, **Autark** and **Simple View** draw [charts, maps, tables and images](/visualization/).
 - **Note** holds a title and a short text that explain a part of the dataflow (see [Notes](#notes)).
