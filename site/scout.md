@@ -54,8 +54,8 @@ Deep Umbra ships with Curio's repository and its Docker image; a pip install dow
 "Lower Manhattan park shade with towers removed or capped" measures the shade in the parks of the Financial District and City Hall with the towers around them removed or capped:
 
 - an Autark node loads Lower Manhattan's parks, and the buildings of a box about 300 m larger, from an OpenStreetMap extract;
-- Python nodes give every building part a height, keep the open-air parks, and mark the parts at least the **Tall building height** tall within the **Distance from a park** of any park, two [Parameter nodes](/widgets/#share-a-value-with-a-parameter-node) set to 60 m and 75 m;
-- in three scenarios, Existing, Towers removed and Height cap, Map Editor nodes remove the marked parts or cut them to the Tall building height, each linked to the buildings map it feeds. Rasterize Buildings and Accumulated Shadow give the shadow over the season a third Parameter node sets, a Python node measures it in each park, and Autark maps draw the buildings in 3D and the shadow.
+- Python nodes give every building part a height, keep the open-air parks, and mark the parts at least the **Tall building height** tall within the **Distance from a park** of any park, two [widgets](/widgets/) of the Buildings around parks node, set to 60 m and 75 m;
+- in three scenarios, Existing, Towers removed and Height cap, Map Editor nodes remove the marked parts or cut them to the Tall building height, each linked to the buildings map it feeds. Rasterize Buildings and Accumulated Shadow give the shadow over the season, which a Season node connected to each Accumulated Shadow sets. A Python node measures it in each park, and Autark maps draw the buildings in 3D and the shadow.
 
 Scout's **Dots with a range** charts each park's mean minutes of shadow, a dot per scenario on a rule from the park's lowest to its highest, each scenario's parks on an input of its own. For each what-if, a Raster Calculator takes its change in shadow from Existing, cell by cell, and a Python node the change per park, matched by the park's name, which Autark maps draw.
 
@@ -65,13 +65,13 @@ Scout's **Dots with a range** charts each park's mean minutes of shadow, a dot p
 
 "Quad Cities flood depth, nature-based solutions and vulnerability" is SCOUT's flood study of the Quad Cities, built from Curio's own nodes and Scout's Raster Calculator:
 
-- three [Parameter nodes](/widgets/#share-a-value-with-a-parameter-node) set the period (2020 - 2050, 2050 - 2080 or 2080 - 2100) and the region's two corners, which start at the region of SCOUT's flood example;
-- Data Loading nodes read only that region's window of SCOUT's whole flood depth rasters, with and without nature-based solutions (NbS), and of its raster of where each solution would go;
+- two Python nodes hold [widgets](/widgets/#share-a-value-across-nodes) that other nodes read through connections: **Region**, the region's two corners, which start at the region of SCOUT's flood example, and **Projection period**, 2020 - 2050, 2050 - 2080 or 2080 - 2100;
+- Data Loading nodes connected to them read only that region's window of SCOUT's whole flood depth rasters, with and without nature-based solutions (NbS), and of its raster of where each solution would go;
 - in each of two scenarios, No NbS and NbS, a **Raster Calculator** takes the depth with NbS where the class is one of the solutions its **Nature-based solutions** checkboxes pick, and the depth without NbS elsewhere. No NbS picks none, and NbS all four: bioswales and infiltration trenches, permeable pavements, retention ponds and constructed wetlands. A second Raster Calculator takes the depth's median and mean, and an Autark map draws the depth. Both depth maps set the same `colorMapRange`, 0 to 11 m.
 
 Outside the scenarios, another Raster Calculator takes the size of the change in depth between No NbS and NbS, with `absolute=True`, which an Autark map draws, and Scout's **Bars** charts each scenario's median depth.
 
-<GuideFigure src="/media/scout/flood-change.webp" alt="An Autark map of the size of the change in flood depth" caption="Depth change: the size of the change in flood depth between No NbS and NbS, cell by cell, over the region the Parameter nodes set." :w="526" :h="350" />
+<GuideFigure src="/media/scout/flood-change.webp" alt="An Autark map of the size of the change in flood depth" caption="Depth change: the size of the change in flood depth between No NbS and NbS, cell by cell, over the region the Region node sets." :w="526" :h="350" />
 
 <GuideFigure src="/media/scout/flood-median.webp" alt="Scout's Bars charting the median flood depth of two scenarios" caption="Median flood depth: Scout&#x27;s Bars, the median depth of No NbS and NbS, each bar in its scenario&#x27;s color." :w="526" :h="350" />
 

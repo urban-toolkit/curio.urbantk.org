@@ -358,18 +358,6 @@
       }
     },
     {
-      "id": "parameter",
-      "page": "widgets",
-      "take": "main-3ca164c",
-      "name": "parameter-node",
-      "crop": {
-        "left": 0,
-        "top": 0,
-        "width": 360,
-        "height": 230
-      }
-    },
-    {
       "id": "selection-tag",
       "page": "widgets",
       "take": "inproject2",

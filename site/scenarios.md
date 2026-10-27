@@ -20,7 +20,7 @@ deeper:
 
 A scenario is a named selection of a dataflow's nodes, or the whole dataflow, kept to compare alternatives: the same shadow study with buildings twice as tall, say, or with two towers removed. Its boundary splits the dataflow into three parts:
 
-- **Fixed context:** the nodes outside the scenario that it reads, through a connection or through a [Parameter node](/widgets/#share-a-value-with-a-parameter-node). The scenario takes their outputs as given. A node that two alternatives share sits outside both, as their common context.
+- **Fixed context:** the nodes outside the scenario that it reads, through a connection into it. The scenario takes their outputs as given. A node that two alternatives share sits outside both, as their common context.
 - **Levers:** the nodes in the scenario, which is what an alternative changes: its loaders, widget values, code and specs, and the features a [Map Editor node](#edit-features-on-a-map) adds, changes or removes.
 - **Outcomes:** the outputs of the scenario's last nodes, which is what gets compared.
 
@@ -116,11 +116,11 @@ The boxes come in the order the dataflow lists them. An input from no box comes 
 
 ## The chips above the spec
 
-Above a node's code or spec, one row lists every chip the node can use, by category, each with its count: **Inputs**, **Scenarios**, **Widgets**, **Selections** and **Shared**. A category shows only when it has chips. The categories start closed, each with a chevron pointing down. Click one to list its chips under the row, and its chevron points up; click it again, or open another category, to close it. A category stays open on that node while the dataflow is open. On the canvas, the row and its open chips take at most half of the node's editor, and the chips scroll past that. Drag a chip's tag into the code or spec, or click it to put the chip at the cursor.
+Above a node's code or spec, one row lists every chip the node can use, by category, each with its count: **Inputs**, **Scenarios**, **Widgets** and **Selections**. A category shows only when it has chips. The categories start closed, each with a chevron pointing down. Click one to list its chips under the row, and its chevron points up; click it again, or open another category, to close it. A category stays open on that node while the dataflow is open. On the canvas, the row and its open chips take at most half of the node's editor, and the chips scroll past that. Drag a chip's tag into the code or spec, or click it to put the chip at the cursor.
 
 - **Inputs:** a line for each input, `input_0`, `input_1` and so on, in circle order. In a Vega-Lite spec, the line of **inputs**, the stacked rows, comes last.
 - **Scenarios:** on a node with an input from a scenario box. In a Vega-Lite spec, first the boxes' swatches with their names, the tag of `[!! scenario colors !!]`, then **text colors** and **order**. In a Vega-Lite or Autark spec, a tag for each input, such as **input_1 ■ Twice as tall**, in the color its chip writes.
-- **Widgets**, **Selections** and **Shared:** the node's [widgets](/widgets/), its [selection tags](/widgets/#hand-a-node-what-you-selected) and the Parameter nodes' values.
+- **Widgets** and **Selections:** the node's [widgets](/widgets/) and its [selection tags](/widgets/#hand-a-node-what-you-selected).
 
 A line of **Inputs** holds a square button, the input's tag, and where the input comes from: its scenario box, or else the kind of node that feeds it. Once that node has run, the line also says what the input holds, such as **from Existing: 5 columns**, **from Autark: 5 layers** or **from Python Computation: 2 values, a tuple**. The line of **inputs** names the inputs it stacks and, once they have run, how many fields their rows carry, such as **input_0 and input_1, stacked: 8 fields**.
 
@@ -128,13 +128,13 @@ Click a line's square button to open its list, indented under the line, and clic
 
 <GuideFigure src="/media/scenarios/input-lines.webp" alt="A Vega-Lite chart's Inputs open, with input_0's columns listed under its line" caption="A Vega-Lite chart fed from a Data Pool, with Inputs open. The line of input_0 reads from Data Pool: 3 columns, and its list, open under it, holds geometry, accessibility and neighborhood_name. The line of inputs, input_0, stacked: 5 fields, comes last, closed." :w="526" :h="350" />
 
-Hover over a tag, or over its chip in the code or spec, to preview what it holds: an input's source, size and first rows, a column's type, first values and range or count of distinct values, a widget's or Parameter's value, a selection's ids and selected rows, or the scenario boxes' colors.
+Hover over a tag, or over its chip in the code or spec, to preview what it holds: an input's source, size and first rows, a column's type, first values and range or count of distinct values, a widget's value, a selection's ids and selected rows, or the scenario boxes' colors.
 
 <GuideFigure src="/media/scenarios/chip-preview.webp" alt="A Vega-Lite chart's input_0 tag with its preview: source, size, column types and first rows" caption="A Vega-Lite chart's input_0 tag, hovered: from Data Pool, 79 rows by 3 columns of a GeoDataFrame, and its first 5 rows under each column's name and type." :w="343" :h="296" />
 
 A node with no input from a box has no **Scenarios**, and the hover of a scenario chip in its spec says what the chip writes there. On a node with no input, `[!! inputs !!]` is red until you connect one. `[!! inputs !!]` and the scenario chips are for specs: Python and JavaScript code takes neither.
 
-<GuideFigure src="/media/scenarios/chart-header.webp" alt="A Scout Bars chart on its Grammar tab, with the Scenarios category open above its spec" caption="Scout's Bars chart of the mean accumulated shadow in Chicago Loop shadow with towers removed or edited, on its Grammar tab. Its row reads Inputs 3, Scenarios 5, Widgets 3 and Shared 1, with Scenarios open: the two boxes' swatches and names, text colors and order, then each input in its box's color. The spec names its dataset with the inputs chip." :w="526" :h="350" />
+<GuideFigure src="/media/scenarios/chart-header.webp" alt="A Scout Bars chart on its Grammar tab, with the Scenarios category open above its spec" caption="Scout's Bars chart of the mean accumulated shadow in Chicago Loop shadow with towers removed or edited, on its Grammar tab. Its row reads Inputs 3, Scenarios 5 and Widgets 3, with Scenarios open: the two boxes' swatches and names, text colors and order, then each input in its box's color. The spec names its dataset with the inputs chip." :w="526" :h="350" />
 
 ## Maps and differences
 

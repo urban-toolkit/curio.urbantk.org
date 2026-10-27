@@ -30,9 +30,9 @@ A map made with Autark draws in the viewer's own browser, so it needs a browser 
 
 ## Try other values
 
-Anyone viewing the dashboard can change its pinned controls: the value of a pinned Parameter node, and the widgets of a pinned node that shows them. Text, text list and file widgets keep their saved value.
+Anyone viewing the dashboard can change its pinned controls, the widgets of every pinned node: a Python node's tile shows them in place of its code, and a Vega-Lite or Autark tile above its chart or map. Text, text list and file widgets keep their saved value.
 
-- A change runs again on its own once you stop changing it; there is no Run button. The nodes it reaches run on the server with the owner's data, models and packages, and none of the owner's keys, and the tiles below show the result.
+- A chart or map draws again with a new value of its own widget. Any other change runs the nodes it reaches once you stop changing it, with no Run button: they run on the server with the owner's data, models and packages, and none of the owner's keys, and the tiles below show the result.
 - A viewer never changes the dataflow or the owner's Data Catalog, and putting a value back shows the saved results again.
 - What such a run makes is kept for 7 days, so the next viewer who picks the same values sees it at once.
 - A node that only a browser runs, such as an Autark computation on the GPU, runs in each viewer's own browser.

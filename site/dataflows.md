@@ -32,12 +32,11 @@ Click the title at the top to rename the dataflow. The save state in the top bar
 
 ## Kinds of nodes
 
-- **Data Loading** brings data in with Python.
+- **Data Loading** brings data in with Python, and can read values from the nodes connected to it.
 - **Data Transformation** and **Python Computation** run Python on their inputs, which arrive as `input_0`, `input_1` and so on, one per input circle, and pass on what the code returns.
 - **JS Computation** does the same in JavaScript.
 - **Data Summary** reports a table's column types, missing values and statistics.
 - **Data Pool** shows one result as a table and feeds it to the nodes after it, marking the rows selected in the views [linked](/interactions/) to it.
-- **Parameter** holds one value that any node's code can read (see [Widgets and parameters](/widgets/)).
 - **Spatial Join** pairs the rows of two inputs whose shapes meet, by the operation you pick: intersects, within, contains, touches, overlaps, crosses or nearest. It outputs one row per pair, or its second input's rows, each with a count of its pairs.
 - **Data Export** downloads its input as CSV, GeoJSON or JSON, with the **Download** button in its **Widgets** tab.
 - **Map Editor** adds, changes and removes the features of a map's layers, on the map (see [Scenarios](/scenarios/#edit-features-on-a-map)).
@@ -60,11 +59,11 @@ The **Run all nodes** button, at the bottom of the left column, runs the whole d
 
 ## Inside a node
 
-A node's header shows the play button, the node's title and kind, and its run status. Its other buttons show while the pointer is over the node or the node is selected. The first of them switch its tabs: **Code**, **Widgets**, **Grammar** and **Output**, as the node has them. **Provenance**, between Grammar and Output, opens the node's [past runs](/provenance/) in a drawer. Code and specs sit in a gray box, and a code node prints its output below its code. In **Widgets**, you add the node's controls, such as a slider or a date (see [Widgets and parameters](/widgets/)). The switch after the tabs saves the node's table output to your Data Catalog.
+A node's header shows the play button, the node's title and kind, and its run status. Its other buttons show while the pointer is over the node or the node is selected. The first of them switch its tabs: **Code**, **Widgets**, **Grammar** and **Output**, as the node has them. **Provenance**, between Grammar and Output, opens the node's [past runs](/provenance/) in a drawer. Code and specs sit in a gray box, and a code node prints its output below its code. In **Widgets**, you add the node's controls, such as a slider or a date (see [Widgets and selections](/widgets/)). The switch after the tabs saves the node's table output to your Data Catalog.
 
 Click the title to rename the node; the gear beside it opens **Node settings**, for [making a reusable node](/authoring-nodes/). After the switch come a button that explains the node, **Pin to dashboard** for the dataflow's [dashboard](/dashboards/), **Minimize**, which folds the node into a chip with its icon and title (hover a long title to read it whole) that opens again with a click, and, at the right end, **Delete node**. **View > Minimize Nodes** folds them all, and **View > Expand Nodes** opens them again. Drag a node's bottom-right corner to resize it, and double-click a node where you would drag it, such as its header, to zoom the view onto it. For viewers of a shared dataflow, nodes keep their size and have no **Delete node**.
 
-Above the code or spec, one row lists every chip the node can use, in categories that start closed: **Inputs**, **Scenarios**, **Widgets**, **Selections** and **Shared**. Click a category to list its chips, then drag a chip's tag into the code or spec, or click the tag to put the chip at the cursor (see [The chips above the spec](/scenarios/#the-chips-above-the-spec)).
+Above the code or spec, one row lists every chip the node can use, in categories that start closed: **Inputs**, **Scenarios**, **Widgets** and **Selections**. Click a category to list its chips, then drag a chip's tag into the code or spec, or click the tag to put the chip at the cursor (see [The chips above the spec](/scenarios/#the-chips-above-the-spec)).
 
 ## Notes
 

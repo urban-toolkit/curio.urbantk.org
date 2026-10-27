@@ -1,20 +1,19 @@
 ---
-title: "Widgets and parameters"
-description: "Set the values a node's code reads in a form, share one value across nodes with a Parameter node, and hand a node what you selected in a view."
+title: "Widgets and selections"
+description: "Set the values a node's code reads in a form, share one value across nodes through connections, and hand a node what you selected in a view."
 group: using
 order: 15
 card: { poster: /media/widgets/widgets-tab.webp, alt: "A node's Widgets tab with a slider, checkboxes, radio buttons, a date and a location" }
 deeper:
   - { doc: docs/USAGE.md, anchor: widgets, label: "Widgets in the usage guide" }
-  - { doc: docs/USAGE.md, anchor: shared-values-the-parameter-node, label: "The Parameter node" }
   - { doc: docs/USAGE.md, anchor: running-stale-nodes-automatically, label: "Running stale nodes automatically" }
   - { doc: docs/USAGE.md, anchor: selection-tags, label: "Selection tags" }
   - { doc: docs/AUTHORING-NODES.md, anchor: widgets-in-a-template, label: "Widgets in a node template" }
 ---
 
-# Widgets and parameters
+# Widgets and selections
 
-A widget is a value a node's code reads that you set in a form instead of in the code: a threshold, a season, a date, a place. Python, Vega-Lite and Autark nodes have widgets. A **Parameter** node holds one such value for every node of the dataflow, and a selection tag hands a node the rows you selected in a chart or a map.
+A widget is a value a node's code reads that you set in a form instead of in the code: a threshold, a season, a date, a place. Python, Vega-Lite and Autark nodes have widgets. A Python node that returns a widget's value shares it with the nodes connected to it, and a selection tag hands a node the rows you selected in a chart or a map.
 
 ## Add a widget
 
@@ -35,17 +34,9 @@ When the node runs, each chip is replaced by its value, written in the code's la
 
 Values are saved with the dataflow. Changing one marks the node as needing a new run, so **Run** and **Run All** run it again. With **View > Run stale nodes automatically** on, the change runs the node and the nodes below it by itself, half a second after the last change, so a slider drag runs them once. A chip whose name the node has no widget for stops the run with a message naming it.
 
-## Share a value with a Parameter node
+## Share a value across nodes
 
-A **Parameter** node holds one widget that any node of the dataflow can read, such as a period or a region that several nodes use.
-
-1. Drag **Parameter** from the palette onto the canvas, give it a name, a type, a label and a default as for a widget, and click **Add parameter**.
-2. Its tag, **@name**, shows under **Shared** above every node's code or spec, and in every node's **Widgets** tab. Drag it into the code, where it shows as an amber chip.
-3. Set the value in the Parameter node.
-
-A Parameter node has no connections. It lists the nodes whose code uses it, and changing its value marks them as needing a new run, or runs them when **Run stale nodes automatically** is on. **Edit** renames it, and their code follows the new name. Pinned to the [dashboard](/dashboards/), it shows its value.
-
-<GuideFigure src="/media/widgets/parameter.webp" alt="A location Parameter node that lists the nodes whose code uses it" caption="From the Quad Cities flood dataflow: the Top-left corner Parameter node, a location, lists the nodes whose code uses it. A list longer than the node scrolls inside it." :w="360" :h="230" />
+To give several nodes one value, such as a season or a region, put its widget on one Python node whose code returns it, `return [!! season !!]`, and connect that node to each node that reads it. Each of them reads the value on that input, such as `input_1`. A Data Loading node takes inputs too, so several loaders can read one region.
 
 ## Hand a node what you selected
 
