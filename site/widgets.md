@@ -13,7 +13,7 @@ deeper:
 
 # Widgets and selections
 
-A widget is a value a node's code reads that you set in a form instead of in the code: a threshold, a season, a date, a place. Python, Vega-Lite and Autark nodes have widgets. A Python node that returns a widget's value shares it with the nodes connected to it, and a selection tag hands a node the rows you selected in a chart or a map.
+A widget is a value a node's code reads that you set in a form instead of in the code: a threshold, a season, a date, a place. Python, Vega-Lite and Autark nodes have widgets. A Data Loading or Data Export node keeps the widgets it comes with: its **Widgets** tab shows only their controls. A Python node that returns a widget's value shares it with the nodes connected to it, and a selection tag hands a node the rows you selected in a chart or a map.
 
 ## Add a widget
 
