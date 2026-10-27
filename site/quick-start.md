@@ -33,7 +33,7 @@ On the **Projects** page, click **+ New Dataflow**. The canvas opens with the bu
 
 ## Load a small dataset
 
-Drag the **Data Loading** tile onto the canvas. The node opens on its code editor: paste this Python, which builds a small table and returns it to the next node.
+Drag the **Data Loading** tile onto the canvas. The node opens on its **Data** box; click its **Code** tab and replace the code with this Python, which builds a small table and returns it to the next node.
 
 ```python
 import pandas as pd
@@ -70,6 +70,6 @@ Click the Vega-Lite node's play button, and the chart appears in the node with o
 
 Save with **File > Save dataflow**, or click the save state next to the **Share** menu, which reads **Saved** once everything on the canvas is saved. After the first save, Curio also saves your changes automatically as you work. **File > Save dataflow as** downloads the dataflow as a file, which **File > Load dataflow** opens as a new dataflow.
 
-To chart a file of your own, click **Data Catalog** in the top bar, click **Import dataset** at the bottom of the drawer and pick a CSV, GeoJSON or other supported file, then click **Add to project** on its card and confirm. Drag the dataset from the rail's **Data Catalog** list onto the canvas, and Curio creates a Data Loading node with the code that reads it. [Data Catalog](/data-catalog/) covers datasets in depth, and [Charts and maps](/visualization/) covers what Vega-Lite and Autark can draw.
+To chart a file of your own, drop a CSV, GeoJSON or other supported file on a fresh Data Loading node's **Data** box, or click **Choose file** there and pick it: Curio adds it to your Data Catalog and the node loads it. A dataset already in the Data Catalog can be dragged from the rail's **Data Catalog** list onto the canvas instead. [Data Catalog](/data-catalog/) covers datasets in depth, and [Charts and maps](/visualization/) covers what Vega-Lite and Autark can draw.
 
 <LoopVideo src="/media/data-catalog/datacatalog.mp4" poster="/media/data-catalog/datacatalog.webp" label="Browse Data Catalog + opens the Data Catalog drawer, Add to project puts a dataset into the dataflow, and the dataset then appears in the rail&#x27;s Data Catalog list." :w="1280" :h="768" />

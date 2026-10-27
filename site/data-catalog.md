@@ -26,7 +26,7 @@ The **Data Catalog** tab at the top of the Projects page shows the same datasets
 
 ## Load it on the canvas
 
-Drag a dataset from the Tools panel onto empty canvas, and Curio creates a Data Loading node with code that reads it the right way for its format. Drop it onto an existing node, and the loading code is added to that node instead. The code names the dataset rather than a file path, so it keeps working when you share or move the dataflow. [Functions node code calls](https://github.com/urban-toolkit/curio/blob/main/agents/agent.curio.builtin@1/knowledge/node-functions.md) lists the calls that read a dataset, with their arguments.
+Drag a dataset from the Tools panel onto empty canvas, and Curio creates a Data Loading node whose **Data** box holds it. Its code, on the **Code** tab, loads what the box holds the right way for its format. Drop a dataset onto a Data Loading node, and its **Data** box takes it; onto another node, and the loading code is added to that node's code instead. The code names the dataset rather than a file path, so it keeps working when you share or move the dataflow. [Functions node code calls](https://github.com/urban-toolkit/curio/blob/main/agents/agent.curio.builtin@1/knowledge/node-functions.md) lists the calls that read a dataset, with their arguments.
 
 Clicking a dataset in the dropdown highlights the nodes that use it. A node that reads a dataset shows a **DATASET** pill in its title bar; click the pill to find the dataset in the Tools panel.
 
@@ -34,7 +34,7 @@ Clicking a dataset in the dropdown highlights the nodes that use it. A node that
 
 ## Bring your own data
 
-Click **Import dataset** at the bottom of the drawer, or at the top of the Data Catalog page, and pick a file. Curio accepts:
+Drop a file from your computer on the canvas or on a Data Loading node, or click **Choose file** in a Data Loading node's **Data** box: Curio imports it into your Data Catalog, adds it to the dataflow and loads it. **Import dataset**, at the bottom of the drawer or at the top of the Data Catalog page, imports a file without loading it. Curio accepts:
 
 - CSV (`.csv`), JSON (`.json`) and Parquet (`.parquet`) files
 - GeoJSON (`.geojson`) files
@@ -42,7 +42,7 @@ Click **Import dataset** at the bottom of the drawer, or at the top of the Data 
 - Shapefiles, as a `.zip` holding the `.shp` with its `.dbf` and `.shx` (and its `.prj`), which become one dataset
 - OpenStreetMap extracts (`.pbf`) and GeoPackages (`.gpkg`), which become one dataset per layer
 
-Importing does not add the file to the open dataflow, so click **Add to project** on it next. To get a dataset from an open data portal, storage or a service instead, see [Discovery Catalog](/discovery/).
+**Import dataset** does not add the file to the open dataflow, so click **Add to project** on it next. To get a dataset from an open data portal, storage or a service instead, see [Discovery Catalog](/discovery/).
 
 **Delete** removes one of your uploads or computed datasets from your account and from every dataflow that uses it. Removing an upload from the last dataflow that uses it also deletes it, and the confirmation says so first.
 

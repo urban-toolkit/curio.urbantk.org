@@ -24,7 +24,7 @@ A widget is a value a node's code reads that you set in a form instead of in the
 
 <GuideFigure src="/media/widgets/add-widget.webp" alt="The Add widget form of a Python node" caption="The Add widget form for a slider labelled Rain: its type, label, minimum, maximum, step, units and default." :w="526" :h="350" />
 
-A widget is a number, a slider, a text, a choice (a dropdown or radio buttons), a checkbox, a checkbox group, a multi-select, a date and time, a location (a latitude and a longitude, or a place search), a list of numbers or of texts, a range, or a text file.
+A widget is a number, a slider, a text, a choice (a dropdown or radio buttons), a checkbox, a checkbox group, a multi-select, a date and time, a location (a latitude and a longitude, or a place search), a list of numbers or of texts, a range, a text file, or a dataset, which a file or a Data Catalog dataset dropped on the node sets.
 
 <GuideFigure src="/media/widgets/widgets-tab.webp" alt="A node's Widgets tab with five widgets" caption="A node's Widgets tab: a slider in millimetres, a checkbox group, radio buttons, a date and time, and a location with its place search." :w="526" :h="350" />
 

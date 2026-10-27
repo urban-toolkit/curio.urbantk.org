@@ -32,7 +32,7 @@ Click the title at the top to rename the dataflow. The save state in the top bar
 
 ## Kinds of nodes
 
-- **Data Loading** brings data in with Python, and can read values from the nodes connected to it.
+- **Data Loading** brings data in with Python, and can read values from the nodes connected to it. It opens on its **Data** box: drop a file or a Data Catalog dataset there, or click **Choose file**, and its code, on the **Code** tab, loads it.
 - **Data Transformation** and **Python Computation** run Python on their inputs, which arrive as `input_0`, `input_1` and so on, one per input circle, and pass on what the code returns.
 - **JS Computation** does the same in JavaScript.
 - **Data Summary** reports a table's column types, missing values and statistics.
