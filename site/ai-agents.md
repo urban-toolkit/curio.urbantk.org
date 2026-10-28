@@ -62,7 +62,7 @@ What an agent does depends on the agent: explain or debug a node, write node cod
 
 ## What agents work with
 
-Agents build with Curio's own nodes, [functions](https://github.com/urban-toolkit/curio/blob/main/agents/agent.curio.builtin@1/knowledge/node-functions.md), catalogs and chips, as you do, and read what you made with them.
+Agents build with Curio's own nodes, [functions](https://github.com/urban-toolkit/curio/blob/main/skills/node-functions/SKILL.md), catalogs and chips, as you do, and read what you made with them.
 
 An agent uses only what you have. The code it writes reads your Data Catalog's datasets, runs the models you added and uses the keys you saved. It calls only the functions and imports only the modules its node gets. For any other model, the agent asks you to add it in the [Model Catalog](/model-catalog/).
 

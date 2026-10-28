@@ -28,7 +28,7 @@ Drag a model's card onto the canvas, and its node appears where you drop it: **I
 
 ## Run a model in a dataflow
 
-A node's code loads its model by id, with `curio_load_model("<id>")`, which [Functions node code calls](https://github.com/urban-toolkit/curio/blob/main/agents/agent.curio.builtin@1/knowledge/node-functions.md) lists with its arguments. **Image Segmentation** runs a segmentation model over a collection of photos, such as street photos from Mapillary that a **Data Loading** node reads. Each photo gets the share of its pixels every class covers, the class that covers most, and an overlay that **Simple View** shows beside the photo. Set `classes` in the code to the classes you want reported, or `None` for all of them.
+A node's code loads its model by id, with `curio_load_model("<id>")`, which [Functions node code calls](https://github.com/urban-toolkit/curio/blob/main/skills/node-functions/SKILL.md) lists with its arguments. **Image Segmentation** runs a segmentation model over a collection of photos, such as street photos from Mapillary that a **Data Loading** node reads. Each photo gets the share of its pixels every class covers, the class that covers most, and an overlay that **Simple View** shows beside the photo. Set `classes` in the code to the classes you want reported, or `None` for all of them.
 
 To run another model of the same type, drag its card onto the node: the node's `curio_load_model` line names that model, and the rest of its code stays as it is. A model of another type is refused, with a message naming both types.
 
