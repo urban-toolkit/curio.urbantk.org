@@ -1,18 +1,21 @@
 ---
 title: "AI agents"
-description: "Attach AI agents to a node, a connection or the whole canvas, and choose the model they use."
+description: "Attach AI agents to a node, a connection or the whole canvas, and choose the model they use and the skills they read."
 group: using
 order: 90
 card: { poster: /media/ai-agents/agentattach.webp, alt: "Agents attached to a dataflow" }
 app: /catalog/agents
 deeper:
   - { doc: docs/AGENT-CATALOG.md, label: "Agent Catalog reference" }
+  - { doc: docs/AGENT-CATALOG.md, anchor: skills, label: "Skills and the agents that hold them" }
   - { doc: docs/USAGE.md, anchor: llm-configurations, label: "Configuring the AI provider" }
 ---
 
 # AI agents
 
 Agents are AI assistants you attach to a node, a connection between two nodes, or the whole canvas, to chat about that part of your dataflow. When an agent suggests a change, nothing happens until you apply it.
+
+An agent is an autonomous runtime with a goal (its instruction), its own tools and model, and a memory (the conversation of each chat). A [skill](#skills) tells an agent how to do a specific task, such as writing a Map Editor node's edits: instructions, procedural knowledge, reference facts and starter templates, in a `SKILL.md` file. A skill does nothing on its own, and an agent reads one when a task needs it. One skill serves many agents, and an agent uses many skills.
 
 ## Choose the provider and model
 
@@ -76,24 +79,88 @@ Once you apply a change an agent made to a node's code, it is an entry named aft
 
 <GuideFigure src="/media/ai-agents/agent-entry.webp" alt="The Node provenance drawer of a Python node named Years, with one entry, Node Builder" caption="The Provenance drawer of a Python node after a change the Node Builder made to its code was applied: entry 1, named after the agent." :w="520" :h="190" />
 
-## In chat, tools and modes
+## Skills
 
-Curio describes what an agent does in three words:
+Curio's skills are the folders of its repository's [`skills/`](https://github.com/urban-toolkit/curio/tree/main/skills), each a `SKILL.md` in the [Agent Skills format](https://agentskills.io/specification), and the agents Curio ships read them. The core skills, `nodes`, `node-control` and `compatibility`, are in every call of every agent. The procedures, `reuse-first`, `data-sources`, `package-contract`, `fact-checking` and `research-notes`, are the ones agents follow by name. The skills between them are the feature skills, on Curio's nodes and a dataflow's features.
+
+| Skill | It tells an agent how to |
+|---|---|
+| `nodes` | pick node types, knowing what each takes and gives |
+| `node-control` | change a node's content, settings and runs as Curio allows |
+| `compatibility` | connect outputs only to inputs that accept them |
+| `node-functions` | call Curio's `curio_*` functions from node code |
+| `catalogs` | find and load datasets, models and keys from the catalogs |
+| `widgets` | declare, place and set widgets, dataset widgets and values several nodes share |
+| `selection-chips` | read a view's selections through selection tags |
+| `vega-lite-starter` | start a Vega-Lite chart from its node's starter spec |
+| `vega-lite-maps` | draw a map with Vega-Lite |
+| `autark` | write an Autark document, from the grammar Curio ships |
+| `autark-starter` | start an Autark map from its node's starter document |
+| `map-edits` | write a Map Editor node's call and edits, keeping filters in their own node |
+| `interaction-edges` | link views with interaction edges and Data Pools |
+| `scenarios` | work with scenario boxes, their chips and colors |
+| `dashboards` | keep a dataflow's pinned tiles working on its dashboard |
+| `provenance` | read a node's history and the agents' entries in it |
+| `reuse-first` | choose a node type: a listed template, then a package to add, then a written package |
+| `data-sources` | ground a data source before writing its loader: a typed path, a catalog dataset, a verified URL, a saved key, made-up data only when asked |
+| `package-contract` | write a package's backend to Curio's contract |
+| `fact-checking` | check a fact against what was probed or fetched, labeling each finding |
+| `research-notes` | turn findings into notes on the dataflow, and place them on a note template: the built-in Note, a package to enlist, or a notes package to write |
+
+### How a skill reaches a run
+
+- **Always on:** every call holds the core skills.
+- **Handed for what a run writes:** a run that writes or checks a node is handed the skills that serve that kind of node, such as `map-edits` for a Map Editor node, and a run that reads the whole dataflow is handed those of its nodes and features, such as `scenarios` for a dataflow with scenario boxes. A chat on a node holds the skills of that kind of node, and a chat or a mode holds the procedures it follows from its first message, such as `reuse-first` in the Node Builder's chat.
+- **Loaded by the agent:** in chat, an agent lists its other skills by name and description, and loads one with its `skill.read` tool when a task matches it. A skill a chat loaded stays for the rest of its conversation.
+- **Named by you:** type `/` at the start of a message to list the chat's skills, then pick one or keep typing its name, as in `/map-edits remove the two tallest towers`. The run gets the skill with your message, and the conversation keeps it.
+
+A line under each chat reply, **Skills:**, names the skills its run held or loaded, apart from the core skills. Hover a name to see how the run got it: handed for the chat's node or instruction, named with `/` in the message, kept from earlier in the chat, or loaded for this reply.
+
+### Add and remove skills
+
+**View details**, on an agent's card in the Agent Catalog or beside it in the Tools panel's **Agent Catalog** dropdown, opens the agent's details. Their **Skills** section lists the skills the agent holds:
+
+- **Add skill** gives the agent one of the skills it does not hold, which then reads **Added by you**.
+- **Remove** takes a skill away.
+- **Restore**, once you have changed the list, brings back the skills the agent ships with.
+
+A change is for your account: it covers every project from the agent's next run, its chat and its modes alike. The core skills read **Every call**. A skill that the agent's chat instruction, one of its modes or a call another agent asks it for holds as its own reads **Always in chat**, **Always for** and the mode's name, or **Always when another agent asks**: the Dataset Finder's `catalogs` reads **Always for Find datasets**. Those have no **Remove**. A guest on a hosted Curio sees an agent's skills and changes none.
+
+### Your own skills
+
+On the **Agent Catalog** tab of the Projects page, the rail's **Skills** section lists the skills: **All skills** holds Curio's, then yours, then the published ones you have not added, and **Core** the three every call holds. **View details** on a skill shows what it serves, the agents that use it, and its text as an agent reads it.
+
+- **Import skill**, in the page's header while the rail shows skills, takes a skill written for any Agent Skills tool: its folder, its files or a `.zip` of its folder. A review shows the skill as Curio read it: its name and description, what does not follow the format, what is left out, its files, and the agents that will use it, each ticked. Untick an agent to leave it without the skill, then click **Import**.
+- A taken name is refused: that of a skill Curio ships, of a skill a package you can add ships, or of one of your skills. The review names the skill that has it; type another name and click **Check name**. A newer `version` of one of your skills, in its `metadata`, replaces that skill instead, and the button reads **Replace**.
+- **Export**, in a skill's details, saves it as a `.zip` of its folder, which any Agent Skills tool reads.
+- When the server allows it, **Publish**, in the drawer of a skill you imported, offers it to every account on the server. Another account gives it to an agent with **Add skill**, which keeps a copy of it in that account.
+- **Remove from your skills**, in the drawer of a skill you hold, deletes it and takes it off every agent. A skill that one of your agents' instruction or modes names as its own is not removed.
+
+A guest on a hosted Curio imports, publishes and removes no skill. To write a skill of your own, and an agent that reads it, see [Add skills and agents](/skills-and-agents/).
+
+### Skills from packages
+
+A node package can ship skills for its nodes, such as Scout's `scout`. Every agent on a dataflow that uses the package lists them after its own skills, and a run that writes one of the package's nodes is handed those that serve it. [Build a package](/packages/#skills-for-the-agents) shows how a package declares them.
+
+## In chat, tools, modes and skills
+
+Curio describes what an agent does and knows in four words:
 
 - **In chat:** what you can ask an agent where you dropped it.
 - **Tools:** the actions an agent takes during a chat, such as reading the dataflow, searching the web, proposing a node or proposing a package install. Anything that changes your dataflow is a proposal you apply.
 - **Modes:** what another agent, Solve or the agent itself can ask it to do. A mode runs as a separate call with no tools, on evidence Curio gathers for it. You never chat with a mode.
+- **Skills:** what tells an agent how to do a specific task, such as writing a Map Editor node's edits. See [Skills](#skills).
 
-| Agent | In chat | Tools | Modes (who asks) |
-|---|---|---|---|
-| **Researcher** | Explains a node or the dataflow, diagnoses errors, helps define what to build, answers web questions as notes, checks facts | Read the dataflow and a node's last run; search and read the web; propose notes as [Note nodes](/dataflows/#notes); propose a notes package | Notes from search results (Dataflow Builder); Check a fact (Node Builder, Dataset Finder, Dataflow Builder) |
-| **Node Builder** | Builds a node, rewrites a node's content, changes a node's settings, suggests nodes for a connection, finds or writes node types | Read the dataflow, a node's last run and its history; search the Data and Model Catalogs; propose a node, a content change, a settings change, a package install or a package draft | Write a node's content (Node Builder, Dataflow Builder, Solve); Recommend packages (Dataflow Builder); Write a package (Node Builder, Researcher, Dataflow Builder) |
-| **Dataflow Builder** | Plans a whole dataflow, then solves its nodes | Read the dataflow, runs and node histories; search the Scenario Catalog; propose a plan, a node, a settings change or a package draft; read worked examples | None |
-| **Dataset Finder** | Finds datasets in the Data Catalog and in portals | Search the catalog and portals; propose a download | Find datasets (Node Builder, Dataflow Builder, Solve) |
+| Agent | In chat | Tools | Modes (who asks) | Skills |
+|---|---|---|---|---|
+| **Researcher** | Explains a node or the dataflow, diagnoses errors, helps define what to build, answers web questions as notes, checks facts | Read the dataflow and a node's last run; search and read the web; propose notes as [Note nodes](/dataflows/#notes); propose a notes package | Notes from search results (Dataflow Builder); Check a fact (Node Builder, Dataset Finder, Dataflow Builder) | The feature skills, loaded in chat when a task needs one; `reuse-first`, `fact-checking` and `research-notes` from its chat's first message, and each mode is handed its own |
+| **Node Builder** | Builds a node, rewrites a node's content, changes a node's settings, suggests nodes for a connection, finds or writes node types | Read the dataflow, a node's last run and its history; search the Data and Model Catalogs; propose a node, a content change, a settings change, a package install or a package draft | Write a node's content (Node Builder, Dataflow Builder, Solve); Recommend packages (Dataflow Builder); Write a package (Node Builder, Researcher, Dataflow Builder) | The feature skills, loaded in chat; `reuse-first` and `data-sources` from its chat's first message; its modes are handed those of what they write and their own |
+| **Dataflow Builder** | Plans a whole dataflow, then solves its nodes | Read the dataflow, runs and node histories; search the Scenario Catalog; propose a plan, a node, a settings change or a package draft; read worked examples | None | The feature skills, `reuse-first` and `data-sources`, loaded in chat |
+| **Dataset Finder** | Finds datasets in the Data Catalog and in portals | Search the catalog and portals; propose a download | Find datasets (Node Builder, Dataflow Builder, Solve) | `catalogs` and `data-sources`, loaded in chat; `catalogs` handed to Find datasets |
 
 ### How an agent picks what to run
 
-Every call to the model is the shared preamble plus one instruction. A message you type goes to the agent's chat instruction, and in that same call the model decides what you asked for and which tools to use. A mode runs only when something asks for it, as a separate call.
+Every call to the model is the shared preamble, the skills the call holds and one instruction. A message you type goes to the agent's chat instruction, and in that same call the model decides what you asked for and which tools to use. A mode runs only when something asks for it, as a separate call.
 
 For example, you ask the Node Builder on a node to "turn this into a bar chart":
 
