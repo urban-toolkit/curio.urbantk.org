@@ -59,6 +59,8 @@ An agent only accepts the targets it was made for. Each attachment has its own c
 
 Click a badge to open the agent's chat. The header says what the agent is attached to, the arrows step through your attached agents, and you can rename or clear the conversation. The first message is the agent's instruction, which the pencil lets you edit. Type in **Message this agent…** and send.
 
+The agent answers on the Curio server: closing or reloading your tab does not stop it, and its reply is in the chat when you come back. A chat answers one message at a time. A message sent while it answers waits under the last message, marked **Waiting its turn**, and **Withdraw** takes it back until then. **Stop**, under a reply being written, stops the agent at its next step: what it wrote and the changes it made stay, and the reply says who stopped it, such as **Stopped by Ana after 12s**. The chats of different attached agents answer at the same time.
+
 What an agent does depends on the agent: explain or debug a node, write node code, find datasets (including in the open data portals of the [Discovery Catalog](/discovery/)), plan or build a whole dataflow, suggest connections and packages, or review your work. A change it makes, to a node's code or settings, a new node or a plan, lands at once, for everyone in the dataflow, as your own edit does. The chat shows each change as a card with **Undo**, which puts back what the change replaced:
 
 - a node's code as it was;
@@ -101,7 +103,7 @@ Each change it makes is also a version in the dataflow's history, named after th
 
 ### With the editors you invite
 
-The editors you [invite](/collaboration/#invite-editors) work with the dataflow's agents as you do: they add and attach agents, chat and run **Solve**. You and every editor read and write the same chat of each attached agent, and a message someone else wrote shows their name above it. An editor's chats answer with your model and key, as your **API Settings** choose them, and name only the editor's own saved keys, never yours. An install an agent asks for in an editor's chat waits for you: its card reads **Waits for the dataflow's owner to review it**, and you review it in the same chat. Anyone else who opens the dataflow's link sees an agent at work in the dock, but not its badges or its chats.
+The editors you [invite](/collaboration/#invite-editors) work with the dataflow's agents as you do: they add and attach agents, chat and run **Solve**. You and every editor read and write the same chat of each attached agent, and a message someone else wrote shows their name above it. A reply shows in each of your tabs as it is written, a message waits its turn behind anyone's, only whoever sent a waiting message can withdraw it, and any of you can stop a reply. An editor's chats answer with your model and key, as your **API Settings** choose them, and name only the editor's own saved keys, never yours. An install an agent asks for in an editor's chat waits for you: its card reads **Waits for the dataflow's owner to review it**, and you review it in the same chat. Anyone else who opens the dataflow's link sees an agent at work in the dock, but not its badges or its chats.
 
 ## Skills
 
