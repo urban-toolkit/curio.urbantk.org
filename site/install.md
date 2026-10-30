@@ -49,7 +49,6 @@ To change Curio itself, run it from a clone with `python curio.py start` instead
 - `curio setup` installs the Python libraries Curio and its node packages need, then exits.
 - `--no-project` skips the projects page and opens the canvas directly, for demos.
 - `--deploy` turns on accounts and the sign-in page, for a shared server. It needs a host that can isolate each user's node code, such as the Docker image, and refuses to start on one that cannot (see [Run your own server](/self-hosting/)).
-- `--collab` turns on real-time co-editing, which is experimental (see [Collaboration](/collaboration/)).
 - `--frontend-port`, `--backend-port` and `--sandbox-port` move the servers off ports 8080, 5002 and 2000.
 
 ## Set up the AI features

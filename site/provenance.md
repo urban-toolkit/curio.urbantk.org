@@ -26,7 +26,7 @@ A dataflow opened without a saved history, such as a loaded file or an example o
 
 ## Going back to an earlier version
 
-Open a version and click **Put this version on the canvas**. The rest of the history stays, so you can go forward again the same way. Going back is an edit like any other: the save state reads **Unsaved**, the nodes need to run again, and the next save stores the version you picked.
+Open a version and click **Put this version on the canvas**. The rest of the history stays, so you can go forward again the same way. Going back is an edit like any other: it is a version of its own, and it changes the canvas of everyone who has the dataflow open.
 
 <LoopVideo src="/media/provenance/provenance-revert.mp4" poster="/media/provenance/provenance-revert.webp" label="Version 6 and then version 5 are opened in the drawer and put on the canvas with their button, and each time the canvas changes to the dataflow that version holds, one node fewer." :w="1280" :h="768" />
 
@@ -38,12 +38,12 @@ If you change the dataflow from there, the new versions branch off from the one 
 
 The **Provenance** button among a node's tabs, in its header, lists the node's runs in the same drawer. Each time the node runs, it adds a row with the run's number, what went in and what came out, such as **In: DATAFRAME | Out: GEODATAFRAME** (or **ERROR** for a run that failed), and the time it started. In the notebook view, a cell's **Provenance** button opens the same drawer.
 
-Click a run to open it: when it started, how long it ran, and the code or specification that ran. **Put this code back in the node** puts that code in the node's editor without running it. The next run then branches from the run you picked, so you can try one idea, go back, and try another without losing either. Runs left behind fold under the run they branched from, as versions do.
+Click a run to open it: when it started, how long it ran, and the code or specification that ran. **Put this code back in the node** puts that code in the node's editor without running it; if someone changed the node's code meanwhile, nothing changes, and Curio says who did. The next run then branches from the run you picked, so you can try one idea, go back, and try another without losing either. Runs left behind fold under the run they branched from, as versions do.
 
 <GuideFigure src="/media/provenance/node-runs.webp" alt="The Node provenance drawer with three runs of a Python Computation node" caption="The runs of a Python Computation node: run 1's code was put back after run 2, so run 3 branches from run 1 and run 2 sits on another branch, shown open under run 1. Run 3 is open, with when it started, its code and the button that puts that code back in the node." :w="520" :h="720" />
 
-Once you apply a change an [agent](/ai-agents/#what-agents-work-with) made to the node's code, the change is an entry too, named after the agent, such as **Node Builder**, and a node an agent added with its code starts with one. Open it to see when it was made and the code it left, and put that code back as you would a run's. The Node Builder and the Dataflow Builder read this history as the dataflow was last saved, so you can ask either what changed in a node since a run.
+Your typing in a node is an entry too, named after you, and so is a change an [agent](/ai-agents/#what-agents-work-with) makes to the node's code, named after the agent, such as **Node Builder**; a node an agent added with its code starts with one. Open an entry to see when it was made and the code it left, and put that code back as you would a run's. The Node Builder and the Dataflow Builder read this history, so you can ask either what changed in a node since a run.
 
 ## What is kept
 
-Both histories are saved inside the project every time it saves. A file from **File > Save dataflow as** holds only the dataflow itself, not its history, so a dataflow loaded from a file starts a new one (see [Projects and files](/projects-and-files/)).
+Curio keeps a saved dataflow's histories as each change is made, the same for its owner and the editors the owner [invited](/collaboration/#invite-editors); someone who only watches the dataflow sees none. Only the owner sees **Clear history before this version**, in an open version, which removes the versions before it. A file from **File > Save dataflow as** holds only the dataflow itself, not its history, so a dataflow loaded from a file starts a new one (see [Projects and files](/projects-and-files/)).

@@ -24,7 +24,7 @@ A dataflow is a set of nodes on a canvas, joined by connections. Each node does 
 
 Drag a node from the **Built-in** column on the left onto the canvas; hover over an icon to see its name. Below that column, the **Node Catalog**, **Data Catalog** and **Agent Catalog** dropdowns hold your [packages](/node-catalog/), [datasets](/data-catalog/) and [AI agents](/ai-agents/). A dataset dropped on the canvas becomes a Data Loading node with its code already written.
 
-Click the title at the top to rename the dataflow. The save state in the top bar reads **Saved** when the canvas is saved and **Unsaved** when it is not; click it, or choose **File > Save dataflow**. After the first save, Curio saves every 30 seconds while there are unsaved changes, and asks before you leave with changes it has not saved.
+Click the title at the top to rename the dataflow. A new dataflow reads **Unsaved** in the top bar until you save it: click that, or choose **File > Save dataflow**. Once it is saved, Curio keeps each change as it is made, and the top bar reads **Saved** once the server has every change, **Saving...** while some are on their way, and **Offline** while Curio cannot reach the server. Leaving the dataflow asks first only while it holds changes that are not kept. **File > Save dataflow** also saves the outputs the dataflow keeps, and is a version in its [history](/provenance/).
 
 <LoopVideo src="/media/dataflows/canvas.mp4" poster="/media/dataflows/canvas.webp" label="A new, empty dataflow: the tiles of the built-in node rail are pointed out one by one, and the File menu opens." :w="1280" :h="768" />
 
@@ -102,4 +102,4 @@ api_key = curio_secret("census")
 
 `curio_secret` is one of the functions Curio gives node code, listed with their arguments in [Functions node code calls](https://github.com/urban-toolkit/curio/blob/main/skills/node-functions/SKILL.md).
 
-The key reaches the node only while it runs, and it never appears in the saved dataflow, in proposals, in the chat or in the run log. A node that names a key you have not saved fails with a message naming it. When you paste code that holds a key, a bar above the editor offers **Save as API key**, which opens the same form with the host filled in; an agent's Solve that reaches an API without a saved key offers **Add key for** the host. On a server started with `--deploy`, guest accounts cannot save a key.
+The key reaches the node only while it runs, and it never appears in the saved dataflow, in an agent's changes, in the chat or in the run log. A node that names a key you have not saved fails with a message naming it. When you paste code that holds a key, a bar above the editor offers **Save as API key**, which opens the same form with the host filled in; an agent's Solve that reaches an API without a saved key offers **Add key for** the host. On a server started with `--deploy`, guest accounts cannot save a key.

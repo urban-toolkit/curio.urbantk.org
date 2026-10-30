@@ -198,8 +198,8 @@ onBeforeUnmount(() => {
           <div>
             <h3>Agent Catalog <span class="curio-flow-count">Every stage</span></h3>
             <p class="curio-flow-text">
-              Four AI agents you attach to a node, a connection or the whole canvas. Nothing changes until you apply
-              what one proposes.
+              Four AI agents you attach to a node, a connection or the whole canvas. A change one makes lands at
+              once, and its chat can undo it.
               <a class="curio-flow-link is-agent" :href="withBase('/ai-agents/')">AI agents <Icon name="arrow" /></a>
             </p>
           </div>

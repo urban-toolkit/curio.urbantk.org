@@ -13,7 +13,7 @@ deeper:
 
 # AI agents
 
-Agents are AI assistants you attach to a node, a connection between two nodes, or the whole canvas, to chat about that part of your dataflow. When an agent suggests a change, nothing happens until you apply it.
+Agents are AI assistants you attach to a node, a connection between two nodes, or the whole canvas, to chat about that part of your dataflow. A change an agent makes to your dataflow lands at once, as your own edit does, and you can undo it from the chat.
 
 An agent is an autonomous runtime with a goal (its instruction), its own tools and model, and a memory (the conversation of each chat). A [skill](#skills) tells an agent how to do a specific task, such as writing a Map Editor node's edits: instructions, procedural knowledge, reference facts and starter templates, in a `SKILL.md` file. A skill does nothing on its own, and an agent reads one when a task needs it. One skill serves many agents, and an agent uses many skills.
 
@@ -55,11 +55,20 @@ An agent only accepts the targets it was made for. Each attachment has its own c
 
 <LoopVideo src="/media/ai-agents/agentattach.mp4" poster="/media/ai-agents/agentattach.webp" label="An agent is dropped on a node, another on the connection between two nodes and a third on empty canvas, and each drop is confirmed." :w="1280" :h="768" />
 
-## Chat and review changes
+## Chat and changes
 
 Click a badge to open the agent's chat. The header says what the agent is attached to, the arrows step through your attached agents, and you can rename or clear the conversation. The first message is the agent's instruction, which the pencil lets you edit. Type in **Message this agent…** and send.
 
-What an agent does depends on the agent: explain or debug a node, write node code, find datasets (including in the open data portals of the [Discovery Catalog](/discovery/)), plan or build a whole dataflow, suggest connections and packages, or review your work. Proposed changes, such as new nodes, connections, code, settings or packages, appear as cards in the chat. Nothing changes until you click **Apply**, and **Dismiss** drops a proposal.
+What an agent does depends on the agent: explain or debug a node, write node code, find datasets (including in the open data portals of the [Discovery Catalog](/discovery/)), plan or build a whole dataflow, suggest connections and packages, or review your work. A change it makes, to a node's code or settings, a new node or a plan, lands at once, for everyone in the dataflow, as your own edit does. The chat shows each change as a card with **Undo**, which puts back what the change replaced:
+
+- a node's code as it was;
+- a new node taken away, with its connections;
+- settings back to their old values;
+- the dataflow as it was before a plan, with the nodes the plan removed and their connections.
+
+Undo is your own change. When someone changed what it would put back after the agent did, Undo is refused, saying who, and nothing changes.
+
+An install changes your account, so it waits for you: a package, a package draft, a dataset, a download from the Discovery Catalog or an agent added to the dataflow appears as a review card. Nothing installs until you click **Apply**, and **Dismiss** drops it.
 
 <MediaTodo kind="clip" source="tour:agentrun" caption="An agent's chat opens from its badge on a node, a question about the node is sent, and the answer appears in the chat." />
 
@@ -71,13 +80,28 @@ An agent uses only what you have. The code it writes reads your Data Catalog's d
 
 An agent that writes code reads what the dataflow can use: its datasets and models, and the names of your Node code keys, never their values. When it writes a node's code, it also reads the node's template: its description, its starter and the functions its code can import.
 
-An agent that reads the dataflow also sees how each node is set, such as a Data Pool's modes, a Simple View's image column, a Spatial Join's operation and each widget's value, and which nodes are tiles of the [dashboard](/dashboards/#pin-nodes). The Node Builder and the Dataflow Builder set these on the nodes they add, and change them on a node you have: ask, for example, to make a pool merge with AND, or to use *within* instead of *intersects*. The review card names each change as the node's own controls do, such as **Image column: overlay_url**, and applying it changes the node as picking it there would.
+An agent that reads the dataflow also sees how each node is set, such as a Data Pool's modes, a Simple View's image column, a Spatial Join's operation and each widget's value, and which nodes are tiles of the [dashboard](/dashboards/#pin-nodes). The Node Builder and the Dataflow Builder set these on the nodes they add, and change them on a node you have: ask, for example, to make a pool merge with AND, or to use *within* instead of *intersects*. The change's card names each setting as the node's own controls do, such as **Image column: overlay_url**, and the change sets the node as picking it there would.
 
 An agent writing a node beside a [Map Editor](/scenarios/#edit-features-on-a-map) node reads its edits. Asked for a scenario of another project, the Dataflow Builder finds it in your [Scenario Catalog](/scenario-catalog/) and names it and its project for you to drag in.
 
-Once you apply a change an agent made to a node's code, it is an entry named after the agent in the node's [Provenance](/provenance/) drawer, and a node an agent adds with its code starts with one. Open it to see when it was made and the code it left, and put that code back as you would a run's. The Node Builder and the Dataflow Builder read these histories as the dataflow was last saved, so you can ask either what changed in a node since a run.
+A change an agent makes to a node's code is an entry named after the agent in the node's [Provenance](/provenance/) drawer, and a node an agent adds with its code starts with one. Open it to see when it was made and the code it left, and put that code back as you would a run's. The Node Builder and the Dataflow Builder read these histories, so you can ask either what changed in a node since a run.
 
-<GuideFigure src="/media/ai-agents/agent-entry.webp" alt="The Node provenance drawer of a Python node named Years, with one entry, Node Builder" caption="The Provenance drawer of a Python node after a change the Node Builder made to its code was applied: entry 1, named after the agent." :w="520" :h="190" />
+<GuideFigure src="/media/ai-agents/agent-entry.webp" alt="The Node provenance drawer of a Python node named Years, with one entry, Node Builder" caption="The Provenance drawer of a Python node after the Node Builder changed its code: entry 1, named after the agent." :w="520" :h="190" />
+
+## An agent at work
+
+While an agent works on the dataflow, on a chat message, a task another agent hands it, a **Solve** or **Build & validate**, everyone with the dataflow open sees it as one more person ([Collaboration](/collaboration/#agents-in-the-dataflow)):
+
+- The dock at the top of the canvas has a chip for it, which says who asked it, the nodes it is writing and the skills it is using, such as **Node Builder (asked by Ana), editing Map Editor, using map-edits**.
+- Its cursor shows only while it drags on the canvas: a new node from its tile in the tool rail or a card in a catalog drawer, a node to a new place, or a card onto a node. Its other changes land with no cursor.
+- Before it writes a node, it waits while someone else is in the node; after 30 seconds it gives up, and nothing changes. While it writes, the node shows its code or spec, or its **Widgets** tab for a widget's value, then goes back to the tab it showed.
+- It does one thing at a time: a plan's nodes are dragged in one after another, then its connections land. When someone removes a node the plan joins meanwhile, the plan stops there, and its card says what was left undone.
+
+Each change it makes is also a version in the dataflow's history, named after the agent and who asked it, such as **Node Builder, asked by Ana**.
+
+### With the editors you invite
+
+The editors you [invite](/collaboration/#invite-editors) work with the dataflow's agents as you do: they add and attach agents, chat and run **Solve**. You and every editor read and write the same chat of each attached agent, and a message someone else wrote shows their name above it. An editor's chats answer with your model and key, as your **API Settings** choose them, and name only the editor's own saved keys, never yours. An install an agent asks for in an editor's chat waits for you: its card reads **Waits for the dataflow's owner to review it**, and you review it in the same chat. Anyone else who opens the dataflow's link sees an agent at work in the dock, but not its badges or its chats.
 
 ## Skills
 
@@ -147,15 +171,15 @@ A node package can ship skills for its nodes, such as Scout's `scout`. Every age
 Curio describes what an agent does and knows in four words:
 
 - **In chat:** what you can ask an agent where you dropped it.
-- **Tools:** the actions an agent takes during a chat, such as reading the dataflow, searching the web, proposing a node or proposing a package install. Anything that changes your dataflow is a proposal you apply.
+- **Tools:** the actions an agent takes during a chat, such as reading the dataflow, searching the web, adding a node or asking to install a package. A change to your dataflow lands at once, as your own edit does, and you can undo it from the chat; an install waits for your review.
 - **Modes:** what another agent, Solve or the agent itself can ask it to do. A mode runs as a separate call with no tools, on evidence Curio gathers for it. You never chat with a mode.
 - **Skills:** what tells an agent how to do a specific task, such as writing a Map Editor node's edits. See [Skills](#skills).
 
 | Agent | In chat | Tools | Modes (who asks) | Skills |
 |---|---|---|---|---|
-| **Researcher** | Explains a node or the dataflow, diagnoses errors, helps define what to build, answers web questions as notes, checks facts | Read the dataflow and a node's last run; search and read the web; propose notes as [Note nodes](/dataflows/#notes); propose a notes package | Notes from search results (Dataflow Builder); Check a fact (Node Builder, Dataset Finder, Dataflow Builder) | The feature skills, loaded in chat when a task needs one; `reuse-first`, `fact-checking` and `research-notes` from its chat's first message, and each mode is handed its own |
-| **Node Builder** | Builds a node, rewrites a node's content, changes a node's settings, suggests nodes for a connection, finds or writes node types | Read the dataflow, a node's last run and its history; search the Data and Model Catalogs; propose a node, a content change, a settings change, a package install or a package draft | Write a node's content (Node Builder, Dataflow Builder, Solve); Recommend packages (Dataflow Builder); Write a package (Node Builder, Researcher, Dataflow Builder) | The feature skills, loaded in chat; `reuse-first` and `data-sources` from its chat's first message; its modes are handed those of what they write and their own |
-| **Dataflow Builder** | Plans a whole dataflow, then solves its nodes | Read the dataflow, runs and node histories; search the Scenario Catalog; propose a plan, a node, a settings change or a package draft; read worked examples | None | The feature skills, `reuse-first` and `data-sources`, loaded in chat |
+| **Researcher** | Explains a node or the dataflow, diagnoses errors, helps define what to build, answers web questions as notes, checks facts | Read the dataflow and a node's last run; search and read the web; place notes as [Note nodes](/dataflows/#notes); propose a notes package | Notes from search results (Dataflow Builder); Check a fact (Node Builder, Dataset Finder, Dataflow Builder) | The feature skills, loaded in chat when a task needs one; `reuse-first`, `fact-checking` and `research-notes` from its chat's first message, and each mode is handed its own |
+| **Node Builder** | Builds a node, rewrites a node's content, changes a node's settings, suggests nodes for a connection, finds or writes node types | Read the dataflow, a node's last run and its history; search the Data and Model Catalogs; add a node, write a node's content or change its settings; propose a package install or a package draft | Write a node's content (Node Builder, Dataflow Builder, Solve); Recommend packages (Dataflow Builder); Write a package (Node Builder, Researcher, Dataflow Builder) | The feature skills, loaded in chat; `reuse-first` and `data-sources` from its chat's first message; its modes are handed those of what they write and their own |
+| **Dataflow Builder** | Plans a whole dataflow, then solves its nodes | Read the dataflow, runs and node histories; search the Scenario Catalog; make a plan, add a node or change a node's settings; propose a package draft; read worked examples | None | The feature skills, `reuse-first` and `data-sources`, loaded in chat |
 | **Dataset Finder** | Finds datasets in the Data Catalog and in portals | Search the catalog and portals; propose a download | Find datasets (Node Builder, Dataflow Builder, Solve) | `catalogs` and `data-sources`, loaded in chat; `catalogs` handed to Find datasets |
 
 ### How an agent picks what to run
@@ -166,6 +190,6 @@ For example, you ask the Node Builder on a node to "turn this into a bar chart":
 
 1. Your message goes to the Node Builder's chat, which reads the node and asks for its content mode.
 2. The content mode writes the chart in a separate call, with no tools, from the node and what feeds it.
-3. The chat shows the change as a review card. The node changes when you apply it.
+3. Curio writes the chart into the node, for everyone in the dataflow, and the chat shows the change with its **Undo**.
 
 The [Agent Catalog reference](https://github.com/urban-toolkit/curio/blob/main/docs/AGENT-CATALOG.md#the-agents) lists every agent's prompts, walks through more examples, and describes the three helpers that only have modes.

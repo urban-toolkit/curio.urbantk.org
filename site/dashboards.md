@@ -18,7 +18,7 @@ Each node has a small circle labelled **Pin to dashboard** among the buttons in 
 
 After pinning, run the dataflow and save it. The dashboard shows the last saved version: save again whenever you change pins or rerun nodes.
 
-[Agents](/ai-agents/) know which nodes are tiles, so you can ask one whether a chart is on the dashboard; only you pin and unpin. A specification an agent writes for a pinned Autark map is sent back when it loads data of its own, and the agent loads that data in a node before the map instead. An agent's Solve stops on such a map, says why and leaves it to you. The review card of a plan that removes pinned nodes marks each as a **dashboard tile** and says how many leave the dashboard.
+[Agents](/ai-agents/) know which nodes are tiles, so you can ask one whether a chart is on the dashboard; only you pin and unpin. A specification an agent writes for a pinned Autark map is sent back when it loads data of its own, and the agent loads that data in a node before the map instead. An agent's Solve stops on such a map, says why and leaves it to you. The card of a plan that removed pinned nodes marks each as a **dashboard tile** and says how many left the dashboard.
 
 ## Open the dashboard
 
@@ -44,7 +44,7 @@ Anyone viewing the dashboard can change its pinned controls, the widgets of ever
 The **Share** menu offers two links, and both need the dataflow to be saved first:
 
 - **Copy dashboard link** copies the dashboard's address. Visitors see the pinned tiles and can change the pinned controls, with no account.
-- **Copy dataflow link** copies the canvas address. Visitors see the whole dataflow, read-only, and **File > Save dataflow** saves a copy, with its saved results, to their own workspace.
+- **Copy dataflow link** copies the canvas address. The editors you [invite](/collaboration/#invite-editors) edit the dataflow with you. Anyone else sees the whole dataflow, read-only, and **File > Save dataflow** saves a copy, with its saved results, to their own workspace.
 
 Anyone who can sign in to that Curio server can open a dataflow link. If the server allows guests, the sign-in page also offers **Continue as Guest**. The dashboard has the same **Share** menu, with both links.
 
