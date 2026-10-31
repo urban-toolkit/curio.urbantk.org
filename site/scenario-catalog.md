@@ -47,7 +47,7 @@ To compare the scenario with your own work, connect its outcome and yours to one
 
 A drop is refused, and nothing is added, when:
 
-- a node of its fixed context has no saved output and cannot run on the server: only the browser runs it, such as an Autark compute node, you are a guest on a hosted Curio, or Curio runs with `--no-project`. Run the scenario in its project and save it, then drag it again;
+- a node of its fixed context has no saved output and cannot run on the server: only the browser runs it, such as an Autark compute node, you are a guest on a hosted Curio, or Curio runs with `--no-project`. Run the scenario in its project, then drag it again;
 - running a node of its fixed context fails; the message says why;
 - its nodes need a package, a dataset or a model your account does not have, or a package your account cannot add; the message names it.
 

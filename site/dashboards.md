@@ -16,7 +16,7 @@ Every dataflow has a dashboard: a page of its own that shows only the nodes you 
 
 Each node has a small circle labelled **Pin to dashboard** among the buttons in its header, which show while the pointer is over the node. Click it on the charts and maps you want to show, and it turns into a red dot; click it again (**Unpin from dashboard**) to take the node off. Pinning also means the data behind those nodes is saved to your [Data Catalog](/data-catalog/) when the dataflow runs, and that saved data is what the dashboard draws.
 
-After pinning, run the dataflow and save it. The dashboard shows the last saved version: save again whenever you change pins or rerun nodes.
+After pinning, run the dataflow and save it. The dashboard shows the nodes that are pinned, drawn from the outputs your latest runs saved.
 
 [Agents](/ai-agents/) know which nodes are tiles, so you can ask one whether a chart is on the dashboard; only you pin and unpin. A specification an agent writes for a pinned Autark map is sent back when it loads data of its own, and the agent loads that data in a node before the map instead. An agent's Solve stops on such a map, says why and leaves it to you. The card of a plan that removed pinned nodes marks each as a **dashboard tile** and says how many left the dashboard.
 

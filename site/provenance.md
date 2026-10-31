@@ -12,7 +12,7 @@ deeper:
 
 # Provenance
 
-Curio keeps two histories while you work. The dataflow's version history records the whole graph each time a node or a data connection is added or removed, and each node keeps a record of its runs. Both are saved with the project, so they are still there the next time you open it.
+Curio keeps two histories while you work. The dataflow's version history records the whole graph each time a node or a data connection is added or removed, and for each person's typing in a node, each agent's change, each **File > Save** and each version put back. Each node keeps a record of its runs and edits. Both are saved with the project, so they are still there the next time you open it.
 
 ## The version history
 
