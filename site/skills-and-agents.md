@@ -3,12 +3,12 @@ title: "Add skills and agents"
 description: "Write a skill in the Agent Skills format and an agent's manifest, import both, and connect them so the agent reads the skill."
 group: extending
 order: 25
-app: /catalog/agents
+app: /catalog/skills
 deeper:
   - { doc: docs/AGENT-CATALOG.md, anchor: add-skills-and-agents, label: "Add skills and agents, step by step" }
   - { doc: docs/EXTENDING.md, anchor: 9-writing-a-skill, label: "Writing a skill" }
   - { doc: docs/AGENT-CATALOG.md, anchor: 6-the-manifest, label: "The agent manifest" }
-  - { doc: docs/AGENT-CATALOG.md, anchor: skills, label: "How agents hold and load skills" }
+  - { doc: docs/SKILL-CATALOG.md, anchor: 3-using-a-skill, label: "How agents hold and load skills" }
 ---
 
 # Add skills and agents
@@ -78,8 +78,8 @@ An agent is a folder named `<agentId>@<major>`, the major of its version, holdin
 
 ## Connect them
 
-1. **Import the skill.** On the **Agent Catalog** tab of the Projects page, click **All skills** in the rail, then **Import skill**, and pick the skill's folder, its files or a `.zip` of its folder. The review shows the skill as Curio read it, its files, and the agents that will use it, each ticked. Untick each agent that should go without it, then click **Import**.
-2. **Import the agent.** Click **All agents** in the rail, then **Import agent** in the header, and pick its `manifest.json` and its prompt files. The Agent Catalog drawer on the canvas has **Import agent** in its footer too.
+1. **Import the skill.** On the **Skill Catalog** tab of the Projects page, click **Import skill** in the header, and pick the skill's folder, its files or a `.zip` of its folder. The review shows the skill as Curio read it, its files, and the agents that will use it, each ticked. Untick each agent that should go without it, then click **Import**.
+2. **Import the agent.** On the **Agent Catalog** tab, click **Import agent** in the header, and pick its `manifest.json` and its prompt files. The Agent Catalog drawer on the canvas has **Import agent** in its footer too.
 3. **Chat with it.** [Add the agent to a dataflow](/ai-agents/#add-an-agent-to-a-dataflow), drop it on empty canvas, and ask, for example, how many living trees each neighborhood has. Its chat lists the skill, loads it with `skill.read` when your message asks for its task, and the line under the reply names it.
 
 An agent holds a skill in three ways: its manifest names the skill in `skills`, as Tree Counter's names `street-trees`; the skill's import review left the agent ticked; or **Add skill** in the agent's details gave it the skill. So one of Curio's agents, such as the Node Builder, can use your skill too ([Add and remove skills](/ai-agents/#add-and-remove-skills)).
@@ -88,7 +88,7 @@ A skill the instruction names in its own `skills`, `prompts.instruction.skills`,
 
 ## Share them
 
-**Export**, in a skill's details, saves the skill as a `.zip` of its folder, which any Agent Skills tool reads. When the server allows it, **Publish** offers a skill or an agent you imported to every account on the server ([Your own skills](/ai-agents/#your-own-skills)).
+**Export**, in a skill's details, saves the skill as a `.zip` of its folder, which any Agent Skills tool reads. When the server allows it, **Publish** offers a skill or an agent you imported to every account on the server ([Your own skills](/skill-catalog/#your-own-skills)).
 
 ## Skills in a package
 

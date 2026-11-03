@@ -4,7 +4,8 @@ import { useData, withBase } from 'vitepress'
 import Icon from './Icon.vue'
 
 // The home page's picture of how Curio's parts fit, above the use cases. The Agent Catalog is a band around
-// everything, since its agents work at every stage; inside it the Discovery, Data, Model and Node catalogs take
+// everything, since its agents work at every stage, and it names the Skill Catalog, whose skills tell the agents
+// how to do each task; inside it the Discovery, Data, Model and Node catalogs take
 // a dataset from a portal to computed results, the Scenario Catalog holds the alternatives to compare, and Curio
 // composes them into an analysis, shown by a real
 // screenshot. The cards are HTML so their text wraps; the wires between them are drawn over the measured cards,
@@ -186,7 +187,7 @@ onBeforeUnmount(() => {
 <template>
   <section id="overview" class="curio-flow-section" aria-labelledby="overview-title">
     <div class="curio-flow-container">
-      <h2 id="overview-title">Six catalogs, many dataflows</h2>
+      <h2 id="overview-title">Seven catalogs, many dataflows</h2>
       <p class="curio-flow-lead">
         Find a dataset, load it, run models and compute with it, then compare scenarios, with AI agents at every
         stage. Curio composes the pieces into an analysis.
@@ -199,8 +200,10 @@ onBeforeUnmount(() => {
             <h3>Agent Catalog <span class="curio-flow-count">Every stage</span></h3>
             <p class="curio-flow-text">
               Four AI agents you attach to a node, a connection or the whole canvas. A change one makes lands at
-              once, and its chat can undo it.
+              once, and its chat can undo it. The Skill Catalog holds their skills, each telling an agent how to do
+              a specific task.
               <a class="curio-flow-link is-agent" :href="withBase('/ai-agents/')">AI agents <Icon name="arrow" /></a>
+              <a class="curio-flow-link is-agent" :href="withBase('/skill-catalog/')">Skill Catalog <Icon name="arrow" /></a>
             </p>
           </div>
         </div>
