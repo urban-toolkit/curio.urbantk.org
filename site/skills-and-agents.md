@@ -38,6 +38,7 @@ The frontmatter holds the format's fields:
 - `name`: the folder's name, 1 to 64 lowercase letters, digits and hyphens, with no hyphen first or last and none twice in a row.
 - `description`: when to use the skill, in 1 to 1,024 characters. An agent reads the description before it loads the skill, so start it with "Use this skill when" and name the task in the words a user uses for it.
 - `license`, `compatibility` (at most 500 characters) and `metadata`, which are optional. `metadata` holds strings by string keys, such as `author`, and a `version` quoted so YAML reads it as a string.
+- `curio-asks`, in `metadata`, names words of a chat message that hand the skill to that chat, a comma between each, as in `curio-asks: street trees, tree census`. A message that holds one, as a whole word in any case, gets the skill with no `skill.read`, and the conversation keeps it.
 
 A value that holds `: ` or ` #` goes in quotes, as street-trees' description does.
 

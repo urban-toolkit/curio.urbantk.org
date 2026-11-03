@@ -139,8 +139,9 @@ Curio's skills are the folders of its repository's [`skills/`](https://github.co
 - **Handed for what a run writes:** a run that writes or checks a node is handed the skills that serve that kind of node, such as `map-edits` for a Map Editor node, and a run that reads the whole dataflow is handed those of its nodes and features, such as `scenarios` for a dataflow with scenario boxes. A chat on a node holds the skills of that kind of node, and a chat or a mode holds the procedures it follows from its first message, such as `reuse-first` in the Node Builder's chat.
 - **Loaded by the agent:** in chat, an agent lists its other skills by name and description, and loads one with its `skill.read` tool when a task matches it. A skill a chat loaded stays for the rest of its conversation.
 - **Named by you:** type `/` at the start of a message to list the chat's skills, then pick one or keep typing its name, as in `/map-edits remove the two tallest towers`. The run gets the skill with your message, and the conversation keeps it.
+- **Asked for in your words:** a skill can name words that hand it to a chat, and a message that holds one gets the skill the same way. `scenarios` comes with a message that says scenario, scenarios, what if or what-if, as in "What if the speed limit dropped to 20?". A word counts whole and in any case, and only in what you type, never in a task one agent hands another.
 
-A line under each chat reply, **Skills:**, names the skills its run held or loaded, apart from the core skills. Hover a name to see how the run got it: handed for the chat's node or instruction, named with `/` in the message, kept from earlier in the chat, or loaded for this reply.
+A line under each chat reply, **Skills:**, names the skills its run held or loaded, apart from the core skills. Hover a name to see how the run got it: handed for the chat's node or instruction, named with `/` in the message, handed for words in the message, kept from earlier in the chat, or loaded for this reply.
 
 ### Add and remove skills
 

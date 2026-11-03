@@ -37,7 +37,7 @@ metadata:
   curio-templates: raster-calculator rasterize-buildings
 ```
 
-A skill names only its own package's templates, and agents read it as its author wrote it. Name your skills after your package: a skill named like one of Curio's, or like a skill of a package the dataflow lists before yours, is left out. Scout's skill, [`scout`](https://github.com/urban-toolkit/curio/blob/main/packages/curio.scout@1/skills/scout/SKILL.md), is an example.
+A skill names only its own package's templates, and agents read it as its author wrote it. A skill can also name, in `curio-asks`, words of a chat message that hand it to the chat ([Write a skill](/skills-and-agents/#write-a-skill)). Name your skills after your package: a skill named like one of Curio's, or like a skill of a package the dataflow lists before yours, is left out. Scout's skill, [`scout`](https://github.com/urban-toolkit/curio/blob/main/packages/curio.scout@1/skills/scout/SKILL.md), is an example.
 
 ## Icons, tags and data types
 
