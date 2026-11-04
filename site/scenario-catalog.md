@@ -17,38 +17,44 @@ The Scenario Catalog lists the [scenarios](/scenarios/) of all your projects, th
 
 Open **Scenario Catalog** in the top bar of the Projects page. Each card shows a square of the scenario's color before its name, then its project, how many nodes it holds, its description and its project's graph; the strip at the top is the same on every card. Search by name, description or project, sort by **Recently edited**, **Name** or **Project**, and filter by project or by origin (**Your dataflows** or **Examples**) in the left rail. The drawer on the right sums up the selected scenario.
 
-<GuideFigure src="/media/scenario-catalog/browse.webp" alt="The Scenario Catalog page" caption="The Scenario Catalog: the scenarios of example 06 and of the SCOUT dataflows. Baseline is selected, and the drawer on the right shows its project&#x27;s graph and how many levers, fixed context nodes and outcomes it has." :w="1280" :h="768" />
+<GuideFigure src="/media/scenario-catalog/browse.webp" alt="The Scenario Catalog page" caption="The Scenario Catalog: the scenarios of example 06 and of the SCOUT dataflows. Baseline is selected, and the drawer on the right shows its project&#x27;s graph and how many nodes each of its three parts holds." :w="1280" :h="768" />
 
-**View details** shows the project's graph, with the scenario's nodes in its color and its fixed context outlined, and three lists: **Fixed context**, **Levers** and **Outcomes**, each node with the output its project saved. An outcome with **No saved output** has not run since the scenario was defined. **Open source project** opens the project on the canvas.
+**View details** shows the scenario's set and its project's graph, with the scenario's nodes in its color and its shared context outlined, and three lists: **Shared context**, **Scenario-specific nodes** and **Shared outcomes**. Each shared outcome, each of the scenario's last nodes and each context node that feeds it shows the output its project saved. A node with **No saved output** has not run since the scenario was defined. **Open source project** opens the project on the canvas.
 
-<GuideFigure src="/media/scenario-catalog/details.webp" alt="The details of the Baseline scenario" caption="View details for Baseline: its nodes in blue on the project&#x27;s graph, the Data Pool outlined as its fixed context, then the three lists, each node with the output its project saved." :w="1200" :h="880" />
+<GuideFigure src="/media/scenario-catalog/details.webp" alt="The details of the Baseline scenario" caption="View details for Baseline: its nodes in blue on the project&#x27;s graph, the Data Pool it reads outlined, then the three lists, with the outputs its project saved." :w="1200" :h="880" />
 
 ## Bring a scenario into another dataflow
 
-On the canvas, click **Scenario** in the top bar to open the catalog's drawer, and drag a scenario's card from its **Browse all** tab onto the canvas. **Browse all** lists the scenarios under a heading for each project, with how many of the listed scenarios come from it; the sort orders the groups by their first card, and the cards within each group. Its **In project** tab holds the open dataflow's own scenarios (see [Scenarios](/scenarios/#work-with-scenarios)).
+On the canvas, click **Scenario** in the top bar to open the catalog's drawer, and drag a scenario's card from its **Browse all** tab onto the canvas. **Browse all** lists the scenarios in a panel for each scenario set, headed by its name, how many of the listed scenarios are in it, and **Open source project**; the sort orders the groups by their first card, and the cards within each group. Its **In project** tab holds the open dataflow's own scenarios (see [Scenarios](/scenarios/#work-with-scenarios)).
 
-<GuideFigure src="/media/scenario-catalog/drawer.webp" alt="The Scenario Catalog drawer with its cards grouped by project" caption="The Scenario Catalog drawer&#x27;s Browse all tab, searched for Elm Grove: two scenarios under Elm Grove heat and one under Elm Grove flood, each card ready to drag onto the canvas." :w="519" :h="720" />
+<GuideFigure src="/media/scenario-catalog/drawer.webp" alt="The Scenario Catalog drawer with its cards in two groups" caption="The Scenario Catalog drawer&#x27;s Browse all tab, searched for Elm Grove: two scenarios under Elm Grove heat and one under Elm Grove flood, each card ready to drag onto the canvas." :w="519" :h="720" />
 
-It arrives as a copy, collapsed where you dropped it, in its own color:
+One card brings one scenario, as a copy, where you dropped it:
 
-- its levers are copied, each naming the node it was copied from;
-- its fixed context arrives as **Data Loading** nodes that read copies of what its project saved, wired where the context was;
-- a node of its fixed context with no saved output runs first, on the server and in the scenario's project, which saves its output there; a notice names it while it runs;
-- its outcomes show the results its project saved, before anything runs;
+- the first scenario of a set makes a copy of its set, named as that set is, with a number added when the dataflow has a set of that name; each scenario of the same set dragged in after it joins that copy;
+- it keeps its name, and its color unless a scenario of the dataflow already wears it;
+- its scenario-specific nodes are copied, each naming the node it was copied from;
+- the context it reads arrives once for the set, as **Data Loading** nodes named for the nodes they stand for, which read copies of what its project saved, wired where the context was; a scenario of the set dragged in later reads the ones already there and brings only the context they lack;
+- a context node with no saved output runs first, on the server and in the scenario's project, which saves its output there; a notice names it while it runs;
+- a shared outcome comes once every scenario it reads is in: a chart comparing three scenarios comes with the last of the three;
+- its results show what its project saved, before anything runs;
 - the packages its nodes use are added to the dataflow.
 
-<GuideFigure src="/media/scenario-catalog/dropped.webp" alt="A dropped scenario: a Data Loading node wired to a collapsed box" caption="Twice as tall from example 06, dropped: a Data Loading node reads a copy of the Data Pool&#x27;s saved output, and the collapsed box shows its outcome done, before anything runs." :w="930" :h="370" />
+Everything arrives collapsed: the scenario's box, and the shared context and shared outcomes of its set's copy. Double-click a box to open it.
 
-Editing the copy leaves the original as it is. A second scenario of the same project, dragged into the same dataflow, shares the fixed context the first one brought.
+<GuideFigure src="/media/scenario-catalog/dropped.webp" alt="A dropped scenario: a Data Loading node wired to a collapsed box" caption="Twice as tall from example 06, dropped: a Data Loading node reads a copy of the Data Pool&#x27;s saved output, and the collapsed box shows Roads by sunlight done, before anything runs." :w="930" :h="370" />
+
+Editing the copy leaves the original as it is.
 
 An [agent](/ai-agents/) that reads your dataflow tells which project and scenario a copy came from, or that they are gone. Asked for a scenario of another project, the Dataflow Builder names it and its project for you to drag in from **Browse all**.
 
-To compare the scenario with your own work, connect its outcome and yours to one chart or map, as in [Compare scenarios](/scenarios/#compare-scenarios). To run it on your own data, double-click its box, delete a Data Loading node, and connect your node where it was; **Run scenario** then runs your node first.
+To compare the scenario with your own work, connect a node of its box and one of yours to one chart or map, as in [Compare scenarios](/scenarios/#compare-scenarios). To run it on your own data, double-click the shared context's box, delete a Data Loading node, and connect your node to the scenario node it fed; **Run scenario** then runs your node first.
 
 A drop is refused, and nothing is added, when:
 
-- a node of its fixed context has no saved output and cannot run on the server: only the browser runs it, such as an Autark compute node, you are a guest on a hosted Curio, or Curio runs with `--no-project`. Run the scenario in its project, then drag it again;
-- running a node of its fixed context fails; the message says why;
+- the dataflow holds that scenario already; the message says so;
+- a node feeding it has no saved output and cannot run on the server: only the browser runs it, such as an Autark compute node, you are a guest on a hosted Curio, or Curio runs with `--no-project`. Run the scenario in its project, then drag it again;
+- running a node feeding it fails; the message says why;
 - its nodes need a package, a dataset or a model your account does not have, or a package your account cannot add; the message names it.
 
 ## Share scenarios

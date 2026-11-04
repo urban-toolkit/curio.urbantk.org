@@ -39,7 +39,7 @@ Curio's skills are the folders of its repository's [`skills/`](https://github.co
 | `autark-starter` | start an Autark map from its node's starter document |
 | `map-edits` | write a Map Editor node's call and edits, keeping filters in their own node |
 | `interaction-edges` | link views with interaction edges and Data Pools |
-| `scenarios` | work with scenario boxes, their chips and colors |
+| `scenarios` | work with scenario sets, each scenario's scenario-specific nodes, shared context and shared outcomes, and the chips and colors that compare them |
 | `dashboards` | keep a dataflow's pinned tiles working on its dashboard |
 | `provenance` | read a node's history and the agents' entries in it |
 | `reuse-first` | choose a node type: a listed template, then a package to add, then a written package |
@@ -60,4 +60,4 @@ A guest on a hosted Curio imports, publishes and removes no skill. To write a sk
 
 ## Skills from packages
 
-A node package can ship skills for its nodes, such as Scout's `scout`. The Skill Catalog lists them with their package, as **From Scout**, and names as their users the agents on a dataflow that uses the package. Every agent on such a dataflow lists them after its own skills, and a run that writes one of the package's nodes is handed those that serve it. A package's skills come and go with the package, so they have no **Remove**, **Publish** or **Export**, and **Add skill** does not offer them. [Build a package](/packages/#skills-for-the-agents) shows how a package declares them.
+A node package can ship skills for its nodes, such as Rasterization's `rasterization` and the Vega-Lite package's `vega-lite-charts`. The Skill Catalog lists them with their package, as **From Rasterization**, and names as their users the agents on a dataflow that uses the package. Every agent on such a dataflow lists them after its own skills, and a run that writes one of the package's nodes is handed those that serve it. A package's skills come and go with the package, so they have no **Remove**, **Publish** or **Export**, and **Add skill** does not offer them. [Build a package](/packages/#skills-for-the-agents) shows how a package declares them.

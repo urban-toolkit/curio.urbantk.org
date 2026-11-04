@@ -1,11 +1,12 @@
 ---
 title: "Scenarios"
-description: "Keep alternatives of a dataflow as scenarios, change their levers, and compare their outcomes in charts and maps drawn in the scenarios' colors."
+description: "Keep alternatives of a dataflow as the scenarios of a scenario set, and compare them on shared outcomes: charts and maps drawn in the scenarios' colors."
 group: using
 order: 45
 card: { poster: /media/scenarios/shadow-study.webp, alt: "Example 06 on the canvas with three scenario frames" }
 deeper:
   - { doc: docs/USAGE.md, anchor: scenarios, label: "Scenarios in the usage guide" }
+  - { doc: docs/SCENARIO-CATALOG.md, anchor: defining-a-scenario, label: "Defining a scenario" }
   - { doc: docs/USAGE.md, anchor: the-map-editor-node, label: "The Map Editor node" }
   - { doc: docs/USAGE.md, anchor: comparing-scenarios, label: "Comparing scenarios" }
   - { doc: docs/USAGE.md, anchor: several-inputs, label: "Several inputs and their chips" }
@@ -13,52 +14,58 @@ deeper:
   - { doc: docs/USAGE.md, anchor: scenario-colors-and-order, label: "Scenario colors and order" }
   - { doc: docs/examples/06-back-bay-road-sunlight.md, label: "Example 06: Back Bay road sunlight when buildings change" }
   - { doc: docs/README.md, anchor: charts-that-compare-scenarios, label: "Nine ways to chart scenario comparisons" }
-  - { doc: packages/curio.scout@1/README.md, label: "The Scout package" }
+  - { doc: packages/curio.vega-lite@1/README.md, label: "The Vega-Lite package's charts" }
 ---
 
 # Scenarios
 
-A scenario is a named selection of a dataflow's nodes, or the whole dataflow, kept to compare alternatives: the same shadow study with buildings twice as tall, say, or with two towers removed. Its boundary splits the dataflow into three parts:
+A scenario is a named selection of a dataflow's nodes, kept to compare alternatives: the same shadow study with buildings twice as tall, say, or with two towers removed. It splits the dataflow into three parts:
 
-- **Fixed context:** the nodes outside the scenario that it reads, through a connection into it. The scenario takes their outputs as given. A node that two alternatives share sits outside both, as their common context.
-- **Levers:** the nodes in the scenario, which is what an alternative changes: its loaders, widget values, code and specs, and the features a [Map Editor node](#edit-features-on-a-map) adds, changes or removes.
-- **Outcomes:** the outputs of the scenario's last nodes, which is what gets compared.
+- **Scenario-specific nodes:** the nodes unique to it, in its box, which is what an alternative changes: its loaders, widget values, code and specs, and the features a [Map Editor node](#edit-features-on-a-map) adds, changes or removes.
+- **Shared context:** every node upstream of it, outside every box, that it uses. The scenario takes their outputs as given.
+- **Shared outcomes:** every node downstream of it, outside every box, that it feeds: the maps, charts and tables the alternatives are compared on.
+
+Every scenario belongs to one **scenario set**: the scenarios that answer one question, compared on the same shared context and shared outcomes. Scenarios of different sets never mix. A node of the shared context or the shared outcomes can serve some of the set's scenarios only.
 
 A node belongs to one scenario at most.
 
-<GuideFigure src="/media/scenarios/shadow-study.webp" alt="Example 06 on the canvas with three scenario frames" caption="Example 06 on the canvas: a shared loader and Data Pool feed three scenarios, each in its own color inside a frame. Scout's Bars charts the mean sunlight of their roads, and a Python node takes the sunlight each road loses, which an Autark map draws." :w="670" :h="520" />
+<GuideFigure src="/media/scenarios/shadow-study.webp" alt="Example 06 on the canvas with three scenario frames" caption="Example 06 on the canvas: a shared loader and Data Pool feed three scenarios, each in its own color inside a frame. The Vega-Lite package's Bars charts the mean sunlight of their roads, and a Python node takes the sunlight each road loses, which an Autark map draws." :w="670" :h="520" />
 
 ## Make a scenario
 
-1. Select its nodes: hold Shift and drag a box around them.
-2. Choose **View > Save selection as scenario**, or **File > Save dataflow as scenario** for the whole dataflow.
-3. To build an alternative, choose **View > Duplicate as scenario**. The selected nodes are copied below themselves with the connections between them, every connection into the selection feeds the copy too, and the selection and the copy become two scenarios.
-4. Change the copy's levers: a widget value, a line of code.
+1. Choose **View > Define scenario**. It opens in a drawer at the right of the canvas, and the canvas's nodes stay selectable while it is open.
+2. **Scenario-specific nodes:** select the scenario's nodes on the canvas (click one, or hold Shift and drag a box around several) and click **+ Add selected node**; **×** takes one out. Nodes selected before the drawer opened are listed already.
+3. **Next: shared context & outcomes** lists the shared context and the shared outcomes Curio finds by following the connections from those nodes, and the canvas marks them. Confirm them, take a node out with **×**, or select one on the canvas and click **+ Add selected node**. When the set already has scenarios, each list marks its nodes **Already in the set** or **New to the set**.
+4. **Next: name & set** asks for the scenario's name, its color and its set: name a new scenario set, or pick one of the dataflow's. No two scenarios of a set share a name. **Save scenario** saves it; nothing is saved before.
 
-Each copy remembers the node it was copied from.
+To build an alternative, click **Duplicate scenario** on the scenario's card (see [Work with scenarios](#work-with-scenarios)). Its nodes are copied below themselves with the connections between them, and every connection into them feeds the copy too. The copy is a scenario of the same set, with the next color and the same shared context, and Define scenario opens on it at **Name & set**: rename it, recolor it, or put it in another set. Nothing reads the copy yet, so it has no shared outcomes: connect its nodes to the comparison, then add the comparison with **Edit scenario**.
+
+Then change the copy's nodes: a widget value, a line of code. Each copy remembers the node it was copied from.
 
 ## Work with scenarios
 
-The dataflow's scenarios are in the [Scenario Catalog](/scenario-catalog/) drawer's **In project** tab: click **Scenario** in the top bar, then **In project**, which shows how many the dataflow has. Saving a selection or duplicating it as a scenario opens that tab. On top of it are **Save selection as scenario** and **Duplicate as scenario**, and each scenario's card offers:
+The dataflow's scenarios are in the [Scenario Catalog](/scenario-catalog/) drawer's **In project** tab: click **Scenario** in the top bar, then **In project**, which shows how many the dataflow has. It lists them in a panel for each scenario set, headed by the set's name and how many scenarios it holds. The pencil beside the name renames the set, and no two sets of a dataflow share a name. On top of the tab is **Define scenario**, and each scenario's card offers:
 
-- **Run scenario**: run its levers, and the nodes of its fixed context that have not run or have changed since;
-- **Collapse** or **Expand**;
-- **Add selected** or **Remove selected**: the nodes selected on the canvas before the drawer opened;
-- **Delete**, which leaves its nodes on the canvas.
+- **Run scenario**: run its nodes, and of the nodes feeding it only those that have not run or have changed since;
+- **Edit scenario**: Define scenario filled in with the scenario's nodes, shared context and outcomes, name, color and set, whose **Save** changes it in place;
+- **Duplicate scenario**: a copy of it, as above;
+- **Delete**, which asks first and leaves its nodes on the canvas.
 
-**View details** on a card renames, recolors and describes the scenario, and lists its fixed context, levers and outcomes. Pointing at a card marks the scenario's fixed context on the canvas.
+**View details** on a card renames, recolors and describes the scenario, and lists its shared context, its scenario-specific nodes and its shared outcomes. Pointing at a card marks the scenario's context and outcomes on the canvas.
 
-<GuideFigure src="/media/scenarios/in-project.webp" alt="The Scenario Catalog drawer's In project tab with one scenario's card" caption="The In project tab: Save selection as scenario and Duplicate as scenario on top, then a card for each of the dataflow's scenarios, here Twice as tall, with its commands." :w="519" :h="520" />
+<GuideFigure src="/media/scenarios/in-project.webp" alt="The Scenario Catalog drawer's In project tab with one scenario's card" caption="The In project tab: a card for each of the dataflow's scenarios, here Twice as tall, with its commands." :w="519" :h="520" />
 
-A collapsed scenario is one box in its color that lists its fixed context and its outcomes with their latest output. Its connections are drawn to the box, and dragging the box moves it. Double-click the box to expand it in place. A collapsed scenario's nodes still run with **Run All**, and the context they share runs once.
+On the canvas, each scenario set is outlined under its name, **Scenario set:** and the set's name. A scenario's nodes wear its color inside a frame, with its name and a **Collapse** button above. The set's shared context and shared outcomes are framed in gray, each under a **Shared context** or **Shared outcomes** pill with a **Collapse** button. Under each of their nodes is a row of circles, one per scenario of the set, filled where that scenario uses the node; point at the circles to read which scenarios do.
 
-<GuideFigure src="/media/scenarios/collapsed.webp" alt="The Baseline scenario collapsed into one box" caption="Baseline collapsed into one box, with the Data Pool it reads and its outcome Roads by sunlight, done. The connections into and out of the scenario are drawn to the box." :w="1260" :h="960" />
+A collapsed scenario is one box tinted in its color, with a card for each of its nodes: the node's kind, its title and its latest output. Its connections are drawn to the cards they enter and leave, and dragging the box moves it. A collapsed shared context or shared outcomes is one gray box with a card for each node and the set's circles on it. Double-click a box to expand it in place. A collapsed scenario's nodes still run with **Run All**, and the context they share runs once.
 
-The nodes of a scenario's fixed context and its outcomes save their outputs to your [Data Catalog](/data-catalog/) when they run, whatever their **Save output** setting, so the [Scenario Catalog](/scenario-catalog/) can show them and other dataflows can use them. Scenarios, their colors, descriptions and collapsed state are saved with the dataflow.
+<GuideFigure src="/media/scenarios/collapsed.webp" alt="The Baseline scenario collapsed into one box" caption="Baseline collapsed into one box in its color. The connections into and out of the scenario are drawn to the box." :w="1260" :h="960" />
+
+When they run, the shared context nodes that feed a scenario, its own last nodes and its set's shared outcomes save their outputs to your [Data Catalog](/data-catalog/), whatever their **Save output** setting, so the [Scenario Catalog](/scenario-catalog/) can show them and other dataflows can use them. Scenarios and their sets are saved with the dataflow, with their colors, descriptions, shared context and outcomes, and what is collapsed.
 
 ## Edit features on a map
 
-The **Map Editor** node edits a map's layers on the map: two towers taken out of a city's buildings, every building over 100 m lowered, a road reshaped or a park drawn, say. In a scenario, it is a lever.
+The **Map Editor** node edits a map's layers on the map: two towers taken out of a city's buildings, every building over 100 m lowered, a road reshaped or a park drawn, say. In a scenario, it is one of the scenario-specific nodes: its edits are what that scenario changes.
 
 1. Connect the nodes that load your layers to **Map Editor**, and Map Editor to an [Autark map](/visualization/#autark-maps).
 2. Link the two with an [interaction edge](/interactions/), from the dot on top of Map Editor to the dot on top of the map. A feature picked on the map is then picked in Map Editor, and the features Map Editor picks light up on the map.
@@ -83,7 +90,7 @@ On a building of several parts, the map's tools change one part at a time, and t
 
 ## Compare scenarios
 
-To compare scenarios, connect each scenario's outcome to an input circle of its own on a node outside the scenario boxes: each connection takes the next circle. That node charts them, maps them or takes their difference.
+To compare scenarios, connect the node of each scenario's box that the comparison reads to an input circle of its own on a node outside the boxes: each connection takes the next circle. That node, one of their set's shared outcomes, charts them, maps them or takes their difference.
 
 A [Vega-Lite node](/visualization/#vega-lite-charts) whose spec names its dataset with the chip `[!! inputs !!]` reads every input's rows in one table, in circle order. Each row has three more columns:
 
@@ -112,7 +119,7 @@ The scenario chips write the boxes' names and colors into the spec:
 }
 ```
 
-The boxes come in the order the dataflow lists them. An input from no box comes after them, named by its node, in a gray of its own. When no input comes from a box, `[!! scenario colors !!]` and `[!! scenario text_colors !!]` write the names alone, and the chart's own palette colors them. Renaming or recoloring a box, or drawing one around a node that feeds the chart, draws the chart again with no run. A spec without the chips draws in Vega-Lite's own colors. The [Scout package's charts](/scout/#charts-that-compare-scenarios) are written this way, ready to connect.
+The boxes come in the order the dataflow lists them. An input from no box comes after them, named by its node, in a gray of its own. When no input comes from a box, `[!! scenario colors !!]` and `[!! scenario text_colors !!]` write the names alone, and the chart's own palette colors them. Renaming or recoloring a box, or drawing one around a node that feeds the chart, draws the chart again with no run. A spec without the chips draws in Vega-Lite's own colors. The [Vega-Lite package's charts](/scout/#charts-that-compare-scenarios) are written this way, ready to connect.
 
 ## The chips above the spec
 
@@ -122,7 +129,7 @@ Above a node's code or spec, one row lists every chip the node can use, by categ
 - **Scenarios:** on a node with an input from a scenario box. In a Vega-Lite spec, first the boxes' swatches with their names, the tag of `[!! scenario colors !!]`, then **text colors** and **order**. In a Vega-Lite or Autark spec, a tag for each input, such as **input_1 ■ Twice as tall**, in the color its chip writes.
 - **Widgets** and **Selections:** the node's [widgets](/widgets/) and its [selection tags](/widgets/#hand-a-node-what-you-selected).
 
-A line of **Inputs** holds a square button, the input's tag, and where the input comes from: its scenario box, or else the kind of node that feeds it. Once that node has run, the line also says what the input holds, such as **from Existing: 5 columns**, **from Autark: 5 layers** or **from Python Computation: 2 values, a tuple**. The line of **inputs** names the inputs it stacks and, once they have run, how many fields their rows carry, such as **input_0 and input_1, stacked: 8 fields**.
+A line of **Inputs** holds a square button, the input's tag, and where the input comes from: its scenario box, or else the name of the node that feeds it. Once that node has run, the line also says what the input holds, such as **from Existing: 5 columns**, **from Autark: 5 layers** or **from Python Computation: 2 values, a tuple**. The line of **inputs** names the inputs it stacks and, once they have run, how many fields their rows carry, such as **input_0 and input_1, stacked: 8 fields**.
 
 Click a line's square button to open its list, indented under the line, and click it again to close it. An input's list holds its columns, and the list of **inputs** the fields of the stacked rows, `scenario_name`, `scenario` and `__input__` first. An input with layers, such as an Autark node's tables, lists a line for each layer: the layer's tag, then its columns, or **no columns**. Drag a column's tag where a column name goes. Several lists can be open, and each stays open on its node while the dataflow is open.
 
@@ -134,7 +141,7 @@ Hover over a tag, or over its chip in the code or spec, to preview what it holds
 
 A node with no input from a box has no **Scenarios**, and the hover of a scenario chip in its spec says what the chip writes there. On a node with no input, `[!! inputs !!]` is red until you connect one. `[!! inputs !!]` and the scenario chips are for specs: Python and JavaScript code takes neither.
 
-<GuideFigure src="/media/scenarios/chart-header.webp" alt="A Scout Bars chart on its Grammar tab, with the Scenarios category open above its spec" caption="Scout's Bars chart of the mean accumulated shadow in Chicago Loop shadow with towers removed or edited, on its Grammar tab. Its row reads Inputs 3, Scenarios 5 and Widgets 3, with Scenarios open: the two boxes' swatches and names, text colors and order, then each input in its box's color. The spec names its dataset with the inputs chip." :w="526" :h="350" />
+<GuideFigure src="/media/scenarios/chart-header.webp" alt="A Bars chart of the Vega-Lite package on its Grammar tab, with the Scenarios category open above its spec" caption="The Vega-Lite package's Bars chart of the mean accumulated shadow in Chicago Loop shadow with towers removed or edited, on its Grammar tab. Its row reads Inputs 3, Scenarios 5 and Widgets 3, with Scenarios open: the two boxes' swatches and names, text colors and order, then each input in its box's color. The spec names its dataset with the inputs chip." :w="526" :h="350" />
 
 ## Maps and differences
 
@@ -144,7 +151,7 @@ An [Autark map](/visualization/#autark-maps) draws a layer in the color of the s
 { "dataRef": "[!! input_1 !!]", "width": 80, "title": "Fastest route", "color": "[!! scenario input_1 !!]" }
 ```
 
-A recolored box gives the layer its new color at the map's next run. To map each scenario's outcome side by side, give their maps the same `colorMapRange`, `[low, high]`, and a value has one color on all of them.
+A recolored box gives the layer its new color at the map's next run. To map each scenario's result side by side, give their maps the same `colorMapRange`, `[low, high]`, and a value has one color on all of them.
 
 To take a difference:
 
@@ -161,8 +168,8 @@ To draw a difference on a map, connect the node to an Autark node after it. Its 
 
 ## In the examples
 
-Example 06, "Back Bay road sunlight when buildings change", has three scenarios over one loader: Baseline, Twice as tall (its `height_factor` widget set to 2), and Two towers removed (a Map Editor node takes out two towers, on a buildings map it feeds). Each ends in a Roads node that takes its roads with their sunlight. Scout's **Bars** charts each scenario's mean road sunlight from the three Roads nodes, and a Python node takes the sunlight each road loses in Twice as tall, which an Autark map draws in red, yellow and blue from -360 to 360 minutes. The [SCOUT examples](/scout/) compare scenarios of shadows, park shade, flooding and routes.
+Example 06, "Back Bay road sunlight when buildings change", has three scenarios in one set, over one loader and its Data Pool, their shared context: Baseline, Twice as tall (its `height_factor` widget set to 2), and Two towers removed (a Map Editor node takes out two towers, on a buildings map it feeds). Each ends in a Roads node that takes its roads with their sunlight. The set's shared outcomes compare them: the Vega-Lite package's **Bars** charts each scenario's mean road sunlight from the three Roads nodes, and a Python node takes the sunlight each road loses in Twice as tall, which an Autark map draws in red, yellow and blue from -360 to 360 minutes. The [SCOUT examples](/scout/) compare scenarios of shadows, park shade, flooding and routes.
 
-"Nine ways to chart scenario comparisons", under **Tests** on the projects page, charts the scenarios of nine example tables from the Data Catalog, each a different way. For each table, a Data Transformation node per scenario keeps that scenario's rows, and a chart of the [Scout package](/scout/#charts-that-compare-scenarios) takes each scenario's node on an input of its own, with its columns set in its **Widgets** tab: **Lines with a band**, **Curves by group**, **Bars with error bars**, **Ensemble strips**, **Grouped bars**, **Stacked bars with totals**, **Donuts**, **Weighted matrix** and **Table**.
+"Nine ways to chart scenario comparisons", under **Tests** on the projects page, charts the scenarios of nine example tables from the Data Catalog, each a different way. For each table, a Data Transformation node per scenario keeps that scenario's rows, and a chart of the [Vega-Lite package](/scout/#charts-that-compare-scenarios) takes each scenario's node on an input of its own, with its columns set in its **Widgets** tab: **Lines with a band**, **Curves by group**, **Bars with error bars**, **Ensemble strips**, **Grouped bars**, **Stacked bars with totals**, **Donuts**, **Weighted matrix** and **Table**.
 
-<GuideFigure src="/media/scenarios/charts-carbon.webp" alt="Stacked bars of two building frames' carbon by life-cycle stage, with their totals" caption="From Nine ways to chart scenario comparisons: Scout's Stacked bars with totals stacks the carbon of a concrete frame and a timber frame by life-cycle stage, with each total on top and each frame's name in its scenario's color." :w="680" :h="440" />
+<GuideFigure src="/media/scenarios/charts-carbon.webp" alt="Stacked bars of two building frames' carbon by life-cycle stage, with their totals" caption="From Nine ways to chart scenario comparisons: the Vega-Lite package's Stacked bars with totals stacks the carbon of a concrete frame and a timber frame by life-cycle stage, with each total on top and each frame's name in its scenario's color." :w="680" :h="440" />
