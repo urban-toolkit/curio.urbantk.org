@@ -78,8 +78,8 @@ An agent is a folder named `<agentId>@<major>`, the major of its version, holdin
 
 ## Connect them
 
-1. **Import the skill.** On the **Skill Catalog** tab of the Projects page, click **Import skill** in the header, and pick the skill's folder, its files or a `.zip` of its folder. The review shows the skill as Curio read it, its files, and the agents that will use it, each ticked. Untick each agent that should go without it, then click **Import**.
-2. **Import the agent.** On the **Agent Catalog** tab, click **Import agent** in the header, and pick its `manifest.json` and its prompt files. The Agent Catalog drawer on the canvas has **Import agent** in its footer too.
+1. **Import the skill.** On the **Skill Catalog** page, which the top bar of the Projects page opens, click **Import skill** in the header, and pick the skill's folder, its files or a `.zip` of its folder. The review shows the skill as Curio read it, its files, and the agents that will use it, each ticked. Untick each agent that should go without it, then click **Import**.
+2. **Import the agent.** On the **Agent Catalog** page, click **Import agent** in the header, and pick its `manifest.json` and its prompt files. The Agent Catalog drawer on the canvas has **Import agent** in its footer too.
 3. **Chat with it.** [Add the agent to a dataflow](/ai-agents/#add-an-agent-to-a-dataflow), drop it on empty canvas, and ask, for example, how many living trees each neighborhood has. Its chat lists the skill, loads it with `skill.read` when your message asks for its task, and the line under the reply names it.
 
 An agent holds a skill in three ways: its manifest names the skill in `skills`, as Tree Counter's names `street-trees`; the skill's import review left the agent ticked; or **Add skill** in the agent's details gave it the skill. So one of Curio's agents, such as the Node Builder, can use your skill too ([Add and remove skills](/ai-agents/#add-and-remove-skills)).

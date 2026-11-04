@@ -20,7 +20,7 @@ On the canvas, click **Data Catalog** in the top bar, or open the **Data Catalog
 
 Click **Add to project** on a dataset and confirm, and it appears in the Tools panel's **Data Catalog** dropdown. **Remove from project** takes it out again.
 
-The **Data Catalog** tab at the top of the Projects page shows the same datasets for your whole account. Click one to open its panel, where **Add to all projects** adds it to every project you have and to new ones. When the server allows it, the panel also offers **Publish**, to share a dataset of yours with everyone on that server.
+**Data Catalog**, in the top bar of the Projects page, shows the same datasets for your whole account. Click one to open its panel, where **Add to all projects** adds it to every project you have and to new ones. When the server allows it, the panel also offers **Publish**, to share a dataset of yours with everyone on that server.
 
 <LoopVideo src="/media/data-catalog/datacatalog.mp4" poster="/media/data-catalog/datacatalog.webp" label="The Data Catalog drawer on the canvas, where a dataset is added to the dataflow and then appears in the Tools panel." :w="1280" :h="768" />
 

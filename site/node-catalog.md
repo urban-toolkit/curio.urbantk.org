@@ -20,7 +20,7 @@ On the canvas, click **Node Catalog** in the top bar, or open the **Node Catalog
 
 Click **Add to project** on a package. A dialog lists the permissions it asks for and the Python and JavaScript libraries it depends on; click **Add to project** there to install it. Its nodes then appear in the **Node Catalog** dropdown, ready to drag onto the canvas. You can also drag a package's card from the drawer onto the canvas: its node appears where you drop it, after the same review when the dataflow does not have the package yet, and a package with several nodes first opens a menu of them to pick from. **Remove from project** takes a package out of this dataflow. Installing a package runs its setup code, so add only packages you trust.
 
-The **Node Catalog** tab at the top of the Projects page lists the same packages for your whole account. There, **Add to all projects** adds a package to every project you have and to new ones. To take it out again, use **Remove from project** in each project's drawer.
+**Node Catalog**, in the top bar of the Projects page, lists the same packages for your whole account. There, **Add to all projects** adds a package to every project you have and to new ones. To take it out again, use **Remove from project** in each project's drawer.
 
 <LoopVideo src="/media/node-catalog/nodecatalog.mp4" poster="/media/node-catalog/nodecatalog.webp" label="A package is found in the Node Catalog drawer, its dependencies are listed before it is added, and its nodes appear in the Tools panel." :w="1280" :h="768" />
 

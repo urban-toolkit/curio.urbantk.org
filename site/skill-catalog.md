@@ -16,7 +16,7 @@ A skill tells an [agent](/ai-agents/) how to do a specific task, such as writing
 
 ## Browse the skills
 
-Open the **Skill Catalog** tab at the top of the Projects page. In the rail, **All skills** lists every skill and **Core** the three every call holds. Each card says whose the skill is. Click a card for its drawer: what the skill serves, the agents that use it and where it comes from. **View details** adds its text as an agent reads it, and its files.
+Open **Skill Catalog** in the top bar of the Projects page. In the rail, **All skills** lists every skill and **Core** the three every call holds. Each card says whose the skill is. Click a card for its drawer: what the skill serves, the agents that use it and where it comes from. **View details** adds its text as an agent reads it, and its files.
 
 Which skills an agent holds is part of the agent. Its details in the Agent Catalog list them, with **Add skill**, **Remove** and **Restore** ([Add and remove skills](/ai-agents/#add-and-remove-skills)), and a skill's name there opens that skill's details.
 

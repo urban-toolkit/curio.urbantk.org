@@ -16,7 +16,7 @@ The Model Catalog holds the trained models your nodes run. Each model is a model
 
 ## Browse the models
 
-Open the **Model Catalog** tab at the top of the Projects page. Each card is one model, with its runtime, its type, how many classes it labels, its size and its weights' license. Search and sort the cards, and filter them in the left rail by **All models**, **In all projects**, **By type** or **By runtime**. Click a card to see it in the drawer on the right, which offers **Add to all projects**, **Publish** or **Unpublish** for a model of your own, **Remove from account** for a model of your own that no dataflow uses, and **View details**: the model's type, runtime, input size, labels, size, weights license and publisher, the node it drops as, and its package.
+Open **Model Catalog** in the top bar of the Projects page. Each card is one model, with its runtime, its type, how many classes it labels, its size and its weights' license. Search and sort the cards, and filter them in the left rail by **All models**, **In all projects**, **By type** or **By runtime**. Click a card to see it in the drawer on the right, which offers **Add to all projects**, **Publish** or **Unpublish** for a model of your own, **Remove from account** for a model of your own that no dataflow uses, and **View details**: the model's type, runtime, input size, labels, size, weights license and publisher, the node it drops as, and its package.
 
 <MediaTodo kind="still" source="new:modelcatalog" caption="The Model Catalog page, with DDRNet23-Slim, Deep Umbra and the SCOUT weather GNN." />
 
