@@ -19,7 +19,7 @@ Every node in Curio, the built-ins included, comes from a package: a folder whos
 
 ## A Python node
 
-1. Drop a **Data Transformation** node on the canvas and write your Python in its editor. What the connection on input circle 0 delivers arrives as `input_0`, on circle 1 as `input_1`, and so on, and whatever you `return` becomes this node's output. Run it until it does what you want.
+1. Drop a **Python Computation** node on the canvas and write your Python in its editor. What the connection on input circle 0 delivers arrives as `input_0`, on circle 1 as `input_1`, and so on, and whatever you `return` becomes this node's output. Run it until it does what you want.
 2. Click the cog in the node header to open **Node settings**, and set the label, the port types and the editor mode.
 3. Click **Save as package node…**, pick **New package…**, give the package a name and save.
 

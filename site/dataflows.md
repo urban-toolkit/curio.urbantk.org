@@ -33,7 +33,7 @@ Click the title at the top to rename the dataflow. A new dataflow reads **Unsave
 ## Kinds of nodes
 
 - **Data Loading** brings data in with Python, and can read values from the nodes connected to it. It opens on its **Data** box: drop a file or a Data Catalog dataset there, or click **Choose file**, and its code, on the **Code** tab, loads it.
-- **Data Transformation** and **Python Computation** run Python on their inputs, which arrive as `input_0`, `input_1` and so on, one per input circle, and pass on what the code returns.
+- **Python Computation** runs Python on its inputs, which arrive as `input_0`, `input_1` and so on, one per input circle, and passes on what the code returns.
 - **JS Computation** does the same in JavaScript.
 - **Data Summary** reports a table's column types, missing values and statistics.
 - **Data Pool** shows one result as a table and feeds it to the nodes after it, marking the rows selected in the views [linked](/interactions/) to it.
