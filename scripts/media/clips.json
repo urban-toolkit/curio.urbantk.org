@@ -263,19 +263,6 @@
       "at": 8.5
     },
     {
-      "id": "column-filter",
-      "page": "authoring-nodes",
-      "take": "walk1",
-      "source": "walkthrough:column-filter-reads-a-dataframe",
-      "at": 13.5,
-      "crop": {
-        "left": 180,
-        "top": 170,
-        "width": 1100,
-        "height": 440
-      }
-    },
-    {
       "id": "in-project",
       "page": "scenarios",
       "take": "main-03343c5",
