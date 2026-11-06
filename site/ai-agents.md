@@ -23,13 +23,22 @@ Agents answer with an **LLM configuration**: a provider, its key and a model, wh
 
 1. **Get an API key** from the provider: [OpenAI](https://platform.openai.com/api-keys), [Anthropic](https://console.anthropic.com/keys) or [Gemini](https://aistudio.google.com/apikey). The form links to the same pages (**Get your OpenAI key**, for example). A model you run yourself, such as one in Ollama or LM Studio, may need no key.
 2. **Open API Settings** from the top bar. On the Projects and catalog pages it opens the settings page; on the canvas and the dashboard it opens as a drawer on the right, and your dataflow stays open.
-3. On the **API keys** tab, click **Add configuration**.
+3. On the **API keys** tab, click **+** (**Add configuration**) at the end of the table's header.
 4. In **Kind**, choose **Language model**.
 5. Give it a **Label**, and pick the **Provider**: **OpenAI**, **Anthropic**, **Gemini**, or **Custom** for any OpenAI-compatible endpoint, such as a model you run yourself (Custom asks for a **Base URL**).
 6. Paste the **API key**, and choose the **Model**: **Fetch models** suggests what the endpoint serves, or type a model name.
-7. Click **Add configuration**. The configuration shows in the list, with **saved** in its **Key** column when you gave a key. **Make this my default** is ticked on your first configuration, so it becomes your default.
+7. Click **Add configuration**. The configuration's row shows in the list, with **Key saved** under its name when you gave a key. **Make this my default** is ticked on your first configuration, so it becomes your default.
 
-You can keep several configurations, for different providers or models. On the **Agent configuration** tab, **Default for agents** picks your default, and **Agent models** picks which one each agent runs on; an agent left on **Default** uses your default. If whoever runs the server set a Deployment default, it is offered too. On a server started with `--deploy`, guest accounts cannot add a configuration and answer with the server's guest configuration. Curio does not bill agent runs: the provider charges whoever's key is used.
+You can keep several configurations, for different providers or models. A row of yours ends with **x** (**Remove**) and a pencil (**Edit**). On the **Agent configuration** tab, **Default for my agents** picks your default, and **Each agent** picks what each agent runs on; **Follows my default** keeps an agent on your default. Curio does not bill agent runs: the provider charges whoever's key is used.
+
+When whoever runs the server offers models of its own, the **API keys** tab starts with a read-only **Curio** row for each of its endpoints, with **Provided by** and the endpoint's name under it and the endpoint's models in its **Details**. You use those models with no key of your own:
+
+1. Open **API Settings** and click the **Agent configuration** tab.
+2. In **Default for my agents**, pick a model under **Curio ·** and the endpoint's name. **Curio's default**, first in the list, is the model marked **Curio default** on the **API keys** tab, which every account answers on until it picks another.
+3. To give one agent a model of its own, pick it in that agent's list under **Each agent**.
+4. The choice is saved at once, and **Answering now** names the endpoint and the model.
+
+On a server started with `--deploy`, guests cannot add a configuration or pick a model, and answer on Curio's default.
 
 <MediaTodo kind="still" source="new:apisettings" caption="API Settings: every key in one list on the API keys tab, and the model each agent runs on under Agent configuration." />
 

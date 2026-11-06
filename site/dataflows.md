@@ -89,10 +89,10 @@ Node code that calls an API with a key reads the key by name, from a **Node code
 
 1. **Get the key** from the API's provider.
 2. **Open API Settings** from the top bar. On the canvas and the dashboard it opens as a drawer on the right; on the Projects and catalog pages it opens the settings page.
-3. On the **API keys** tab, click **Add configuration**.
+3. On the **API keys** tab, click **+** (**Add configuration**) at the end of the table's header.
 4. In **Kind**, choose **Another API, for node code**.
 5. Type a **Name**, such as `census`, and the **Host**, such as `api.census.gov`. In **Sent as**, keep **in the code (default)**, or choose **as a query parameter** or **as an HTTP header** and type the **Parameter name** or **Header name**.
-6. Paste the **Key** and click **Save key**. The key's row shows **saved** in its **Key** column, and its **Details** show the host and how the key is sent.
+6. Paste the **Key** and click **Save key**. The key's row shows **Key saved** under its name, and its **Details** show the host and how the key is sent.
 
 Then read the key in the node's code by its name:
 

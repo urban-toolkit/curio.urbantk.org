@@ -53,7 +53,18 @@ services:
     command: ["--backend-url", "https://curio.example.org/curio/api", "--base-path", "/curio"]
 ```
 
-`--backend-url` is the address browsers reach the backend at, and `--base-path` the path the app is served under; both match the proxy above. A second stack on the same server sets `ports: !override ["127.0.0.1:5012:5002", "127.0.0.1:8090:8080"]` there, for host ports of its own. Other flags go in the same list, such as `--exec-memory-mb`, `--exec-timeout` and `--exec-parallelism` for node limits, or `--llm-provider`, `--llm-base-url` and `--llm-model` for a default AI provider (see [AI agents](/ai-agents/)). The backend reads the default AI key `CURIO_DEFAULT_LLM_API_KEY` from its environment or from `utk_curio/backend/.env`.
+`--backend-url` is the address browsers reach the backend at, and `--base-path` the path the app is served under; both match the proxy above. A second stack on the same server sets `ports: !override ["127.0.0.1:5012:5002", "127.0.0.1:8090:8080"]` there, for host ports of its own. Other flags go in the same list, such as `--exec-memory-mb`, `--exec-timeout` and `--exec-parallelism` for node limits, or `--llm-endpoint-file` for the server's own AI endpoints (see [Set up the AI features](/install/#set-up-the-ai-features)). That file holds keys, so keep it out of the image: mount it read-only, readable by its owner only, for example through Compose `secrets:`.
+
+```yaml
+services:
+  curio:
+    command: ["--backend-url", "https://curio.example.org/curio/api", "--base-path", "/curio",
+              "--llm-endpoint-file", "/run/secrets/curio_llm_endpoint"]
+    secrets: [curio_llm_endpoint]
+secrets:
+  curio_llm_endpoint:
+    file: ./.secrets/llm-endpoint
+```
 
 ## Updating and backups
 
