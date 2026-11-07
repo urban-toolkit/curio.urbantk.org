@@ -80,7 +80,7 @@ Back up `instance/` (the database of users, projects and sessions), `datasets/` 
 
 ## The monitor page
 
-Every instance serves `/monitor`: the version and isolation mode, hardware load, node runs and failures, each LLM model's input and output tokens per hour, account and content totals, disk use, and the latest errors. Figures count from the last restart. **Copy diagnostics** copies it all as Markdown for an issue, and **Download** saves it as JSON.
+Every instance serves `/monitor`: the version and isolation mode, hardware load, each server's open files against its limit hour by hour, node runs and failures, each LLM model's input and output tokens per hour, account and content totals, disk use, and the latest errors, which include a server past 80% of its open-files limit. Figures count from the last restart. **Copy diagnostics** copies it all as Markdown for an issue, and **Download** saves it as JSON.
 
 <GuideFigure src="/media/self-hosting/monitor.webp" alt="The monitor page of a Curio instance" caption="The monitor page of a Curio instance, with its deployment, hardware, execution, storage and recent-error panels." :w="1280" :h="768" />
 
