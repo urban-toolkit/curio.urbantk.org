@@ -21,7 +21,7 @@ Open the hosted instance and choose **Create account** on the sign-in page. A na
 
 <TryIt path="/auth/signup" label="Create an account" />
 
-**Continue as Guest** lets you look around without an account, but a guest cannot save dataflows, and anything a guest adds, such as an imported dataset, is shared with every other guest.
+**Continue as Guest** lets you look around without an account. A guest cannot save dataflows, and the datasets a guest imports or downloads are theirs alone until they sign out or the server restarts.
 
 <LoopVideo src="/media/quick-start/signup.mp4" poster="/media/quick-start/signup.webp" label="The Create an account form is filled in with a name, a username and a password, and the new account lands on its Projects page." :w="1280" :h="768" />
 

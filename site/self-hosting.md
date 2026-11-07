@@ -40,7 +40,7 @@ docker compose up -d
 docker compose logs curio | grep CURIO_NO_AUTH   # must print CURIO_NO_AUTH=0
 ```
 
-Visitors sign up with a username and password, or continue as a guest unless the backend runs with `CURIO_ENV=prod`. All guests share one account and cannot install libraries. Each node's Python runs in a short-lived child process under an unprivileged account, with memory and CPU capped, no network, and no access to the user database or other users' stored data. A `--deploy` that cannot set this up refuses to start. The Docker image has what it needs, and the app's version badge shows whether node code is isolated. Every user's nodes run under that one account and can run any Python within those limits, so give accounts to people you would trust with code on the server.
+Visitors sign up with a username and password, or continue as a guest unless the backend runs with `CURIO_ENV=prod`. All guests share one account and cannot install libraries. What a guest's agents, runs and renames change in an example, and the datasets the guest imports or downloads, stay that guest's own, and a restart clears them. Each node's Python runs in a short-lived child process under an unprivileged account, with memory and CPU capped, no network, and no access to the user database or other users' stored data. A `--deploy` that cannot set this up refuses to start. The Docker image has what it needs, and the app's version badge shows whether node code is isolated. Every user's nodes run under that one account and can run any Python within those limits, so give accounts to people you would trust with code on the server.
 
 ## Configuration
 
@@ -80,8 +80,8 @@ Back up `instance/` (the database of users, projects and sessions), `datasets/` 
 
 ## The monitor page
 
-Every instance serves `/monitor`: the version and isolation mode, hardware load, node runs and failures, account and content totals, disk use, and the latest errors. Figures count from the last restart. **Copy diagnostics** copies it all as Markdown for an issue, and **Download** saves it as JSON.
+Every instance serves `/monitor`: the version and isolation mode, hardware load, node runs and failures, each LLM model's input and output tokens per hour, account and content totals, disk use, and the latest errors. Figures count from the last restart. **Copy diagnostics** copies it all as Markdown for an issue, and **Download** saves it as JSON.
 
 <GuideFigure src="/media/self-hosting/monitor.webp" alt="The monitor page of a Curio instance" caption="The monitor page of a Curio instance, with its deployment, hardware, execution, storage and recent-error panels." :w="1280" :h="768" />
 
-The page is public, with no sign-in. Its statistics are aggregates with no usernames or addresses, but its error log shows raw tracebacks, including server paths and fragments of other users' node code. To hide them, block the monitor routes at the proxy; the deployment guide shows how.
+The page is public, with no sign-in. Its statistics are aggregates with no usernames or addresses, and its LLM tokens name each model that answered, those users set for their own keys included. Its error log shows raw tracebacks, including server paths and fragments of other users' node code. To hide them, block the monitor routes at the proxy; the deployment guide shows how.
