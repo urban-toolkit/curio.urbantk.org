@@ -18,7 +18,7 @@ Curio keeps two histories while you work. The dataflow's version history records
 
 Choose **View > Provenance** to open the dataflow's history in a drawer on the right. Each row is one version, numbered from the first at the top, with what made it, such as **Node added: Data Loading** or **Connection added**, and the time it was recorded. The drawer opens on the version that is on the canvas, marked with a filled dot.
 
-Click a version to open it: a thumbnail of the dataflow at that step, the date and time it was recorded, and how many nodes and connections it holds. Opening a version only shows it; the canvas stays as it is. The pin at the left of the drawer's title keeps the drawer open when you click outside it or press Escape.
+Click a version to open it: a thumbnail of the dataflow at that step, the date and time it was recorded, and how many nodes and connections it holds. Opening a version only shows it; the canvas stays as it is. The pin at the left of the drawer's title keeps the drawer open while you work on the canvas and in the top bar, and Escape leaves it open.
 
 A dataflow opened without a saved history, such as a loaded file or an example opened for the first time, starts one with a version for each of its nodes and connections.
 
