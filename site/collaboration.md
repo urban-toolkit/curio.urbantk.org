@@ -33,7 +33,7 @@ An editor opens the link and edits the dataflow with you. Adding or removing an 
 | An editor | Edits code, nodes, connections, widgets and scenarios, runs the dataflow on the server, works with its agents, and asks the owner to add datasets, collections, packages and models of their own. |
 | Anyone else with the link | Watches, read-only: every edit, keystroke and cursor shows as it lands, and their own cursor shows to the others. **File > Save dataflow** saves them a copy in their own projects. |
 
-A guest on a hosted Curio watches other accounts' dataflows. Its canvas of an example stays its own, and so does what its agents change there.
+A guest on a hosted Curio watches other accounts' dataflows. What it changes in an example, by hand or through its agents, goes to a copy of its own that no one else sees, until it signs out or the server restarts.
 
 ## See who is here
 

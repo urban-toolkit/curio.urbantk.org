@@ -24,7 +24,7 @@ The rail on the left filters the list: **Your dataflows**, **By source** (the Us
 
 Double-click a card to open it, or click it once to see its details, with **Open dataflow**, **Rename**, **Duplicate** and **Delete**; right-clicking a card offers the same actions. **Duplicate** adds a copy with "(copy)" after its name, and **Delete** asks you to confirm, then deletes the project permanently. From the canvas, **File > Go to projects** or the Curio logo brings you back here.
 
-Saving needs an account: on a server with sign-in, a guest can open dataflows but not save them.
+Saving needs an account: on a server with sign-in, a guest can open dataflows but not save or duplicate them. On a hosted Curio, what a guest changes in an example, and a new dataflow once the guest adds an agent or a dataset to it, are kept for that guest alone until they sign out or the server restarts. The projects page lists those new dataflows first, marked **Kept for this visit**.
 
 <LoopVideo src="/media/projects-and-files/projects.mp4" poster="/media/projects-and-files/projects.webp" label="The projects page, with the search box, the switch between grid and list views, and the Import Jupyter notebook button." :w="1280" :h="768" />
 
