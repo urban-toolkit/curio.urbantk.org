@@ -5,6 +5,7 @@ group: extending
 order: 20
 deeper:
   - { doc: docs/EXTENDING.md, label: "Extending Curio with node packages" }
+  - { doc: docs/EXTENDING.md, anchor: a-nodes-logic-is-in-its-packages-functions, label: "A node's logic is in its package's functions" }
   - { doc: docs/EXTENDING.md, anchor: 1-anatomy-of-a-package, label: "Anatomy of a package" }
   - { doc: docs/AUTHORING-NODES.md, anchor: tags-and-data-types, label: "Tags and data types" }
   - { doc: docs/AUTHORING-NODES.md, anchor: submitting-your-package, label: "Submitting your package" }
@@ -19,14 +20,14 @@ A package is how Curio ships nodes: a folder named `<packageId>@<major>`, such a
 ## What a package contains
 
 - `manifest.json`: the id, name, publisher, version and compatibility, the dependencies, and one entry per node template with its label, icon, category, input and output port types, editor, and the behavior key that implements it. Its schema is `docs/schemas/node-package.v4.json`.
-- `sources/`: one starter file per template, or the TypeScript hooks of a custom-UI node.
+- `sources/`: one starter file per template and the package's Python modules, or the TypeScript hooks of a custom-UI node.
 - `scripts/`: the compiled `behaviors.js` that a custom-UI node needs, named by the manifest's `behaviorScript`.
 - `skills/`: what the package tells Curio's agents about its nodes, one folder per skill (see [Skills for the agents](#skills-for-the-agents)).
 - `models/`: in a model package, the trained model's weights (see [Model Catalog](/model-catalog/)).
 - `README.md`, shown in the catalog, and `LICENSE`.
 - `integrity.json`: a SHA-256 hash of every other file, written on install. After editing a package in place, regenerate it (see [Write a node](/authoring-nodes/)).
 
-An [agent](/ai-agents/#what-agents-work-with) that writes a node of a template reads its description, its starter, and the public functions of the package's modules and of the packages it needs. It reads each function by its signature and the first paragraph of its docstring.
+A node's logic is in its package's functions, and the node's code holds its settings and a short call of one. A module of the package offers the functions its `__all__` names, or else its public functions, and each says what it does in the first paragraph of its docstring ([Write a node](/authoring-nodes/#a-node-from-a-python-function) shows how to write it). The header above each node's code lists them under [**Functions**](/scenarios/#the-chips-above-the-spec), so a package's nodes list their own package's functions, and the package's **View details** lists them under **Modules**. An [agent](/ai-agents/#what-agents-work-with) that writes a node of a template reads them, and those of the packages it needs, with the template's description and its starter.
 
 ## Skills for the agents
 

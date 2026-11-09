@@ -7,6 +7,7 @@ card: { poster: /media/authoring-nodes/node-settings.webp, alt: "The Node settin
 deeper:
   - { doc: docs/AUTHORING-NODES.md, label: "Authoring nodes" }
   - { doc: docs/NODE-CATALOG.md, anchor: new-node-from-a-python-function, label: "New node from a Python function" }
+  - { doc: docs/AUTHORING-NODES.md, anchor: modules-beside-your-template, label: "Modules beside your template" }
   - { doc: docs/AUTHORING-NODES.md, anchor: reading-upstream-data, label: "Reading upstream data" }
   - { doc: docs/AUTHORING-NODES.md, anchor: things-that-will-trip-you-up, label: "Things that will trip you up" }
   - { doc: docs/EXTENDING.md, label: "Extending Curio: backends, external APIs and dependencies" }
@@ -32,7 +33,7 @@ The node now belongs to your package, in your own store under `.curio/users/`: i
 A package that ships Python modules beside its templates gives you a node for any of their functions, with no code to write:
 
 1. Open the **Node Catalog** drawer and click **New node from a Python function** in its footer.
-2. Pick the function. The list holds every public function of the modules your installed packages ship.
+2. Pick the function. The list holds the functions the modules of your installed packages offer: the names each module's `__all__` lists, or else its public functions.
 3. For each parameter, choose what it gets: a [widget](/widgets/), whose type Curio suggests from the parameter's annotation or default; a fixed value, written as Python writes it; an input of the node; or its default.
 4. Name the node, choose the package it goes into, and click **Create node**.
 
@@ -41,10 +42,12 @@ A package that ships Python modules beside its templates gives you a node for an
 The node joins the project's palette. Its code imports the function and returns its call, with the widgets and inputs as chips:
 
 ```python
-from deep_umbra.deep_umbra import season_factor
+from deep_umbra import season_factor
 
 return season_factor(season=[!! season !!])
 ```
+
+Each function a module offers says what it does in the first paragraph of its docstring: this dialog shows it under the function, and a node made from the function takes it as its description. Write that paragraph as reST, ``` ``name`` ``` or ``` :func:`name` ``` for code and `*name*` for a parameter, which Curio shows in the code font and in italics, never the marks. A folder's `__init__.py` can offer what its other modules define, as `deep_umbra` offers `accumulated_shadow` and `season_factor`. [Build a package](/packages/#what-a-package-contains) says where else these functions show.
 
 ## A node with its own interface
 

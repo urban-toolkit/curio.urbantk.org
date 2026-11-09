@@ -10,6 +10,7 @@ deeper:
   - { doc: docs/USAGE.md, anchor: the-map-editor-node, label: "The Map Editor node" }
   - { doc: docs/USAGE.md, anchor: comparing-scenarios, label: "Comparing scenarios" }
   - { doc: docs/USAGE.md, anchor: several-inputs, label: "Several inputs and their chips" }
+  - { doc: docs/NODE-CATALOG.md, anchor: functions-a-node-can-call, label: "Functions a node can call" }
   - { doc: docs/USAGE.md, anchor: every-input-in-one-dataset, label: "Every input in one dataset" }
   - { doc: docs/USAGE.md, anchor: scenario-colors-and-order, label: "Scenario colors and order" }
   - { doc: docs/examples/06-back-bay-road-sunlight.md, label: "Example 06: Back Bay road sunlight when buildings change" }
@@ -123,9 +124,10 @@ The boxes come in the order the dataflow lists them. An input from no box comes 
 
 ## The chips above the spec
 
-Above a node's code or spec, one row lists every chip the node can use, by category, each with its count: **Inputs**, **Scenarios**, **Widgets** and **Selections**. A category shows only when it has chips. The categories start closed, each with a chevron pointing down. Click one to list its chips under the row, and its chevron points up; click it again, or open another category, to close it. A category stays open on that node while the dataflow is open. On the canvas, the row and its open chips take at most half of the node's editor, and the chips scroll past that. Drag a chip's tag into the code or spec, or click it to put the chip at the cursor.
+Above a node's code or spec, one row lists every chip the node can use, and above code the functions it can call, by category, each with its count: **Inputs**, **Functions**, **Scenarios**, **Widgets** and **Selections**. A category shows only when it has something. The categories start closed, each with a chevron pointing down. Click one to list its chips under the row, and its chevron points up; click it again, or open another category, to close it. A category stays open on that node while the dataflow is open. On the canvas, the row and its open chips take at most half of the node's editor, and the chips scroll past that. Drag a chip's tag into the code or spec, or click it to put the chip at the cursor.
 
 - **Inputs:** a line for each input, `input_0`, `input_1` and so on, in circle order. In a Vega-Lite spec, the line of **inputs**, the stacked rows, comes last.
+- **Functions:** above code, what the code can call: a line for each module that offers a function, the node's own package's first, then those of the packages it depends on, and last Curio's own, which need no import. Hover a function to read its call and what it does; click it to write its call at the cursor, with its import line when the code lacks it.
 - **Scenarios:** on a node with an input from a scenario box. In a Vega-Lite spec, first the boxes' swatches with their names, the tag of `[!! scenario colors !!]`, then **text colors** and **order**. In a Vega-Lite or Autark spec, a tag for each input, such as **input_1 ■ Twice as tall**, in the color its chip writes.
 - **Widgets** and **Selections:** the node's [widgets](/widgets/) and its [selection tags](/widgets/#hand-a-node-what-you-selected).
 
@@ -134,6 +136,8 @@ A line of **Inputs** holds a square button, the input's tag, and where the input
 Click a line's square button to open its list, indented under the line, and click it again to close it. An input's list holds its columns, and the list of **inputs** the fields of the stacked rows, `scenario_name`, `scenario` and `__input__` first. An input with layers, such as an Autark node's tables, lists a line for each layer: the layer's tag, then its columns, or **no columns**. Drag a column's tag where a column name goes. Several lists can be open, and each stays open on its node while the dataflow is open.
 
 <GuideFigure src="/media/scenarios/input-lines.webp" alt="A Vega-Lite chart's Inputs open, with input_0's columns listed under its line" caption="A Vega-Lite chart fed from a Data Pool, with Inputs open. The line of input_0 reads from Data Pool: 3 columns, and its list, open under it, holds geometry, accessibility and neighborhood_name. The line of inputs, input_0, stacked: 5 fields, comes last, closed." :w="526" :h="350" />
+
+An Accumulated Shadow node of the [Deep Umbra model package](/scout/#building-rasters-and-shadows) lists `accumulated_shadow` and `season_factor` under `deep_umbra`, then Rasterization's functions under its `scout_rasters` modules, then Curio's. Click `season_factor` with the cursor at the end of the code, and the code gains `from deep_umbra import season_factor` after its first import and `season_factor(season)` at the cursor.
 
 Hover over a tag, or over its chip in the code or spec, to preview what it holds: an input's source, size and first rows, a column's type, first values and range or count of distinct values, a widget's value, a selection's ids and selected rows, or the scenario boxes' colors.
 
