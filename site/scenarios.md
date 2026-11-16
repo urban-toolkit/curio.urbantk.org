@@ -139,6 +139,8 @@ Click a line's square button to open its list, indented under the line, and clic
 
 An Accumulated Shadow node of the [Deep Umbra model package](/scout/#building-rasters-and-shadows) lists `accumulated_shadow` and `season_factor` under `deep_umbra`, then Rasterization's functions under its `scout_rasters` modules, then Curio's. Click `season_factor` with the cursor at the end of the code, and the code gains `from deep_umbra import season_factor` after its first import and `season_factor(season)` at the cursor.
 
+A built-in Python node, such as Python Computation or Spatial Join, lists the built-in package's `spatial_join` before Curio's. An [Image Segmentation](/model-catalog/#run-a-model-in-a-dataflow) node lists the Segmentation package's `segment_images`, under `semantic_segmentation`, before Curio's.
+
 Hover over a tag, or over its chip in the code or spec, to preview what it holds: an input's source, size and first rows, a column's type, first values and range or count of distinct values, a widget's value, a selection's ids and selected rows, or the scenario boxes' colors.
 
 <GuideFigure src="/media/scenarios/chip-preview.webp" alt="A Vega-Lite chart's input_0 tag with its preview: source, size, column types and first rows" caption="A Vega-Lite chart's input_0 tag, hovered: from Data Pool, 79 rows by 3 columns of a GeoDataFrame, and its first 5 rows under each column's name and type." :w="343" :h="296" />

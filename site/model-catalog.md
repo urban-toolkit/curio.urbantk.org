@@ -8,11 +8,12 @@ deeper:
   - { doc: docs/MODEL-CATALOG.md, label: "Model Catalog reference" }
   - { doc: docs/BRINGING-MODELS.md, label: "Bring a model you trained" }
   - { doc: docs/examples/10-street-vision-cv-analysis.md, label: "Example 10: street-level computer vision" }
+  - { doc: packages/curio.segmentation@1/README.md, label: "The Segmentation package" }
 ---
 
 # Model Catalog
 
-The Model Catalog holds the trained models your nodes run. Each model is a model package: the model's weights and their license, with the node that runs it. **DDRNet23-Slim**, which labels every pixel of a street photo as road, sidewalk, building, vegetation, sky and 14 other classes, ships with Curio, and so do SCOUT's Deep Umbra and weather GNN (see [SCOUT examples](/scout/)). Models you add from the [Discovery Catalog](/discovery/), or import as a package, land here too.
+The Model Catalog holds the trained models your nodes run. Each model is a model package: the model's weights and their license, with the node that runs it. **DDRNet23-Slim**, which labels every pixel of a street photo as road, sidewalk, building, vegetation, sky and 14 other classes, with the same results on every x86 CPU, ships with Curio, and so do SCOUT's Deep Umbra and weather GNN (see [SCOUT examples](/scout/)). Models you add from the [Discovery Catalog](/discovery/), or import as a package, land here too.
 
 ## Browse the models
 
@@ -28,7 +29,9 @@ Drag a model's card onto the canvas, and its node appears where you drop it: **I
 
 ## Run a model in a dataflow
 
-A node's code loads its model by id, with `curio_load_model("<id>")`, which [Functions node code calls](https://github.com/urban-toolkit/curio/blob/main/skills/node-functions/SKILL.md) lists with its arguments. **Image Segmentation** runs a segmentation model over a collection of photos, such as street photos from Mapillary that a **Data Loading** node reads. Each photo gets the share of its pixels every class covers, the class that covers most, and an overlay that **Simple View** shows beside the photo. Set `classes` in the code to the classes you want reported, or `None` for all of them.
+A node's code loads its model by id, with `curio_load_model("<id>")`, which [Functions node code calls](https://github.com/urban-toolkit/curio/blob/main/skills/node-functions/SKILL.md) lists with its arguments. **Image Segmentation** runs a segmentation model over a collection of photos, such as street photos from Mapillary that a **Data Loading** node reads. Its code names the model and the classes to report, and returns a call of `segment_images`, the **Segmentation** package's function, which the header above the code lists under **Functions**. Each photo gets the share of its pixels every class covers, the class that covers most, and an overlay that **Simple View** shows beside the photo. Set `classes` in the code to the classes you want reported, or `None` for all of them.
+
+Segmentation (`curio.segmentation@1`) has no node of its own. DDRNet23-Slim's package, and the package of every segmentation model you add from the Discovery Catalog, depend on it, so adding the model adds it.
 
 To run another model of the same type, drag its card onto the node: the node's `curio_load_model` line names that model, and the rest of its code stays as it is. A model of another type is refused, with a message naming both types.
 
