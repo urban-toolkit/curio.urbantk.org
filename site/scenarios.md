@@ -14,7 +14,7 @@ deeper:
   - { doc: docs/USAGE.md, anchor: every-input-in-one-dataset, label: "Every input in one dataset" }
   - { doc: docs/USAGE.md, anchor: scenario-colors-and-order, label: "Scenario colors and order" }
   - { doc: docs/examples/06-back-bay-road-sunlight.md, label: "Example 06: Back Bay road sunlight when buildings change" }
-  - { doc: docs/README.md, anchor: charts-that-compare-scenarios, label: "Nine ways to chart scenario comparisons" }
+  - { doc: packages/curio.vega-lite@1/README.md, anchor: dataflows, label: "Nine ways to chart scenario comparisons" }
   - { doc: packages/curio.vega-lite@1/README.md, label: "The Vega-Lite package's charts" }
 ---
 
