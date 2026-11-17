@@ -6,7 +6,6 @@ order: 47
 card: { poster: /media/scout/flood-change.webp, alt: "A map of the change in flood depth between two scenarios" }
 deeper:
   - { doc: docs/examples/24-scout-shadow-model-chicago-loop.md, label: "Example 24: SCOUT shadow model on Chicago Loop buildings" }
-  - { doc: docs/README.md, anchor: scout-scenario-studies, label: "The SCOUT scenario studies" }
   - { doc: packages/curio.rasterization@1/README.md, label: "The Rasterization package" }
   - { doc: packages/curio.vega-lite@1/README.md, label: "The Vega-Lite package's charts" }
   - { doc: packages/model.scout.deep-umbra@1/README.md, label: "The Deep Umbra model package" }
