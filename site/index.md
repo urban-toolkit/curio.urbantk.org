@@ -27,9 +27,9 @@ hero:
       link: "#extending"
 useCases:
   - title: Video camera analysis
-    text: Bring footage from traffic and street cameras into a dataflow. Computer vision nodes turn what each camera sees into data, which you can map, chart and compare with the city's other datasets.
+    text: Bring footage from traffic and street cameras into a dataflow. Computer vision nodes turn what each camera sees into data, which you can map, chart and compare with the city's other datasets. The SAGE-IDOT example, which ships with Curio, reads a day of three cameras at Illinois rail crossings where they are stored, places every object their YOLO models saw on the ground, and shows how full each lane before and after the crossing gets, minute by minute, on a map and in linked charts.
     icon: cctv
-    inDevelopment: true
+    doc: { path: docs/examples/32-sage-idot-rail-crossings.md, label: "The SAGE-IDOT rail crossings example" }
   - title: Ortho image fixing
     text: Find and fix the flaws in aerial orthoimagery before it feeds mapping and computer vision models. Each fix is a step in a dataflow, so it can be reviewed, run again on new tiles, and traced in the dataflow's provenance.
     icon: satellite
