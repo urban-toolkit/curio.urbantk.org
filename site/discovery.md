@@ -7,6 +7,7 @@ app: /catalog/discovery
 deeper:
   - { doc: docs/DISCOVERY-CATALOG.md, label: "Discovery Catalog reference" }
   - { doc: docs/DATA-CATALOG.md, label: "Data Catalog reference" }
+  - { doc: docs/DISCOVERY-CATALOG.md, anchor: adding-from-a-storage-source, label: "Adding from a storage source, read in place or cached" }
 ---
 
 # Discovery Catalog
@@ -30,6 +31,19 @@ Type in the **Search every portal…** box, and the cards give way to matching d
 Each result lists the formats it comes in. Pick one if there is a choice, and click **Download**. A progress bar with **Cancel** shows while the file downloads, and a message tells you when the dataset is in your Data Catalog. **View on the portal ↗** opens the dataset's own page on the portal's site.
 
 Curio downloads single CSV, GeoJSON, JSON, Parquet and GeoTIFF files, up to the size a source's details show as **Max download**. It refuses archives such as `.zip` files, and a failed download says why.
+
+## Add from storage
+
+A storage source is a folder on the Curio server, a public bucket or a Hugging Face dataset repository. Its page lists what it holds as rows, each with its kind, such as **Videos**, **Images**, **Table** or **Files**, a line saying what it holds, and its size. The storage sources that come with Curio include two buckets:
+
+- **SideSeeing street captures**: sidewalk walks in Chicago's West Loop, each with its video, with faces and license plates blurred, its GPS track, and its sensor readings and cell networks as tables.
+- **SAGE-IDOT rail crossings**: three SAGE cameras at Illinois Department of Transportation rail crossings, each crossing's month in rows of its own: a snapshot every 5 minutes and, as tables, the objects YOLO models detected in its images.
+
+Click **Add to Data Catalog** on a row, and keep only some of its values if you like, such as one walk. **Files** on a row lists its files, for you to add only the ones you pick. A **Table** row is copied into your Data Catalog, as a download is. Any other row adds as one [collection](/data-catalog/#collections) instead: an index of its files, which stay where the source keeps them.
+
+On a Curio server that mounts buckets, a bucket's collection is read in place: Curio mounts the bucket the first time one of its files is read, nothing is copied into your account, its thumbnails and players work at once, and the collection's details say where it is read from, such as *Read in place from data.urbantk.org*. Elsewhere, and for a Hugging Face repository, click **Cache files** in the collection's details, in the Data Catalog, to copy its files to the Curio server: nodes read them once they are copied.
+
+The Data Catalog comes with one of SideSeeing's walks, read the same way from the SideSeeing bucket: **SideSeeing West Loop walk**, its 14-minute video, and **SideSeeing West Loop walk GPS track**, its `gps.csv`, which node code opens from its row's `path`.
 
 ## Ask a service for an area
 

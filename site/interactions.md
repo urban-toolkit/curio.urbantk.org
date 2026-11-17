@@ -8,6 +8,7 @@ deeper:
   - { doc: docs/examples/09-heterogeneous-data-linked-views.md, label: "Example: a map and a scatter linked directly" }
   - { doc: docs/examples/07-autark-gpu-shader.md, label: "Example: brushing a histogram to light up roads on a map" }
   - { doc: docs/USAGE.md, anchor: vega-lite-node, label: "The Vega-Lite node" }
+  - { doc: docs/USAGE.md, anchor: linking-charts, label: "Linking charts, and a video's player" }
   - { doc: docs/README.md, anchor: examples, label: "Example gallery" }
 ---
 
@@ -37,6 +38,14 @@ A typical linked dataflow, like the "Heterogeneous data + linked views" example,
 
 - **Vega-Lite** sends the selections declared in its specification's `params`: a point, such as `{"name": "pick", "select": "point"}`, or an interval brush. To show linked selections, read the `interacted` column in the specification, for example `"color": {"condition": {"test": "datum.interacted === '1'", "value": "red"}, "value": "grey"}`, and to show its own selection, the selection's name, for example `{"param": "brush", "empty": false, "value": "red"}`. On a `geoshape` map, use a point selection: a brush there selects nothing in the views linked to it.
 - **Autark** sends picks on the map layer marked `"isPick": true`, made by double-clicking a feature, and brushes on a plot. It highlights linked selections in its map or plot on its own.
-- **Simple View** sends a row when you click one of its image cards, and outlines in red the cards of the rows a Data Pool marks.
+- **Simple View** sends a row when you click one of its image cards, and outlines in red the cards of the rows a Data Pool marks. While a video or a recording plays in one of its cards, it also sends where the player stands (see [Follow a video as it plays](#follow-a-video-as-it-plays)).
 
 Views can also be linked inside a single node: a Vega-Lite specification with several views can connect them through its own `params`.
+
+## Follow a video as it plays
+
+A Simple View's player is a selection too, on `t_s`, the time in seconds. Draw an interaction edge from the Simple View to a chart or a map: while a video or a recording plays in one of its cards, the view at the other end marks the rows whose `t_s` lies between the file's start and where the player stands, such as a walk's points up to where the walker is. On an Autark map, the rows light up on its layer marked `"isPick": true`, and a Vega-Lite chart shows them through `interacted`, as for any linked selection.
+
+The marks follow the player as it plays and when you seek, and stay where it stands when you pause. They go when another card plays, when the Simple View's rows change, or when the edge or either node is removed. Nothing is drawn again, and no node runs.
+
+`t_s` is the time in the video, as **Sample Video Frames** writes it for each frame and **Split Audio** for each window. A table that holds clock times gets its `t_s` in a Python node before it is linked. A file cut from a longer one, such as the overlay of [Track Objects](/model-catalog/#run-a-model-in-a-dataflow) or a block of [Split Video](/data-catalog/#collections), holds where it starts in its own `t_s`, so the rows its player marks are in the longer file's time.
