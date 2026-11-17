@@ -8,6 +8,8 @@ app: /catalog/data
 deeper:
   - { doc: docs/DATA-CATALOG.md, label: "Data Catalog reference" }
   - { doc: docs/USAGE.md, anchor: data-catalog, label: "Data Catalog in the usage guide" }
+  - { doc: docs/DATA-CATALOG.md, anchor: collections, label: "A collection's columns" }
+  - { doc: packages/curio.media@1/README.md, label: "The Media package's nodes" }
 ---
 
 # Data Catalog
@@ -46,6 +48,17 @@ Drop a file from your computer on the canvas or on a Data Loading node, or click
 **Import dataset** does not add the file to the open dataflow, so click **Add to project** on it next. To get a dataset from an open data portal, storage or a service instead, see [Discovery Catalog](/discovery/).
 
 **Delete** removes one of your uploads or computed datasets from your account and from every dataflow that uses it. Removing an upload from the last dataflow that uses it also deletes it, and the confirmation says so first.
+
+## Collections
+
+A collection is one dataset of many files: the photos a service gives for an area, or the photos, videos, recordings, rasters or other files of a storage source in the [Discovery Catalog](/discovery/), which stay where the source keeps them. Its details have a **Collection** section, with how many files of each kind it holds and their size. Its Data Loading node returns one row per file, with `path`, where node code opens the file, and **Simple View** shows the rows as cards, where a video or a recording plays.
+
+The **Media** package, in the [Node Catalog](/node-catalog/), has nodes for these rows. **Sample Video Frames** takes a frame from each video every `EVERY_SECONDS` seconds, **Split Audio** cuts each recording into windows, each with its level and a clip that plays, and **Mosaic Rasters** joins a raster collection's tiles into one raster. **Split Video** cuts each video into blocks, each a video of its own, with no sound, that Simple View plays in its card:
+
+- every `BLOCK_SECONDS` seconds, 60 at first, while nothing is wired to its second input circle;
+- or where a table wired to that circle says: a block for each of its rows, from the row's `t_s`, in seconds from the video's start, to its `end_s`, the next block's start or the video's end. A row with a `video_file_id` cuts only that video. The table's other columns, such as a street's name, come first on the block's row, so its card says which block it is. A Python node can make such a table from what you know of the video, such as the times a walk passed each corner.
+
+Each block's row holds its number in its video, `block`, and where it starts and ends in the video, `t_s` and `end_s`, with the video's own columns.
 
 ## Save node outputs as datasets
 
