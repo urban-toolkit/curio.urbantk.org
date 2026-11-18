@@ -43,7 +43,7 @@ To give several nodes one value, such as a season or a region, put its widget on
 A selection tag gives a node's code the rows you selected in a view: a brush or a click in a Vega-Lite chart, or a pick or a brush in an Autark map or plot.
 
 1. Run the view, so its rows are known.
-2. In the reading node's **Widgets** tab, under **Selections**, click **Add selection**. Pick the view and the column that identifies its rows, such as `osm_id` or `building_id`, name the tag, and click **Add selection tag**.
+2. In the reading node's **Widgets** tab, under **Selections**, click **Add selection**. Pick the view and the column that identifies its rows, such as `osm_id` or `building_id`, name the tag, and click **Add selection tag**. The list holds an Autark node of several views whole, for its newest selection, and then each of its views with an `id`, such as **Autark · heights**.
 3. Above the code, click the **Selections** category and drag the tag into the code, where it shows as a peach chip.
 4. Select in the view and run the node.
 

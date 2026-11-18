@@ -69,7 +69,7 @@ When they run, the shared context nodes that feed a scenario, its own last nodes
 The **Map Editor** node edits a map's layers on the map: two towers taken out of a city's buildings, every building over 100 m lowered, a road reshaped or a park drawn, say. In a scenario, it is one of the scenario-specific nodes: its edits are what that scenario changes.
 
 1. Connect the nodes that load your layers to **Map Editor**, and Map Editor to an [Autark map](/visualization/#autark-maps).
-2. Link the two with an [interaction edge](/interactions/), from the dot on top of Map Editor to the dot on top of the map. A feature picked on the map is then picked in Map Editor, and the features Map Editor picks light up on the map.
+2. Link the two with an [interaction edge](/interactions/), from the dot on top of Map Editor to the dot on top of the map. A feature picked on the map is then picked in Map Editor, and the features Map Editor picks light up on the map. On an Autark node of several views, link Map Editor to the dot of the map it edits.
 
 <GuideFigure src="/media/scenarios/map-edits-pick.webp" alt="An Autark buildings map in which both parts of the picked building are lit in blue, under the tip Click an area to pick it, and shift-click to add one" caption="A buildings map linked to Map Editor: the building picked with a click lights up, both of its parts, in the map's own highlight." :w="515" :h="343" />
 
@@ -85,7 +85,7 @@ Each edit is an entry in the node's list and in its [Provenance](/provenance/) d
 
 Edits find features by a column whose values differ in every feature, such as `osm_id` or `building_id`, and an edit by `building_id` changes every part of a building. The input itself is never changed.
 
-On a building of several parts, the map's tools change one part at a time, and the form in **Edit** is for all of them: a property its parts differ in is empty, with their values listed under it, and a value typed there goes to every part. Its **Parts** menu picks one part, and the form then shows and changes that part alone. A change on the map that would make a shape's outline cross itself, or its parts overlap, is refused: the shape goes back as it was, and the map's tip says why. An edit in the node's code that would do the same is skipped: the map keeps the shape as it was, and the run's output says why.
+On a building of several parts, the map's tools change one part at a time, and the form in **Edit** is for all of them: a property its parts differ in is empty, with their values listed under it, and a value typed there goes to every part. Its **Parts** menu picks one part, and the form then shows and changes that part alone. A part with no height shows `6 (default)`, the height the map draws it at, and has no height until one is typed: a rule or an expression on `height` reads the height a part holds, so no rule on `height` picks it. A change on the map that would make a shape's outline cross itself, or its parts overlap, is refused: the shape goes back as it was, and the map's tip says why. An edit in the node's code that would do the same is skipped: the map keeps the shape as it was, and the run's output says why.
 
 <GuideFigure src="/media/scenarios/map-edits.webp" alt="A Map Editor node with its layer's actions and a list of one edit" caption="A Map Editor node linked to its buildings map: the actions for its Buildings layer, and a list of one edit, Set height to 99 on building_id 1, which the two nodes below get with Commit edits." :w="560" :h="460" />
 
@@ -133,7 +133,7 @@ Above a node's code or spec, one row lists every chip the node can use, and abov
 
 A line of **Inputs** holds a square button, the input's tag, and where the input comes from: its scenario box, or else the name of the node that feeds it. Once that node has run, the line also says what the input holds, such as **from Existing: 5 columns**, **from Autark: 5 layers** or **from Python Computation: 2 values, a tuple**. The line of **inputs** names the inputs it stacks and, once they have run, how many fields their rows carry, such as **input_0 and input_1, stacked: 8 fields**.
 
-Click a line's square button to open its list, indented under the line, and click it again to close it. An input's list holds its columns, and the list of **inputs** the fields of the stacked rows, `scenario_name`, `scenario` and `__input__` first. An input with layers, such as an Autark node's tables, lists a line for each layer: the layer's tag, then its columns, or **no columns**. Drag a column's tag where a column name goes. Several lists can be open, and each stays open on its node while the dataflow is open.
+Click a line's square button to open its list, indented under the line, and click it again to close it. An input's list holds its columns, and the list of **inputs** the fields of the stacked rows, `scenario_name`, `scenario` and `__input__` first. An input with layers, such as an Autark node's tables, lists a line for each layer: the layer's tag, then its columns, **a raster** for a raster, or **no columns**. Drag a column's tag where a column name goes. Several lists can be open, and each stays open on its node while the dataflow is open.
 
 <GuideFigure src="/media/scenarios/input-lines.webp" alt="A Vega-Lite chart's Inputs open, with input_0's columns listed under its line" caption="A Vega-Lite chart fed from a Data Pool, with Inputs open. The line of input_0 reads from Data Pool: 3 columns, and its list, open under it, holds geometry, accessibility and neighborhood_name. The line of inputs, input_0, stacked: 5 fields, comes last, closed." :w="526" :h="350" />
 
@@ -141,7 +141,7 @@ An Accumulated Shadow node of the [Deep Umbra model package](/scout/#building-ra
 
 A built-in Python node, such as Python Computation or Spatial Join, lists the built-in package's `spatial_join` before Curio's. An [Image Segmentation](/model-catalog/#run-a-model-in-a-dataflow) node lists the Segmentation package's `segment_images`, under `semantic_segmentation`, before Curio's.
 
-Hover over a tag, or over its chip in the code or spec, to preview what it holds: an input's source, size and first rows, a column's type, first values and range or count of distinct values, a widget's value, a selection's ids and selected rows, or the scenario boxes' colors.
+Hover over a tag, or over its chip in the code or spec, to preview what it holds: an input's source, size and first rows, a raster's size in cells, its bands and its CRS, a column's type, first values and range or count of distinct values, a widget's value, a selection's ids and selected rows, or the scenario boxes' colors.
 
 <GuideFigure src="/media/scenarios/chip-preview.webp" alt="A Vega-Lite chart's input_0 tag with its preview: source, size, column types and first rows" caption="A Vega-Lite chart's input_0 tag, hovered: from Data Pool, 79 rows by 3 columns of a GeoDataFrame, and its first 5 rows under each column's name and type." :w="343" :h="296" />
 

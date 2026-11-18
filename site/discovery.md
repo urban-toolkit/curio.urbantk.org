@@ -8,6 +8,7 @@ deeper:
   - { doc: docs/DISCOVERY-CATALOG.md, label: "Discovery Catalog reference" }
   - { doc: docs/DATA-CATALOG.md, label: "Data Catalog reference" }
   - { doc: docs/DISCOVERY-CATALOG.md, anchor: adding-from-a-storage-source, label: "Adding from a storage source, read in place or cached" }
+  - { doc: docs/DISCOVERY-CATALOG.md, anchor: downloading-from-openstreetmap, label: "Downloading from OpenStreetMap: layers, rows and numbers" }
 ---
 
 # Discovery Catalog
@@ -62,6 +63,8 @@ Open the **Hugging Face models** card and search, for example for `segformer`. E
 ## Use a download in a dataflow
 
 A download is an ordinary dataset in your Data Catalog, with a preview, a schema and loading code, and its details say where it came from. Downloading does not add it to a dataflow: on the canvas, click **Data Catalog** in the top bar, click **Add to project** on the dataset, and drag it onto the canvas. A row marked **In your Data Catalog** was already downloaded, and its **View dataset** button opens your copy instead of downloading it again.
+
+In an OpenStreetMap download, every tag a feature has is a column, and the tags that hold numbers are numbers: lengths such as `height` in meters, speeds such as `maxspeed` in km/h, and counts such as `building:levels` and `lanes` as plain numbers. A value in another unit, such as `40 ft` or `30 mph`, is converted, and a value that is not one number, such as `maxspeed=none`, is empty. The OpenStreetMap layers of an [Autark node](/visualization/#autark-maps) hold the same numbers.
 
 The Dataset Finder agent can also search the portals for you and propose a download, which only happens once you apply it. See [AI agents](/ai-agents/).
 
