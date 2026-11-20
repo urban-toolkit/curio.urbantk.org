@@ -80,8 +80,12 @@ Back up `instance/` (the database of users, projects and sessions), `datasets/` 
 
 ## The monitor page
 
-Every instance serves `/monitor`: the version and isolation mode, hardware load, each server's open files against its limit hour by hour, node runs and failures, each LLM model's input and output tokens per hour, account and content totals, disk use, and the latest errors, which include a server past 80% of its open-files limit. Figures count from the last restart. **Copy diagnostics** copies it all as Markdown for an issue, and **Download** saves it as JSON.
+Every instance serves `/monitor`, in two tabs. **Status** shows the version and isolation mode, hardware load, each server's open files against its limit hour by hour, node runs and failures since the last restart, account and content totals, disk use, and the latest errors, which include a server past 80% of its open-files limit.
+
+**Usage**, at `/monitor/usage`, shows what the instance did over the last 24 hours in 5-minute steps, the last 7 days hour by hour, or the last 90 days day by day: the sessions seen, of accounts and of guests, and how many Python and JavaScript node runs, Run All runs, agent turns and requests there were, with their average and 95th percentile times. On the 24 hours and 7 days charts, each deploy is a dashed line whose tooltip names its version. **LLM performance**, on the same tab, covers the instance's own models, those of the file `--llm-endpoint-file` names: each model's requests, failed requests, average and 95th percentile response time, time to the first token and output tokens per second. Requests on users' own keys are not counted.
+
+The Usage tab and the open files keep the last 90 days across restarts, in the folder `--monitor-dir` names, `.curio/monitor` by default. A deployment whose updates delete `.curio` names a folder outside it. **Copy diagnostics** copies the page as Markdown for an issue, and **Download** saves it as JSON.
 
 <GuideFigure src="/media/self-hosting/monitor.webp" alt="The monitor page of a Curio instance" caption="The monitor page of a Curio instance, with its deployment, hardware, execution, storage and recent-error panels." :w="1280" :h="768" />
 
-The page is public, with no sign-in. Its statistics are aggregates with no usernames or addresses, and its LLM tokens name each model that answered, those users set for their own keys included. Its error log shows raw tracebacks, including server paths and fragments of other users' node code. To hide them, block the monitor routes at the proxy; the deployment guide shows how.
+The page is public, with no sign-in. Its statistics are aggregates with no usernames or addresses. LLM performance names the instance's own models, and the deploy lines name Curio's versions. Its error log shows raw tracebacks, including server paths and fragments of other users' node code. To hide them, block the monitor routes at the proxy; the deployment guide shows how.
