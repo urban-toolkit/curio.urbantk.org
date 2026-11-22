@@ -53,7 +53,7 @@ To compare the scenario with your own work, connect a node of its box and one of
 A drop is refused, and nothing is added, when:
 
 - the dataflow holds that scenario already; the message says so;
-- a node feeding it has no saved output and cannot run on the server: only the browser runs it, such as an Autark compute node, you are a guest on a hosted Curio, or Curio runs with `--no-project`. Run the scenario in its project, then drag it again;
+- a node feeding it has no saved output and cannot run on the server: only the browser runs it (an Autark compute node, or an Autark map or plot that also loads data or runs a pass), you are a guest on a hosted Curio, or Curio runs with `--no-project`. Run the scenario in its project, then drag it again;
 - running a node feeding it fails; the message says why;
 - its nodes need a package, a dataset or a model your account does not have, or a package your account cannot add; the message names it.
 

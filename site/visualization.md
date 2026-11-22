@@ -38,7 +38,7 @@ Press play to draw it. If the editor is still empty when data first arrives, Cur
 
 ## Autark maps
 
-An **Autark** node takes one JSON specification, called an UrbanSpec: `data` loads tables, `compute` runs passes over them, and `map` and `plot` draw them, as maps of layers in 2D or 3D, colored by a column, and as plots such as histograms. A node with no `map` or `plot` passes its tables on by their names (such as `table_osm_buildings`), for another node to draw or read. A table from another node arrives as a layer named after the input circle it comes in on, `input_0` for the first, here colored by its `mean` column:
+An **Autark** node takes one JSON specification, called an UrbanSpec: `data` loads tables, `compute` runs passes over them, and `map` and `plot` draw them, as maps of layers in 2D or 3D, colored by a column, and as plots such as histograms. A node with no `map` or `plot` passes its tables on by their names (such as `table_osm_buildings`), for another node to draw or read. So does a node that draws and also loads data or runs passes: its input's tables when a view or a pass reads one of them, then the tables it loads, then each new table it makes. A node that only draws its input passes that input on as it came. A table from another node arrives as a layer named after the input circle it comes in on, `input_0` for the first, here colored by its `mean` column:
 
 ```json
 { "map": { "layerRefs": [{ "dataRef": "input_0", "getFnv": "mean", "getFnvType": "quantitative" }] } }
