@@ -34,7 +34,7 @@ curio.example.org {
 Always start with the `docker-compose.deploy.yml` overlay. `docker-compose.yml` alone runs Curio as a local tool with no login, so anyone who can reach the address gets in. The overlay adds `--deploy`, which turns on accounts and projects. It also seeds the example projects, turns off publishing to the shared Node Catalog, and restarts the container after a reboot. Your own `docker-compose.site.yml` adds this site's flags (see [Configuration](#configuration)).
 
 ```bash
-export COMPOSE_FILE=docker-compose.yml:docker-compose.deploy.yml:docker-compose.site.yml
+export COMPOSE_FILE=docker/docker-compose.yml:docker/docker-compose.deploy.yml:docker/docker-compose.site.yml
 docker compose build
 docker compose up -d
 docker compose logs curio | grep CURIO_NO_AUTH   # must print CURIO_NO_AUTH=0
@@ -44,7 +44,7 @@ Visitors sign up with a username and password, or continue as a guest unless the
 
 ## Configuration
 
-A deployment's settings live in `docker-compose.site.yml`, next to the compose files. Its `ports` keep the backend and the frontend on loopback, behind the proxy, and its `command` lists `curio.py start` flags:
+A deployment's settings live in `docker/docker-compose.site.yml`, next to the compose files. Its `ports` keep the backend and the frontend on loopback, behind the proxy, and its `command` lists `curio.py start` flags:
 
 ```yaml
 services:

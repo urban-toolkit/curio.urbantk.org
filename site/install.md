@@ -34,10 +34,10 @@ With Docker installed, clone the repository and start the stack:
 ```bash
 git clone https://github.com/urban-toolkit/curio.git
 cd curio
-docker compose up
+docker compose -f docker/docker-compose.yml up
 ```
 
-The first run builds the image, which takes a while; `docker compose up --build` rebuilds it after you update the clone. Then open `http://localhost:8080`. The image includes everything Curio needs, Node.js too, and Curio starts with the example dataflows on the projects page.
+The first run builds the image, which takes a while; `docker compose -f docker/docker-compose.yml up --build` rebuilds it after you update the clone. Then open `http://localhost:8080`. The image includes everything Curio needs, Node.js too, and Curio starts with the example dataflows on the projects page.
 
 To change Curio itself, run it from a clone with `python curio.py start` instead (see [Contribute](/contributing/)).
 
