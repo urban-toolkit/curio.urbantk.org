@@ -58,17 +58,19 @@ Adding an agent makes it available; attaching it puts it to work. Drag it from t
 
 - on a node, to work with that node's code and output (a badge appears under the node)
 - on a connection, to work with what flows between two nodes (a badge appears on the connection)
-- on empty canvas, to work with the whole dataflow (it joins the bar at the top of the canvas)
+- on empty canvas, to work with the whole dataflow (it joins the dock at the top of the canvas)
 
-An agent only accepts the targets it was made for. Each attachment has its own conversation, and one agent can be attached in several places. Once an agent is attached, the bar at the top also shows a **Goal** field: say what the dataflow is for, and the agents that read it take it into account. To detach an agent, hover its badge and click ✕, which also deletes its conversation.
+An agent only accepts the targets it was made for. Each attachment has its own conversation, and one agent can be attached in several places. To detach an agent, hover its badge and click ✕, which also deletes its conversation.
 
 <LoopVideo src="/media/ai-agents/agentattach.mp4" poster="/media/ai-agents/agentattach.webp" label="An agent is dropped on a node, another on the connection between two nodes and a third on empty canvas, and each drop is confirmed." :w="1280" :h="768" />
 
 ## Chat and changes
 
-Click a badge to open the agent's chat. The header says what the agent is attached to, the arrows step through your attached agents, and you can rename or clear the conversation. The first message is the agent's instruction, which the pencil lets you edit. Type in **Message this agent…** and send.
+Click an agent's badge, or its chip in the dock, to open its chat, on the right of the window under the top bar. Down the chat's left side, a rail lists every agent on the dataflow, with what each is attached to under its name: the open one is marked, an agent at work has a dot, and a click opens another's chat. An agent attached three times or more, such as the Node Builder on each node of a plan, is one entry that lists its nodes. The header names the conversation, such as **Node Builder: Heat colors** once Curio has titled it from your first message, and what the agent is attached to: the canvas, a node, or a connection from one node to another. Its **More** menu holds **Rename conversation**, **Clear conversation** and **Tokens used**. The first message is the agent's instruction, which the pencil lets you edit. Type in the message box, which names the agent, such as **Message Node Builder…**, and send.
 
-The agent answers on the Curio server: closing or reloading your tab does not stop it, and its reply is in the chat when you come back. A chat answers one message at a time. A message sent while it answers waits under the last message, marked **Waiting its turn**, and **Withdraw** takes it back until then. **Stop**, under a reply being written, stops the agent at its next step: what it wrote and the changes it made stay, and the reply says who stopped it, such as **Stopped by Ana after 12s**. The chats of different attached agents answer at the same time.
+Under the header, every agent's chat shows the dataflow's **Goal**: what the dataflow is for, which the agents on it read. Click **Add what this dataflow is for** to write it, or the pencil after the goal to change it; Enter or **Save** keeps it, and Escape or **Cancel** leaves it as it was. Nothing written there is sent as a message. The goal is saved with the dataflow, and every agent's chat shows the same one.
+
+The agent answers on the Curio server: closing or reloading your tab does not stop it, and its reply is in the chat when you come back. A chat answers one message at a time. A message sent while it answers waits under the last message, marked **Waiting its turn**, and **Withdraw** takes it back until then. **Stop**, in **Send**'s place while a reply is written and the message box is empty, stops the agent at its next step: what it wrote and the changes it made stay, and the reply says who stopped it, such as **Stopped by Ana after 12s**. The chats of different attached agents answer at the same time.
 
 What an agent does depends on the agent: explain or debug a node, write node code, find datasets (including in the open data portals of the [Discovery Catalog](/discovery/)), plan or build a whole dataflow, suggest connections and packages, or review your work. A change it makes, to a node's code or settings, a new node or a plan, lands at once, for everyone in the dataflow, as your own edit does. The chat shows each change as a card with **Undo**, which puts back what the change replaced:
 
@@ -82,6 +84,18 @@ Undo is your own change. When someone changed what it would put back after the a
 An install changes your account, so it waits for you: a package, a package draft, a dataset, a download from the Discovery Catalog or an agent added to the dataflow appears as a review card. Nothing installs until you click **Apply**, and **Dismiss** drops it.
 
 <MediaTodo kind="clip" source="tour:agentrun" caption="An agent's chat opens from its badge on a node, a question about the node is sent, and the answer appears in the chat." />
+
+## Plan a whole dataflow
+
+The Dataflow Builder, on the canvas, plans a whole dataflow from what you ask, then writes its nodes' code. Before any plan, its empty chat offers planning templates, such as **Load and Clean** and **Build a Dashboard**, which fill the message box for you to send.
+
+Its plan lands as one change, with **Undo** on its card: the nodes it removes, then its nodes, dragged in one after another with no code yet, then its connections. Every new node gets a Node Builder, and every node that loads a dataset also gets a Dataset Finder. Under the Goal, a plan line then says where the plan stands, such as **Planned · 6 nodes, 4 to solve**, and how many nodes wait for you, with one action: **Solve**, **Stop** while a Solve or a build runs, **Resume** when a build paused, or **Run workflow** once the plan is ready. The arrow at the line's end opens the plan's nodes, each with its own **Solve**, and **Build & validate plan** and **Step**:
+
+- **Solve** fills in the plan's nodes in one batch: it runs each node's code in the sandbox, corrects it when the run fails, and writes only code that ran. It goes on when you close the chat or reload the page.
+- **Build & validate plan** fills the nodes in plan order: each node's code runs in the sandbox and lands, with its **Undo** in the chat of the node's agent, before the next node. The first failure pauses the build, and **Resume** continues from that node. **Step** does one action at a time.
+- **Solve this node**, under the Goal in the chat of an agent on a node, fills that node alone.
+
+When a node that loads a dataset has no settled source, **Solve** or **Build & validate plan** asks its Dataset Finder for candidates, and the node waits for you. A build goes on with every node that does not read from it, and pauses once no other node can go on, with the node's row on the plan's card reading **Needs a source**. The candidates are in the Finder's chat, which says which agent asked for them and what they are for; **Open Dataset Finder for** and the node's name, under the plan line, opens it. **Confirm source for this node** records your pick, and the next **Resume** or **Solve** builds the loader from that source. See [Solve](https://github.com/urban-toolkit/curio/blob/main/docs/AGENT-CATALOG.md#solve) in the Agent Catalog reference.
 
 ## What agents work with
 
