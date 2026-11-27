@@ -24,7 +24,7 @@ Every node in Curio, the built-ins included, comes from a package: a folder whos
 2. Click the cog in the node header to open **Node settings**, and set the label, the port types and the editor mode.
 3. Click **Save as package node…**, pick **New package…**, give the package a name and save.
 
-The node now belongs to your package, in your own store under `.curio/users/`: it stays in the palette after a restart, its imports are recorded as the package's dependencies, and Curio generates its id. To pick your own reverse-domain id, start from files in a git clone (see [Contribute](/contributing/)): `python scripts/new_package.py me.roughness` writes a valid `packages/me.roughness@1/` with a Python starter, to add from the Node Catalog drawer.
+The node now belongs to your package, in your own store under `.curio/users/`: it stays in the palette after a restart, its imports are recorded as the package's dependencies, and Curio generates its id. To pick your own reverse-domain id, start from files in a git clone (see [Contribute](/contributing/)): `python scripts/new_package.py me.rolling-stats` writes a valid `packages/me.rolling-stats@1/` with a Python starter, to add from the Node Catalog drawer.
 
 <GuideFigure src="/media/authoring-nodes/node-settings.webp" alt="The Node settings dialog" caption="The Node settings dialog, where a node&#x27;s label, capabilities and port types are set before it is saved as a package node." :w="1280" :h="768" />
 
